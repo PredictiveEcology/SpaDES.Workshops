@@ -1,0 +1,17 @@
+url: http://spades-core.predictiveecology.org/
+
+template:
+  params:
+    bootswatch: flatly
+
+navbar:
+  title: "SpaDES Workshops"
+  type: inverse
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Slides"
+      href: articles/i-introduction.html
+  right:
+    - icon: fa-github
+      href: https://spades.predictiveecology.org/

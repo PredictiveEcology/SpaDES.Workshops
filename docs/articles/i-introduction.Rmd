@@ -1,0 +1,28 @@
+---
+title: "01 Diving into SpaDES"
+author:
+  - "Eliot J. B. McIntire"
+date: "`r strftime(Sys.Date(), '%B %d %Y')`"
+output:
+  ioslides_presentation
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{01 Diving into SpaDES}
+  %\VignetteDepends{SpaDES.core, SpaDES.tools}
+  %\VignetteKeyword{discrete event simulation, spatial simulation models, workshops}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Introduction to `SpaDES`
+
+## Package description
+
+Easily implement a variety of simulation models, with a focus on spatially explicit models.
+These include raster-based, event-based, and agent-based models.
+The core simulation components are built upon a discrete event simulation framework that facilitates modularity, and easily enables the user to include additional functionality by running user-built simulation modules.
+Included are numerous tools to rapidly visualize raster and other maps.
+
+## Requirements
+
+This packages makes heavy use of the `raster` [@raster:2015] and `sp` [@sp:2005; @sp:2013] packages, so familiarity with these packages, their classes and methods is recommended.
+
