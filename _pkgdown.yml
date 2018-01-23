@@ -15,3 +15,12 @@ navbar:
   right:
     - icon: fa-github
       href: https://spades.predictiveecology.org/
+
+articles:
+  - title: "Introduction to SpaDES"
+    desc: >
+      The morning session.
+    contents:
+    - i-introduction
+	- i-introduction-slides
+	
