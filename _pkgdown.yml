@@ -21,6 +21,4 @@ articles:
     desc: >
       The morning session.
     contents:
-    - i-introduction
-	- i-introduction-slides
-	
+    - starts_with("i-intro")
