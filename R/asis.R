@@ -8,8 +8,10 @@
 #' @rdname asis
 .asis <- function(...) {
   pkgdown::build_site(...)
-  a <- dir("vignettes", full.names = TRUE, pattern = "Rmd");
-  lapply(a, rmarkdown::render);
-  file.copy(gsub(a, pattern = "Rmd", replacement = "html"), to = "docs/articles", overwrite = TRUE)
+  a <- dir("vignettes", full.names = TRUE, pattern = "Rmd")
+  lapply(a, rmarkdown::render)
+  htmlFilenames <- gsub(a, pattern = "Rmd", replacement = "html")
+  file.copy(htmlFilenames, to = "docs/articles", overwrite = TRUE)
+  unlink(htmlFilenames)
 }
 
