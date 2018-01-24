@@ -24,7 +24,7 @@ This text is centered.
 <div class="columns-2">
   <img src="images/SpaDES.png" height="300px" alt="">
 
-  - Bullet 1  
-  - Bullet 2  
-  - Bullet 3
+  > - Bullet 1  
+  > - Bullet 2  
+  > - Bullet 3
 </div>
