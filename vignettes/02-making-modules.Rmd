@@ -3,16 +3,28 @@ title: "02 Making Modules"
 author: "Eliot J. B. McIntire"
 date: "`r strftime(Sys.Date(), '%B %d %Y')`"
 output:
-  ioslides_presentation: default
-  slidy_presentation: default
+  ioslides_presentation: 
+    incremental: true
+    fig_width: 2
+    fig_height: 2
 vignette: |
   %\VignetteEngine{knitr::rmarkdown} %\VignetteIndexEntry{01 Diving into SpaDES} %\VignetteDepends{SpaDES.core, SpaDES.tools} %\VignetteKeyword{discrete event simulation, spatial simulation models, workshops} %\VignetteEncoding{UTF-8}
+editor_options: 
+  chunk_output_type: console
 ---
 
-# Making modules
+## Making modules
 
+<div class="centered">
+This text is centered.
+</div>
 
 ## Requirements
 
-This packages makes heavy use of the `raster` [@raster:2015] and `sp` [@sp:2005; @sp:2013] packages, so familiarity with these packages, their classes and methods is recommended.
+<div class="columns-2">
+  <img src="images/SpaDES.png" height="300px" alt="">
 
+  - Bullet 1  
+  - Bullet 2  
+  - Bullet 3
+</div>
