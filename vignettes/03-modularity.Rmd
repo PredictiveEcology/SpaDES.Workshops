@@ -5,7 +5,6 @@ date: "`r strftime(Sys.Date(), '%B %d %Y')`"
 output:
   ioslides_presentation:
   incremental: true
-  css: styles.css
 vignette: |
   %\VignetteEngine{knitr::rmarkdown} %\VignetteIndexEntry{01 Diving into SpaDES} %\VignetteDepends{SpaDES.core, SpaDES.tools} %\VignetteKeyword{discrete event simulation, spatial simulation models, workshops} %\VignetteEncoding{UTF-8}
 editor_options:
