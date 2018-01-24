@@ -1,0 +1,49 @@
+---
+title: "03 Modularity"
+author: "Eliot J. B. McIntire"
+date: "`r strftime(Sys.Date(), '%B %d %Y')`"
+output:
+  ioslides_presentation:
+  incremental: true
+  css: styles.css
+vignette: |
+  %\VignetteEngine{knitr::rmarkdown} %\VignetteIndexEntry{01 Diving into SpaDES} %\VignetteDepends{SpaDES.core, SpaDES.tools} %\VignetteKeyword{discrete event simulation, spatial simulation models, workshops} %\VignetteEncoding{UTF-8}
+editor_options:
+  chunk_output_type: console
+---
+
+----
+
+<img src="images/Modularity/Slide1.PNG"; style="max-width:900px;float:top;margin-left:-60px;">
+
+---- 
+
+<img src="images/Modularity/Slide2.PNG"; style="max-width:900px;float:top;margin-left:-60px;">
+
+---- 
+
+<img src="images/Modularity/Slide3.PNG"; style="max-width:900px;float:top;margin-left:-60px;">
+
+---- 
+
+<img src="images/Modularity/Slide4.PNG"; style="max-width:900px;float:top;margin-left:-60px;">
+
+---- 
+
+<img src="images/Modularity/Slide5.PNG"; style="max-width:900px;float:top;margin-left:-60px;">
+
+---- 
+
+<img src="images/Modularity/Slide6.PNG"; style="max-width:900px;float:top;margin-left:-60px;">
+
+---- 
+
+<img src="images/Modularity/Slide7.PNG"; style="max-width:900px;float:top;margin-left:-60px;">
+
+---- 
+
+<img src="images/Modularity/Slide8.PNG"; style="max-width:900px;float:top;margin-left:-60px;">
+
+---- 
+
+<img src="images/Modularity/Slide9.PNG"; style="max-width:900px;float:top;margin-left:-60px;">

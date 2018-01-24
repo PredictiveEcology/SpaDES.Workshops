@@ -4,4 +4,5 @@ urls:
 articles:
   01-introduction: 01-introduction.html
   02-making-modules: 02-making-modules.html
+  03-modularity: 03-modularity.html
 
