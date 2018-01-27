@@ -1,4 +1,4 @@
-<img align="right" width="80" pad="20" src="https://github.com/PredictiveEcology/SpaDES/raw/master/docs/images/SpaDES.png">
+<img align="right" width="80" vspace="10" hspace="10" src="https://github.com/PredictiveEcology/SpaDES/raw/master/docs/images/SpaDES.png">
 
 # SpaDES Workshops
 
