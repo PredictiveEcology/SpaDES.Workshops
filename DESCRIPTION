@@ -6,7 +6,7 @@ URL:
     https://spades-workshops.predictiveecology.org/,
     https://github.com/PredictiveEcology/SpaDES.Workshops
 Date: 2018-01-21
-Version: 0.1.0.9009
+Version: 0.1.0
 Authors@R: c(
     person("Eliot J B", "McIntire", email = "eliot.mcintire@canada.ca",
     role = c("aut", "cre")),
@@ -15,16 +15,10 @@ Authors@R: c(
     )
 Depends:
     R (>= 3.3.2)
-Imports:
-    raster (>= 2.5-8)
-Suggests:
-    testthat (>= 1.0.2)
-Remotes: 
-    PredictiveEcology/reproducible@development,
-    PredictiveEcology/quickPlot@development
 License: GPL-3
 VignetteBuilder: knitr, rmarkdown
 BugReports: https://github.com/PredictiveEcology/SpaDES.Workshops/issues
 ByteCompile: yes
 Collate: 
+    'asis.R'
 RoxygenNote: 6.0.1

@@ -1,0 +1,20 @@
+---
+title       : "Download other vignettes"
+author      : "Eliot McIntire"
+date        : "Jan 30, 2018"
+output: 
+  html_document: 
+    number_sections: yes
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, echo = TRUE, eval = TRUE)
+```
+
+```{r spades4dummies}
+utils::download.file("https://raw.githubusercontent.com/CeresBarros/SpaDES4Dummies/master/SpaDES4Dummies.Rmd",
+              destfile = "dl_SpaDES4Dummies.Rmd")
+```
+

@@ -1,0 +1,21 @@
+---
+title       : "Copy downloaded vignettes"
+author      : "Eliot McIntire"
+date        : "Jan 30, 2018"
+output:
+  html_document:
+  number_sections: yes
+toc: true
+toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, echo = TRUE, eval = TRUE)
+```
+
+```{r spades4dummies}
+filesToCopy <- dir(pattern = "dl_.*Rmd", full.names = TRUE)
+filesToRender <- gsub(filesToCopy, pattern = "dl_", replacement = "")
+lapply(filesToRender, rmarkdown::render)
+```
+

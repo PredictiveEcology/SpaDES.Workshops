@@ -2,5 +2,10 @@
 
 # SpaDES Workshops
 
-This web site is *very much* in development. Come back later :)
+This web site is *very much* in development. You can follow progress with the links above.
 
+For those of you following the Developer's workshop, you can pre-install the `SpaDES` packages:
+
+```
+install.packages("SpaDES")
+```

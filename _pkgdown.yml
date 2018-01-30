@@ -11,10 +11,10 @@ navbar:
   title: "SpaDES Workshops"
   type: inverse
   left:
-    - text: "Home"
-      href: index.html
-    - text: "Workshop Notes"
+    - text: "2018-02-07 Workshops"
       href: articles/index.html
+    - text: "Past Workshops"
+      href: http://rpubs.com/PredictiveEcology/SpaDES-Intro-Course-Outline
   right:
     - icon: fa-github
       href: https://spades.predictiveecology.org/
@@ -24,4 +24,11 @@ articles:
     desc: >
       The morning session.
     contents:
-    - starts_with("i-intro")
+    - 01-introduction
+    - SpaDES4Dummies
+
+  - title: "Exercises"
+    desc: >
+      All exercises that we will touch on
+    contents:
+    - ends_with("exercises")

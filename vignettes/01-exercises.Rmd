@@ -1,0 +1,64 @@
+---
+title       : "Exercises: `SpaDES` in action"
+author      : "Alex M Chubaty & Eliot McIntire"
+date        : "December 7, 2016"
+output: 
+  html_document: 
+    number_sections: yes
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, echo = TRUE, eval = FALSE)
+```
+# `SpaDES` sample modules
+
+1.  Which modules are included with the `SpaDES` package?
+
+    ```{r sampleModuleDir}
+    ## Locate the `SpaDES` sample modules
+    sampleModuleDir <- system.file('sampleModules', package = 'SpaDES')
+    
+    ## identify the modules in this directory
+    dir(sampleModuleDir)
+    ```
+
+2. What do each of the sample modules do? *I.e.*, what does each one demonstrate?
+
+    ```{r sampleModuleFiles}
+    ## open the sample module files to learn more about each module
+    sampleModuleFiles <- list.files(sampleModuleDir, recursive = TRUE, full.names = TRUE)
+    lapply(sampleModuleFiles, file.edit)
+    ```
+
+# `LCC2005` vegetation dynamics modules
+
+Download and examine the `LCC2005` vegetation dynamics modules to learn more about them.
+
+```{r LCC2005ModuleFiles, eval=FALSE}
+## specify where to save files
+moduleDir <- file.path(tempdir(), 'SpaDES_modules')
+
+## download all necessary modules
+downloadModule('LCC2005', path = moduleDir, data = TRUE)
+
+## look at module or helper .Rmd file
+openModules('LCC2005', path = moduleDir) 
+```
+
+# `wolfAlps` module
+
+Download and examine the `wolfAlps` individual based model to learn more about it.
+
+```{r wolf}
+downloadModule("wolfAlps", path = moduleDir, data = TRUE)
+openModules("wolfAlps", path = moduleDir)
+```
+
+# `SpaDES` and `shiny`
+
+If time permits, feel free to play around with the proof-of-concept shiny apps:
+
+- https://spades.shinyapps.io/ForestChange_ProofOfConcept/
+- http://w-vic-a105388.pfc.forestry.ca/SpaDESUI-forEliot-Oct2016/ (only available inside CFS firewall)
