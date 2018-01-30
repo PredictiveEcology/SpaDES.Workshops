@@ -1,0 +1,157 @@
+\documentclass[ignorenonframetext,]{beamer}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}{: }
+\setbeamercolor{caption name}{fg=normal text.fg}
+\beamertemplatenavigationsymbolsempty
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\newif\ifbibliography
+\hypersetup{
+            pdftitle={SpaDES 3-day challenge a workshop for the SpaDESuser inside you},
+            pdfauthor={Ceres Barros},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+
+% Prevent slide breaks in the middle of a paragraph:
+\widowpenalties 1 10000
+\raggedbottom
+
+\AtBeginPart{
+  \let\insertpartnumber\relax
+  \let\partname\relax
+  \frame{\partpage}
+}
+\AtBeginSection{
+  \ifbibliography
+  \else
+    \let\insertsectionnumber\relax
+    \let\sectionname\relax
+    \frame{\sectionpage}
+  \fi
+}
+\AtBeginSubsection{
+  \let\insertsubsectionnumber\relax
+  \let\subsectionname\relax
+  \frame{\subsectionpage}
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+
+\title{SpaDES 3-day challenge a workshop for the \texttt{SpaDES}user inside you}
+\author{Ceres Barros}
+\date{janeiro 25 2018}
+
+\begin{document}
+\frame{\titlepage}
+
+\begin{frame}[fragile]{\texttt{SpaDES} 3-day challenge}
+
+a workshop for the \texttt{SpaDES} user inside you
+
+Featuring: Drs. Eliot McIntire and Ceres Barros
+
+\begin{block}{Workshop outline}
+
+\textbf{Day 1. What is SpaDES and how does it work?} - Part I (morning):
+\emph{User, this is SpaDES. SpaDES, meet your new best friend} - Part II
+(afternoon): \emph{Get your hands dirty: using \texttt{SpaDES} for the
+1st time}
+
+\textbf{Day 2.}
+
+\textbf{Day 3.}
+
+\end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]{Day 1. What is SpaDES and how does it work?}
+
+\begin{block}{Part I}
+
+\end{block}
+
+\begin{block}{\emph{User, this is \texttt{SpaDES}. \texttt{SpaDES}, meet
+your new best friend}}
+
+\end{block}
+
+\begin{block}{Why is modelling important?}
+
+\end{block}
+
+\begin{block}{Challenges modellers face}
+
+\begin{block}{(particularly when bridging disciplines)}
+
+\begin{block}{1. Many models, low integration}
+
+\begin{itemize}
+\tightlist
+\item
+  Different models for a similiar question
+\item
+  Varying model complexity
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  Models in different languages
+\end{itemize}
+
+\end{block}
+
+\end{block}
+
+\end{block}
+
+\begin{block}{Challenges modellers face}
+
+\begin{block}{(particularly when bridging disciplines)}
+
+\begin{block}{1. Many models, low integration}
+
+\begin{itemize}
+\tightlist
+\item
+  Different models for a similiar question
+\item
+  Varying model complexity
+\end{itemize}
+
+\end{block}
+
+\end{block}
+
+\end{block}
+
+\end{frame}
+
+\end{document}
