@@ -18,3 +18,6 @@ vignette: |
 
 This packages makes heavy use of the `raster` [@raster:2015] and `sp` [@sp:2005; @sp:2013] packages, so familiarity with these packages, their classes and methods is recommended.
 
+Yes.
+
+

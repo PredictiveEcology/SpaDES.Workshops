@@ -20,11 +20,10 @@ navbar:
       href: https://spades.predictiveecology.org/
 
 articles:
-  - title: "Introduction to SpaDES"
+  - title: "Examples we will work through"
     desc: >
       The morning session.
     contents:
-    - 01-introduction
     - SpaDES4Dummies
 
   - title: "Exercises"

@@ -7,5 +7,7 @@ This web site is *very much* in development. You can follow progress with the li
 For those of you following the Developer's workshop, you can pre-install the `SpaDES` packages:
 
 ```
-install.packages("SpaDES")
+update.packages(oldPkgs = c("quickPlot", "reproducible", "SpaDES.core")); 
+install.packages() 
+
 ```
