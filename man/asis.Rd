@@ -4,7 +4,7 @@
 \alias{.asis}
 \title{Quick and dirty render pkgdown asis}
 \usage{
-.asis(..., replacements)
+.asis(..., replacements, notOlderThan = NULL, cacheRepo = "docs/cache")
 }
 \description{
 This will first run pkgdown::build_site then run rmarkdown::render to

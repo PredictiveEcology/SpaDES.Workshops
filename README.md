@@ -8,6 +8,6 @@ For those of you following the Developer's workshop, you can pre-install the `Sp
 
 ```
 update.packages(oldPkgs = c("quickPlot", "reproducible", "SpaDES.core")); 
-install.packages() 
+install.packages("SpaDES") 
 
 ```

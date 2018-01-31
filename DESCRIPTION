@@ -15,6 +15,8 @@ Authors@R: c(
     )
 Depends:
     R (>= 3.3.2)
+Imports:
+    reproducible
 License: GPL-3
 VignetteBuilder: knitr, rmarkdown
 BugReports: https://github.com/PredictiveEcology/SpaDES.Workshops/issues

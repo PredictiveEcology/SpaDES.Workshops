@@ -3,3 +3,5 @@
 export(.asis)
 export(build_articlesCached)
 export(replaceRemoteLinksInArticles)
+importFrom(reproducible,Cache)
+importFrom(reproducible,asPath)

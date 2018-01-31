@@ -5,20 +5,32 @@
 #' contains an html output format that is not supported by pkgdown
 #' (e.g., ioslides, slidy). This will not work for pdf.
 #' @keywords internal
+#' @importFrom reproducible Cache asPath
 #' @rdname asis
 #' @export
-.asis <- function(..., replacements) {
+.asis <- function(..., replacements, notOlderThan = NULL, cacheRepo = "docs/cache") {
+
 
   #pkgdown::build_site(...)
+  args <- formals(pkgdown::build_site)
+  #out <- Cache(pkgdown::init_site, pkg = args$pkg, path = args$path, notOlderThan = notOlderThan, cacheRepo = cacheRepo)
+  #out <- pkgdown::init_site(pkg = args$pkg, path = args$path)
 
-  build_articlesCached(...)
+  out <- build_articlesCached(..., cacheRepo = cacheRepo)
+
+  #out <- Cache(do.call, pkgdown::build_home, args[names(args) %in% names(formals(pkgdown::build_home))], notOlderThan = notOlderThan, cacheRepo = cacheRepo)
+  #out <- do.call(pkgdown::build_home, args[names(args) %in% names(formals(pkgdown::build_home))])
+
+  #out <- Cache(do.call, pkgdown::build_reference, args[names(args) %in% names(formals(pkgdown::build_reference))], notOlderThan = notOlderThan, cacheRepo = cacheRepo)
+  #out <- do.call(pkgdown::build_reference, args[names(args) %in% names(formals(pkgdown::build_reference))])
+
   a <- dir("vignettes", full.names = TRUE, pattern = "Rmd")
   hasSlides <- unlist(lapply(a, function(x) {
     any(grepl(readLines(x), pattern = "slidy|ioslides"))
   }))
   if (any(hasSlides)) {
     a <- a[hasSlides]
-    lapply(a, rmarkdown::render)
+    lapply(a, function(x) rmarkdown::render(x))
     htmlFilenames <- gsub(a, pattern = "Rmd", replacement = "html")
     file.copy(htmlFilenames, to = "docs/articles", overwrite = TRUE)
     unlink(htmlFilenames)
@@ -27,6 +39,9 @@
   if (!missing(replacements)) {
     replaceRemoteLinksInArticles(replacements)
   }
+
+  if (eval(args$preview))
+    pkgdown:::preview_site(file.path("docs"))
 }
 
 
@@ -46,8 +61,9 @@ replaceRemoteLinksInArticles <- function(replacements) {
 #'
 #' @export
 build_articlesCached <- function (pkg = ".", path = "docs/articles", depth = 1L, encoding = "UTF-8",
-                                  quiet = TRUE, notOlderThan = NULL)
+                                  quiet = TRUE, notOlderThan = NULL, cacheRepo = "cache")
 {
+
   old <- pkgdown:::set_pkgdown_env("true")
   on.exit(pkgdown:::set_pkgdown_env(old))
   pkg <- pkgdown:::as_pkgdown(pkg)
@@ -66,7 +82,7 @@ build_articlesCached <- function (pkg = ".", path = "docs/articles", depth = 1L,
     aa <- Cache(pkgdown:::render_rmd, input = asPath(articles$input[r]), output_file = asPath(articles$output_file[r]),
           digestPathContent = TRUE,
           depth = articles$depth[r],
-          pkg = pkg, data = data, encoding = encoding, quiet = quiet, cacheRepo = "cache",
+          pkg = pkg, data = data, encoding = encoding, quiet = quiet, cacheRepo = cacheRepo,
           notOlderThan = notOlderThan, omitArgs = "pkg")#,
           #sideEffect = dirname(articles$input)[r])
   })
