@@ -1,0 +1,57 @@
+---
+title: "Moving from loops to events"
+author: "Eliot J. B. McIntire"
+date: "`r strftime(Sys.Date(), '%B %d %Y')`"
+output:
+  ioslides_presentation: default
+  slidy_presentation: default
+vignette: |
+  %\VignetteEngine{knitr::rmarkdown} %\VignetteIndexEntry{01 Diving into SpaDES} %\VignetteDepends{SpaDES.core, SpaDES.tools} %\VignetteKeyword{discrete event simulation, spatial simulation models, workshops} %\VignetteEncoding{UTF-8}
+---
+
+## Loops
+
+- A fundamental unit of computer programs is the loop
+- Used in virtually every computer language
+- However, with *R* and `SpaDES`, there are 2 reasons not to:
+
+    - They are somewhat slow
+    - They don't allow easy sharing of code
+  
+## Loops in time
+
+- Some loops are used where *time* is the object moving forward
+- If one loop iteration depends on the previous loop iteration 
+- Called a **Markov Chain**
+
+```{r}
+age <- 1
+for (time in 1:10) {
+  age <- age + 1
+}
+```
+
+## Events
+
+- Rather than "iterating", we can think of "events"
+- Spring thaw  
+<br>
+![](http://www.premier-roofing.com/wp-content/uploads/2014/03/stock-footage-spring-thaw-time-lapse.jpg)
+- Brainstorm events...
+
+## Events instead of loops
+
+- Rather than `for ...`, we **schedule** the next event:
+
+```{r events-into-loops}
+age <- 1
+aging <- age + 1
+
+# define event
+doEvent("aging")
+scheduleEvent("aging", 1)
+
+runEvents(start = 1, end = 10)
+
+```
+

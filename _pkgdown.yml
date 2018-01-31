@@ -22,9 +22,10 @@ navbar:
 articles:
   - title: "Examples we will work through"
     desc: >
-      The morning session.
+      Day 2 - The morning session.
     contents:
     - SpaDES4Dummies
+    - Loops-to-Events
 
   - title: "Exercises"
     desc: >
