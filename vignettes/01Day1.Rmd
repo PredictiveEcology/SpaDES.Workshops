@@ -169,7 +169,6 @@ Now get the modules needed:
 ## note how we use the modules folder defined above and chose to download the necessary data
 downloadModule("LCC2005", path = getPaths()$modulePath, data = TRUE)
 
-##test
 ```
 
 
