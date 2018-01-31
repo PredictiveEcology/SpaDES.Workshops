@@ -93,7 +93,7 @@
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">January 30 2018</p>
+            <p style="margin-top: 6px; margin-left: -2px;">January 31 2018</p>
           </hgroup>
   </slide>
 
@@ -193,6 +193,39 @@ aging &lt;- function(age) {
 
 times = list(start = 1, end = 10)        # bounds</pre>
 
+<ul>
+<li>This creates a queue &#8211; a list of events that need to occur</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>What would that sequence look like?</h2></hgroup><article  id="what-would-that-sequence-look-like">
+
+<ol>
+<li>what is happening now</li>
+<li>What are the next thing(s) in the queue</li>
+</ol>
+
+<pre class = 'prettyprint lang-r'>    eventTime moduleName  eventType
+ 1:         0       loop       init
+ 2:         0       loop addOneYear
+ 3:         1       loop addOneYear
+ 4:         2       loop addOneYear
+ 5:         3       loop addOneYear
+ 6:         4       loop addOneYear
+ 7:         5       loop addOneYear
+ 8:         6       loop addOneYear
+ 9:         7       loop addOneYear
+10:         8       loop addOneYear
+11:         9       loop addOneYear
+12:        10       loop addOneYear </pre>
+
+</article></slide><slide class=""><hgroup><h2>Why would we want to do this?</h2></hgroup><article  id="why-would-we-want-to-do-this">
+
+<ul>
+<li>It is clean, transparent</li>
+<li>It is &quot;modular&quot; (what does that mean?)</li>
+<li></li>
+</ul>
+
 </article></slide><slide class=""><hgroup><h2>How to do that in SpaDES</h2></hgroup><article  id="how-to-do-that-in-spades">
 
 <ul>
@@ -218,6 +251,7 @@ times = list(start = 1, end = 10)        # bounds</pre>
   switch(
     eventType,
     init = {
+      sim$age &lt;- 1
       sim &lt;- scheduleEvent(sim, start(sim), &quot;loop&quot;, &quot;addOneYear&quot;)
     },
     addOneYear = {
@@ -226,7 +260,15 @@ times = list(start = 1, end = 10)        # bounds</pre>
     },
   )
   return(invisible(sim))
-}</pre></article></slide>
+}
+
+moduleDir &lt;- file.path(&quot;C:/Eliot&quot;)
+modules &lt;- list(&quot;loop&quot;)
+
+mySim &lt;- simInit(times = times, modules = modules,
+                 paths = list(moduleDir = file.path(&quot;C:/Eliot&quot;)))
+
+mySimOut &lt;- spades(mySim, debug = TRUE)</pre></article></slide>
 
 
   <slide class="backdrop"></slide>

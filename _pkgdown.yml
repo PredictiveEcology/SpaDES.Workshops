@@ -11,7 +11,7 @@ navbar:
   title: "SpaDES Workshops"
   type: inverse
   left:
-    - text: "2018-02-07 Workshops"
+    - text: "2018-02-07 Workshop"
       href: articles/index.html
     - text: "Past Workshops"
       href: http://rpubs.com/PredictiveEcology/SpaDES-Intro-Course-Outline
@@ -20,12 +20,15 @@ navbar:
       href: https://spades.predictiveecology.org/
 
 articles:
-  - title: "Examples we will work through"
+  - title: "Examples and topics we will work through"
     desc: >
-      Day 2 - The morning session.
+      Day 2 - 3
     contents:
     - SpaDES4Dummies
     - Loops-to-Events
+    - Spreading-module
+    - Agent-module
+    - Population-module
 
   - title: "Exercises"
     desc: >

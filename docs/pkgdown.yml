@@ -3,7 +3,7 @@ urls:
   article: http://spades-workshops.predictiveecology.org//articles
 articles:
   01-exercises: 01-exercises.html
-  01-introduction: 01-introduction.html
+  01Day1: 01Day1.html
   02-exercises: 02-exercises.html
   02-making-modules: 02-making-modules.html
   03-exercises: 03-exercises.html
@@ -15,6 +15,10 @@ articles:
   07-exercises: 07-exercises.html
   08-exercises: 08-exercises.html
   09-exercises: 09-exercises.html
+  Agent-module: Agent-module.html
+  Loops-to-Events: Loops-to-Events.html
+  Population-module: Population-module.html
   SpaDES4Dummies: SpaDES4Dummies.html
+  Spreading-module: Spreading-module.html
   ZZcopyDownloadedVignettes: ZZcopyDownloadedVignettes.html
 

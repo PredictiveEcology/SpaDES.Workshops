@@ -38,7 +38,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="articles/index.html">2018-02-07 Workshops</a>
+  <a href="articles/index.html">2018-02-07 Workshop</a>
 </li>
 <li>
   <a href="http://rpubs.com/PredictiveEcology/SpaDES-Intro-Course-Outline">Past Workshops</a>
@@ -69,9 +69,18 @@
 <a href="#spades-workshops" class="anchor"></a>SpaDES Workshops</h1></div>
 <p>This web site is <em>very much</em> in development. You can follow progress with the links above.</p>
 <p>For those of you following the Developer’s workshop, you can pre-install the <code>SpaDES</code> packages:</p>
-<pre><code>update.packages(oldPkgs = c("quickPlot", "reproducible", "SpaDES.core")); 
+<pre><code># If you have any of our packages or their dependencies, please update them first
+# Get latest versions of our packages from CRAN
+update.packages(oldPkgs = c("quickPlot", "reproducible", "SpaDES.core"), ask = FALSE) 
+
+# Update any versions of the dependencies of those packages
+dependencies = reproducible::pkgDep(c("quickPlot", "reproducible", "SpaDES.core"))
+update.packages(oldPkgs = unique(unlist(dependencies)), ask = FALSE) 
+
+# install all SpaDES packages
 install.packages("SpaDES") 
 </code></pre>
+<p>For a direct link to the workshops, click on the top navigation bar.</p>
 </div>
 
   </div>

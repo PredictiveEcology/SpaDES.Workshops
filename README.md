@@ -6,8 +6,19 @@ This web site is *very much* in development. You can follow progress with the li
 
 For those of you following the Developer's workshop, you can pre-install the `SpaDES` packages:
 
+
 ```
-update.packages(oldPkgs = c("quickPlot", "reproducible", "SpaDES.core")); 
+# If you have any of our packages or their dependencies, please update them first
+# Get latest versions of our packages from CRAN
+update.packages(oldPkgs = c("quickPlot", "reproducible", "SpaDES.core"), ask = FALSE) 
+
+# Update any versions of the dependencies of those packages
+dependencies = reproducible::pkgDep(c("quickPlot", "reproducible", "SpaDES.core"))
+update.packages(oldPkgs = unique(unlist(dependencies)), ask = FALSE) 
+
+# install all SpaDES packages
 install.packages("SpaDES") 
 
 ```
+
+For a direct link to the workshops, click on the top navigation bar.

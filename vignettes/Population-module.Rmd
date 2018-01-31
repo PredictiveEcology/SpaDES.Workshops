@@ -1,5 +1,5 @@
 ---
-title: "Moving from loops to events"
+title: "Population matrix module"
 author: "Eliot J. B. McIntire"
 date: "`r strftime(Sys.Date(), '%B %d %Y')`"
 output:
