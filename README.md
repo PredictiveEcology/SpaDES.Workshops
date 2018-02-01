@@ -8,15 +8,25 @@ For those of you following the Developer's workshop, you can pre-install the `Sp
 
 
 ```
+# Restart your R session so it is clear
+# Ctrl-shift-F10 if you are in Rstudio #
+
 # If you have any of our packages or their dependencies, please update them first
 # Get latest versions of key SpaDES packages from CRAN
 dependencies <- tools::package_dependencies("SpaDES", recursive = TRUE)
 
-# Update any versions of the dependencies of those packages
+# Update any versions of these dependencies that are already on your machine
 update.packages(oldPkgs = unlist(dependencies), ask = FALSE) 
 
-# install the latest version of the SpaDES packages
-install.packages("SpaDES") 
+# install the latest version of the SpaDES packages and any dependencies not yet installed
+install.packages("SpaDES", dependencies = TRUE) # install "suggested" packages too with TRUE
+
+# For the workshop, there is one piece that is not in the CRAN version
+# Restart your R session so it is clear
+# Ctrl-shift-F10 if you are in Rstudio #
+reproducible::Require("devtools") # installs if needed, and loads
+devtools::install_github("PredictiveEcology/SpaDES", ref = "development")
+
 ```
 
 For a direct link to the workshops, click on the top navigation bar.
