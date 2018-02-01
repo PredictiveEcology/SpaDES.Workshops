@@ -20,6 +20,12 @@ navbar:
       href: https://spades.predictiveecology.org/
 
 articles:
+  - title: "Google Drive for Day 1"
+    desc: >
+      Powerpoints for Day 1
+    contents:
+    - GoogleDrive
+
   - title: "Examples and topics we will work through"
     desc: >
       Day 2 - 3

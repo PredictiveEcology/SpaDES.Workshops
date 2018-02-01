@@ -27,6 +27,7 @@ https://pwgsc-nh.webex.com/join/eliot.mcintirecanada.ca
 If you are interested in the Advanced Intro or Developer Workshop, please email me.
 If you would like to participate in the Developer workshop, you will need your own laptop.
 
+
 ## Developers workshops
 
 For those of you following the Developer's workshop, you can pre-install the `SpaDES` packages:
