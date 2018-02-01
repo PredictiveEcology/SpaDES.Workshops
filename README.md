@@ -9,16 +9,18 @@ For those of you following the Developer's workshop, you can pre-install the `Sp
 
 ```
 # If you have any of our packages or their dependencies, please update them first
-# Get latest versions of our packages from CRAN
-update.packages(oldPkgs = c("quickPlot", "reproducible", "SpaDES.core"), ask = FALSE) 
+# Get latest versions of key SpaDES packages from CRAN
+dependencies <- tools::package_dependencies("SpaDES", recursive = TRUE)
 
 # Update any versions of the dependencies of those packages
-dependencies = reproducible::pkgDep(c("quickPlot", "reproducible", "SpaDES.core"))
-update.packages(oldPkgs = unique(unlist(dependencies)), ask = FALSE) 
+update.packages(oldPkgs = unlist(dependencies), ask = FALSE) 
 
-# install all SpaDES packages
+# install the latest version of the SpaDES packages
 install.packages("SpaDES") 
-
 ```
 
 For a direct link to the workshops, click on the top navigation bar.
+
+# Resources:
+
+[SpaDES wiki pages](https://github.com/PredictiveEcology/SpaDES/wiki)
