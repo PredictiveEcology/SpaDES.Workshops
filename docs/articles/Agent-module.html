@@ -97,178 +97,22 @@
           </hgroup>
   </slide>
 
-<slide class=""><hgroup><h2>Loops</h2></hgroup><article  id="loops">
+<slide class=""><hgroup><h2>Download agent moving module</h2></hgroup><article  id="download-agent-moving-module">
 
 <ul>
-<li>A fundamental unit of computer programs is the loop</li>
-<li>Used in virtually every computer language</li>
-<li><p>However, with <em>R</em> and <code>SpaDES</code>, there are 2 reasons not to:</p>
-
-<ul>
-<li>They are somewhat slow</li>
-<li>They don&#39;t allow easy sharing of code</li>
-</ul></li>
+<li>Lets start with a simple movement module</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Loops in time</h2></hgroup><article  id="loops-in-time">
+<pre class = 'prettyprint lang-r'>library(SpaDES)
+tmpdir &lt;- tempdir()
+downloadModule(&quot;caribouMovementLcc&quot;, path = tmpdir)</pre>
+
+</article></slide><slide class=""><hgroup><h2>What does it do?</h2></hgroup><article  id="what-does-it-do">
 
 <ul>
-<li>Some loops are used where <em>time</em> is the object moving forward</li>
-<li>If one loop iteration depends on the previous loop iteration</li>
-<li>Called a <strong>Markov Chain</strong></li>
-</ul>
-
-<pre class = 'prettyprint lang-r'>age &lt;- 1
-for (time in 1:10) {
-  age &lt;- age + 1
-}</pre>
-
-</article></slide><slide class=""><hgroup><h2>Events</h2></hgroup><article  id="events">
-
-<ul>
-<li>Rather than &quot;iterating&quot;, we can think of &quot;events&quot;</li>
-<li>Spring thaw<br/><br> <img src='http://www.premier-roofing.com/wp-content/uploads/2014/03/stock-footage-spring-thaw-time-lapse.jpg' title=''/></li>
-<li>Brainstorm events&#8230;</li>
-</ul>
-
-</article></slide><slide class=""><hgroup><h2>Events instead of loops</h2></hgroup><article  id="events-instead-of-loops">
-
-<ul>
-<li>Rather than <code>for ...</code>, we <strong>schedule</strong> the next event</li>
-<li>It would be something like this:</li>
-</ul>
-
-<pre class = 'prettyprint lang-r'>age &lt;- 1
-
-# define event
-aging &lt;- age + 1
-
-events &lt;- {
-  doEvent(&quot;aging&quot;)
-  scheduleEvent(&quot;aging&quot;, when = now + 1)
-}
-
-times = list(start = 1, end = 10) </pre>
-
-</article></slide><slide class=""><hgroup><h2>Parts of a loop</h2></hgroup><article  id="parts-of-a-loop">
-
-<ul>
-<li>Setting up (sometimes required), <strong>initializing</strong></li>
-</ul>
-
-<pre class = 'prettyprint lang-r'>age &lt;- 1</pre>
-
-<ul>
-<li>deciding on <strong>bounds</strong> and <strong>intermediates</strong> or &quot;step&quot;
-
-<ul>
-<li>lower bound = 1 to upper bound = 10</li>
-<li>here step is 1 (i.e., 1, 2, 3, 4, &#8230; 10)</li>
-</ul></li>
-</ul>
-
-<pre class = 'prettyprint lang-r'>... in 1:10</pre>
-
-<ul>
-<li><strong>content</strong></li>
-</ul>
-
-<pre class = 'prettyprint lang-r'>age &lt;-  age + 1</pre>
-
-</article></slide><slide class=""><hgroup><h2>Moving to events</h2></hgroup><article  id="moving-to-events">
-
-<ul>
-<li>Need same as a loop:</li>
-</ul>
-
-<p><strong>initialize</strong>, <strong>bounds</strong>, <strong>step</strong>, <strong>content</strong></p>
-
-<pre class = 'prettyprint lang-r'>age &lt;- 1                                 # Initialize
-
-# define event
-aging &lt;- function(age) {
-  age &lt;- age + 1                         # content
-  scheduleEvent(&quot;aging&quot;, when = now + 1) # step
-}
-
-times = list(start = 1, end = 10)        # bounds</pre>
-
-<ul>
-<li>This creates a queue &#8211; a list of events that need to occur</li>
-</ul>
-
-</article></slide><slide class=""><hgroup><h2>What would that sequence look like?</h2></hgroup><article  id="what-would-that-sequence-look-like">
-
-<ol>
-<li>what is happening now</li>
-<li>What are the next thing(s) in the queue</li>
-</ol>
-
-<pre class = 'prettyprint lang-r'>    eventTime moduleName  eventType
- 1:         0       loop       init
- 2:         0       loop addOneYear
- 3:         1       loop addOneYear
- 4:         2       loop addOneYear
- 5:         3       loop addOneYear
- 6:         4       loop addOneYear
- 7:         5       loop addOneYear
- 8:         6       loop addOneYear
- 9:         7       loop addOneYear
-10:         8       loop addOneYear
-11:         9       loop addOneYear
-12:        10       loop addOneYear </pre>
-
-</article></slide><slide class=""><hgroup><h2>Why would we want to do this?</h2></hgroup><article  id="why-would-we-want-to-do-this">
-
-<ul>
-<li>It is clean, transparent</li>
-<li>It is &quot;modular&quot; (what does that mean?)</li>
-<li></li>
-</ul>
-
-</article></slide><slide class=""><hgroup><h2>How to do that in SpaDES</h2></hgroup><article  id="how-to-do-that-in-spades">
-
-<ul>
-<li>create a new &quot;empty&quot; module</li>
-<li>we will put the pieces in specific places so it works</li>
-</ul>
-
-<pre class = 'prettyprint lang-r'>newModule(&quot;loop&quot;, path = &quot;~&quot;)
-# This will make a new module, and 
-#  tell you how to open it in the message </pre>
-
-<ul>
-<li>Open the module &#8211; the file that ends with <code>.R</code></li>
-</ul>
-
-</article></slide><slide class=""><hgroup><h2>Simple module</h2></hgroup><article  id="simple-module">
-
-<ul>
-<li>Comes with 2 files, an <code>.R</code> file and a <code>.Rmd</code> file</li>
-</ul>
-
-<pre class = 'prettyprint lang-r'>doEvent.loop = function(sim, eventTime, eventType, debug = FALSE) {
-  switch(
-    eventType,
-    init = {
-      sim$age &lt;- 1
-      sim &lt;- scheduleEvent(sim, start(sim), &quot;loop&quot;, &quot;addOneYear&quot;)
-    },
-    addOneYear = {
-      sim$age &lt;- sim$age + 1
-      sim &lt;- scheduleEvent(sim, time(sim) + 1, &quot;loop&quot;, &quot;addOneYear&quot;)
-    },
-  )
-  return(invisible(sim))
-}
-
-moduleDir &lt;- file.path(&quot;C:/Eliot&quot;)
-modules &lt;- list(&quot;loop&quot;)
-
-mySim &lt;- simInit(times = times, modules = modules,
-                 paths = list(moduleDir = file.path(&quot;C:/Eliot&quot;)))
-
-mySimOut &lt;- spades(mySim, debug = TRUE)</pre></article></slide>
+<li>Try it out first</li>
+<li>Where do we start?</li>
+</ul></article></slide>
 
 
   <slide class="backdrop"></slide>

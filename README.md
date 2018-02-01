@@ -17,7 +17,7 @@ We have organized a set of sessions, back to back, starting from the most “gen
 
 ## Location
 
-**Pacific Forestry Centre  -- Rooms TBA**
+**Pacific Forestry Centre  -- Dilbert Hall**
 
 ## WebEx
 

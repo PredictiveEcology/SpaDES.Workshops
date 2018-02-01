@@ -27,3 +27,5 @@ downloadModule("fireSpreadLcc", path = tmpdir)
 
 ## What does it do?
 
+- Try it out first
+- Where do we start?
