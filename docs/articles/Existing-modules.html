@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Moving from loops to events</title>
+  <title>Population matrix module</title>
 
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -20,7 +20,7 @@
     var SLIDE_CONFIG = {
       // Slide settings
       settings: {
-                title: 'Moving from loops to events',
+                title: 'Population matrix module',
                         useBuilds: true,
         usePrettify: true,
         enableSlideAreas: true,
@@ -223,10 +223,7 @@ times = list(start = 1, end = 10)        # bounds</pre>
 <ul>
 <li>It is clean, transparent</li>
 <li>It is &quot;modular&quot; (what does that mean?)</li>
-<li><p>Can be very rich sequences including</p></li>
-<li>conditional scheduling</li>
-<li>irregular sequences</li>
-<li><p>the sequence changes mid-stream</p></li>
+<li></li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>How to do that in SpaDES</h2></hgroup><article  id="how-to-do-that-in-spades">
@@ -236,7 +233,7 @@ times = list(start = 1, end = 10)        # bounds</pre>
 <li>we will put the pieces in specific places so it works</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>newModule(&quot;loop&quot;, path = getwd())
+<pre class = 'prettyprint lang-r'>newModule(&quot;loop&quot;, path = &quot;~&quot;)
 # This will make a new module, and 
 #  tell you how to open it in the message </pre>
 
@@ -248,7 +245,6 @@ times = list(start = 1, end = 10)        # bounds</pre>
 
 <ul>
 <li>Comes with 2 files, an <code>.R</code> file and a <code>.Rmd</code> file</li>
-<li>The <code>.R.</code> file has this in it - can we recognize the pieces?</li>
 </ul>
 
 <pre class = 'prettyprint lang-r'>doEvent.loop = function(sim, eventTime, eventType, debug = FALSE) {
@@ -264,70 +260,15 @@ times = list(start = 1, end = 10)        # bounds</pre>
     },
   )
   return(invisible(sim))
-}</pre>
-
-</article></slide><slide class=""><hgroup><h2>The <code>.Rmd</code> file</h2></hgroup><article  id="the-.rmd-file">
-
-<ul>
-<li>Normally in an R project, we have a file open that we write our script in</li>
-<li>Some of us use a <code>.R</code> file, some already use a <code>.Rmd</code> file</li>
-<li>You can use either &#8211; but our default is <code>.Rmd</code> because you can write text around the code</li>
-<li><p>We define a few things</p>
-
-<ul>
-<li>paths (i.e., directories)</li>
-<li>modules (e.g., &quot;loop&quot;)</li>
-<li>times (i.e., start and end)</li>
-</ul></li>
-<li>We parse/initialize the module (<code>simInit</code>)</li>
-<li>We hit &quot;run&quot; (actually the function is called <code>spades</code>)</li>
-<li><p>Sensible defaults come with the <code>newModule</code> function</p></li>
-</ul>
-
-</article></slide><slide class=""><hgroup><h2>The .Rmd file contents</h2></hgroup><article  id="the-.rmd-file-contents">
-
-<pre class = 'prettyprint lang-r'>times &lt;- list(start = 1, end = 10)
-modulePath &lt;- file.path(&quot;C:/Eliot&quot;)
-modules &lt;- list(&quot;loop&quot;)</pre>
-
-</article></slide><slide class=""><hgroup><h2>Compare Loop and Event versions</h2></hgroup><article  id="compare-loop-and-event-versions">
-
-<ul>
-<li>For simple case here, loop is very short, event version is long</li>
-</ul>
-
-<pre class = 'prettyprint lang-r'># Loops
-age &lt;- 1
-for (time in 1:10) {
-  age &lt;- age + 1
 }
 
-# Event
+moduleDir &lt;- file.path(&quot;C:/Eliot&quot;)
+modules &lt;- list(&quot;loop&quot;)
+
 mySim &lt;- simInit(times = times, modules = modules,
-                 paths = list(modulePath = &quot;C:/Eliot/GitHub/SpaDES.Workshops&quot;))
-mySimOut &lt;- spades(mySim, debug = TRUE)
+                 paths = list(moduleDir = file.path(&quot;C:/Eliot&quot;)))
 
-# Compare them -- yes!
-mySimOut$age
-age</pre>
-
-</article></slide><slide class=""><hgroup><h2>Make your own loop module</h2></hgroup><article  id="make-your-own-loop-module">
-
-<ul>
-<li><p>You will need:</p>
-
-<ul>
-<li><code>SpaDES</code> loaded</li>
-<li><code>newModule(   )</code></li>
-<li>open the .Rmd file</li>
-<li>open the .R file</li>
-<li>create an initial value of an object in the init event</li>
-<li>create a loop event</li>
-<li>do something to that object in the loop event</li>
-<li><code>scheduleEvent(   )</code> for the next time in the future</li>
-<li><code>time(sim)</code> gives you current time in the simulation</li>
-</ul></li>
-</ul></article></slide>
+mySimOut &lt;- spades(mySim, debug = TRUE)</pre></article></slide>
 
 
   <slide class="backdrop"></slide>

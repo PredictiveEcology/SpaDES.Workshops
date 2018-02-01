@@ -1,5 +1,5 @@
 ---
-title: "Moving from loops to events"
+title: "Population matrix module"
 author: "Eliot J. B. McIntire"
 date: "`r strftime(Sys.Date(), '%B %d %Y')`"
 output:
@@ -7,8 +7,6 @@ output:
   slidy_presentation: default
 vignette: |
   %\VignetteEngine{knitr::rmarkdown} %\VignetteIndexEntry{01 Diving into SpaDES} %\VignetteDepends{SpaDES.core, SpaDES.tools} %\VignetteKeyword{discrete event simulation, spatial simulation models, workshops} %\VignetteEncoding{UTF-8}
-editor_options: 
-  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -131,12 +129,8 @@ times = list(start = 1, end = 10)        # bounds
 
 - It is clean, transparent
 - It is "modular" (what does that mean?)
-- Can be very rich sequences including
+- 
 
-  - conditional scheduling
-  - irregular sequences
-  - the sequence changes mid-stream
-  
 
 ## How to do that in SpaDES
 
@@ -144,7 +138,7 @@ times = list(start = 1, end = 10)        # bounds
 - we will put the pieces in specific places so it works
 
 ```{r}
-newModule("loop", path = getwd())
+newModule("loop", path = "~")
 # This will make a new module, and 
 #  tell you how to open it in the message 
 ```
@@ -154,7 +148,7 @@ newModule("loop", path = getwd())
 ## Simple module
 
 - Comes with 2 files, an `.R` file and a `.Rmd` file
-- The `.R.` file has this in it - can we recognize the pieces?
+
 ```{r}
 doEvent.loop = function(sim, eventTime, eventType, debug = FALSE) {
   switch(
@@ -170,61 +164,13 @@ doEvent.loop = function(sim, eventTime, eventType, debug = FALSE) {
   )
   return(invisible(sim))
 }
-```
 
-## The `.Rmd` file
-
-- Normally in an R project, we have a file open that we write our script in
-- Some of us use a `.R` file, some already use a `.Rmd` file
-- You can use either -- but our default is `.Rmd` because you can write text around the code
-- We define a few things
-
-    - paths (i.e., directories)
-    - modules (e.g., "loop")
-    - times (i.e., start and end)
-- We parse/initialize the module (`simInit`)
-- We hit "run" (actually the function is called `spades`)
-- Sensible defaults come with the `newModule` function
-
-## The .Rmd file contents
-
-```{r}
-times <- list(start = 1, end = 10)
-modulePath <- file.path("C:/Eliot")
+moduleDir <- file.path("C:/Eliot")
 modules <- list("loop")
 
-```
-
-## Compare Loop and Event versions
-
-- For simple case here, loop is very short, event version is long
-```{r}
-# Loops
-age <- 1
-for (time in 1:10) {
-  age <- age + 1
-}
-
-# Event
 mySim <- simInit(times = times, modules = modules,
-                 paths = list(modulePath = "C:/Eliot/GitHub/SpaDES.Workshops"))
+                 paths = list(moduleDir = file.path("C:/Eliot")))
+
 mySimOut <- spades(mySim, debug = TRUE)
 
-# Compare them -- yes!
-mySimOut$age
-age
 ```
-
-## Make your own loop module
-
-- You will need:
-
-    - `SpaDES` loaded
-    - `newModule(   )`
-    - open the .Rmd file
-    - open the .R file
-    - create an initial value of an object in the init event
-    - create a loop event
-    - do something to that object in the loop event
-    - `scheduleEvent(   )` for the next time in the future
-    - `time(sim)` gives you current time in the simulation
