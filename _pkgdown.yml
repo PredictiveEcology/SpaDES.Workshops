@@ -33,6 +33,6 @@ articles:
 
   - title: "Exercises"
     desc: >
-      All exercises that we will touch on
+      Some collection of the following
     contents:
     - ends_with("exercises")
