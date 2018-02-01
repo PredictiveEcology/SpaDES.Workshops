@@ -69,18 +69,31 @@
 <a href="#spades-workshops" class="anchor"></a>SpaDES Workshops</h1></div>
 <p>This web site is <em>very much</em> in development. You can follow progress with the links above.</p>
 <p>For those of you following the Developer’s workshop, you can pre-install the <code>SpaDES</code> packages:</p>
-<pre><code># If you have any of our packages or their dependencies, please update them first
-# Get latest versions of our packages from CRAN
-update.packages(oldPkgs = c("quickPlot", "reproducible", "SpaDES.core"), ask = FALSE) 
+<pre><code># Restart your R session so it is clear
+# Ctrl-shift-F10 if you are in Rstudio #
 
-# Update any versions of the dependencies of those packages
-dependencies = reproducible::pkgDep(c("quickPlot", "reproducible", "SpaDES.core"))
-update.packages(oldPkgs = unique(unlist(dependencies)), ask = FALSE) 
+# If you have any of our packages or their dependencies, please update them first
+# Get latest versions of key SpaDES packages from CRAN
+dependencies &lt;- tools::package_dependencies("SpaDES", recursive = TRUE)
 
-# install all SpaDES packages
-install.packages("SpaDES") 
+# Update any versions of these dependencies that are already on your machine
+update.packages(oldPkgs = unlist(dependencies), ask = FALSE) 
+
+# install the latest version of the SpaDES packages and any dependencies not yet installed
+install.packages("SpaDES", dependencies = TRUE) # install "suggested" packages too with TRUE
+
+# For the workshop, there is one piece that is not in the CRAN version
+# Restart your R session so it is clear
+# Ctrl-shift-F10 if you are in Rstudio #
+reproducible::Require("devtools") # installs if needed, and loads
+devtools::install_github("PredictiveEcology/SpaDES", ref = "development")
 </code></pre>
 <p>For a direct link to the workshops, click on the top navigation bar.</p>
+</div>
+<div id="resources" class="section level1">
+<h1 class="hasAnchor">
+<a href="#resources" class="anchor"></a>Resources:</h1>
+<p><a href="https://github.com/PredictiveEcology/SpaDES/wiki">SpaDES wiki pages</a></p>
 </div>
 
   </div>
