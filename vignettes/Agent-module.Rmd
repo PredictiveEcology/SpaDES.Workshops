@@ -27,3 +27,27 @@ downloadModule("caribouMovementLcc", path = tmpdir)
 
 - Try it out first
 - Where do we start?
+
+
+## Wolf Alps & Caribou Gaspesie
+
+- In SpaDES-Modules repository, 
+- Two published movement modules 
+- [Wolfs recolonizing the Alps](https://htmlpreview.github.io/?https://github.com/PredictiveEcology/SpaDES-modules/blob/master/modules/wolfAlps/wolfAlps.html)
+- [Caribou in Gaspésie](https://htmlpreview.github.io/?https://github.com/PredictiveEcology/SpaDES-modules/blob/master/modules/caribou2Movements/caribou2Movements.Rmd)
+
+## Try one out
+
+```{r}
+downloadModule("caribou2Movements", path = tmpdir)
+downloadModule("wolfAlps", path = tmpdir) # ignore warning about file size
+```
+
+- Can you get either to run?
+
+## Debugging
+
+- Lets do it...
+
+
+
