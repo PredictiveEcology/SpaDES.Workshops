@@ -149,4 +149,76 @@ Let's go back to the modelling question discussed brifly above. Our first object
 1. a fire simulator
 2. a forest age simulator  
 
+Let's define our working directories first
+```{r def_dirs, results=FALSE, message=FALSE, warning=TRUE}
+## check where you0re working first:
+getwd()
+
+## SpaDES recursively creates the directory tree inside the current working directory
+setPaths(cachePath = "SpaDESintro/cache",
+         inputPath = "SpaDESintro/inputs",
+         modulePath = "SpaDESintro/modules",
+         outputPath = "SpaDESintro/outputs")
+
+## verify that this is want you wanted:
+getPaths()
+```
+  
+Now get the modules needed:  
+```{r module_downld, message=FALSE, warning=FALSE}
+## note how we use the modules folder defined above and chose to download the necessary data
+downloadModule("LCC2005", path = getPaths()$modulePath, data = TRUE, overwrite = TRUE)
+
+## open the description of a module
+openModules('LCC2005', path = moduleDir) 
+
+```
+  
+As you can see, `LCC2005` is a module group, meaning that it contains several modules that work together.
+
+```{r LCC2005_setup, message=FALSE, warning=FALSE}
+times <- list(start = 2005.0, end = 2020.0, timeunit = "year")
+
+parameters <- list(
+  .globals = list(burnStats = "fireStats"),
+  fireSpreadLcc = list(drought = 1.2) # in
+)
+
+modules <- list("LCC2005") ## selects all modules belonging to LCC2005
+
+paths <- getPaths()
+
+# This next step will set up the simulation using the defined parameters. It will also download data if they do not yet exist locally
+mySim <- simInit(times = times, params = parameters, modules = modules,
+                 paths = paths)
+
+```
+
+Briefly explain what the mySim object is  
+```{r mysim}
+ls.str(mySim)
+```
+  
+
+BLAH BLAH  
+```{r run_sim}
+mySim <- spades(mySim)
+```
+  
+Why "overwrite" `mySim`? Explain
+
+```{r run_sim2}
+## add more time, change drought parameter while continuing the simulation.
+## change fire regimes
+mySim <- spades(mySim)
+```
+  
+Run experiment with different fire regimes (? maybe too advanced?)
+```{r experiment}
+
+```
+
+Now add a management/caribou movement (?) model your colleague designed...
+
+
 
