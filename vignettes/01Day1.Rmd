@@ -23,7 +23,7 @@ Workshop outline:
 ***
 
 ## <a name="Day1"></a>**Day 1. What is `SpaDES` and how does it work?**
-### <a name="PartI"></a>**Part I. User, this is `SpaDES`. `SpaDES`, meet your new best friend**
+### <a name="PartI"></a>**Part I. User, this is `SpaDES`. `SpaDES`, meet your new best friend**  
 
 #### Why is modelling important?  
 Models are nowadays so important and widespread that we often don't realize that most of what we use in our daily lives is the result of someone's (or some team's) model.  From weather forecasting, to predicting stock market fluctuonations. From the design of your bike, to the estimation of blood sugar and insuline levels and how they vary hourly and according to different diets (in case you don't know, this can be important for diabetes treatments, and drug dosage and scheduling)... 
@@ -81,12 +81,12 @@ Why? Because we are yet far from developing our research in a way that is easily
     + ...
 3. `SpaDES` models are built of *modules*, i.e. self-contained, interacting pieces that execute a particular *event*, or process in the model;
 4. `SpaDES` modules can be made available across the entire `R` community if module-developers wish it so;
-5. `SpaDES` will soon include a web-app builder to make interactive simulation possible.
+5. `SpaDES` will soon include a web-app builder to make interactive simulation possible.  
 
 Like a smart-phone where users install and use the apps that they want, `SpaDES` can be seen as a platform where a model can be "assembled" from various pre-made modules. This allows non-modellers to run someone else's model on *their* data and *their* parameters, and, on the other hand, it allows modellers write their own modules from scratch, run them and share them with the `R` user community.  
   
 ##### **An example**
-Our question(s): how will forest fires affect forest age? And how will climate change affect fire regimes and in turn the vegetation? How will timber supply be affected?
+Our question(s): how will forest fires affect forest age? And how will climate change affect fire regimes and in turn the vegetation? How will timber supply be affected?  
 
 **To start we'll need**  
 * a vegetation dynamics module - e.g. [forestAge](https://github.com/PredictiveEcology/SpaDES-modules/tree/master/modules/forestAge);
@@ -95,7 +95,7 @@ Our question(s): how will forest fires affect forest age? And how will climate c
     +   the interaction between fire and vegetation
     +   statistical analyses/presentation of results  
 
-Depending on how modules are built, the interaction between modules may or may not require additional modules. Similarly, the presentation of results and their analyses can be directly made within the module producing them, or *as posteriori* using another module.  Your call. `SpaDES` is all about flexibility!
+Depending on how modules are built, the interaction between modules may or may not require additional modules. Similarly, the presentation of results and their analyses can be directly made within the module producing them, or *as posteriori* using another module.  Your call. `SpaDES` is all about flexibility!  
 
 Using the above mentioned modules would already allow an analysis of how fires affect forest age, and vice-versa. 
 
@@ -107,12 +107,118 @@ Finally, a timber supply module could "read" the vegetation maps produced after 
 Provided that modules are able to download, read and treat data adequeatly, updating the simulations for new data is easy.  `SpaDES` comes with a set of functions (via the `reproducible` package) that enable caching model structure, parameters and simualtion results. This way, if new data only affects a section of the model, the user won't have to repeat every step to update the simulations.  
 
 **Decorate and serve**  
-Because models are not just for modellers, a shiny app building package is being developed to transform any `SpaDES` simulation into a web-app. This provides an interactive way of visualising results, as users can change simulation parameters and turn modules on and off, whilst observing how this impacts simulation results. Importantly, it can be particularly useful when conveying results to a non-expert or even the public.
+Because models are not just for modellers, a shiny app building package is being developed to transform any `SpaDES` simulation into a web-app. This provides an interactive way of visualising results, as users can change simulation parameters and turn modules on and off, whilst observing how this impacts simulation results. Importantly, it can be particularly useful when conveying results to a non-expert or even the public.  
 
 Shiny web-app demo [here](https://spades.shinyapps.io/ForestChange_ProofOfConcept/) and [here](http://landweb.predictiveecology.org/Demo/)
 
 ***
 ***
 
-### <a name="PartII"></a>**Part II. Get your hands dirty: using SpaDES for the 1st time**
+### <a name="PartII"></a>**Part II. Get your hands dirty: using SpaDES for the 1st time**  
+
+**Table of contents:**  
+[SpaDES` installation](#SpaDES_install)
+
+#### <a name="SpaDES_install"></a> **`SpaDES` installation**  
+`SpaDES` groups a series of `R` packages - *metapackage* - containing both core and additional methods to design a discrete event simulation model:  
+
+* SpaDES.core - contains the core simualtion components  
+* reproducible - contains caching methods  
+* quickPlot - contains methods for better visualisation of results  
+* SpaDES.tools & SpaDES.addins - contain useful tools and additional methods, such as a spread function and utilities to create new modules from templates.  
+* SpaDES.shiny - under development. Will provide a set of methods to build shiny apps from simulation objects.  
+
+Prior to installing `SpaDES` make sure you have:
+
+1. an **up to date version of `R`** - having RStudio, or another `R` editor might also be useful.  
+2. the package `devtools` installed  
+3. [**Rtools**](https://cran.r-project.org/bin/windows/Rtools/) (Windows), [**XCode**](http://itunes.apple.com/us/app/xcode/id497799835?mt=12) (Mac), or r-base (Linux; please see [here](https://support.rstudio.com/hc/en-us/articles/200486498-Package-Development-Prerequisites) for details).  
+
+
+```{r SpaDESinstall, message=FALSE, warning=FALSE, eval=FALSE}
+install.packages("SpaDES", dependencies = TRUE)
+
+## and load SpaDES
+library(SpaDES)
+
+```
+  
+  
+#### **Shall we start modelling?**  
+Let's go back to the modelling question discussed brifly above. Our first objective is to simulate the the effect of fire on forest age. There are two main components to such a model, which need to interact:
+1. a fire simulator
+2. a forest age simulator  
+
+Let's define our working directories first
+```{r def_dirs, results=FALSE, message=FALSE, warning=TRUE}
+## check where you0re working first:
+getwd()
+
+## SpaDES recursively creates the directory tree inside the current working directory
+setPaths(cachePath = "SpaDESintro/cache",
+         inputPath = "SpaDESintro/inputs",
+         modulePath = "SpaDESintro/modules",
+         outputPath = "SpaDESintro/outputs")
+
+## verify that this is want you wanted:
+getPaths()
+```
+  
+Now get the modules needed:  
+```{r module_downld, message=FALSE, warning=FALSE}
+## note how we use the modules folder defined above and chose to download the necessary data
+downloadModule("LCC2005", path = getPaths()$modulePath, data = TRUE, overwrite = TRUE)
+
+## open the description of a module
+openModules('LCC2005', path = moduleDir) 
+
+```
+  
+As you can see, `LCC2005` is a module group, meaning that it contains several modules that work together.
+
+```{r LCC2005_setup, message=FALSE, warning=FALSE}
+times <- list(start = 2005.0, end = 2020.0, timeunit = "year")
+
+parameters <- list(
+  .globals = list(burnStats = "fireStats"),
+  fireSpreadLcc = list(drought = 1.2) # in
+)
+
+modules <- list("LCC2005") ## selects all modules belonging to LCC2005
+
+paths <- getPaths()
+
+# This next step will set up the simulation using the defined parameters. It will also download data if they do not yet exist locally
+mySim <- simInit(times = times, params = parameters, modules = modules,
+                 paths = paths)
+
+```
+
+Briefly explain what the mySim object is  
+```{r mysim}
+ls.str(mySim)
+```
+  
+
+BLAH BLAH  
+```{r run_sim}
+mySim <- spades(mySim)
+```
+  
+Why "overwrite" `mySim`? Explain
+
+```{r run_sim2}
+## add more time, change drought parameter while continuing the simulation.
+## change fire regimes
+mySim <- spades(mySim)
+```
+  
+Run experiment with different fire regimes (? maybe too advanced?)
+```{r experiment}
+
+```
+
+Now add a management/caribou movement (?) model your colleague designed...
+
+
 
