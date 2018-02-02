@@ -2,11 +2,8 @@ urls:
   reference: http://spades-workshops.predictiveecology.org//reference
   article: http://spades-workshops.predictiveecology.org//articles
 articles:
-  01-exercises: 01-exercises.html
-  01Day1: 01Day1.html
   02-exercises: 02-exercises.html
   02-making-modules: 02-making-modules.html
-  02-thinking-the-spades-way: 02-thinking-the-spades-way.html
   03-exercises: 03-exercises.html
   03-modularity: 03-modularity.html
   04a-exercises: 04a-exercises.html
@@ -18,12 +15,19 @@ articles:
   Agent-module: Agent-module.html
   Building-a-module: Building-a-module.html
   Caching: Caching.html
+  Continuous-Workflow: Continuous-Workflow.html
   Debugging: Debugging.html
-  Existing-modules: Existing-modules.html
+  Exercises-Download-Try-Demo: Exercises-Download-Try-Demo.html
+  Getting-the-most-out-of-R: Getting-the-most-out-of-R.html
   GoogleDrive: GoogleDrive.html
   Loops-to-Events: Loops-to-Events.html
   Module-details: Module-details.html
+  Module-Integration: Module-Integration.html
   Population-module: Population-module.html
+  Sharing-Modules: Sharing-Modules.html
+  Simulation-Experiments-Replication: Simulation-Experiments-Replication.html
   SpaDES4Dummies: SpaDES4Dummies.html
   Spreading-module: Spreading-module.html
+  The-simList: The-simList.html
+  Thinking-the-SpaDES-Way: Thinking-the-SpaDES-Way.html
 

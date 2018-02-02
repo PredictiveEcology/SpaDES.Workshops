@@ -47,11 +47,7 @@ update.packages(oldPkgs = unlist(dependencies), ask = FALSE)
 # install the latest version of the SpaDES packages and any dependencies not yet installed
 install.packages("SpaDES", dependencies = TRUE) # install "suggested" packages too with TRUE
 
-<<<<<<< Updated upstream
 # For the workshop, there are a few minor bug fixes that are not in the CRAN version
-=======
-# For the workshop, there is minor bugfixes that are not in the CRAN version
->>>>>>> Stashed changes
 # Restart your R session so it is clear
 # Ctrl-shift-F10 if you are in Rstudio #
 reproducible::Require("devtools") # installs if needed, and loads

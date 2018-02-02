@@ -1,5 +1,5 @@
 ---
-title       : "Getting technical"
+title       : "The simList"
 author      : "Alex M Chubaty & Eliot McIntire"
 date        : "December 7, 2016"
 ---

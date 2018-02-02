@@ -26,32 +26,38 @@ articles:
     contents:
     - GoogleDrive
 
-  - title: "Developer's topics we will work through"
+  - title: "Simple -- Developer's Workshop"
     desc: >
       Simple
     contents:
     - Loops-to-Events
 
-  - title: "Developer's topics we will work through"
+  - title: "Intermediate -- Developer's Workshop"
     desc: >
-      Intermediate
+      Intermediate level files to work through that discuss specific types of modules
     contents:
     - SpaDES4Dummies
     - Spreading-module
     - Agent-module
     - Population-module
-    - Existing-modules
-    - Debugging
-    - Caching
 
-  - title: "Developer's topics we will work through"
+  - title: "Reference -- Developer's topics for reference"
     desc: >
-      Advanced
+      Advanced topics that can be helpful while going through the modules
     contents:
     - Module-details
+    - Thinking-the-SpaDES-Way
+    - The-simList
+    - Getting-the-most-out-of-R
+    - Module-Integration
+    - Debugging
+    - Caching
+    - Continuous-Workflow
+    - Sharing-Modules
+    - Simulation-Experiments-Replication
 
   - title: "Exercises"
     desc: >
       Examples to practice certain skills
     contents:
-    - Building-a-module
+    - contains("Exercises")
