@@ -51,7 +51,8 @@ install.packages("SpaDES", dependencies = TRUE) # install "suggested" packages t
 # Restart your R session so it is clear
 # Ctrl-shift-F10 if you are in Rstudio #
 reproducible::Require("devtools") # installs if needed, and loads
-devtools::install_github("PredictiveEcology/SpaDES", ref = "development")
+devtools::install_github("PredictiveEcology/SpaDES.core", ref = "development")
+devtools::install_github("PredictiveEcology/quickPlot", ref = "development")
 
 ```
 

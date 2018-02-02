@@ -1,6 +1,6 @@
 ---
-title       : "SpaDES4Dummies"
-author      : "Ceres Barros, Tatiane Micheletti, Eliot McIntire"
+title       : "Debugging"
+author      : "Eliot McIntire"
 date        : "Jan 30, 2018"
 output: 
   html_document: 

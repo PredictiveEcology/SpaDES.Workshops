@@ -21,7 +21,7 @@ knitr::opts_chunk$set(cache = FALSE, echo = TRUE, eval = FALSE)
 
 ```{r}
 library(SpaDES)
-tmpdir <- tempdir()
+tmpdir <- file.path(dirname(tempdir()), "Modules")
 downloadModule("fireSpreadLcc", path = tmpdir)
 ```
 

@@ -19,7 +19,7 @@ knitr::opts_chunk$set(cache = FALSE, echo = TRUE, eval = FALSE)
 
 ```{r}
 library(SpaDES)
-tmpdir <- tempdir()
+tmpdir <- file.path(dirname(tempdir()), "Modules")
 downloadModule("caribouMovementLcc", path = tmpdir)
 ```
 
@@ -41,6 +41,10 @@ downloadModule("caribouMovementLcc", path = tmpdir)
 ```{r}
 downloadModule("caribou2Movements", path = tmpdir)
 downloadModule("wolfAlps", path = tmpdir) # ignore warning about file size
+
+# Can open the .Rmd (how to run it) or .R (module code)
+file.edit(file.path(tmpdir, "caribou2Movements", "caribou2Movements.Rmd"))
+file.edit(file.path(tmpdir, "wolfAlps", "wolfAlps.Rmd"))
 ```
 
 - Can you get either to run?
@@ -48,6 +52,13 @@ downloadModule("wolfAlps", path = tmpdir) # ignore warning about file size
 ## Debugging
 
 - Lets do it...
+- Go back to SpaDES wiki pages (how do I find it again...?)
+
+## Debugging
+
+Maybe Google search "R SpaDES wiki"
+
+- https://github.com/PredictiveEcology/SpaDES/wiki/Debugging
 
 
 

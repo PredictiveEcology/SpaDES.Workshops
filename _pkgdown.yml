@@ -26,19 +26,20 @@ articles:
     contents:
     - GoogleDrive
 
-  - title: "Examples and topics we will work through"
+  - title: "Developer's topics we will work through"
     desc: >
-      Day 2 - 3
+      Simple
     contents:
     - Loops-to-Events
+
+  - title: "Developer's topics we will work through"
+    desc: >
+      Intermediate
+    contents:
     - SpaDES4Dummies
     - Spreading-module
     - Agent-module
     - Population-module
     - Existing-modules
-
-  - title: "Exercises"
-    desc: >
-      Some collection of the following
-    contents:
-    - ends_with("exercises")
+    - Debugging
+    - Caching

@@ -16,11 +16,12 @@ articles:
   08-exercises: 08-exercises.html
   09-exercises: 09-exercises.html
   Agent-module: Agent-module.html
+  Caching: Caching.html
+  Debugging: Debugging.html
   Existing-modules: Existing-modules.html
   GoogleDrive: GoogleDrive.html
   Loops-to-Events: Loops-to-Events.html
   Population-module: Population-module.html
   SpaDES4Dummies: SpaDES4Dummies.html
   Spreading-module: Spreading-module.html
-  ZZcopyDownloadedVignettes: ZZcopyDownloadedVignettes.html
 

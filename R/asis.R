@@ -1,3 +1,9 @@
+replacementList <-
+  list("SpaDES4Dummies" = "https://htmlpreview.github.io/?https://github.com/CeresBarros/SpaDES4Dummies/blob/master/SpaDES4Dummies.html",
+       "GoogleDrive" = "https://drive.google.com/open?id=1XnfUTRk59dORiPbdN2sreGDXNmDjcUle",
+       "Caching" = "https://github.com/PredictiveEcology/SpaDES/wiki/Caching",
+       "Debugging" = "https://github.com/PredictiveEcology/SpaDES/wiki/Debugging")
+
 #' Quick and dirty render pkgdown asis
 #'
 #' This will first run pkgdown::build_site then run rmarkdown::render to
@@ -107,10 +113,6 @@ build_articles <- function (pkg = ".", path = "docs/articles", depth = 1L, encod
   invisible()
 
 }
-
-replacementList <-
-  list("SpaDES4Dummies" = "https://htmlpreview.github.io/?https://github.com/CeresBarros/SpaDES4Dummies/blob/master/SpaDES4Dummies.html",
-       "GoogleDrive" = "https://drive.google.com/open?id=1XnfUTRk59dORiPbdN2sreGDXNmDjcUle")
 
 renderSlides <- function(a) {
   lapply(a, function(x) rmarkdown::render(x))
