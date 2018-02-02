@@ -1,0 +1,230 @@
+---
+title: "Moving from loops to events"
+author: "Eliot J. B. McIntire"
+date: "`r strftime(Sys.Date(), '%B %d %Y')`"
+output:
+  ioslides_presentation: default
+  slidy_presentation: default
+vignette: |
+  %\VignetteEngine{knitr::rmarkdown} %\VignetteIndexEntry{01 Diving into SpaDES} %\VignetteDepends{SpaDES.core, SpaDES.tools} %\VignetteKeyword{discrete event simulation, spatial simulation models, workshops} %\VignetteEncoding{UTF-8}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = FALSE, echo = TRUE, eval = FALSE)
+```
+
+## Loops
+
+- A fundamental unit of computer programs is the loop
+- Used in virtually every computer language
+- However, with *R* and `SpaDES`, there are 2 reasons not to:
+
+    - They are somewhat slow
+    - They don't allow easy sharing of code
+  
+## Loops in time
+
+- Some loops are used where *time* is the object moving forward
+- If one loop iteration depends on the previous loop iteration 
+- Called a **Markov Chain**
+
+```{r}
+age <- 1
+for (time in 1:10) {
+  age <- age + 1
+}
+```
+
+## Events
+
+- Rather than "iterating", we can think of "events"
+- Spring thaw  
+<br>
+![](http://www.premier-roofing.com/wp-content/uploads/2014/03/stock-footage-spring-thaw-time-lapse.jpg)
+- Brainstorm events...
+
+## Events instead of loops
+
+- Rather than `for ...`, we **schedule** the next event
+- It would be something like this:
+
+```{r loopsToEvents}
+age <- 1
+
+# define event
+aging <- age + 1
+
+events <- {
+  doEvent("aging")
+  scheduleEvent("aging", when = now + 1)
+}
+
+times = list(start = 1, end = 10) 
+```
+
+
+## Parts of a loop
+
+- Setting up (sometimes required), **initializing**
+```{r}
+age <- 1
+```
+
+- deciding on **bounds** and **intermediates** or "step"
+    - lower bound = 1 to upper bound = 10
+    - here step is 1 (i.e., 1, 2, 3, 4, ... 10)
+
+```{r}
+... in 1:10
+```
+
+- **content**
+```{r}
+age <-  age + 1
+```
+
+## Moving to events
+
+- Need same as a loop: 
+
+**initialize**, **bounds**, **step**, **content**
+
+```{r}
+age <- 1                                 # Initialize
+
+# define event
+aging <- function(age) {
+  age <- age + 1                         # content
+  scheduleEvent("aging", when = now + 1) # step
+}
+
+times = list(start = 1, end = 10)        # bounds
+
+```
+
+- This creates a queue -- a list of events that need to occur
+
+## What would that sequence look like?
+
+1. what is happening now
+2. What are the next thing(s) in the queue
+
+```{r}
+    eventTime moduleName  eventType
+ 1:         0       loop       init
+ 2:         0       loop addOneYear
+ 3:         1       loop addOneYear
+ 4:         2       loop addOneYear
+ 5:         3       loop addOneYear
+ 6:         4       loop addOneYear
+ 7:         5       loop addOneYear
+ 8:         6       loop addOneYear
+ 9:         7       loop addOneYear
+10:         8       loop addOneYear
+11:         9       loop addOneYear
+12:        10       loop addOneYear 
+```
+
+## Why would we want to do this?
+
+- It is clean, transparent
+- It is "modular" (what does that mean?)
+- Can be very rich sequences including
+
+  - conditional scheduling
+  - irregular sequences
+  - the sequence changes mid-stream
+  
+
+## How to do that in SpaDES
+
+- create a new "empty" module
+- we will put the pieces in specific places so it works
+
+```{r}
+newModule("loop", path = getwd())
+# This will make a new module, and 
+#  tell you how to open it in the message 
+```
+
+- Open the module -- the file that ends with `.R`
+
+## Simple module
+
+- Comes with 2 files, an `.R` file and a `.Rmd` file
+- The `.R.` file has this in it - can we recognize the pieces?
+```{r}
+doEvent.loop = function(sim, eventTime, eventType, debug = FALSE) {
+  switch(
+    eventType,
+    init = {
+      sim$age <- 1
+      sim <- scheduleEvent(sim, start(sim), "loop", "addOneYear")
+    },
+    addOneYear = {
+      sim$age <- sim$age + 1
+      sim <- scheduleEvent(sim, time(sim) + 1, "loop", "addOneYear")
+    },
+  )
+  return(invisible(sim))
+}
+```
+
+## The `.Rmd` file
+
+- Normally in an R project, we have a file open that we write our script in
+- Some of us use a `.R` file, some already use a `.Rmd` file
+- You can use either -- but our default is `.Rmd` because you can write text around the code
+- We define a few things
+
+    - paths (i.e., directories)
+    - modules (e.g., "loop")
+    - times (i.e., start and end)
+- We parse/initialize the module (`simInit`)
+- We hit "run" (actually the function is called `spades`)
+- Sensible defaults come with the `newModule` function
+
+## The .Rmd file contents
+
+```{r}
+times <- list(start = 1, end = 10)
+modulePath <- file.path("C:/Eliot")
+modules <- list("loop")
+
+```
+
+## Compare Loop and Event versions
+
+- For simple case here, loop is very short, event version is long
+```{r}
+# Loops
+age <- 1
+for (time in 1:10) {
+  age <- age + 1
+}
+
+# Event
+mySim <- simInit(times = times, modules = modules,
+                 paths = list(modulePath = "C:/Eliot/GitHub/SpaDES.Workshops"))
+mySimOut <- spades(mySim, debug = TRUE)
+
+# Compare them -- yes!
+mySimOut$age
+age
+```
+
+## Make your own loop module
+
+- You will need:
+
+    - `SpaDES` loaded
+    - `newModule(   )`
+    - open the .Rmd file
+    - open the .R file
+    - create an initial value of an object in the init event
+    - create a loop event
+    - do something to that object in the loop event
+    - `scheduleEvent(   )` for the next time in the future
+    - `time(sim)` gives you current time in the simulation

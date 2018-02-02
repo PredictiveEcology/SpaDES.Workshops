@@ -1,0 +1,15 @@
+---
+title       : "Exercises: The `Data-to-Decisions' Workflow"
+author      : "Alex M Chubaty & Eliot McIntire"
+date        : "December 9, 2016"
+output: 
+  html_document: 
+    number_sections: yes
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, echo = TRUE, eval = FALSE)
+```
+
+No exercises yet.

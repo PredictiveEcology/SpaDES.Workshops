@@ -1,0 +1,64 @@
+---
+title: "Moving agents"
+author: "Eliot J. B. McIntire"
+date: "`r strftime(Sys.Date(), '%B %d %Y')`"
+output:
+  ioslides_presentation: default
+  slidy_presentation: default
+vignette: |
+  %\VignetteEngine{knitr::rmarkdown} %\VignetteIndexEntry{01 Diving into SpaDES} %\VignetteDepends{SpaDES.core, SpaDES.tools} %\VignetteKeyword{discrete event simulation, spatial simulation models, workshops} %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = FALSE, echo = TRUE, eval = FALSE)
+```
+
+## Download agent moving module
+
+- Lets start with a simple movement module
+
+```{r}
+library(SpaDES)
+tmpdir <- file.path(dirname(tempdir()), "Modules")
+downloadModule("caribouMovementLcc", path = tmpdir)
+```
+
+## What does it do?
+
+- Try it out first
+- Where do we start?
+
+
+## Wolf Alps & Caribou Gaspesie
+
+- In SpaDES-Modules repository, 
+- Two published movement modules 
+- [Wolfs recolonizing the Alps](https://htmlpreview.github.io/?https://github.com/PredictiveEcology/SpaDES-modules/blob/master/modules/wolfAlps/wolfAlps.html)
+- [Caribou in Gaspésie](https://htmlpreview.github.io/?https://github.com/PredictiveEcology/SpaDES-modules/blob/master/modules/caribou2Movements/caribou2Movements.Rmd)
+
+## Try one out
+
+```{r}
+downloadModule("caribou2Movements", path = tmpdir)
+downloadModule("wolfAlps", path = tmpdir) # ignore warning about file size
+
+# Can open the .Rmd (how to run it) or .R (module code)
+file.edit(file.path(tmpdir, "caribou2Movements", "caribou2Movements.Rmd"))
+file.edit(file.path(tmpdir, "wolfAlps", "wolfAlps.Rmd"))
+```
+
+- Can you get either to run?
+
+## Debugging
+
+- Lets do it...
+- Go back to SpaDES wiki pages (how do I find it again...?)
+
+## Debugging
+
+Maybe Google search "R SpaDES wiki"
+
+- https://github.com/PredictiveEcology/SpaDES/wiki/Debugging
+
+
+
