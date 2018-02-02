@@ -9,7 +9,6 @@ articles:
   02-thinking-the-spades-way: 02-thinking-the-spades-way.html
   03-exercises: 03-exercises.html
   03-modularity: 03-modularity.html
-  04-exercises: 04-exercises.html
   04a-exercises: 04a-exercises.html
   05a-exercises: 05a-exercises.html
   06-exercises: 06-exercises.html
@@ -17,11 +16,13 @@ articles:
   08-exercises: 08-exercises.html
   09-exercises: 09-exercises.html
   Agent-module: Agent-module.html
+  Building-a-module: Building-a-module.html
   Caching: Caching.html
   Debugging: Debugging.html
   Existing-modules: Existing-modules.html
   GoogleDrive: GoogleDrive.html
   Loops-to-Events: Loops-to-Events.html
+  Module-details: Module-details.html
   Population-module: Population-module.html
   SpaDES4Dummies: SpaDES4Dummies.html
   Spreading-module: Spreading-module.html

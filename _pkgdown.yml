@@ -43,3 +43,15 @@ articles:
     - Existing-modules
     - Debugging
     - Caching
+
+  - title: "Developer's topics we will work through"
+    desc: >
+      Advanced
+    contents:
+    - Module-details
+
+  - title: "Exercises"
+    desc: >
+      Examples to practice certain skills
+    contents:
+    - Building-a-module

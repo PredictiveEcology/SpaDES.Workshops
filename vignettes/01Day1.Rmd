@@ -138,9 +138,6 @@ Prior to installing `SpaDES` make sure you have:
 ```{r SpaDESinstall, message=FALSE, warning=FALSE, eval=FALSE}
 install.packages("SpaDES", dependencies = TRUE)
 
-## and load SpaDES
-library(SpaDES)
-
 ```
   
   
@@ -151,6 +148,9 @@ Let's go back to the modelling question discussed brifly above. Our first object
 
 Let's define our working directories first
 ```{r def_dirs, results=FALSE, message=FALSE, warning=TRUE}
+## load SpaDES
+library(SpaDES)
+
 ## check where you0re working first:
 getwd()
 
@@ -167,10 +167,10 @@ getPaths()
 Now get the modules needed:  
 ```{r module_downld, message=FALSE, warning=FALSE}
 ## note how we use the modules folder defined above and chose to download the necessary data
-downloadModule("LCC2005", path = getPaths()$modulePath, data = TRUE, overwrite = TRUE)
+try(downloadModule("LCC2005", path = getPaths()$modulePath, data = TRUE))#, overwrite = TRUE) # overwrite is not yet implemented
 
 ## open the description of a module
-openModules('LCC2005', path = moduleDir) 
+openModules('LCC2005', path = getPaths()$modulePath) 
 
 ```
   
