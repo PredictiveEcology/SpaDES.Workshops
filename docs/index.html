@@ -38,7 +38,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="articles/index.html">2018-02-07 Workshops</a>
+  <a href="articles/index.html">2018-02-07 Workshop</a>
 </li>
 <li>
   <a href="http://rpubs.com/PredictiveEcology/SpaDES-Intro-Course-Outline">Past Workshops</a>
@@ -67,11 +67,59 @@
 <div id="spades-workshops" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#spades-workshops" class="anchor"></a>SpaDES Workshops</h1></div>
-<p>This web site is <em>very much</em> in development. You can follow progress with the links above.</p>
+<div id="feb-7---9-2018-pacific-forestry-centre" class="section level2">
+<h2 class="hasAnchor">
+<a href="#feb-7---9-2018-pacific-forestry-centre" class="anchor"></a>Feb 7 - 9, 2018, Pacific Forestry Centre</h2>
+<p>If you are interested in being put on the email list for this or future courses, please email to eliot.mcintire at canada.ca</p>
+<p>We have organized a set of sessions, back to back, starting from the most “general”, and ending with the most “detailed”. The hope is to attract non-modelers (e.g., managers, scientists, practitioners) to the first session, people who think they might want to see more how models work (e.g., scientists, students, technicians), and those who want to build and use models for research and operational purposes (e.g., scientists, technicians, programmers).</p>
+<ul>
+<li><p><strong>Intro</strong> - 1.5 hours – <strong>9 am Feb 7</strong> - This is a high level intro for scientists, managers, policy makers, decision makers</p></li>
+<li><p><strong>Advanced Intro</strong> - 4.5 hours – <strong>11 am Feb 7</strong> - This is intended to dive a little bit into the code, to allow people to run other models from other people, and allow them to change parameters.</p></li>
+<li><p><strong>Developers</strong> - 3 days – <strong>Feb 7 to Feb 9</strong> - This 3 days workshop starts with the <strong>Intro</strong> and <strong>Advanced Intro</strong> above in the first day, and continues much deeper for developers of models. That means that if somebody who is interested in developing, but has already a good grasp on what SpaDES does and the higher level concepts, they can join in day 2. <strong><em>See below for instructions</em></strong></p></li>
+</ul>
+</div>
+<div id="location" class="section level2">
+<h2 class="hasAnchor">
+<a href="#location" class="anchor"></a>Location</h2>
+<p><strong>Pacific Forestry Centre – Dilbert Hall</strong></p>
+</div>
+<div id="webex" class="section level2">
+<h2 class="hasAnchor">
+<a href="#webex" class="anchor"></a>WebEx</h2>
+<p>For those who can’t be here in person, we will use WebEx with phone (The best for this is connect to the web page first, then let the web page dial you by clicking on Audio): <a href="https://pwgsc-nh.webex.com/join/eliot.mcintirecanada.ca" class="uri">https://pwgsc-nh.webex.com/join/eliot.mcintirecanada.ca</a></p>
+<p>If you are interested in the Advanced Intro or Developer Workshop, please email me. If you would like to participate in the Developer workshop, you will need your own laptop.</p>
+</div>
+<div id="developers-workshops" class="section level2">
+<h2 class="hasAnchor">
+<a href="#developers-workshops" class="anchor"></a>Developers workshops</h2>
 <p>For those of you following the Developer’s workshop, you can pre-install the <code>SpaDES</code> packages:</p>
-<pre><code>update.packages(oldPkgs = c("quickPlot", "reproducible", "SpaDES.core")); 
-install.packages("SpaDES") 
+<pre><code># Restart your R session so it is clear
+# Ctrl-shift-F10 if you are in Rstudio #
+
+# If you have any of our packages or their dependencies, please update them first
+# Get latest versions of key SpaDES packages from CRAN
+dependencies &lt;- tools::package_dependencies("SpaDES", recursive = TRUE)
+
+# Update any versions of these dependencies that are already on your machine
+update.packages(oldPkgs = unlist(dependencies), ask = FALSE) 
+
+# install the latest version of the SpaDES packages and any dependencies not yet installed
+install.packages("SpaDES", dependencies = TRUE) # install "suggested" packages too with TRUE
+
+# For the workshop, there are a few minor bug fixes that are not in the CRAN version
+# Restart your R session so it is clear
+# Ctrl-shift-F10 if you are in Rstudio #
+reproducible::Require("devtools") # installs if needed, and loads
+devtools::install_github("PredictiveEcology/SpaDES.core", ref = "development")
+devtools::install_github("PredictiveEcology/quickPlot", ref = "development")
 </code></pre>
+<p>For a direct link to the workshops, click on the top navigation bar.</p>
+</div>
+</div>
+<div id="resources" class="section level1">
+<h1 class="hasAnchor">
+<a href="#resources" class="anchor"></a>Resources:</h1>
+<p><a href="https://github.com/PredictiveEcology/SpaDES/wiki">SpaDES wiki pages</a></p>
 </div>
 
   </div>

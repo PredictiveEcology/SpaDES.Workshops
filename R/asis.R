@@ -10,13 +10,12 @@
 #' @export
 .asis <- function(..., replacements, notOlderThan = NULL, cacheRepo = "docs/cache") {
 
-
-  #pkgdown::build_site(...)
+  build_site(...)
   args <- formals(pkgdown::build_site)
   #out <- Cache(pkgdown::init_site, pkg = args$pkg, path = args$path, notOlderThan = notOlderThan, cacheRepo = cacheRepo)
   #out <- pkgdown::init_site(pkg = args$pkg, path = args$path)
 
-  out <- build_articlesCached(..., cacheRepo = cacheRepo)
+  #out <- build_articles(..., cacheRepo = cacheRepo)
 
   #out <- Cache(do.call, pkgdown::build_home, args[names(args) %in% names(formals(pkgdown::build_home))], notOlderThan = notOlderThan, cacheRepo = cacheRepo)
   #out <- do.call(pkgdown::build_home, args[names(args) %in% names(formals(pkgdown::build_home))])
@@ -30,18 +29,14 @@
   }))
   if (any(hasSlides)) {
     a <- a[hasSlides]
-    lapply(a, function(x) rmarkdown::render(x))
-    htmlFilenames <- gsub(a, pattern = "Rmd", replacement = "html")
-    file.copy(htmlFilenames, to = "docs/articles", overwrite = TRUE)
-    unlink(htmlFilenames)
+
+    Cache(renderSlides, a, cacheRepo = cacheRepo)
   }
 
-  if (!missing(replacements)) {
-    replaceRemoteLinksInArticles(replacements)
-  }
+  # replace modules
+  if (missing(replacements )) replacements <- replacementList
+  replaceRemoteLinksInArticles(replacements)
 
-  if (eval(args$preview))
-    pkgdown:::preview_site(file.path("docs"))
 }
 
 
@@ -56,11 +51,32 @@ replaceRemoteLinksInArticles <- function(replacements) {
   })
 }
 
+#' @export
+build_site <- function (pkg = ".", path = "docs", examples = TRUE, run_dont_run = FALSE,
+          mathjax = TRUE, preview = interactive(), seed = 1014, encoding = "UTF-8")
+  {
+    old <- pkgdown:::set_pkgdown_env("true")
+    on.exit(pkgdown:::set_pkgdown_env(old))
+    pkg <- pkgdown:::as_pkgdown(pkg)
+    path <- pkgdown:::rel_path(path, pkg$path)
+    pkgdown:::init_site(pkg, path)
+    pkgdown:::build_home(pkg, path = path, encoding = encoding)
+    pkgdown:::build_reference(pkg, lazy = FALSE, examples = examples, run_dont_run = run_dont_run,
+                    mathjax = mathjax, seed = seed, path = file.path(path,
+                                                                     "reference"), depth = 1L)
+    build_articles(pkg, path = file.path(path, "articles"), depth = 1L,
+                   encoding = encoding)
+    pkgdown:::build_news(pkg, path = file.path(path, "news"), depth = 1L)
+    if (preview) {
+      pkgdown:::preview_site(path)
+    }
+    invisible(TRUE)
+  }
 
 #' build_articles from pkgdown, but with Caching
 #'
 #' @export
-build_articlesCached <- function (pkg = ".", path = "docs/articles", depth = 1L, encoding = "UTF-8",
+build_articles <- function (pkg = ".", path = "docs/articles", depth = 1L, encoding = "UTF-8",
                                   quiet = TRUE, notOlderThan = NULL, cacheRepo = "cache")
 {
 
@@ -90,4 +106,15 @@ build_articlesCached <- function (pkg = ".", path = "docs/articles", depth = 1L,
   pkgdown:::build_articles_index(pkg, path = path, depth = depth)
   invisible()
 
+}
+
+replacementList <-
+  list("SpaDES4Dummies" = "https://htmlpreview.github.io/?https://github.com/CeresBarros/SpaDES4Dummies/blob/master/SpaDES4Dummies.html",
+       "GoogleDrive" = "https://drive.google.com/open?id=1XnfUTRk59dORiPbdN2sreGDXNmDjcUle")
+
+renderSlides <- function(a) {
+  lapply(a, function(x) rmarkdown::render(x))
+  htmlFilenames <- gsub(a, pattern = "Rmd", replacement = "html")
+  file.copy(htmlFilenames, to = "docs/articles", overwrite = TRUE)
+  unlink(htmlFilenames)
 }

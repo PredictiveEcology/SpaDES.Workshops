@@ -1,0 +1,31 @@
+---
+title: "Spreading module"
+author: "Eliot J. B. McIntire"
+date: "`r strftime(Sys.Date(), '%B %d %Y')`"
+output:
+  ioslides_presentation: default
+  slidy_presentation: default
+vignette: |
+  %\VignetteEngine{knitr::rmarkdown} %\VignetteIndexEntry{01 Diving into SpaDES} %\VignetteDepends{SpaDES.core, SpaDES.tools} %\VignetteKeyword{discrete event simulation, spatial simulation models, workshops} %\VignetteEncoding{UTF-8}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = FALSE, echo = TRUE, eval = FALSE)
+```
+
+## Download fire spread module
+
+- Lets start with a simple spreading module
+
+```{r}
+library(SpaDES)
+tmpdir <- tempdir()
+downloadModule("fireSpreadLcc", path = tmpdir)
+```
+
+## What does it do?
+
+- Try it out first
+- Where do we start?
