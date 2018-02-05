@@ -24,7 +24,7 @@ knitr::opts_chunk$set(cache=FALSE, echo=TRUE, eval=FALSE)
 microbenchmark::microbenchmark(
   loop = {
     a <- vector()
-    for (i in 1:1000) a[i] <- SpaDES.tools::runifC(1)
+    for (i in 1:1000) a[i] <- runif(1)
   },
   vectorized = { a <- runif(1000) }
 )

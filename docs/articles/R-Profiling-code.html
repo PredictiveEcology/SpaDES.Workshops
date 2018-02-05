@@ -96,17 +96,17 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">microbenchmark<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/microbenchmark/topics/microbenchmark">microbenchmark</a></span>(
   <span class="dt">loop =</span> {
     a &lt;-<span class="st"> </span><span class="kw">vector</span>()
-    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>) a[i] &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1</span>)
+    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>) a[i] &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">1</span>)
   },
-  <span class="dt">vectorized =</span> { a &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1000</span>) }
+  <span class="dt">vectorized =</span> { a &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">1000</span>) }
 )</code></pre></div>
 <pre><code>## Unit: microseconds
-##        expr      min        lq      mean    median        uq       max
-##        loop 3472.077 3754.0600 5570.3092 4642.8290 6973.1880 11888.468
-##  vectorized   72.146   73.9055  121.3719   75.8115  134.3195  1842.644
-##  neval cld
-##    100   b
-##    100  a</code></pre>
+##        expr      min       lq       mean   median       uq       max neval
+##        loop 3297.579 3449.055 4692.65301 4328.291 4565.257 11576.718   100
+##  vectorized   31.673   32.554   40.17004   33.727   34.900   108.512   100
+##  cld
+##    b
+##   a</code></pre>
 </div>
 <div id="profiling-and-benchmarking-3" class="section level2">
 <h2 class="hasAnchor">
