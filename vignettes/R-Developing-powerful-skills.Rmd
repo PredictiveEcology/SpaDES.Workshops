@@ -1,0 +1,204 @@
+---
+title       : "R -- developing powerful skills"
+author      : "Alex M Chubaty & Eliot McIntire"
+date        : "December 9, 2016"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache=FALSE, echo=TRUE, eval=FALSE)
+```
+
+## Need for speed
+
+R is widely seen as being 'slow' (see [julia](http://julialang.org/#high-performance-jit-compiler) web page) 
+
+**But**, if you use a few specific tools, then this becomes irrelevant because of the powerful tools in various packages in R
+ 
+## An aside
+ 
+Pure R, when the most efficient vectorized code is used, appears to be 1/2x the speed of the most efficient C++.
+
+See Hadley Wickham's [page on Rcpp](http://adv-r.had.co.nz/Rcpp.html), scroll down to "Vector input, vector output"... ), noting that if it took 10 minutes to write the C++ code, it would have to be 150,000 times faster to make it worth it.
+ 
+## Need for speed
+
+Spatial simulation means doing the same thing over and over and over ... so we need speed
+
+We will show how to profile your code at the end of this section.
+
+## Predictive Ecology blog posts about R speed
+
+- [Is R Fast Enough, part 1, The Mean](http://predictiveecology.org/2015/04/23/Is-R-fast-enough-01.html)
+- [Is R Fast Enough, part 2, Sorting](http://predictiveecology.org/2015/04/28/Is-R-fast-enough-02.html)
+- [Is R Fast Enough, part 3, Fibonacci](http://predictiveecology.org/2015/05/06/Is-R-fast-enough-03.html)
+- [Is R Fast Enough, part 4, Loops](http://predictiveecology.org/2015/09/04/Is-R-fast-enough-04.html)
+
+## "Vectorization"
+
+- This is at the core of making R fast. If you don't do this, then it is probably not useful to use R as a simulation engine.
+
+```{r vectorization}
+# Instead of 
+a <- vector()
+for (i in 1:1000) {
+  a[i] <- rnorm(1)
+}
+
+# use vectorized version, which is built into the functions
+a <- rnorm(1000)
+```
+
+## Vectors and Matrices
+
+- These are as fast as you can get in R
+- Fast numerical operations
+- Faster than `data.frame`
+- Anything that is in pure vectors or matrices is 'fast enough'
+- It is always a challenge to keep all code in vectors and matrices
+- Thus the following packages...
+
+## Spatial simulation
+
+- To work with spatial simulation (*e.g.*, time and space), it requires more than *just* spatial data manipulation
+- Sometimes it is just base R stuff
+- Need to learn how to make functions (allows reusability)
+- Need to learn a few key packages that are critical for speed
+
+## Key packages for spatial simulation
+
+- `base` package -- everything matrix or vector is 'fast'
+- `raster` - for spatially referenced matrices
+
+    - not always fast enough, sometimes we copy the data into a matrix, then manipulate, then return the data to the raster object
+    
+- `sp` - equivalent of vector shapefiles in a GIS
+
+    - Polygons, Points, Lines
+    - Not always fast, but essential to have
+
+- see also `sf`
+
+## Key packages for spatial simulation
+    
+- `data.table`
+
+    - For `data.frame` type data (i.e., columns of data)
+    - Very fast when object gets large, but is actually slower if the `data.frame` is small (<100,000 rows)
+    
+- `SpaDES` -- many functions; will be moved into a separate package soon
+
+- `Rcpp`
+
+    - R interface to C++ . When you need something fast, and you can't get it fast enough with existing tools/packages, you can create your own (we will not go further into this here)
+
+## What we will do here
+
+- We will go through `SpaDES` functions quickly, because there are fewer tutorials online for these
+- We will show links to various tutorials for `raster`, `sp`, `data.table`, `Rcpp`
+- Each person should decide which tool is the most useful to them
+- Put something into practice
+
+## `SpaDES` functions
+
+- These are all potentially useful for building spatio-temporal models
+```{r SpaDES functions}
+
+?`spades-package` # section 2 shows many functions
+
+# e.g.,
+?spread
+?move
+?cir
+?adj
+?distanceFromEachPoint
+```
+
+## Working with spatial data
+
+- [Excellent Cheatsheet](http://www.maths.lancs.ac.uk/~rowlings/Teaching/UseR2012/cheatsheet.html)
+
+## `raster`
+
+- tutorials 
+
+    - [NEON](http://neondataskills.org/R/Raster-Data-In-R/)
+    - [geoscripting-wur](http://geoscripting-wur.github.io/IntroToRaster/)
+    - [Official vignette](https://cran.r-project.org/web/packages/raster/vignettes/Raster.pdf)
+    - [Using R as a GIS](https://pakillo.github.io/R-GIS-tutorial/)
+    - many more available
+
+## `sp`
+
+- Quite an old and mature package
+- Tutorials
+
+    - [stack exchange](http://gis.stackexchange.com/questions/45327/tutorials-to-handle-spatial-data-in-r)
+    - [NEON](http://neondataskills.org/R-package/sp/)
+    
+
+## `sf`
+
+- Relatively new
+- Implements latest GIS data standards
+- Very fast, especially reading/writing large data
+- [CRAN](https://cran.r-project.org/web/packages/sf/)
+- [GitHub](https://github.com/edzer/sfr)
+
+## The `data.table` package
+
+From every `data.table` user ever:
+
+<div class="centered" style="color:#0000FF">*WOW that's fast!*</div>
+
+<br>
+
+```{r install-data.table, echo=TRUE, eval=FALSE}
+install.packages('data.table')
+```
+
+(at least for large tables!)
+
+## `data.table` tutorials
+
+- [Data Camp](https://www.datacamp.com/community/tutorials/data-table-r-tutorial#gs.s=AE7o0)
+- [Cheat sheet](https://www.datacamp.com/community/tutorials/data-table-cheat-sheet#gs.rFn247Q)
+
+## `raster` and `data.table` together
+
+- The current implementation of `LANDIS-SpaDES` uses a "reduced" data structure throughout
+
+- Instead of keeping rasters of everything (one can imagine that there is redundancy, i.e., 2 pixels next to each other may be identical)
+
+- We make one raster of "id" and one data.table with a column called "id"
+
+- Then we can have as many columns as we want of information about each of these places
+
+- Like "polygons", but for rasters, and dynamic... can change over time
+
+- This may be useful for your own module
+
+## `raster` and `data.table` together
+
+- There is a key helper function:
+
+```{r datatable and raster}
+?rasterizeReduced
+```
+
+What does this do?
+
+## The `Rcpp` package
+
+From every `Rcpp` user ever:
+
+<div class="centered" style="color:#0000FF">*WOW! Just wow.*</div>
+
+<br>
+
+```{r install-rcpp, echo=TRUE, eval=FALSE}
+install.packages('Rcpp')
+```
+
+- Essentially see [Dirk Eddelbuettel's book, Seamless R and C++](http://dirk.eddelbuettel.com/code/rcpp.html)
+- [Hadley's section in Advanced R](http://adv-r.had.co.nz/Rcpp.html)
+

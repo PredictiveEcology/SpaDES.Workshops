@@ -1,0 +1,76 @@
+---
+title       : "R -- Profiling code"
+author      : "Alex M Chubaty & Eliot McIntire"
+date        : "December 9, 2016"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache=FALSE, echo=TRUE, eval=FALSE)
+```
+
+## Profiling and Benchmarking (1)
+
+- In general, the usual claim is to worry about 'execution speed later'
+- This is not 100% true with R
+- If you use vectorization (no or few loops), and these packages listed here, then you will have a good start
+- AFTER that, then you can use 2 great tools:
+
+    - `profvis` package (built into the latest Rstudio previews, but not the official release version)
+    - `microbenchmark` package
+
+## Profiling and Benchmarking (2)
+
+```{r microbenchmark, eval=TRUE, echo=TRUE}
+microbenchmark::microbenchmark(
+  loop = {
+    a <- vector()
+    for (i in 1:1000) a[i] <- SpaDES.tools::runifC(1)
+  },
+  vectorized = { a <- runif(1000) }
+)
+```
+
+## Profiling and Benchmarking (3)
+
+If you have Rstudio version `>=0.99.1208`, then it has profiling as a menu item.
+
+- alternatively, we wrap any block of code with `profvis`
+
+- This can be a `spades()` call, so it will show you the entire model:
+
+```{r profiling, eval=FALSE, echo=TRUE}
+profvis::profvis({a <- rnorm(10000000)})
+```
+
+## Profiling the `spades` call
+
+Try it:
+
+```{r profiling spades, eval=FALSE, echo=TRUE}
+mySim <- simInit(
+   times = list(start = 0.0, end = 2.0, timeunit = "year"),
+   params = list(
+     .globals = list(stackName = "landscape", burnStats = "nPixelsBurned")
+   ),
+   modules = list("randomLandscapes", "fireSpread", "caribouMovement"),
+   paths = list(modulePath = system.file("sampleModules", package = "SpaDES"))
+)
+profvis::profvis({spades(mySim)})
+```
+
+## When to profile
+
+- First, you should have started building your code with the packages we have discussed
+- It will be too late if you have loops in your code, and you are ready to profile to improve it
+
+If you have used these tools, then:
+
+- When you have mostly finished whatever we are coding
+- Don't ever start making code more efficient until you have profiled
+- It is almost impossible to tell which bits are the slow parts, without profiling or benchmarking
+
+## Strategies for profiling
+
+- Can do an entire `SpaDES` model call
+- Can pinpoint specific functions
+- Can test alternative ways of implementing the same thing

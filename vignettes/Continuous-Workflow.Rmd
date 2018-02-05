@@ -1,0 +1,73 @@
+---
+title       : "The 'data-to-decisions' workflow"
+author      : "Alex M Chubaty & Eliot McIntire"
+date        : "December 9, 2016"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, echo = TRUE, eval = FALSE)
+```
+
+## Reproducible pipeline
+
+<div class="centered" style="color:#0000FF">
+*…This places an obligation on all creators of software to program in such a way that the computations can be understood and trusted. This obligation I label the Prime Directive.*
+</div>
+
+- John Chambers (Software for Data Analysis: Programming with R)
+
+## Adaptive management
+
+- Ideally, we can rerun all decision support tools over and over again
+- Must be MUCH easier the second, third, etc. time
+- If there is an incremental change in input data, then we shouldn't need to redo the same effort as the first time around.
+
+## Why a Discrete Event Simulator is necessary?
+
+- There is much fanfare about using Rmarkdown as a tool for reproducibility (*i.e*, Rmarkdown = "code, output, narrative")
+- But this allows *exact* reproducibility
+
+    - **Everything will be run exactly as before**
+    
+- What happens if the goal is to run it again, but with slight changes to the input data?
+- The Rmarkdown approach can deal with this to a certain extent, but it will be clunky
+
+## Adding novelty
+
+- What happens if you want to add something new, but keep it mostly the same
+- You have a good vegetation model and a good caribou model, but you want to add a wolf model
+- With Rmarkdown, you would have to edit the original file
+- With `SpaDES`, you can use the other modules by calling them... no need to know how they work
+- You add your own wolf model, looking at outputs of the vegetation model and caribou model
+- Using the model metadata from those other modules
+
+## Deploying for policy and management
+
+Need the reusable work flow, and reproducible science ... but with a GUI
+
+- `shine` function is a start
+- we created a demo version of a generic web interface for models ([link](http://predictiveecology.org/2016/11/17/Putting_science_in_the_hands_of_policy_makers.html))
+- A non-scientist can ask questions of a system of modules without knowing which modules are necessary
+
+## Caching
+
+- For the above to work for, say, a national question, it can't run the model on the fly
+- Could have massive data requirements, long simulation times, even on supercomputers
+- Caching allows for near instant results from very complex systems
+
+```{r caching for data2decisions}
+?Cache
+```
+
+- [Cache vignetted](https://cran.r-project.org/web/packages/SpaDES/vignettes/iii-cache.html)
+[wolf model shows a caching use case](http://htmlpreview.github.io/?https://github.com/PredictiveEcology/SpaDES-modules/blob/master/modules/wolfAlps/wolfAlps.html)
+
+## Data-to-decisions
+
+- This is the current vision for `SpaDES`
+- We are looking for people who are interested in being part of this adventure
+- As are others: 
+
+<div class="centered" style="color:#0000FF">
+*Bringing the best science, data, models into the hands of policy makers in real time, on their phones*
+</div>

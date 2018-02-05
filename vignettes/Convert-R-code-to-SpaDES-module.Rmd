@@ -1,0 +1,112 @@
+---
+title       : "Converting R code to a `SpaDES` module - seed establishment"
+author      : "Alex M Chubaty & Eliot McIntire"
+date        : "December 7, 2016"
+output: 
+  html_document: 
+    number_sections: yes
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, echo = TRUE, eval = FALSE)
+```
+
+# Converting R code to SpaDES module
+
+## An "establishment" model
+
+We can imagine a set of sources (*e.g.*, trees with seeds) and a map of "quality" which will affect whether the things (*e.g.*, seeds) will land and establish. 
+
+This code does a few things:
+
+1. Load libraries that are required.
+2. Defines some parameters that will be used .
+3. Creates 2 default maps... could be loading default initial maps from files instead, if we had these.
+
+  - "Source" locations.
+  - A "quality" map.
+  
+4. Determines "distance" from source map.
+5. Multiplies the "distance from source" by the quality to determine whether there is successful establishment.
+5. Plot it all.
+
+```{r spreading things}
+# Load some libraries
+library(raster)
+library(SpaDES)
+
+set.seed(321) # so we can compare amongst ourselves
+
+# Parameters
+Nsource <- 20
+establishThresh <- 0.1
+
+# Initial Map of Quality -- make a dummy one
+quality <- raster(extent(0, 100, 0, 100), res = c(1, 1)) %>%
+  gaussMap(speedup = 1) # SpaDES function to generate a random map
+quality <- scale(quality, center = maxValue(quality), # rescales from 0 to 1
+                 scale = minValue(quality) - maxValue(quality))
+
+# Initial Map of sources (e.g., seed trees maybe)
+sourceLocations = initiateAgents(quality, Nsource) # SpaDES function
+
+# Create a distance from source map
+distFromSource <- distanceFromPoints(quality, sourceLocations) # raster function
+
+# Create establishment map, a function of inverse distance and quality, 
+# Actual establishment is determined with a threshold parameter
+establish <- (1/distFromSource * quality) > establishThresh
+
+clearPlot()
+Plot(distFromSource, title = "Distance from source")
+Plot(establish, title = "Establishment successful")
+Plot(sourceLocations, addTo = "establish", title = "Establishment successful")
+```
+
+## Convert this to a SpaDES module
+
+1. Use `newModule()` to create a blank template.
+2. Open the `.R` file that shows up.
+3. Fill in metadata:
+
+  - Indicate libraries that are needed
+  - Indicate parameters, with defaults
+  - Indicate object(s) that is/are expected as an input, and object(s) that 
+  is/are created as output(s)
+
+4. Fill in `.inputObjects` section to create the needed inputs.
+5. Put all the code that creates the `distFromSource` and `establish` in the "init" event.
+6. Put Plot stuff in `plot` event.
+
+## Build a controller for this module.
+
+7. Open the `.Rmd` file that we will use.
+8. Run one line at a time, confirming that it will run your model. You will likely need to update the module path so it knows where to find the module on your computer.
+
+# Advanced -- Add time
+
+So far, this only calculates the "establish" map once.
+What if we had another module that updates "sourceLocation" every year.
+So, we have to run `distanceFromSource` and `establish` every year.
+There are 2 options for this: add it all in this module, or make a new module that would generate the sourceLocations.
+
+## Option 1 - just build "sourceLocations" into this module
+
+1. Move the 3 lines that make new `sourceLocation`, make new `distFromSource`, and make `establish` into an event called "annualEstablishment". You can delete it from the "init" event, or keep it there
+2. Add 3 `scheduleEvent` calls:
+
+  1. within the "init" block, scheduling the "annualEstablishment" event in this ("establishment") module. We can schedule it for "the beginning", which would be start(sim).
+  2. within the "annualEstablishment" block that will schedule the "plot" event, "now". That way, it will plot immediately after this event.
+  3. within the "annualEstablishment" block, scheduling the "annualEstablishment" event in this ("establishment") module. We can schedule it for "now" + 1, which would be `time(sim) + 1`. This creates the time sequence.
+
+## Option 2 - make a simple module called "sourceLocations"
+
+This is "better" because it emulates how the normal situation would be, but it takes a few more steps.
+But, as we get more agile with modules, this step would take 3 minutes.
+Basically all the steps are the same as above, but in a different module, rather than within this module.
+
+# [One possible solution](https://github.com/PredictiveEcology/SpaDES-modules/blob/master/modules/establishment/establishment.R)
+
+This solution follows Option 1.

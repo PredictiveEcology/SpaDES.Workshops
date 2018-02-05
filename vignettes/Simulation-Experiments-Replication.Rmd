@@ -1,0 +1,289 @@
+---
+title       : "Simulation experiments and replication"
+author      : "Alex M Chubaty & Eliot McIntire"
+date        : "December 8, 2016"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, echo = TRUE, eval = FALSE)
+```
+
+## Beyond `spades`
+
+So far, we have run models with the `spades` function.  
+
+`spades()` only has a few arguments:
+
+    - debug
+    - .plotInitialTime
+    - .saveInitialTime
+    - progress
+    - cache
+
+What if we want to do more stuff?
+
+## Replication
+
+What if we have a stochastic model and need many independent (Monte Carlo) runs?
+
+The `experiment` function does this.
+
+```{r}
+?experiment # for details and examples
+```
+
+Generally, however, this creates problems because of the computational time required ...
+
+## Replication
+
+The `replicates` argument
+
+It is as easy as `replicates = 2` to do two replicates:
+
+```{r experiment2}
+?experiment # for details
+
+# See Example 5
+#  ... run mySim from top of help file
+sims <- experiment(mySim, replicates = 2)
+attr(sims, "experiment")$expDesign # shows 2 reps of same expt
+```
+
+What does it return?
+
+What is the `attr`?
+
+## The curse of replication
+
+Replication is necessary but it multiplies the time it takes to run any model.
+
+Fortunately, replication can use parallel processing:
+
+- This is the simplest, yet most effective, parallel processing;
+- No communication between individual simulations, until the end;
+- So they can be spread across threads on a single computer or among computers;
+- Requires a cluser (`cl`) argument.
+
+## Parallel
+
+- `SpaDES` functions that are parallel aware:
+
+    - `experiment`, `POM`, `splitRaster`
+    
+- In each case, there are two ways:
+
+```{r parallel}
+## option 1:
+raster::beginCluster() # make a cluster silently in background
+
+## option 2:
+cl <- parallel::makeCluster() # need to explicitly pass the
+                              # cluster object into functions
+                              # using cl argument
+```
+
+Try it!
+
+## `experiment`: Varying parameter values
+
+```{r experiment-params}
+?experiment
+## see example 1
+experimentParams <- list(fireSpread = 
+                           list(spreadprob = list(0.2, 0.23),
+                                nFires = list(20, 10)),
+                         caribouMovement = 
+                           list(N = list(100, 1000)))
+sims <- experiment(mySim, params = experimentParams)
+attr(sims, "experiment")
+```
+
+## `experiment`: Saving files
+
+Often, a `spades` call will generate output files.
+Where do they go when using `experiment`?
+
+```{r experiment-saving}
+?experiment
+## see example 4
+sims <- experiment(mySim, 
+                   params = experimentParams, 
+                   dirPrefix = c("expt", "simNum"))
+attr(sims, "experiment")$expVals # shows 8 alternative
+               #experiment levels, 24 unique parameter values
+
+dir(outputPath(mySim))
+```
+
+## Working through other examples of `experiment`
+
+Exercise:
+
+Pick a few examples and try to understand them.
+(**NOTE:** they get more complicated as you get towards the bottom.)
+
+```{r experiment-examples }
+?experiment
+```
+
+## Running parallel simulations
+
+Clearly, using `experiment` can take a lot of resources, but there are a few options:
+
+- Use your own computer, a local cluster, a server, cloud and more;
+
+- Access Compute Canada for free (though sometimes the queues are long):
+    
+    - [Blog post on using Compute Canada](http://predictiveecology.org/2016/07/04/How-to-start-using-a-HPC-cluster.html)
+    
+    - There is a different example here: [ssh among Linux machines](http://htmlpreview.github.io/?https://github.com/PredictiveEcology/SpaDES-modules/blob/master/modules/wolfAlps/wolfAlps.html#below-here-is-for-advanced-users)  
+    
+        - Shows how to use a Linux cluster connected via SSH;
+        - Can be very effective because is interactive (unlike normal compute clusters).
+
+# Pattern Oriented Modeling
+
+## Estimating unknown parameters
+
+- Ecological models use equations and functions
+- These have parameters
+- Parameters can be estimated from:
+
+    - directly from data (*e.g.*, regression, machine learning)
+    - indirectly using (*e.g.*, pattern oriented modeling) (*e.g.*, Grimm *et al.* Science 2005, Marucco & McIntire J Appl Ecol 2010)  
+
+## Directly from data
+
+- (Just a brief discussion of this here)
+- Remember, we are using R!
+- So you can use any statistical method that R has
+- Mixed models, non-linear models, machine learning, bayesian
+
+```{r direct from data}
+nTrees <- 50
+diamCM <- rlnorm(nTrees, meanlog = 2, sdlog = 0.7)
+height <- rnorm(nTrees, sqrt(diamCM)*2 + rnorm(nTrees))
+glmObj <- glm(height ~ diamCM)
+plot(diamCM, height)
+summary(glmObj)
+```
+
+## Predict method
+
+- These methods often have predict methods associated with them
+- So, instead of using "fixed" parameters in simulation models
+- We can use these methods which give more accurate prediction:
+
+    - given uncertainty, 
+    - random effects, 
+    - covariance matrix
+
+```{r direct from data 2}
+# predict with new data
+predVals <- predict(glmObj, newdata = data.frame(
+  diamCM = rlnorm(nTrees, meanlog = 2, sdlog = 0.7)
+))
+```
+
+## Using this in simulation models
+
+- In R, everything is an object
+- The `glmObj` and `predictVals` are objects
+- These have many features that can be used in simulations
+
+    - plot methods
+    - standard errors, covariance matrices
+    - random effects terms
+    
+- For the first 25 years of simulation modeling in ecology, parameters were copied into simulation models and hard coded
+- This made it difficult to update the simulation model if there are new data and the regression needs to be re-fit
+- Using `SpaDES` we can now fit the data and use the parameters all inside the simulation
+
+## Indirectly from data
+
+### Pattern Oriented Modeling (POM)
+
+- What does this mean?
+
+## Heuristic Optimization
+
+- Optimization is the process of minimizing some objective function
+- Heuristic optimization is when there is no derivative-based solution
+- Requires simulation-based approaches
+- In R, currently, `DEoptim` seems to be the best optimization package for heuristic optimization
+- `POM` function in `SpaDES` uses this package
+
+## `POM`
+
+There are several examples in `?POM`, which we will go through:
+
+```{r POM1}
+## example 1
+# What is example 1 doing?
+# Run it
+# What does the result mean?
+```
+
+## More complicated `POM` 
+
+- What would be next?
+
+## More complicated `POM` - example 2
+
+- What would be next?
+
+```{r POM2}
+## example 2
+# What is example 2 doing?
+# Run it
+# What does the result mean?
+```
+
+## More complicated `POM` - example 3
+
+- What would be next?
+
+```{r POM3}
+## example 3 
+# What is example 3 doing?
+# Run it
+# What does the result mean?
+```
+
+*****
+
+Often we want to run a simulation with a variety of parameter values as inputs. This is sometimes called a simulation experiment. The `experiment` function gives us an easy interface to this.
+
+We will use the `establishment` module that we created in exercise 4a.
+
+# Download a module
+
+```{r experiment}
+library(SpaDES)
+module.path <- file.path(dirname(tempdir()), "modules")
+downloadModule("establishment", path = module.path)
+setPaths(modulePath = module.path)
+library(ggplot2)
+
+modules <- list("establishment")
+
+mySim <- simInit(modules = modules)
+
+# make sure the plotting device is clear
+clearPlot()
+spades(mySim)
+```
+
+# Create an experiment
+
+1. Find out which parameters are in this module. (Hint: where is the module? Can you open it easily from R?) 
+2. Pick one of the parameters and create a range of values for it. 
+3. Following the structure indicated in example 4 of `?experiment`, use `experiment` to run a `spades` call for each parameter set (note that `experiment` is just a wrapper around `spades`). 
+4. Inspect the experiment structure using `attributes(mySim)`. 
+5. Create a plot showing on the x axis your parameter values, and on the y-axis something like `sum(mySim$establish[])`, *i.e.*, the number of pixels that had an establishment event. 
+
+# Advanced - Create a two-parameter experiment
+
+1. Repeat as above, but vary two parameters.
+
+[See a solution here](https://github.com/PredictiveEcology/SpaDES-modules/blob/master/modules/establishment/establishment.Rmd)

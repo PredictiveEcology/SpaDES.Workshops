@@ -1,0 +1,144 @@
+---
+title       : "Exercises: Building `SpaDES` modules"
+author      : "Alex M Chubaty & Eliot McIntire"
+date        : "December 7, 2016"
+output: 
+  html_document: 
+    number_sections: yes
+    toc: true
+    toc_float: true
+---
+ 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, echo = TRUE, eval = FALSE)
+```
+
+# Module metadata
+
+Examine the `LCC2005` group of modules:
+
+1. What versions of each of the modules are you using?
+
+2. Identify the timestep used for each module? How do they differ?
+
+3. Identify the input and output data (object) dependencies for these modules. Which are shared among them?
+
+4. What external data dependencies must be downloaded?
+
+# Module events
+
+Examine the `SpaDES` sample modules:
+
+1. Identify the types of events found in each module. Which event types are "shared" among these modules?
+
+2. Compare the scheduling of plot events in each of the modules:
+
+    a. what is the default plot interval for each module?
+    
+    b. at what times in the simulation are plot events scheduled and executed for each module?
+    (hint: what is the default timeunit for each)
+
+        ```{r scheduleEvent-caribou}
+        ## caribouMovement
+        sim <- scheduleEvent(sim, time(sim) + P(sim)$.plotInterval,
+                             "caribouMovement", "plot", .last())
+        ```
+
+        ```{r scheduleEvent-fireSpread}
+        ## fireSpread
+        sim <- scheduleEvent(sim, time(sim) + P(sim)$.plotInterval,
+                             "fireSpread", "plot", .last())
+        ```
+
+3. Identify the input and output data (object) dependencies for these modules. Which are shared among them?
+
+4. What external data dependencies must be downloaded?
+
+# Debugging
+
+Reminder: see the debugging info at the [wiki](https://github.com/PredictiveEcology/SpaDES/wiki/Debugging).
+
+Let's cause an error in an existing module:
+
+1. Create a copy of the `gameOfLife` module, called `gameOfLifeError`:
+
+    ```{r}
+    module.path <- file.path(dirname(tempdir()), "modules")
+
+    ## hint: you'll need to download this module first
+    downloadModule("gameOfLife", module.path)
+
+    ## make a copy and open for editing
+    copyModule("gameOfLife", "gameOfLifeError", module.path)
+    openModules("gameOfLifeError", module.path)
+    ```
+
+2. First, find and replace all instances of "gameOfLife" with "gameOfLifeError".
+
+    Then, edit line 100 to read:
+
+    ```{r}
+    sim$world[r*f <= 2] <- FALSE
+    ```
+
+    and edit line 109 to read:
+
+    ```{r}
+    sim$world[!r*f == 3] <- TRUE
+    ```
+
+3. Run the working module normally:
+
+    ```{r}
+    setPaths(modulePath = module.path)
+
+    library(igraph)
+    library(raster)
+
+    X <- 10
+    Y <- 10
+    TYPE <- "blinker" ## see Rmd for other types
+
+    modules <- list("gameOfLife")
+    parameters <- list(
+      gameOfLife = list(X = X, Y = Y, initialType = TYPE)
+    )
+    times <- list(start = 1, end = 20)
+
+    clearPlot()
+    dev()
+ 
+    mySim_OK <- simInit(times = times, params = parameters, modules = modules)
+    mySim_OK1 <- spades(Copy(mySim_OK))
+    ```
+
+4. Run the broken version and confirm that you get an error:
+ 
+ 
+    ```{r}
+    X <- 10
+    Y <- 10
+    TYPE <- "blinker" ## see Rmd for other types
+
+    modules <- list("gameOfLifeError")
+    parameters <- list(
+      gameOfLifeError = list(X = X, Y = Y, initialType = TYPE)
+    )
+    times <- list(start = 1, end = 20)
+
+    clearPlot()
+    dev()
+
+    mySim_ERR <- simInit(times = times, params = parameters, modules = modules)
+    mySim_ERR1 <- spades(Copy(mySim_ERR))
+    ```
+
+5. Without knowing where the errors occur, how would you start debugging the error?
+
+# Create a new module
+
+Create a simple module that does one of the following:
+
+1. generates a random map (hint: see `?gaussMap`) and updates the values in the raster cells;
+ 
+2. model population dynamics as subpopulations within each raster cell.

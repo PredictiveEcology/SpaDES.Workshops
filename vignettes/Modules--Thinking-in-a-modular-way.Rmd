@@ -1,0 +1,192 @@
+---
+title       : "Modules -- Thinking in a modular way"
+author      : "Alex M Chubaty & Eliot McIntire"
+date        : "December 7, 2016"
+output: 
+  html_document: 
+    number_sections: yes
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, echo = TRUE, eval = FALSE)
+```
+
+## `SpaDES`
+
+**Spa**tial **D**iscrete **E**vent **S**imulator
+
+- [Discrete event simulators](https://en.wikipedia.org/wiki/Discrete_event_simulation) have a long history in computer science
+- `SpaDES` is oriented around the construction of spatially explicit models and the use of **spatial** data.
+- **events** describe *changes in the state of a complex system* at some *time*
+- **time** is not modeled in a continuous fashion (simple loops would do this); we can 'skip ahead' to the next event, speeding up model evaluation
+- events are scheduled (added to a queue) dynamically, and executed at their scheduled time
+
+## Other DESs
+
+- In Ecology, there are other generic DESs:
+
+    - SELES (very generic)
+    - HexSim
+    - NetLogoR (Individual based models)
+    
+- More specific DESs
+
+    - LANDIS (forest dynamics)
+
+## Events
+
+- Spring thaw  
+<br>
+![](http://www.premier-roofing.com/wp-content/uploads/2014/03/stock-footage-spring-thaw-time-lapse.jpg)
+- Brainstorm events...
+
+
+## Modules
+
+- Modules are a *convenient* way to group events that fit naturally together:
+
+    - *e.g.*, fire ignition module
+    - *e.g.*, carbon accumulation module
+    - *e.g.*, data preparation module
+    
+- What is contained in one module is highly idiosyncratic .
+
+## Modules and Modularity
+
+`SpaDES` is implemented in a way that facilitates *modularity* of code:
+  
+- different (ecological) processes can be grouped into logical units (*modules*)
+- a(n) (ecological) model consists of a collection of modules
+- each module is responsible for scheduling its own events
+- modules interact *indirectly* via shared data objects (*e.g.*, a map);
+module 'A' doesn't need to know what module 'B' is doing
+
+**Thus, modules can be added, removed, or swapped out without needing to recode the rest of the model.**
+
+## Module types
+
+- There are many types of modules that may be useful:
+
+    - Agents
+    - Events
+    - Data preparation
+    - Summaries of data
+    - see list from [SpaDES wiki](https://github.com/PredictiveEcology/SpaDES/wiki/Getting-Started-Guide#types-of-modules)
+    
+Once we see that a module is just a convenient way to group together events, anything can be a module.
+Can be a single line of code or as many as you want.
+
+## Agent-based modules
+
+- caribou
+- [wolfAlps](https://github.com/PredictiveEcology/SpaDES-modules/blob/master/modules/wolfAlps/wolfAlps.R)
+- Mountain Pine Beetle
+
+## Raster module
+
+- Vegetation change
+- Spatial clustering (*e.g.*, to create polygons)
+- Aging
+- Class change (*e.g.*, land cover class)
+- Biomass change
+- etc.
+
+## Data preparation module
+
+- cropReprojectLcc
+
+## Why use a `SpaDES` module
+
+... instead of just an R script or function?
+
+- allows things to be scheduled
+- allows modularity
+
+    - a module can be reused by someone else with little change
+
+- can be published on the web
+- can estimate unknown parameters
+- and much more...
+
+## Anatomy of a module
+
+A module is an **R script** with 3 parts:
+
+1. **Metadata** - a list of 15 things
+
+    - Name, Author, Description, other for human reader
+    - parameters, input objects, output objects for R to "understand"
+    
+2. **doEvent** - 2 types of things here
+
+    - schedule events
+    - run functions
+    
+3. **Anything else**
+
+    - custom functions
+    - initial data preparation steps
+    
+
+## Running `SpaDES`
+
+Essentially 2 steps
+
+1. Create a `simList` using `simInit()`
+2. Run `spades()`
+
+All the necessary information is contained within the `simList`
+
+What might be needed for a DES to run... 
+
+## What is in the `simList`
+
+    - start and stop times
+    - data
+    - paths
+    - which modules to use
+    - parameters
+    - a schedule of events
+    - outputs
+
+- Will be covered in detail [next](The-simList.html)
+
+## Data
+
+- We are working with R, so we can use any data structure or file format that R can understand
+- `SpaDES` has some helpers for loading data, but in general, the module should be explicit
+
+    - *e.g.*, `downloadData("caribouMovementLcc", path = tempdir())`
+    
+- A module takes input data, changes them, and provides outputs
+- like a function, but with the addition of "time"
+
+- Some challenges ...
+
+## Data challenges
+
+Numerous challenges exist with data
+
+- messy
+- ownership
+- large
+- permissions
+- errors
+- other
+
+`SpaDES` doesn't necessarily solve these issues, but in some cases it helps.
+
+## Where to get help
+
+- package help docs (*e.g.*, [overview of `SpaDES` package](http://www.rdocumentation.org/packages/SpaDES/versions/1.2.0/topics/SpaDES-package)):
+
+```{r help, eval=FALSE}
+?SpaDES
+```
+
+- package vignettes ([link](https://github.com/PredictiveEcology/SpaDES/wiki/Help-Vignettes))
+- `SpaDES` wiki ([link](https://github.com/PredictiveEcology/SpaDES/wiki/))
+- `SpaDES` user group ([link](https://groups.google.com/d/forum/spades-users))
+- bug reports ([link](https://github.com/PredictiveEcology/SpaDES/issues/))

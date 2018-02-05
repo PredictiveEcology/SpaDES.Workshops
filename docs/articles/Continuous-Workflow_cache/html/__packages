@@ -1,0 +1,15 @@
+base
+methods
+datasets
+utils
+grDevices
+graphics
+stats
+igraph
+SpaDES
+reproducible
+quickPlot
+SpaDES.core
+SpaDES.tools
+SpaDES.addins
+SpaDES.Workshops

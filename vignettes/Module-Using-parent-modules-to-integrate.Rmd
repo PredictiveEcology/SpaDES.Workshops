@@ -1,0 +1,186 @@
+---
+title       : "Modules -- Integrating among modules"
+author      : "Alex M Chubaty & Eliot McIntire"
+date        : "December 9, 2016"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, echo = TRUE, eval = FALSE)
+```
+
+## Building *models* from *modules*
+
+A model (as defined in the `SpaDES` world) consists of multiple interacting components (sub-models), which in the vocabulary of `SpaDES` we have been referring to as 'modules'
+
+- One could imagine an example model:
+
+    - caribou movement
+    - vegetation dynamics
+    - disturbance dynamics
+    - data cleaning, downloading, etc.
+    
+- And we would give this ensemble of modules a name, like "LCC2005" (or maybe even a better name, but we will go with this)
+
+## LCC2005
+
+([Return to LCC2005 model](http://htmlpreview.github.io/?https://github.com/PredictiveEcology/SpaDES-modules/blob/master/modules/LCC2005/LCC2005.html))
+
+```{r exercise1}
+library(igraph)
+library(SpaDES)
+
+workDirectory <- file.path(dirname(tempdir()), "Lcc2005")
+moduleDir <- file.path(workDirectory, "modules") %>%
+  checkPath(., create = TRUE)
+downloadModule("LCC2005", moduleDir)
+openModules("LCC2005", moduleDir)
+```
+
+### Examine this module
+
+What is different about it?
+
+## Parent modules (a.k.a. module groups)
+
+- Currently, only used to identify a group of modules
+- Uses "childModules" list entry
+- Currently, a parent module can not have any events or functions **only metadata** and **only childModules** is used
+- This may be changed in the future, but most likely by simplifying the number of entries in the metadata
+
+<br>
+
+- Will this decision (by `SpaDES` developers) create problems?
+
+<br>
+
+- Can have grand-parents, great-grandparents, mixtures of parents, grand-parents etc.
+
+## Module relationships
+
+```{r relationship-diagram, echo=FALSE, eval=TRUE, message=FALSE, fig.height=5, fig.width=5}
+library(igraph)
+g <- data.frame(from = c("grandparentModule", "grandparentModule",
+                         "parentModuleA", "parentModuleA",
+                         "parentModuleB", "parentModuleB"),
+                to = c("parentModuleA", "parentModuleB",
+                       "childModuleA1", "childModuleA2",
+                       "childModuleB1", "childModuleB2")) %>% 
+  graph_from_data_frame()
+plot(g, mark.groups = list(1:7, c(2,4,5), c(3,6,7)))
+```
+
+## Module directory structure
+
+```
+moduleRepo/
+  |_ childModuleA1/
+  |_ childModuleA2/
+  |_ childModuleB1/
+  |_ childModuleB2/
+  |_ grandparentModule/
+  |_ parentModuleA/
+  |_ parentModuleB/
+```
+## Running a parent module
+
+```{r run-lcc, echo=TRUE, eval=FALSE}
+# setup simulation
+outputDir <- file.path(workDirectory, "simOutputs")
+cacheDir <- checkPath(file.path(outputDir, "cache"), create = TRUE)
+times <- list(start = 2005.0, end = 2020.0, timeunit = "year")
+parameters <- list(
+  .globals = list(burnStats = "fireStats"),
+  fireSpreadLcc = list(drought = 1.2),
+  caribouMovementLcc = list(N = 1e3, startTime = times$start + 1, 
+                            glmInitialTime = NA_real_)
+)
+modules <- list("LCC2005")
+paths <- list(
+  cachePath = cacheDir,
+  modulePath = moduleDir,
+  inputPath = moduleDir,
+  outputPath = outputDir
+)
+```
+
+## Visual tools
+
+There are a few tools that can help visualize the relationships between modules:
+
+```{r visualize-sim, echo=TRUE, eval=FALSE}
+# This next step will download data if they do not yet exist locally
+lcc <- simInit(times = times, params = parameters,
+               modules = modules, paths = paths)
+
+objectDiagram(lcc)
+moduleDiagram(lcc)
+eventDiagram(lcc)
+
+lcc <- spades(lcc)  ## compare the diagrams after running sim
+```
+
+### What do/would these do?
+
+### Do they all work after `simInit`?
+
+## Creating a new parent module
+
+The `newModule` function creates a module template for you to edit to suit your needs:
+
+```{r new-module, echo=TRUE, eval=FALSE}
+newModule('moduleName', file.path('path/to/my/module/directory'),
+          type = 'parent', children = c('child1', 'child2'))
+```
+
+Alternatively, use the RStudio addin which is simply a GUI wrapper for this function (select 'parent' type):
+
+![](images/screenshot-new-module-addin.png)
+
+## Parent modules
+
+### A hypothetical example
+
+The new **CFS-FD** model (Forest Dynamics Model)
+
+- Has carbon, caribou, vegetation change, harvesting, climate, fire, insects
+- But the vegetation module is actually a parent module with 3 modules:
+    
+    - mortality, growth, and regeneration modules
+- fire module is actually 4 modules:
+    
+    - ignition, escape, spread, severity modules
+
+## Parent modules
+
+### Where to put code?
+
+- Likely you can imagine that there would be code you would want to put in the parent module
+- We had many discussions about this
+- We concluded: 
+
+<div class="centered" style="color:#0000FF">
+*make a child module that does all the stuff you might think of as parent module content, add appropriate data dependencies*<br>
+*(*i.e.*, outputs are required by the other modules as inputs)*
+</div>
+
+## Child modules
+
+- Everything that we have talked about to date is a child module
+- This means that it is a stand alone module
+
+## Using metadata
+
+- There are 15 items in the metadata header
+- The header is defined withe the `SpaDES` function `defineModule`
+- Usually at the top of the module script, but it doesn't have to be
+- In the future, this will likely expand, and gain functionality to allow increased automation
+
+```{r define module}
+# What are the 15 items?
+```
+
+- Explore different options
+
+## Metadata
+
+- Is there anything missing from the 15 items?

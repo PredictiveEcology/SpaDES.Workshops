@@ -1,0 +1,139 @@
+---
+title       : "Sharing modules and data"
+author      : "Alex M Chubaty & Eliot McIntire"
+date        : "December 9, 2016"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, echo = TRUE, eval = FALSE)
+library(SpaDES)
+```
+
+## `SpaDES` module repositories
+
+A 'module repository' is simply a web site that serves files using a particular directory structure (the same directory structure used in a local `SpaDES` module repo).
+
+Our module repo is at https://github.com/PredictiveEcology/SpaDES-modules
+
+This is the default repo in `SpaDES`.
+
+    - it's public
+    - it's easily accessible using `downloadModule()`
+
+```{r module-repo-option, echo=TRUE, eval=TRUE}
+getOption('spades.modulesRepo') ## default url prefix is GitHub
+```
+
+## Other `SpaDES` module repositories
+
+Anybody can create their own repository as well (R has CRAN, Rforge, BioConductor and many lesser used ones)
+
+`downloadModule()` has a `repo` argument.
+
+## Our `SpaDES` module repository
+
+- Initially, most `SpaDES` modules will not be there
+- *e.g.*, SpaDES-LBM (SpaDES -- Landis Biomass Succession) is not there yet (we would like to publish it first)
+
+## What is GitHub?
+
+[Github.com](https://github.com/) is a free\* code archive and hosting service.
+
+Allows hosting of public and private code repositories, build around `git` version control software.
+
+GitHub provides:
+
+- code archiving/distribution
+- version control
+- publication (code, html pages, and others)
+- collaboration
+- bug tracker
+- **user friendly web interface and desktop client**
+
+## Using GitHub for collaboration
+
+We, and many others, use GitHub extensively for all our group's work
+
+- Like Dropbox, in the sense that there is a cloud version, and potentially many local copies all over the place
+- Unlike Dropbox, the copies on people's computers are not automatically there
+- Requires manual intervention
+
+## GitHub Client
+
+- For your local copy of the files, you need an extra piece of software on your computer (like the "Dropbox client")
+
+- `git` and GitHub both require a bit of learning:
+
+    - [tutorial](https://guides.github.com/activities/hello-world/)
+
+- There are many other great `git` clients:
+
+    - **[Gitkraken](http://gitkraken.com/)** is amazing and our group's prefered client (cross-platform)
+    - [SourceTree](https://www.sourcetreeapp.com/) (Windows & Mac only)
+    - See https://git-scm.com/downloads/guis for more
+
+## `shiny` apps
+
+- Massively powerful
+- Allows the process of data wrangling, data visualization, data analysis, etc. to be made into interactive web (and mobile) apps
+- By moving the web app development into R (instead of taking R outputs and putting them into a web development kit), means that the analysis power can be at the interactive stage
+- Also, data analysts can be making web pages
+
+## `shine` function
+
+`SpaDES` has a simple function that takes any simList and makes a web app from it:
+
+```{r shine}
+?shine
+```
+
+<div class="centered">Try it!</div>
+
+## Simple shiny apps
+
+- hosted apps at [shinyapps.io](http://www.shinyapps.io/) 
+
+    - *e.g.*, [Proof of concept](https://spades.shinyapps.io/ForestChange_ProofOfConcept/)
+
+## Themes
+
+- Lots of developers making shiny themes
+- Often they are wrappers on javascript code
+- So your look can be easily modified without many web development skills
+
+## Shiny maps with leaflet
+
+- [leaflet package](https://rstudio.github.io/leaflet/)
+
+# Data sources
+
+## Data sharing
+
+- We have shown a way to specify default data sources
+
+*Where was that?*
+
+- We have shown a way to specify default data manipulations and data preparations of those default data
+
+*Where was that?*
+
+## If there are complex data sets?
+
+- And from many sources?
+- Can still use `sourceURL` in `defineModule` and create an `.inputObjects` function which will do all the manipulations
+
+## How to adequately describe data?
+
+- It is clear that there is not enough information contained in the metadata to fully describe everything about the required dataset(s) type(s)
+- **Use the .Rmd** file to describe more for human eyes
+- It is very difficult to algorithmically define data in a generic way
+- There are standards, but `SpaDES` doesn't tap into those (yet!)
+
+## Overriding default datasets
+
+- If a *user* passes an object that a module requires (in 'defineModule' metadata)
+- The default data will not be used
+
+- checksums
+- externally hosted data
+- include data with your module code
