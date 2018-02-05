@@ -1,5 +1,5 @@
 ---
-title       : "Building `SpaDES` modules"
+title       : "Modules -- The nitty gritty details"
 author      : "Alex M Chubaty, Eliot McIntire"
 date        : "December 7, 2016"
 ---
@@ -14,6 +14,21 @@ library(SpaDES)
 - Our [Getting Started Guide](https://github.com/PredictiveEcology/SpaDES/wiki/Getting-Started-Guide) is available from the wiki.
 
 - The [modules vignette](http://spades.predictiveecology.org/vignettes/ii-modules.html) contains much more detail.
+
+## Finding `SpaDES` tools
+
+### Categorized overview of the `SpaDES` package
+
+```{r, spades-tools, echo=TRUE, eval=FALSE}
+?SpaDES
+```
+
+1. Spatial discrete event simulation (`SpaDES`)
+2. Module functions
+3. Plotting
+4. File operations
+5. Sample data and modules included in package
+
 
 ## Anatomy of a `SpaDES` module
 
@@ -40,10 +55,6 @@ list.files(file.path(module.path, 'wolfAlps'), all.files = TRUE)
       |_ moduleName_x.y.z.zip   # zip archive of previous versions
 ```
 
-## Anatomy of a `SpaDES` module
-
-### Directory structure
-
 **Advanced:** not included (yet) in the main module repo are examples of modules that include unit tests and code coverage.
 
 These are *encouraged* and can be built using:
@@ -55,8 +66,6 @@ newModule(..., unitTests = TRUE) # default
 # or after-the-fact with
 newModuleTests(...)
 ```
-
-## Anatomy of a `SpaDES` module
 
 ### Code file structure
 
@@ -87,7 +96,7 @@ Alternatively, use the RStudio addin which is simply a GUI wrapper for this func
 
 ![](images/screenshot-new-module-addin.png)
 
-## 1. Module metadata
+## Module metadata
 
 Each module requires a collection of metadata describing the module, its dependencies, and linking to documentation, etc.
 
@@ -98,8 +107,6 @@ These metatadata are defined in the `defineModule` code block at the start of th
 ?defineModule
 ```
 
-## 1. Module metadata
-
 ### Module parameters
 
 *Parameters* defined in the module's `defineParameter` block are module-specific.
@@ -109,15 +116,11 @@ This is where default parameter values are specified (which can be overridden by
 They can be accessed using `params(sim)$module$param` or `P(sim)$param`.
 **The latter is context-dependent!**
 
-## 1. Module metadata
-
 ### Data dependencies
 
 The `inputObjects` and `outputObjects` metadata fields specify a module's inputs and outputs respectively.
 
 **These refer to R objects, rather than raw data files.**
-
-## 1. Module metadata
 
 ### Working with data
 
@@ -125,7 +128,7 @@ The `inputObjects` and `outputObjects` metadata fields specify a module's inputs
 - `sourceURL` field in module metadata is used for URLs of external data, which are downloaded using `downloadData()`
 - checksums are to verify file integrity of the data (*e.g.*, in case of download error or change in the data file)
 
-## 2. Module events
+## Module events
 
 - Each module may contain an arbitrary number of event types.
 - Each event consists of two parts:
@@ -135,23 +138,19 @@ The `inputObjects` and `outputObjects` metadata fields specify a module's inputs
 
 - To keep this section as easy to read as possible, use additional module functions (defined in the section below).
 
-## 3. Additional module functions
+## Additional module functions
 
 - Should get and return objects in the simulation environment (`envir`), rather than pass them as function arguments.
 - Accessing objects in `envir` is similar to accessing items in a list, *i.e.*, `sim[["object"]]` or `sim$object` can be used.
 - To ensure unique function names, follow the naming convention `modulenameEventtype()`.
 
-## 4. The `.inputObjects` block (*optional*)
+## The `.inputObjects` block (*optional*)
 
 - How do we provide default data for a module?
 
 - Once we have defined what the module is looking for (in the `inputObjects` block of `defineModule`), we may want to supply a default data set or links to raw data sources online
 
 - See `?defineModule` and `?inputs` for details.
-
-
-## 4. The `.inputObjects` block (*optional*)
-
 - Sequence to fill simList with data, each subsequent one will override the previous:
 
 1. `.inputObjects` function in module
@@ -256,20 +255,6 @@ See [vignette](http://spades.predictiveecology.org/vignettes/ii-modules.html#che
 - using the Rstudio debugger
 
 See debugging info at the [wiki](https://github.com/PredictiveEcology/SpaDES/wiki/Debugging).
-
-## Finding `SpaDES` tools
-
-### Categorized overview of the `SpaDES` package
-
-```{r, spades-tools, echo=TRUE, eval=FALSE}
-?SpaDES
-```
-
-1. Spatial discrete event simulation (`SpaDES`)
-2. Module functions
-3. Plotting
-4. File operations
-5. Sample data and modules included in package
 
 ## Summary statistics
 

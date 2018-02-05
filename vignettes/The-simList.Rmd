@@ -1,5 +1,5 @@
 ---
-title       : "The simList"
+title       : "simList -- What is in it?"
 author      : "Alex M Chubaty & Eliot McIntire"
 date        : "December 7, 2016"
 ---
@@ -40,8 +40,6 @@ str(emptySim)
 
 See also `?'.simList-class'`
 
-**Exercises 03, numbers 2 & 3.**
-
 ## Accessing the parts of a simLists
 
 <div class="columns-2">
@@ -67,8 +65,6 @@ data.frame(other_accessors = other_accessors) %>%
 ### Model specification
 
 Simple examples (using demo modules) of `simInit()` and `spades()` calls.
-
-**Exercises 03, number 4, 5, & 6.**
 
 - examine simList structure before and after the `spades()` call
 

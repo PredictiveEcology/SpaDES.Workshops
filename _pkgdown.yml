@@ -27,30 +27,29 @@ articles:
     - GoogleDrive
     - 01Day1
 
-  - title: "Simple -- Developer's Workshop"
+  - title: "Making new modules -- Developer's Workshop"
     desc: >
-      Simple
+      How to start from the beginning, why SpaDES, simple raster modules, interacting among modules
     contents:
     - Loops-to-Events
-
-  - title: "Intermediate -- Developer's Workshop"
-    desc: >
-      Intermediate level files to work through that discuss specific types of modules
-    contents:
     - SpaDES4Dummies
+
+  - title: "Using existing modules -- Developer's Workshop"
+    desc: >
+      If you are given a module, how do we get it, understand it, run it, test it, incorporate it into our own modules
+    contents:
     - Spreading-module
     - Agent-module
-    - Population-module
+    - Module-Integration
 
   - title: "Reference -- Developer's topics for reference"
     desc: >
       Advanced topics that can be helpful while going through the modules
     contents:
+    - Modules--Thinking-in-a-modular-way
     - Module-details
-    - Thinking-the-SpaDES-Way
     - The-simList
-    - Getting-the-most-out-of-R
-    - Module-Integration
+    - R-Developing-powerful-skills
     - Debugging
     - Caching
     - Continuous-Workflow

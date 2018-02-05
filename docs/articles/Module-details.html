@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Building <code>SpaDES</code> modules • SpaDES.Workshops</title>
+<title>Modules – The nitty gritty details • SpaDES.Workshops</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
@@ -63,7 +63,7 @@
       </header><div class="row">
   <div class="col-md-9">
     <div class="page-header toc-ignore">
-      <h1>Building <code>SpaDES</code> modules</h1>
+      <h1>Modules – The nitty gritty details</h1>
                         <h4 class="author">Alex M Chubaty, Eliot McIntire</h4>
             
             <h4 class="date">December 7, 2016</h4>
@@ -80,6 +80,22 @@
 <li><p>Our <a href="https://github.com/PredictiveEcology/SpaDES/wiki/Getting-Started-Guide">Getting Started Guide</a> is available from the wiki.</p></li>
 <li><p>The <a href="http://spades.predictiveecology.org/vignettes/ii-modules.html">modules vignette</a> contains much more detail.</p></li>
 </ul>
+</div>
+<div id="finding-spades-tools" class="section level2">
+<h2 class="hasAnchor">
+<a href="#finding-spades-tools" class="anchor"></a>Finding <code>SpaDES</code> tools</h2>
+<div id="categorized-overview-of-the-spades-package" class="section level3">
+<h3 class="hasAnchor">
+<a href="#categorized-overview-of-the-spades-package" class="anchor"></a>Categorized overview of the <code>SpaDES</code> package</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?SpaDES</code></pre></div>
+<ol style="list-style-type: decimal">
+<li>Spatial discrete event simulation (<code>SpaDES</code>)</li>
+<li>Module functions</li>
+<li>Plotting</li>
+<li>File operations</li>
+<li>Sample data and modules included in package</li>
+</ol>
+</div>
 </div>
 <div id="anatomy-of-a-spades-module" class="section level2">
 <h2 class="hasAnchor">
@@ -102,14 +118,6 @@
       |_ moduleName.R           # module code file (incl. metadata)
       |_ moduleName.Rmd         # documentation, usage info, etc.
       |_ moduleName_x.y.z.zip   # zip archive of previous versions</code></pre>
-</div>
-</div>
-<div id="anatomy-of-a-spades-module-1" class="section level2">
-<h2 class="hasAnchor">
-<a href="#anatomy-of-a-spades-module-1" class="anchor"></a>Anatomy of a <code>SpaDES</code> module</h2>
-<div id="directory-structure-1" class="section level3">
-<h3 class="hasAnchor">
-<a href="#directory-structure-1" class="anchor"></a>Directory structure</h3>
 <p><strong>Advanced:</strong> not included (yet) in the main module repo are examples of modules that include unit tests and code coverage.</p>
 <p>These are <em>encouraged</em> and can be built using:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># when creating a new module</span>
@@ -118,10 +126,6 @@
 <span class="co"># or after-the-fact with</span>
 <span class="kw">newModuleTests</span>(...)</code></pre></div>
 </div>
-</div>
-<div id="anatomy-of-a-spades-module-2" class="section level2">
-<h2 class="hasAnchor">
-<a href="#anatomy-of-a-spades-module-2" class="anchor"></a>Anatomy of a <code>SpaDES</code> module</h2>
 <div id="code-file-structure" class="section level3">
 <h3 class="hasAnchor">
 <a href="#code-file-structure" class="anchor"></a>Code file structure</h3>
@@ -148,15 +152,11 @@
 </div>
 <div id="module-metadata" class="section level2">
 <h2 class="hasAnchor">
-<a href="#module-metadata" class="anchor"></a>1. Module metadata</h2>
+<a href="#module-metadata" class="anchor"></a>Module metadata</h2>
 <p>Each module requires a collection of metadata describing the module, its dependencies, and linking to documentation, etc.</p>
 <p>These metatadata are defined in the <code>defineModule</code> code block at the start of the file, and are intended to be both human and machine readable.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## see section 'Required metadata elements'
 ?defineModule</code></pre></div>
-</div>
-<div id="module-metadata-1" class="section level2">
-<h2 class="hasAnchor">
-<a href="#module-metadata-1" class="anchor"></a>1. Module metadata</h2>
 <div id="module-parameters" class="section level3">
 <h3 class="hasAnchor">
 <a href="#module-parameters" class="anchor"></a>Module parameters</h3>
@@ -164,20 +164,12 @@
 <p>This is where default parameter values are specified (which can be overridden by the user during <code>simInit()</code>).</p>
 <p>They can be accessed using <code>params(sim)$module$param</code> or <code>P(sim)$param</code>. <strong>The latter is context-dependent!</strong></p>
 </div>
-</div>
-<div id="module-metadata-2" class="section level2">
-<h2 class="hasAnchor">
-<a href="#module-metadata-2" class="anchor"></a>1. Module metadata</h2>
 <div id="data-dependencies" class="section level3">
 <h3 class="hasAnchor">
 <a href="#data-dependencies" class="anchor"></a>Data dependencies</h3>
 <p>The <code>inputObjects</code> and <code>outputObjects</code> metadata fields specify a module’s inputs and outputs respectively.</p>
 <p><strong>These refer to R objects, rather than raw data files.</strong></p>
 </div>
-</div>
-<div id="module-metadata-3" class="section level2">
-<h2 class="hasAnchor">
-<a href="#module-metadata-3" class="anchor"></a>1. Module metadata</h2>
 <div id="working-with-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#working-with-data" class="anchor"></a>Working with data</h3>
@@ -192,7 +184,7 @@
 </div>
 <div id="module-events" class="section level2">
 <h2 class="hasAnchor">
-<a href="#module-events" class="anchor"></a>2. Module events</h2>
+<a href="#module-events" class="anchor"></a>Module events</h2>
 <ul>
 <li>Each module may contain an arbitrary number of event types.</li>
 <li>
@@ -207,7 +199,7 @@
 </div>
 <div id="additional-module-functions" class="section level2">
 <h2 class="hasAnchor">
-<a href="#additional-module-functions" class="anchor"></a>3. Additional module functions</h2>
+<a href="#additional-module-functions" class="anchor"></a>Additional module functions</h2>
 <ul>
 <li>Should get and return objects in the simulation environment (<code>envir</code>), rather than pass them as function arguments.</li>
 <li>Accessing objects in <code>envir</code> is similar to accessing items in a list, <em>i.e.</em>, <code>sim[["object"]]</code> or <code>sim$object</code> can be used.</li>
@@ -216,18 +208,12 @@
 </div>
 <div id="the--inputobjects-block-optional" class="section level2">
 <h2 class="hasAnchor">
-<a href="#the--inputobjects-block-optional" class="anchor"></a>4. The <code>.inputObjects</code> block (<em>optional</em>)</h2>
+<a href="#the--inputobjects-block-optional" class="anchor"></a>The <code>.inputObjects</code> block (<em>optional</em>)</h2>
 <ul>
 <li><p>How do we provide default data for a module?</p></li>
 <li><p>Once we have defined what the module is looking for (in the <code>inputObjects</code> block of <code>defineModule</code>), we may want to supply a default data set or links to raw data sources online</p></li>
-<li><p>See <code>?defineModule</code> and <code>?inputs</code> for details.</p></li>
-</ul>
-</div>
-<div id="the--inputobjects-block-optional-1" class="section level2">
-<h2 class="hasAnchor">
-<a href="#the--inputobjects-block-optional-1" class="anchor"></a>4. The <code>.inputObjects</code> block (<em>optional</em>)</h2>
-<ul>
-<li>Sequence to fill simList with data, each subsequent one will override the previous:</li>
+<li>See <code>?defineModule</code> and <code>?inputs</code> for details.</li>
+<li><p>Sequence to fill simList with data, each subsequent one will override the previous:</p></li>
 </ul>
 <ol style="list-style-type: decimal">
 <li>
@@ -331,22 +317,6 @@ mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(..., <span c
 </ul>
 <p>See debugging info at the <a href="https://github.com/PredictiveEcology/SpaDES/wiki/Debugging">wiki</a>.</p>
 </div>
-<div id="finding-spades-tools" class="section level2">
-<h2 class="hasAnchor">
-<a href="#finding-spades-tools" class="anchor"></a>Finding <code>SpaDES</code> tools</h2>
-<div id="categorized-overview-of-the-spades-package" class="section level3">
-<h3 class="hasAnchor">
-<a href="#categorized-overview-of-the-spades-package" class="anchor"></a>Categorized overview of the <code>SpaDES</code> package</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?SpaDES</code></pre></div>
-<ol style="list-style-type: decimal">
-<li>Spatial discrete event simulation (<code>SpaDES</code>)</li>
-<li>Module functions</li>
-<li>Plotting</li>
-<li>File operations</li>
-<li>Sample data and modules included in package</li>
-</ol>
-</div>
-</div>
 <div id="summary-statistics" class="section level2">
 <h2 class="hasAnchor">
 <a href="#summary-statistics" class="anchor"></a>Summary statistics</h2>
@@ -442,18 +412,13 @@ mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(..., <span c
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#getting-started-with-spades">Getting started with <code>SpaDES</code></a></li>
+      <li><a href="#finding-spades-tools">Finding <code>SpaDES</code> tools</a></li>
       <li><a href="#anatomy-of-a-spades-module">Anatomy of a <code>SpaDES</code> module</a></li>
-      <li><a href="#anatomy-of-a-spades-module-1">Anatomy of a <code>SpaDES</code> module</a></li>
-      <li><a href="#anatomy-of-a-spades-module-2">Anatomy of a <code>SpaDES</code> module</a></li>
       <li><a href="#new-module-template">New module template</a></li>
-      <li><a href="#module-metadata">1. Module metadata</a></li>
-      <li><a href="#module-metadata-1">1. Module metadata</a></li>
-      <li><a href="#module-metadata-2">1. Module metadata</a></li>
-      <li><a href="#module-metadata-3">1. Module metadata</a></li>
-      <li><a href="#module-events">2. Module events</a></li>
-      <li><a href="#additional-module-functions">3. Additional module functions</a></li>
-      <li><a href="#the--inputobjects-block-optional">4. The <code>.inputObjects</code> block (<em>optional</em>)</a></li>
-      <li><a href="#the--inputobjects-block-optional-1">4. The <code>.inputObjects</code> block (<em>optional</em>)</a></li>
+      <li><a href="#module-metadata">Module metadata</a></li>
+      <li><a href="#module-events">Module events</a></li>
+      <li><a href="#additional-module-functions">Additional module functions</a></li>
+      <li><a href="#the--inputobjects-block-optional">The <code>.inputObjects</code> block (<em>optional</em>)</a></li>
       <li><a href="#visualizations">Visualizations</a></li>
       <li><a href="#plotting"><code>Plot</code>ting</a></li>
       <li><a href="#event-level-plotting">Event-level plotting</a></li>
@@ -462,7 +427,6 @@ mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(..., <span c
       <li><a href="#loading">Loading</a></li>
       <li><a href="#checkpointing">Checkpointing</a></li>
       <li><a href="#debugging">Debugging</a></li>
-      <li><a href="#finding-spades-tools">Finding <code>SpaDES</code> tools</a></li>
       <li><a href="#summary-statistics">Summary statistics</a></li>
       <li><a href="#module-development-checklist">Module development checklist</a></li>
       <li><a href="#module-development-checklist-1">Module development checklist</a></li>
