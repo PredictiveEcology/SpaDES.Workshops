@@ -6,7 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, eval=FALSE)
 ```
 
 # **`SpaDES`** 3-day challenge
@@ -126,7 +126,7 @@ Shiny web-app demo [here](https://spades.shinyapps.io/ForestChange_ProofOfConcep
     + [1.3.2 Simulation set-up](#SetupSim)
     + [1.3.3  Simulation object - `simList`](#simList)
     + [1.3.4 Running a `SpaDES` simulation](#runSim)
-    + [1.3.5 1.3.5 Change model parameters without restarting](#changeParams)
+    + [1.3.5 Change model parameters without restarting](#changeParams)
     
 #### <a name="InstallSpaDES"></a>**1.1 Installing `SpaDES`**  
 
