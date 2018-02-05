@@ -20,25 +20,44 @@ navbar:
       href: https://spades.predictiveecology.org/
 
 articles:
-  - title: "Google Drive for Day 1"
+  - title: "Day 1"
     desc: >
-      Powerpoints for Day 1
+      Notes for Day 1
     contents:
     - GoogleDrive
+    - 01Day1
 
-  - title: "Examples and topics we will work through"
+  - title: "Making new modules -- Developer's Workshop"
     desc: >
-      Day 2 - 3
+      How to start from the beginning, why SpaDES, simple raster modules, interacting among modules
     contents:
     - Loops-to-Events
     - SpaDES4Dummies
+
+  - title: "Using existing modules -- Developer's Workshop"
+    desc: >
+      If you are given a module, how do we get it, understand it, run it, test it, incorporate it into our own modules
+    contents:
     - Spreading-module
     - Agent-module
-    - Population-module
-    - Existing-modules
+    - Module-Integration
+
+  - title: "Reference -- Developer's topics for reference"
+    desc: >
+      Advanced topics that can be helpful while going through the modules
+    contents:
+    - Modules--Thinking-in-a-modular-way
+    - Module-details
+    - The-simList
+    - R-Developing-powerful-skills
+    - Debugging
+    - Caching
+    - Continuous-Workflow
+    - Sharing-Modules
+    - Simulation-Experiments-Replication
 
   - title: "Exercises"
     desc: >
-      Some collection of the following
+      Examples to practice certain skills
     contents:
-    - ends_with("exercises")
+    - contains("Exercises")

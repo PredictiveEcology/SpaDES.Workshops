@@ -117,9 +117,20 @@ Shiny web-app demo [here](https://spades.shinyapps.io/ForestChange_ProofOfConcep
 ### <a name="PartII"></a>**Part II. Get your hands dirty: using SpaDES for the 1st time**  
 
 **Table of contents:**  
-[SpaDES` installation](#SpaDES_install)
+[**Exercise 1. `SpaDES` in action`**](#Exercise1)  
 
-#### <a name="SpaDES_install"></a> **`SpaDES` installation**  
+* [1.1 Installing `SpaDES`](#InstallSpaDES)  
+* [1.2 Modules included in the `SpaDES` package](#SpaDES_modules)   
+* [1.3 Simulation modelling with `SpaDES`](#ModellingSpaDES)
+    + [1.3.1 Download modules](#DownloadModules)
+    + [1.3.2 Simulation set-up](#SetupSim)
+    + [1.3.3  Simulation object - `simList`](#simList)
+    + [1.3.4 Running a `SpaDES` simulation](#runSim)
+    
+    
+    
+#### <a name="InstallSpaDES"></a>**1.1 Installing `SpaDES`**  
+
 `SpaDES` groups a series of `R` packages - *metapackage* - containing both core and additional methods to design a discrete event simulation model:  
 
 * SpaDES.core - contains the core simualtion components  
@@ -135,74 +146,156 @@ Prior to installing `SpaDES` make sure you have:
 3. [**Rtools**](https://cran.r-project.org/bin/windows/Rtools/) (Windows), [**XCode**](http://itunes.apple.com/us/app/xcode/id497799835?mt=12) (Mac), or r-base (Linux; please see [here](https://support.rstudio.com/hc/en-us/articles/200486498-Package-Development-Prerequisites) for details).  
 
 
-```{r SpaDESinstall, message=FALSE, warning=FALSE, eval=FALSE}
-install.packages("SpaDES", dependencies = TRUE)
+`SpaDES`is still on a relatively steep development curve. As such, it might be sometimes necessary to update a particular package from GitHub (where `SpaDES` is being developed). It might be important to keep an eye on new improvements present in GitHub that might not be in CRAN yet. You'll find the lastest releases for each package in their respective GitHub page (e.g. [SpaDES.core releases](https://github.com/PredictiveEcology/SpaDES.core/releases)). If you go to the [commits page](https://github.com/PredictiveEcology/SpaDES.core/commits/development) you'll notice that that there might be new features relatively to the latest commit.  
+
+```{r SpaDESinstall}
+## Install all packages and their dependencies first
+install.packages('SpaDES', dependencies = TRUE)
+
+## now, update some of the packages from the development branch.
+devtools::install_github('PredictiveEcology/SpaDES.core@development')
+devtools::install_github('PredictiveEcology/reproducible@development')
 
 ## and load SpaDES
 library(SpaDES)
+```
 
+#### <a name="SpaDES_modules"></a>**1.2 Modules included in the `SpaDES` package**  
+
+```{r sampleModuleDir}
+## Locate the sample modules in SpaDES.core
+sampleModuleDir <- system.file('sampleModules', package = 'SpaDES.core')
+    
+## list the modules in this directory
+dir(sampleModuleDir)
 ```
   
+**What do these modules do?**  
+
+```{r sampleModuleFiles}
+## open the sample module Rmd file to learn more about the modules and access a simple example
+sampleModuleFiles <- list.files(sampleModuleDir, pattern = 'Rmd$', recursive = TRUE, full.names = TRUE)
+    
+lapply(sampleModuleFiles, file.edit)
+```
   
-#### **Shall we start modelling?**  
-Let's go back to the modelling question discussed brifly above. Our first objective is to simulate the the effect of fire on forest age. There are two main components to such a model, which need to interact:
+All modules should come with an *.Rmd* file that provides a summary of how the module works and *reproducible* example. If you've ever searched for R-help on **stackoverflow** you'll have noticed how peope try to provide `R` code that can be run in any machine to reproduce the problem/solution at hand. Module *.Rmd* files should also run in any machine.
+
+  
+#### <a name="ModellingSpaDES"></a>**1.3 Simulation modelling with `SpaDES`**   
+
+Let's go back to the modelling question discussed briefly above.  
+
+Our first objective is to simulate the the effect of fire on forest age. There are two main components to such a model, which need to interact:
 1. a fire simulator
 2. a forest age simulator  
 
-Let's define our working directories first
-```{r def_dirs, results=FALSE, message=FALSE, warning=TRUE}
-## check where you0re working first:
-getwd()
 
-## SpaDES recursively creates the directory tree inside the current working directory
-setPaths(cachePath = "SpaDESintro/cache",
-         inputPath = "SpaDESintro/inputs",
-         modulePath = "SpaDESintro/modules",
-         outputPath = "SpaDESintro/outputs")
+##### <a name="DownloadModules"></a>**1.3.1 Download modules**   
+
+The `LCC2005` module group provides a set of modules that can reproduce these dynamics (in a simple way).  
+
+Let's define the working directories of our simulation exercice (*SpaDESintro*) first.  
+
+```{r def_dirs}
+
+## We'll create the necessary directories in a temporary location - feel free to change this if you wish to.
+setPaths(cachePath = file.path(tempdir(),'SpaDESintro/cache'),
+         inputPath = file.path(tempdir(), 'SpaDESintro/inputs'),
+         modulePath = file.path(tempdir(), 'SpaDESintro/modules'),
+         outputPath = file.path(tempdir(), 'SpaDESintro/outputs'))
 
 ## verify that this is want you wanted:
 getPaths()
 ```
-  
-Now get the modules needed:  
-```{r module_downld, message=FALSE, warning=FALSE}
+
+Now will get `LCC2005` modules needed and save them in the `modules` folder created before. If you already have done this and want to do it again, set the `overwrite` argument to `TRUE`.  
+```{r module_downld}
+## Not run (use if API limit is exceeded)
+# ops <- options(spades.useragent = "http://github.com/CeresBarros/SpaDES-modules")
+
 ## note how we use the modules folder defined above and chose to download the necessary data
-downloadModule("LCC2005", path = getPaths()$modulePath, data = TRUE, overwrite = TRUE)
+downloadModule('LCC2005', path = getPaths()$modulePath, repo = 'PredictiveEcology/SpaDES-modules', data = TRUE, overwrite = TRUE)
 
-## open the description of a module
-openModules('LCC2005', path = moduleDir) 
+# options(ops)
 
+## open the description of the LCC2005 module group - on Windows, this provides files directories
+openModules('LCC2005', path = getPaths()$modulePath) 
+
+## list all module files within LCC2005 and open them
+LCC2005ModuleFiles <- list.files(getPaths()$modulePath, pattern = 'Rmd$', recursive = TRUE, full.names = TRUE)
+
+## open module Rmd files
+lapply(LCC2005ModuleFiles, file.edit)
 ```
   
-As you can see, `LCC2005` is a module group, meaning that it contains several modules that work together.
+As you can see, `LCC2005` is a module group, meaning that it contains several modules that work together. Find more about module structure [here](http://spades-workshops.predictiveecology.org/articles/Modules--Thinking-in-a-modular-way.html) and [here](http://spades-workshops.predictiveecology.org/articles/Module-details.html).  
 
-```{r LCC2005_setup, message=FALSE, warning=FALSE}
-times <- list(start = 2005.0, end = 2020.0, timeunit = "year")
+In this exrecise, we will follow a simpliflied version of the example contained in the `LCC2005.Rmd` file. We will only use the modules necessary to simulate vegetation dynamics (`cropReprojectLccAge`, `forestAge`, `forestSuccessionBeacons` and `LccToBeaconsReclassify`) and fire spread (`fireSpreadLcc`).
 
-parameters <- list(
-  .globals = list(burnStats = "fireStats"),
-  fireSpreadLcc = list(drought = 1.2) # in
-)
+##### <a name="SetupSim"></a>**1.3.2 Simulation set-up**  
 
-modules <- list("LCC2005") ## selects all modules belonging to LCC2005
-
+```{r LCC2005_setup}
+## We've defined the paths earlier 
 paths <- getPaths()
 
-# This next step will set up the simulation using the defined parameters. It will also download data if they do not yet exist locally
-mySim <- simInit(times = times, params = parameters, modules = modules,
-                 paths = paths)
+## we'll several, but not all the modules in LCC2005
+modules <- list("cropReprojectLccAge", "fireSpreadLcc", "forestAge", "forestSuccessionBeacons", "LccToBeaconsReclassify")
 
+## we don't need to suply external objects
+objects <- list()
+
+## define the starting and end times of the simulation
+times <- list(start = 1.0, end = 20.0)
+
+parameters <- list(
+  .globals = list(stackName = "landscape", burnStats = "nPixelsBurned"),
+  .progress = list(NA),
+  fireSpreadLcc = list(nFires = 10L, drought = 1, its = 1e6,
+                    persistprob = 0, returnInterval = 10, startTime = 0,
+                    .plotInitialTime = 0.1, .plotInterval = 10)
+)
+
+## build the simulation object
+mySim <- simInit(times = times, params = parameters, modules = modules,
+                 objects = objects, paths = paths)
 ```
 
-Briefly explain what the mySim object is  
+##### <a name="simList"></a>**1.3.3 Simulation object - `simList`**  
+
+The object `mySim` contains all the necessary information to run the simulation, such as the objects that are shared between modules, and how these are linked between them. It's called a `simList`. You can find out more about the `simList` object [here](http://spades-workshops.predictiveecology.org/articles/The-simList.html)
+
+Let's have a look at what mySim contains and how modules are connected.
+
 ```{r mysim}
+## list the contentes of mySim
 ls.str(mySim)
+
+## plot module connections
+moduleDiagram(mySim)
+objectDiagram(mySim)
+```
+
+
+##### <a name="runSim"></a>**1.3.4 Running a `SpaDES` simulation**  
+
+Now that we've checked the structure of our simulation model, we can go ahead and run it.
+
+```{r run_spades}
+clearCache()
+dev() # to open a new plot device for faster plotting
+clearPlot()
+spades(mySim, debug = TRUE)   # set debug = TRUE to print simualtion steps.
 ```
   
+#### 4.4 Change parameters and *continue* simulation  
 
-BLAH BLAH  
-```{r run_sim}
-mySim <- spades(mySim)
+```{r run_sim2}
+times$start = 21; times$end <- 40
+mySim@params$fireSpreadLcc$drought <- 3
+
+
+mySim <- spades(mySim, debug = TRUE)
 ```
   
 Why "overwrite" `mySim`? Explain
@@ -220,5 +313,15 @@ Run experiment with different fire regimes (? maybe too advanced?)
 
 Now add a management/caribou movement (?) model your colleague designed...
 
+
+
+
+
+# `SpaDES` and `shiny`
+
+If time permits, feel free to play around with the proof-of-concept shiny apps:
+
+- https://spades.shinyapps.io/ForestChange_ProofOfConcept/
+- http://w-vic-a105388.pfc.forestry.ca/SpaDESUI-forEliot-Oct2016/ (only available inside CFS firewall)
 
 

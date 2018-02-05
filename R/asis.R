@@ -1,3 +1,10 @@
+replacementList <-
+  list("SpaDES4Dummies.html" = "https://htmlpreview.github.io/?https://github.com/CeresBarros/SpaDES4Dummies/blob/master/SpaDES4Dummies.html",
+       "GoogleDrive.html" = "https://drive.google.com/open?id=1XnfUTRk59dORiPbdN2sreGDXNmDjcUle",
+       "Caching.html" = "https://github.com/PredictiveEcology/SpaDES/wiki/Caching",
+       "Debugging.html" = "https://github.com/PredictiveEcology/SpaDES/wiki/Debugging",
+       "Articles <small>version&nbsp;0.1.0</small>" = "Content")
+
 #' Quick and dirty render pkgdown asis
 #'
 #' This will first run pkgdown::build_site then run rmarkdown::render to
@@ -45,7 +52,7 @@ replaceRemoteLinksInArticles <- function(replacements) {
   lapply(names(replacements), function(nam) {
     indexHTML <- file.path("docs", "articles", "index.html")
     cc <- readLines(indexHTML)
-    cc1 <- gsub(cc, pattern = paste0(nam, ".html"),
+    cc1 <- gsub(cc, pattern = nam,
          replacement = replacements[[nam]])
     writeLines(cc1, indexHTML)
   })
@@ -107,10 +114,6 @@ build_articles <- function (pkg = ".", path = "docs/articles", depth = 1L, encod
   invisible()
 
 }
-
-replacementList <-
-  list("SpaDES4Dummies" = "https://htmlpreview.github.io/?https://github.com/CeresBarros/SpaDES4Dummies/blob/master/SpaDES4Dummies.html",
-       "GoogleDrive" = "https://drive.google.com/open?id=1XnfUTRk59dORiPbdN2sreGDXNmDjcUle")
 
 renderSlides <- function(a) {
   lapply(a, function(x) rmarkdown::render(x))

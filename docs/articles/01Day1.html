@@ -196,6 +196,86 @@ Because models are not just for modellers, a shiny app building package is being
 <h3 class="hasAnchor">
 <a href="#part-ii--get-your-hands-dirty-using-spades-for-the-1st-time" class="anchor"></a><a name="PartII"></a><strong>Part II. Get your hands dirty: using SpaDES for the 1st time</strong>
 </h3>
+<p><strong>Table of contents:</strong><br><a href="#SpaDES_install">SpaDES` installation</a></p>
+<div id="spades-installation" class="section level4">
+<h4 class="hasAnchor">
+<a href="#spades-installation" class="anchor"></a><a name="SpaDES_install"></a> <strong><code>SpaDES</code> installation</strong>
+</h4>
+<p><code>SpaDES</code> groups a series of <code>R</code> packages - <em>metapackage</em> - containing both core and additional methods to design a discrete event simulation model:</p>
+<ul>
+<li>SpaDES.core - contains the core simualtion components<br>
+</li>
+<li>reproducible - contains caching methods<br>
+</li>
+<li>quickPlot - contains methods for better visualisation of results<br>
+</li>
+<li>SpaDES.tools &amp; SpaDES.addins - contain useful tools and additional methods, such as a spread function and utilities to create new modules from templates.<br>
+</li>
+<li>SpaDES.shiny - under development. Will provide a set of methods to build shiny apps from simulation objects.</li>
+</ul>
+<p>Prior to installing <code>SpaDES</code> make sure you have:</p>
+<ol style="list-style-type: decimal">
+<li>an <strong>up to date version of <code>R</code></strong> - having RStudio, or another <code>R</code> editor might also be useful.<br>
+</li>
+<li>the package <code>devtools</code> installed<br>
+</li>
+<li>
+<a href="https://cran.r-project.org/bin/windows/Rtools/"><strong>Rtools</strong></a> (Windows), <a href="http://itunes.apple.com/us/app/xcode/id497799835?mt=12"><strong>XCode</strong></a> (Mac), or r-base (Linux; please see <a href="https://support.rstudio.com/hc/en-us/articles/200486498-Package-Development-Prerequisites">here</a> for details).</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"SpaDES"</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</code></pre></div>
+</div>
+<div id="shall-we-start-modelling" class="section level4">
+<h4 class="hasAnchor">
+<a href="#shall-we-start-modelling" class="anchor"></a><strong>Shall we start modelling?</strong>
+</h4>
+<p>Let’s go back to the modelling question discussed brifly above. Our first objective is to simulate the the effect of fire on forest age. There are two main components to such a model, which need to interact: 1. a fire simulator 2. a forest age simulator</p>
+<p>Let’s define our working directories first</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## load SpaDES
+<span class="kw">library</span>(SpaDES)
+
+## check where you0re working first:
+<span class="kw">getwd</span>()
+
+## SpaDES recursively creates the directory tree inside the current working directory
+<span class="kw">setPaths</span>(<span class="dt">cachePath =</span> <span class="st">"SpaDESintro/cache"</span>,
+         <span class="dt">inputPath =</span> <span class="st">"SpaDESintro/inputs"</span>,
+         <span class="dt">modulePath =</span> <span class="st">"SpaDESintro/modules"</span>,
+         <span class="dt">outputPath =</span> <span class="st">"SpaDESintro/outputs"</span>)
+
+## verify that this is want you wanted:
+<span class="kw">getPaths</span>()</code></pre></div>
+<p>Now get the modules needed:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## note how we use the modules folder defined above and chose to download the necessary data
+<span class="kw">try</span>(<span class="kw">downloadModule</span>(<span class="st">"LCC2005"</span>, <span class="dt">path =</span> <span class="kw">getPaths</span>()<span class="op">$</span>modulePath, <span class="dt">data =</span> <span class="ot">TRUE</span>))<span class="co">#, overwrite = TRUE) # overwrite is not yet implemented</span>
+
+## open the description of a module
+<span class="kw">openModules</span>(<span class="st">'LCC2005'</span>, <span class="dt">path =</span> <span class="kw">getPaths</span>()<span class="op">$</span>modulePath) </code></pre></div>
+<p>As you can see, <code>LCC2005</code> is a module group, meaning that it contains several modules that work together.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">times &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">start =</span> <span class="fl">2005.0</span>, <span class="dt">end =</span> <span class="fl">2020.0</span>, <span class="dt">timeunit =</span> <span class="st">"year"</span>)
+
+parameters &lt;-<span class="st"> </span><span class="kw">list</span>(
+  <span class="dt">.globals =</span> <span class="kw">list</span>(<span class="dt">burnStats =</span> <span class="st">"fireStats"</span>),
+  <span class="dt">fireSpreadLcc =</span> <span class="kw">list</span>(<span class="dt">drought =</span> <span class="fl">1.2</span>) <span class="co"># in</span>
+)
+
+modules &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">"LCC2005"</span>) ## selects all modules belonging to LCC2005
+
+paths &lt;-<span class="st"> </span><span class="kw">getPaths</span>()
+
+<span class="co"># This next step will set up the simulation using the defined parameters. It will also download data if they do not yet exist locally</span>
+mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(<span class="dt">times =</span> times, <span class="dt">params =</span> parameters, <span class="dt">modules =</span> modules,
+                 <span class="dt">paths =</span> paths)</code></pre></div>
+<p>Briefly explain what the mySim object is</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls.str</span>(mySim)</code></pre></div>
+<p>BLAH BLAH</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mySim &lt;-<span class="st"> </span><span class="kw">spades</span>(mySim)</code></pre></div>
+<p>Why “overwrite” <code>mySim</code>? Explain</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## add more time, change drought parameter while continuing the simulation.
+## change fire regimes
+mySim &lt;-<span class="st"> </span><span class="kw">spades</span>(mySim)</code></pre></div>
+<p>Run experiment with different fire regimes (? maybe too advanced?)</p>
+<p>Now add a management/caribou movement (?) model your colleague designed…</p>
+</div>
 </div>
 </div>
 </div>

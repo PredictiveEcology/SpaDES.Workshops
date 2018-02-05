@@ -15,8 +15,4 @@ editor_options:
 knitr::opts_chunk$set(cache = FALSE, echo = TRUE, eval = TRUE)
 ```
 
-```{r spades4dummies}
-reproducible::Cache(utils::download.file, "https://raw.githubusercontent.com/CeresBarros/SpaDES4Dummies/master/SpaDES4Dummies.html",
-              destfile = "dl_SpaDES4Dummies.html", sideEffect = getwd(), cacheRepo = "cache")
-```
 
