@@ -50,9 +50,8 @@ install.packages("SpaDES", dependencies = TRUE) # install "suggested" packages t
 # For the workshop, there are a few minor bug fixes that are not in the CRAN version
 # Restart your R session so it is clear
 # Ctrl-shift-F10 if you are in Rstudio #
-reproducible::Require("devtools") # installs if needed, and loads
+reproducible::Require("devtools") # installs (if needed) and loads
 devtools::install_github("PredictiveEcology/SpaDES.core", ref = "development")
-devtools::install_github("PredictiveEcology/quickPlot", ref = "development")
 
 ```
 

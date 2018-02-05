@@ -2,6 +2,7 @@ urls:
   reference: http://spades-workshops.predictiveecology.org//reference
   article: http://spades-workshops.predictiveecology.org//articles
 articles:
+  01Day1: 01Day1.html
   02-exercises: 02-exercises.html
   02-making-modules: 02-making-modules.html
   03-exercises: 03-exercises.html
