@@ -126,8 +126,7 @@ Shiny web-app demo [here](https://spades.shinyapps.io/ForestChange_ProofOfConcep
     + [1.3.2 Simulation set-up](#SetupSim)
     + [1.3.3  Simulation object - `simList`](#simList)
     + [1.3.4 Running a `SpaDES` simulation](#runSim)
-    
-    
+    + [1.3.5 1.3.5 Change model parameters without restarting](#changeParams)
     
 #### <a name="InstallSpaDES"></a>**1.1 Installing `SpaDES`**  
 
@@ -209,7 +208,10 @@ setPaths(cachePath = file.path(tempdir(),'SpaDESintro/cache'),
 getPaths()
 ```
 
-Now will get `LCC2005` modules needed and save them in the `modules` folder created before. If you already have done this and want to do it again, set the `overwrite` argument to `TRUE`.  
+Now we'll get `LCC2005` modules needed and save them in the `modules` folder created before. If you already have done this before and want to do it again, set the `overwrite` argument to `TRUE`.  
+Using `data = TRUE` will make sure the necessary data for the module is downloaded. Unfortunately, the forest age raster is no longer downloadable without creating an account on the NASA EarthData website (if you wish to do so, you can access the file "can_age04_1km.tif" [here](https://daac.ornl.gov/NACP/guides/NA_Tree_Age.html) and download it *after* you've logged in). 
+
+
 ```{r module_downld}
 ## Not run (use if API limit is exceeded)
 # ops <- options(spades.useragent = "http://github.com/CeresBarros/SpaDES-modules")
@@ -288,7 +290,8 @@ clearPlot()
 spades(mySim, debug = TRUE)   # set debug = TRUE to print simualtion steps.
 ```
   
-#### 4.4 Change parameters and *continue* simulation  
+
+##### <a name="changeParams"></a>**1.3.5 Change model parameters without restarting** 
 
 ```{r run_sim2}
 times$start = 21; times$end <- 40
