@@ -1,7 +1,8 @@
 replacementList <-
   list("SpaDES4Dummies.html" = "https://htmlpreview.github.io/?https://github.com/CeresBarros/SpaDES4Dummies/blob/master/SpaDES4Dummies.html",
        "GoogleDrive.html" = "https://drive.google.com/open?id=1XnfUTRk59dORiPbdN2sreGDXNmDjcUle",
-       "Caching.html" = "https://github.com/PredictiveEcology/SpaDES/wiki/Caching",
+       "Caching.html" = "https://cran.r-project.org/web/packages/SpaDES/vignettes/iii-cache.html",
+       "Plotting.html" = "http://quickplot.predictiveecology.org/articles/iii-plotting.html",
        "Debugging.html" = "https://github.com/PredictiveEcology/SpaDES/wiki/Debugging",
        "Articles <small>version&nbsp;0.1.0</small>" = "Content")
 

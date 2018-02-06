@@ -1,0 +1,18 @@
+---
+title       : "Plotting"
+author      : "Eliot McIntire"
+date        : "Jan 30, 2018"
+output: 
+  html_document: 
+    number_sections: yes
+    toc: true
+    toc_float: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = FALSE, echo = TRUE, eval = TRUE)
+```
+
+

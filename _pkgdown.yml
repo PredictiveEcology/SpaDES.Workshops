@@ -61,10 +61,11 @@ articles:
     - Sharing-Modules
     - Simulation-Experiments-Replication
 
-  - title: "Reference -- Links to SpaDES wiki pages"
+  - title: "Reference -- Links to SpaDES wiki pages and vignettes"
     desc: >
-      These are so key to working with SpaDES, they are on the wiki
+      These are so key to working with SpaDES, they are on the wiki or in vignettes
     contents:
     - Debugging
     - Caching
+    - Plotting
 
