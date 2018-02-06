@@ -10,9 +10,9 @@ We have organized a set of sessions, back to back, starting from the most “gen
 
 - **[Intro](https://drive.google.com/open?id=1XnfUTRk59dORiPbdN2sreGDXNmDjcUle)** - [Slides here](https://drive.google.com/open?id=1XnfUTRk59dORiPbdN2sreGDXNmDjcUle) 1.5 hours – **9 am Feb 7** - This is a high level intro for scientists, managers, policy makers, decision makers
 
-- **[Advanced Intro](docs/articles/01Day1.html)** - 4.5 hours – **11 am Feb 7** - This is intended to dive a little bit into the code, to allow people to run other models from other people, and allow them to change parameters.
+- **[Advanced Intro](articles/01Day1.html)** - 4.5 hours – **11 am Feb 7** - This is intended to dive a little bit into the code, to allow people to run other models from other people, and allow them to change parameters.
 
-- **[Developers](docs/articles/index.html)** [Workshop pages](docs/articles/index.html) - 3 days – **Feb 7 to Feb 9** - This 3 days workshop starts with the **Intro** and **Advanced Intro** above in the first day, and continues much deeper for developers of models. That means that if somebody who is interested in developing, but has already a good grasp on what SpaDES does and the higher level concepts, they can join in day 2.  ***See below for instructions***
+- **[Developers](articles/index.html)** [Workshop pages](articles/index.html) - 3 days – **Feb 7 to Feb 9** - This 3 days workshop starts with the **Intro** and **Advanced Intro** above in the first day, and continues much deeper for developers of models. That means that if somebody who is interested in developing, but has already a good grasp on what SpaDES does and the higher level concepts, they can join in day 2.  ***See below for instructions***
 
 
 ## Location
@@ -28,7 +28,7 @@ If you are interested in the Advanced Intro or Developer Workshop, please email 
 If you would like to participate in the Developer workshop, you will need your own laptop.
 
 
-## [Developers workshop](docs/articles/index.html)
+## [Developers workshop](articles/index.html)
 
 For those of you following the Developer's workshop, you can pre-install the `SpaDES` packages:
 
