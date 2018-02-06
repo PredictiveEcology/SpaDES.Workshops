@@ -1,5 +1,5 @@
 ---
-title: "What is SpaDES & how does it work?"
+title: "01 What is SpaDES?"
 author: "Ceres Barros"
 date: "January 26th, 2018"
 output: html_document
@@ -17,8 +17,6 @@ Workshop outline:
 * [**Day 1. What is SpaDES and how does it work?**](#Day1)
     + [Part I (morning). User, this is SpaDES. SpaDES, meet your new best friend](#PartI)
     + [Part II (afternoon). Get your hands dirty: using SpaDES for the 1st time](#PartII)
-* [**Day 2.**](#Day2)
-* [**Day 3.**](#Day3)
 
 ***
 
@@ -132,13 +130,7 @@ Shiny web-app demo [here](https://spades.shinyapps.io/ForestChange_ProofOfConcep
 
 `SpaDES` groups a series of `R` packages - *metapackage* - containing both core and additional methods to design a discrete event simulation model:  
 
-* SpaDES.core - contains the core simualtion components  
-* reproducible - contains caching methods  
-* quickPlot - contains methods for better visualisation of results  
-* SpaDES.tools & SpaDES.addins - contain useful tools and additional methods, such as a spread function and utilities to create new modules from templates.  
-* SpaDES.shiny - under development. Will provide a set of methods to build shiny apps from simulation objects.  
 
-Prior to installing `SpaDES` make sure you have:
 
 1. an **up to date version of `R`** - having RStudio, or another `R` editor might also be useful.  
 2. the package `devtools` installed  
@@ -197,12 +189,13 @@ The `LCC2005` module group provides a set of modules that can reproduce these dy
 Let's define the working directories of our simulation exercice (*SpaDESintro*) first.  
 
 ```{r def_dirs}
+main.dir <-  "~/"
 
 ## We'll create the necessary directories in a temporary location - feel free to change this if you wish to.
-setPaths(cachePath = file.path(tempdir(),'SpaDESintro/cache'),
-         inputPath = file.path(tempdir(), 'SpaDESintro/inputs'),
-         modulePath = file.path(tempdir(), 'SpaDESintro/modules'),
-         outputPath = file.path(tempdir(), 'SpaDESintro/outputs'))
+setPaths(cachePath = file.path(main.dir,'SpaDESintro/cache'),
+         inputPath = file.path(main.dir, 'SpaDESintro/inputs'),
+         modulePath = file.path(main.dir, 'SpaDESintro/modules'),
+         outputPath = file.path(main.dir, 'SpaDESintro/outputs'))
 
 ## verify that this is want you wanted:
 getPaths()
@@ -217,7 +210,7 @@ Using `data = TRUE` will make sure the necessary data for the module is download
 # ops <- options(spades.useragent = "http://github.com/CeresBarros/SpaDES-modules")
 
 ## note how we use the modules folder defined above and chose to download the necessary data
-downloadModule('LCC2005', path = getPaths()$modulePath, repo = 'PredictiveEcology/SpaDES-modules', data = TRUE, overwrite = TRUE)
+downloadModule('LCC2005', path = getPaths()$modulePath, repo = 'CeresBarros/SpaDES-modules', data = TRUE, overwrite = TRUE)
 
 # options(ops)
 
@@ -284,26 +277,33 @@ objectDiagram(mySim)
 Now that we've checked the structure of our simulation model, we can go ahead and run it.
 
 ```{r run_spades}
-clearCache()
+## RStudio doesn't deal well with package order re-arrangements by spades(), so turn it off when using RStudio
+opts <- options(spades.switchPkgNamespaces = FALSE)
+
 dev() # to open a new plot device for faster plotting
 clearPlot()
-spades(mySim, debug = TRUE)   # set debug = TRUE to print simualtion steps.
+mySim2 <- spades(mySim, debug = TRUE)   # set debug = TRUE to print simulation steps.
 ```
   
 
 ##### <a name="changeParams"></a>**1.3.5 Change model parameters without restarting** 
 
+With `SpaDES` it is possible to change a simualtions' parameters and can continue running it.  
+What will happen if drought intensity increases?  
+
 ```{r run_sim2}
-times$start = 21; times$end <- 40
-mySim@params$fireSpreadLcc$drought <- 3
+end(mySim2)    ## accesses the last year
+end(mySim2) <- 40   ## ## add 20 years to the end of the simulation
 
+params(mySim2)$fireSpreadLcc$drought   ## accesses the current drought parameter value
+params(mySim2)$fireSpreadLcc$drought <- 3   ## changes it
 
-mySim <- spades(mySim, debug = TRUE)
+mySim3 <- spades(mySim2, debug = TRUE)
 ```
   
-Why "overwrite" `mySim`? Explain
 
-```{r run_sim3}
+
+```{r run_sim2}
 ## add more time, change drought parameter while continuing the simulation.
 ## change fire regimes
 mySim <- spades(mySim)
