@@ -14,9 +14,9 @@ knitr::opts_chunk$set(echo = TRUE, eval=FALSE)
 
 Workshop outline:
 
-* [**Day 1. What is SpaDES and how does it work?**](#Day1)
-    + [Part I (morning). User, this is SpaDES. SpaDES, meet your new best friend](#PartI)
-    + [Part II (afternoon). Get your hands dirty: using SpaDES for the 1st time](#PartII)
+* [**Day 1. What is `SpaDES` and how does it work?**](#Day1)
+    + [Part I. User, this is SpaDES. `SpaDES`, meet your new best friend](#PartI)
+    + [Part II. Get your hands dirty: using `SpaDES` for the 1st time](#PartII)
 
 ***
 
@@ -24,18 +24,21 @@ Workshop outline:
 ### <a name="PartI"></a>**Part I. User, this is `SpaDES`. `SpaDES`, meet your new best friend**  
 
 #### Why is modelling important?  
-Models are nowadays so important and widespread that we often don't realize that most of what we use in our daily lives is the result of someone's (or some team's) model.  From weather forecasting, to predicting stock market fluctuonations. From the design of your bike, to the estimation of blood sugar and insuline levels and how they vary hourly and according to different diets (in case you don't know, this can be important for diabetes treatments, and drug dosage and scheduling)... 
+Models are nowadays so important and widespread that we often don't realize that most of what we use in our daily lives is the result of someone's (or some team's) model.  From weather forecasting, to predicting stock market fluctuations. From the design of your bike, to the estimation of blood sugar and insulin levels and how they vary hourly and according to different diets (in case you don't know, this can be important for diabetes treatments, and drug dosage and scheduling)... 
 Models are indeed 'everywhere'.  
 
-<img src="images/Day1_part1_figs/models_everywhere.png" align="middle" height="450" width="750" margin="0 auto" />
+<img src="images/Day1_part1_figs/models_everywhere.png" align="middle" height="400" width="750" margin="0 auto" />
+
 
 #### Challenges modellers face  
-In a world where disciplines often interact to study complex questions, like climate change, natural resource management, or even where to build an offshore wind farm, modellers (and model users!) face challenges that can impair scientific and social progress:  
+In a world where disciplines often interact to study complex questions, like climate change, natural resource management, or even where to build an offshore wind farm, modellers (and model users!) face challenges that can impair scientific and social progress:
+
 
 1.  **Many models, low integration**
     + different scientific teams/individuals develop models to investigate the same question - which to choose?
     + these models sometimes vary in their degree of complexity - when is one more appropriate than the other?
     + and are often written in different programming languages, sometimes making their comparison, integration and development harder (especially for those who are not the model authors!)  
+
 
 2.  **High complexity**
     + often solving a question, or problem, requires the cooperation of different teams, each contributing with distinct data and, possibly, models that need to be integrated;
@@ -44,14 +47,17 @@ In a world where disciplines often interact to study complex questions, like cli
 
 <img src="images/Day1_part1_figs/Big_data_modelupdates.png" align="right" width="200" />
 
+
 3.  **Era of *big data* **
     + data availability and volume are increasing *FAST*;
     + today's model, will be outdated tomorrow -> models need to be constantly updated, revised and re-validated and re-calibrated.
+
 
 4.  **Reproducibility and transparency**
     + one of the first premisses of scientific method is to repeat analyses and verify whether hypotheses hold in different conditions -> science *must* be reproducible in order to progress;
     + models (and modellers!) should be open to change and adaptation;
     + results and conclusions *must* be shared with stakeholders, managers, policy makers and the general public.
+
 
 #### How do we tackle these issues? -> *continuous adaptive management*  
   
@@ -61,18 +67,20 @@ In modelling terms, this framework implies that for a given problem/question ana
   
 Although this framework is ideal, it is only seldomly applied across the scientific community.
 
-Why? Because we are yet far from developing our research in a way that is easily repeatable, "upgradeable" and shareable. This renders the application of the continuous adaptive management framework costly, both temporally and financeally, especially in interdisciplinary projects that involve multiple teams and stakeholders.
+Why? Because we are yet far from developing our research in a way that is easily repeatable, "upgradeable" and shareable. This renders the application of the continuous adaptive management framework costly, both temporally and financially, especially in interdisciplinary projects that involve multiple teams and stakeholders.
 
 <img src="images/Day1_part1_figs/contadaptmanag_nightmare.png" align="middle" width="600" />  
-
-#### Where do we go from here? **`SpaDES`!**
+  
+  
+#### Where do we go from here? **`SpaDES`!**  
 ##### **What is `SpaDES`?**
 
-`SpaDES` - *Spa*tial *D*iscrete *E*vent *S*imulator - is a modelling framework in the form of an ensemble of `R` packages. It aims to provide modellers and non-modellers across different domains of life and earth sciences (and beyond!) with a modelling tool that they can *control*, *apply* and *develop*. In its whole, `SpaDES` bridges the gaps between modellers and model-users of different disciplines, between scientists, practitionners, managers, stakeholders and policy makers, and between scientists and the general public.  
+`SpaDES` - *Spa*tial *D*iscrete *E*vent *S*imulator - is a modelling framework in the form of an ensemble of `R` packages. It aims to provide modellers and non-modellers across different domains of life and earth sciences (and beyond!) with a modelling tool that they can *control*, *apply* and *develop*. In its whole, `SpaDES` bridges the gaps between modellers and model-users of different disciplines, between scientists, practitioners, managers, stakeholders and policy makers, and between scientists and the general public.  
+
 
 **How?**  
-1. `SpaDES` is written in `R`: a widely understood programming language, highly suited to statistical analyses, but flexible and fast enough to accomodate simulation work;  
-2. `SpaDES` can be used for a wide-range of modelling approaches:
+1.  `SpaDES` is written in `R`: a widely understood programming language, highly suited to statistical analyses, but flexible and fast enough to accommodate simulation work;  
+2.  `SpaDES` can be used for a wide-range of modelling approaches:
     + process-based models;
     + phenomenological models;
     + spatially-explicit models;
@@ -82,11 +90,15 @@ Why? Because we are yet far from developing our research in a way that is easily
 5. `SpaDES` will soon include a web-app builder to make interactive simulation possible.  
 
 Like a smart-phone where users install and use the apps that they want, `SpaDES` can be seen as a platform where a model can be "assembled" from various pre-made modules. This allows non-modellers to run someone else's model on *their* data and *their* parameters, and, on the other hand, it allows modellers write their own modules from scratch, run them and share them with the `R` user community.  
-  
+
+
 ##### **An example**
 Our question(s): how will forest fires affect forest age? And how will climate change affect fire regimes and in turn the vegetation? How will timber supply be affected?  
 
-**To start we'll need**  
+<img src="images/Day1_part1_figs/Smart_SpaDES.png" align="right" width="300" />
+
+
+**To start we'll need:**  
 * a vegetation dynamics module - e.g. [forestAge](https://github.com/PredictiveEcology/SpaDES-modules/tree/master/modules/forestAge);
 * a fire simulator - e.g. [forestSuccessionBeacons](https://github.com/PredictiveEcology/SpaDES-modules/tree/master/modules/forestSuccessionBeacons) modules;
 * optional:
@@ -102,7 +114,8 @@ Analysing the effects of climate change could then be done by varying fire-relat
 Finally, a timber supply module could "read" the vegetation maps produced after fire simulations and calculate timber quantity and quality from forest conditions (e.g. surviving tree species and their age).  
 
 **Reserve, add new data, and re-run**  
-Provided that modules are able to download, read and treat data adequeatly, updating the simulations for new data is easy.  `SpaDES` comes with a set of functions (via the `reproducible` package) that enable caching model structure, parameters and simualtion results. This way, if new data only affects a section of the model, the user won't have to repeat every step to update the simulations.  
+Provided that modules are able to download, read and treat data adequately, updating the simulations for new data is easy.  `SpaDES` comes with a set of functions (via the `reproducible` package) that enable caching model structure, parameters and simulation results. This way, if new data only affects a section of the model, the user won't have to repeat every step to update the simulations.  
+* Learn more about: [sharing modules](http://spades-workshops.predictiveecology.org/articles/Existing-modules.html#how-to-share-modules) and caching ([here](https://cran.r-project.org/web/packages/SpaDES/vignettes/iii-cache.html) and [here](http://spades-workshops.predictiveecology.org/articles/Continuous-Workflow.html))
 
 **Decorate and serve**  
 Because models are not just for modellers, a shiny app building package is being developed to transform any `SpaDES` simulation into a web-app. This provides an interactive way of visualising results, as users can change simulation parameters and turn modules on and off, whilst observing how this impacts simulation results. Importantly, it can be particularly useful when conveying results to a non-expert or even the public.  
@@ -125,19 +138,18 @@ Shiny web-app demo [here](https://spades.shinyapps.io/ForestChange_ProofOfConcep
     + [1.3.3  Simulation object - `simList`](#simList)
     + [1.3.4 Running a `SpaDES` simulation](#runSim)
     + [1.3.5 Change model parameters without restarting](#changeParams)
+    + [1.3.6 Add a friend's module](#friendsModule)
+* [1.4 Show your `SpaDES` model to the world!](#shinySpaDES)  
     
 #### <a name="InstallSpaDES"></a>**1.1 Installing `SpaDES`**  
 
 `SpaDES` groups a series of `R` packages - *metapackage* - containing both core and additional methods to design a discrete event simulation model:  
 
-
-
-1. an **up to date version of `R`** - having RStudio, or another `R` editor might also be useful.  
+1. an **up to date version of `R`** - having R Studio, or another `R` editor might also be useful.  
 2. the package `devtools` installed  
 3. [**Rtools**](https://cran.r-project.org/bin/windows/Rtools/) (Windows), [**XCode**](http://itunes.apple.com/us/app/xcode/id497799835?mt=12) (Mac), or r-base (Linux; please see [here](https://support.rstudio.com/hc/en-us/articles/200486498-Package-Development-Prerequisites) for details).  
 
-
-`SpaDES`is still on a relatively steep development curve. As such, it might be sometimes necessary to update a particular package from GitHub (where `SpaDES` is being developed). It might be important to keep an eye on new improvements present in GitHub that might not be in CRAN yet. You'll find the lastest releases for each package in their respective GitHub page (e.g. [SpaDES.core releases](https://github.com/PredictiveEcology/SpaDES.core/releases)). If you go to the [commits page](https://github.com/PredictiveEcology/SpaDES.core/commits/development) you'll notice that that there might be new features relatively to the latest commit.  
+`SpaDES`is still on a relatively steep development curve. As such, it might be sometimes necessary to update a particular package from Git Hub (where `SpaDES` is being developed). It might be important to keep an eye on new improvements present in Git Hub that might not be in CRAN yet. You'll find the latest releases for each package in their respective Git Hub page (e.g. [SpaDES.core releases](https://github.com/PredictiveEcology/SpaDES.core/releases)). If you go to the [commits page](https://github.com/PredictiveEcology/SpaDES.core/commits/development) you'll notice that that there might be new features relatively to the latest commit.  
 
 ```{r SpaDESinstall}
 ## Install all packages and their dependencies first
@@ -170,7 +182,7 @@ sampleModuleFiles <- list.files(sampleModuleDir, pattern = 'Rmd$', recursive = T
 lapply(sampleModuleFiles, file.edit)
 ```
   
-All modules should come with an *.Rmd* file that provides a summary of how the module works and *reproducible* example. If you've ever searched for R-help on **stackoverflow** you'll have noticed how peope try to provide `R` code that can be run in any machine to reproduce the problem/solution at hand. Module *.Rmd* files should also run in any machine.
+All modules should come with an *.Rmd* file that provides a summary of how the module works and *reproducible* example. If you've ever searched for R-help on **stackoverflow** you'll have noticed how people try to provide `R` code that can be run in any machine to reproduce the problem/solution at hand. Module *.Rmd* files should also run in any machine.
 
   
 #### <a name="ModellingSpaDES"></a>**1.3 Simulation modelling with `SpaDES`**   
@@ -186,7 +198,7 @@ Our first objective is to simulate the the effect of fire on forest age. There a
 
 The `LCC2005` module group provides a set of modules that can reproduce these dynamics (in a simple way).  
 
-Let's define the working directories of our simulation exercice (*SpaDESintro*) first.  
+Let's define the working directories of our simulation exercise (*SpaDESintro*) first.  
 
 ```{r def_dirs}
 main.dir <-  "~/"
@@ -202,15 +214,19 @@ getPaths()
 ```
 
 Now we'll get `LCC2005` modules needed and save them in the `modules` folder created before. If you already have done this before and want to do it again, set the `overwrite` argument to `TRUE`.  
-Using `data = TRUE` will make sure the necessary data for the module is downloaded. Unfortunately, the forest age raster is no longer downloadable without creating an account on the NASA EarthData website (if you wish to do so, you can access the file "can_age04_1km.tif" [here](https://daac.ornl.gov/NACP/guides/NA_Tree_Age.html) and download it *after* you've logged in). 
 
+Using `data = TRUE` will make sure the necessary data for the module is downloaded. Unfortunately, the forest age raster ("can_age04_1km.tif") is no longer downloadable without creating an account on the NASA EarthData website. Download it from [here](https://drive.google.com/open?id=1bFv94-f_h1HEy2bZ8VCoS7Jp_zgN2kZZ) and put in inside *modules/forestAges/data*.  
+
+For future reference, it is possible to create an account on the NASA EarthData website and, after logging in, you'll find the file [here](https://daac.ornl.gov/NACP/guides/NA_Tree_Age.html). 
+
+Otherwise get it 
 
 ```{r module_downld}
 ## Not run (use if API limit is exceeded)
 # ops <- options(spades.useragent = "http://github.com/CeresBarros/SpaDES-modules")
 
 ## note how we use the modules folder defined above and chose to download the necessary data
-downloadModule('LCC2005', path = getPaths()$modulePath, repo = 'CeresBarros/SpaDES-modules', data = TRUE, overwrite = TRUE)
+downloadModule('LCC2005', path = getPaths()$modulePath, repo = 'PredictiveEcology/SpaDES-modules', data = TRUE, overwrite = TRUE)
 
 # options(ops)
 
@@ -224,9 +240,9 @@ LCC2005ModuleFiles <- list.files(getPaths()$modulePath, pattern = 'Rmd$', recurs
 lapply(LCC2005ModuleFiles, file.edit)
 ```
   
-As you can see, `LCC2005` is a module group, meaning that it contains several modules that work together. Find more about module structure [here](http://spades-workshops.predictiveecology.org/articles/Modules--Thinking-in-a-modular-way.html) and [here](http://spades-workshops.predictiveecology.org/articles/Module-details.html).  
+As you can see, `LCC2005` is a module group, meaning that it contains several modules that work together. Find more about module groups [here](http://spades-workshops.predictiveecology.org/articles/Existing-modules.html#parent-modules-a-k-a--module-groups).  
 
-In this exrecise, we will follow a simpliflied version of the example contained in the `LCC2005.Rmd` file. We will only use the modules necessary to simulate vegetation dynamics (`cropReprojectLccAge`, `forestAge`, `forestSuccessionBeacons` and `LccToBeaconsReclassify`) and fire spread (`fireSpreadLcc`).
+In this exercise, we will follow a simplified version of the example contained in the `LCC2005.Rmd` file. We will only use the modules necessary to simulate vegetation dynamics (`cropReprojectLccAge`, `forestAge`, `forestSuccessionBeacons` and `LccToBeaconsReclassify`) and fire spread (`fireSpreadLcc`).  
 
 ##### <a name="SetupSim"></a>**1.3.2 Simulation set-up**  
 
@@ -251,16 +267,16 @@ parameters <- list(
                     .plotInitialTime = 0.1, .plotInterval = 10)
 )
 
-## build the simulation object
+## make simulation object
 mySim <- simInit(times = times, params = parameters, modules = modules,
                  objects = objects, paths = paths)
 ```
-
+  
 ##### <a name="simList"></a>**1.3.3 Simulation object - `simList`**  
 
-The object `mySim` contains all the necessary information to run the simulation, such as the objects that are shared between modules, and how these are linked between them. It's called a `simList`. You can find out more about the `simList` object [here](http://spades-workshops.predictiveecology.org/articles/The-simList.html)
+The object `mySim` contains all the necessary information to run the simulation, such as the objects that are shared between modules, and how these are linked between them. It's called a `simList`. You can find out more about the `simList` object [here](http://spades-workshops.predictiveecology.org/articles/The-simList.html).  
 
-Let's have a look at what mySim contains and how modules are connected.
+Let's have a look at what mySim contains and how modules are connected.  
 
 ```{r mysim}
 ## list the contentes of mySim
@@ -274,11 +290,12 @@ objectDiagram(mySim)
 
 ##### <a name="runSim"></a>**1.3.4 Running a `SpaDES` simulation**  
 
-Now that we've checked the structure of our simulation model, we can go ahead and run it.
+Now that we've checked the structure of our simulation model, we can go ahead and run it.  
 
 ```{r run_spades}
 ## RStudio doesn't deal well with package order re-arrangements by spades(), so turn it off when using RStudio
 opts <- options(spades.switchPkgNamespaces = FALSE)
+# options(opts)   ## reverts changes
 
 dev() # to open a new plot device for faster plotting
 clearPlot()
@@ -288,41 +305,77 @@ mySim2 <- spades(mySim, debug = TRUE)   # set debug = TRUE to print simulation s
 
 ##### <a name="changeParams"></a>**1.3.5 Change model parameters without restarting** 
 
-With `SpaDES` it is possible to change a simualtions' parameters and can continue running it.  
+With `SpaDES` it is possible to change a simulations' parameters and can continue running it.  
 What will happen if drought intensity increases?  
 
 ```{r run_sim2}
 end(mySim2)    ## accesses the last year
-end(mySim2) <- 40   ## ## add 20 years to the end of the simulation
+end(mySim2) <- 50   ## ## add another 30 years to the end of the simulation
 
 params(mySim2)$fireSpreadLcc$drought   ## accesses the current drought parameter value
 params(mySim2)$fireSpreadLcc$drought <- 3   ## changes it
 
+clearPlot()
 mySim3 <- spades(mySim2, debug = TRUE)
 ```
-  
 
 
-```{r run_sim2}
-## add more time, change drought parameter while continuing the simulation.
-## change fire regimes
-mySim <- spades(mySim)
+##### <a name="friendsModule"></a>**1.3.6 Add a friend's module**  
+The second part of our question was to investigate how forest fires may affect harvesting. The `LCC2005` module group does not contain any module that we can use for this, but that's OK, because we can get modules from other Git repositories.  
+
+We will use an *extremely* simple module that maps areas that are adequate for forest harvesting in function of forest age (a parameter that the user inputs) and the type of forest that can be harvested (here, only coniferous forests). This module, called `forestHarvest`, will be downloaded from a different repository "CeresBarros/forestHarvest-SpaDESmodule". Learn more about downloading and sharing modules [here](http://spades-workshops.predictiveecology.org/articles/Existing-modules.html).  
+
+```{r harvest}
+downloadModule(name = "forestHarvest", repo = "CeresBarros/forestHarvest-SpaDESmodule", path = getPaths()$modulePath)
+
+## We've defined the paths earlier 
+paths <- getPaths()
+
+modules <- list("cropReprojectLccAge", "fireSpreadLcc", "forestAge", "forestSuccessionBeacons", "LccToBeaconsReclassify", "forestHarvest")
+
+## we don't need to suply external objects
+objects <- list()
+
+## define the starting and end times of the simulation
+times <- list(start = 1.0, end = 50)
+
+## notice the new parameter list
+parameters <- list(
+  .globals = list(stackName = "landscape", burnStats = "nPixelsBurned"),
+  .progress = list(NA),
+  fireSpreadLcc = list(nFires = 10L, drought = 1, its = 1e6,
+                    persistprob = 0, returnInterval = 10, startTime = 0,
+                    .plotInitialTime = 0.1, .plotInterval = 10),
+  forestHarvest = list(returnInterval = 5, harvAge = 50, startTime = 11, .plotInterval = 5)
+)
+
+## make simulation object
+mySim_manag <- simInit(times = times, params = parameters, modules = modules,
+                 objects = objects, paths = paths)
+
+moduleDiagram(mySim_manag)
+objectDiagram(mySim_manag)
+
+opts <- options(spades.switchPkgNamespaces = FALSE)
+dev()
+clearPlot()
+mySim_manag2 <- spades(mySim_manag, debug = TRUE)
 ```
-  
-Run experiment with different fire regimes (? maybe too advanced?)
-```{r experiment}
+
+Are there fewer areas where harvesting can occur if fires become larger (drought is more severe)? 
+
+```{r}
+end(mySim_manag2) <- 100
+params(mySim_manag2)$fireSpreadLcc$drought <- 3
+
+mySim_manag3 <- spades(mySim_manag2, debug = TRUE)
 
 ```
 
-Now add a management/caribou movement (?) model your colleague designed...
 
+#### <a name="shinySpaDES"></a>**1.4 Show your `SpaDES` model to the world!**   
 
-
-
-
-# `SpaDES` and `shiny`
-
-If time permits, feel free to play around with the proof-of-concept shiny apps:
+Soon `SpaDES` will have another package that will allow building web-apps from `simList` objects, so that simulation results can be visualised and changed interactively. For now, you can play around with the proof-of-concept shiny apps:
 
 - https://spades.shinyapps.io/ForestChange_ProofOfConcept/
 - http://w-vic-a105388.pfc.forestry.ca/SpaDESUI-forEliot-Oct2016/ (only available inside CFS firewall)
