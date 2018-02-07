@@ -103,14 +103,14 @@
 </ul>
 </li>
 <li>What happens if the goal is to run it again, but with slight changes to the input data?</li>
-<li><p>The Rmarkdown approach can deal with this to a certain extent, but it will be clunky</p></li>
+<li><p>The Rmarkdown script approach, which is very linear, can deal with this to a certain extent, but it will be clunky</p></li>
 </ul>
 </div>
 <div id="adding-novelty" class="section level2">
 <h2 class="hasAnchor">
 <a href="#adding-novelty" class="anchor"></a>Adding novelty</h2>
 <ul>
-<li>What happens if you want to add something new, but keep it mostly the same</li>
+<li>What happens if you want to add something new, but keep it <em>mostly</em> the same</li>
 <li>You have a good vegetation model and a good caribou model, but you want to add a wolf model</li>
 <li>With Rmarkdown, you would have to edit the original file</li>
 <li>With <code>SpaDES</code>, you can use the other modules by calling them… no need to know how they work</li>
@@ -144,15 +144,63 @@
 </li>
 </ul>
 </div>
+<div id="nested-caching" class="section level2">
+<h2 class="hasAnchor">
+<a href="#nested-caching" class="anchor"></a>Nested Caching</h2>
+<ul>
+<li>Imagine we have large model, with many modules, with replication and alternative module collections (e.g., alternative fire models)</li>
+<li>To run this would have a nested structure with the following functions:</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">simInit <span class="op">-</span>-&gt;<span class="st"> </span>many .inputObjects calls
+
+experiment <span class="op">-</span>-&gt;<span class="st"> </span>many spades calls <span class="op">-</span>-&gt;<span class="st"> </span>many module calls <span class="op">-</span>-&gt;<span class="st"> </span>many event calls <span class="op">-</span>-&gt;<span class="st"> </span>many <span class="cf">function</span> calls</code></pre></div>
+<p>Lets say we start to introduce caching to this structure. We start from the “inner” most functions that we could imaging Caching would be useful. Lets say there are some GIS operations, like <code><a href="http://www.rdocumentation.org/packages/raster/topics/projectRaster">raster::projectRaster</a></code>, which operates on an input shapefile. We can Cache the <code>projectRaster</code> call to make this much faster, since it will always be the same result for a given input raster.</p>
+<p>If we look back at our structure above, we see that we still have LOTS of places that are not Cached. That means that the experiment call will still spawn many spades calls, which will still spawn many module calls, and many event calls, just to get to the one <code>Cache(projectRaster)</code> call which is Cached. This function will likely be called hundreds of times (because <code>experiment</code> runs the <code>spades</code> call 100 times due to replication). This is good, but <strong>Cache does take some time</strong>. So, even if <code>Cache(projectRaster)</code> takes only 0.02 seconds, calling it hundreds of times means maybe 4 seconds. If we are doing this for many functions, then this will be too slow.</p>
+<p>We can start putting <code>Cache</code> all up the sequence of calls. Unfortunately, the way we use Cache at each of these levels is a bit different, so we need a slightly different approach for each.</p>
+<div id="cache-the-experiment-call" class="section level4">
+<h4 class="hasAnchor">
+<a href="#cache-the-experiment-call" class="anchor"></a>Cache the <code>experiment</code> call</h4>
+<p><code>Cache(experiment)</code></p>
+<p>This will assess the <code>simList</code> (the objects, times, modules, etc.) and if they are all the same, it will return the final list of <code>simList</code>s that came from the first <code>experiment</code> call. NOTE: because this can be large, it is likely that you want <code>clearSimEnv = TRUE</code>, and have all objects that are needed after the experiment call saved to disk. Any stochasticity/randomness inside modules will be frozen. This is likely ok if the objective is to show results in a web app (via shiny or otherwise) or another visualization about the experiment outputs, e.g., comparing treatments, once sufficient stochasticity has been achieved.</p>
+<p><code>mySimListOut &lt;- Cache(experiment, mySim, clearSimEnv = TRUE)</code></p>
+</div>
+<div id="cache-the-spades-calls-inside-experiment" class="section level4">
+<h4 class="hasAnchor">
+<a href="#cache-the-spades-calls-inside-experiment" class="anchor"></a>Cache the <code>spades</code> calls inside <code>experiment</code>
+</h4>
+<p><code>experiment(cache = TRUE)</code></p>
+<p>This will cache each of the <code>spades</code> calls inside the <code>experiment</code> call. That means that there are as many cache events as there are replicates and experimental treatments, which, again could be a lot. Like caching the <code>experiment</code> call, stochasticity/randomness will be frozen. Note, one good use of this is when you are making iterative, incremental replication, e.g.,</p>
+<p><code>mySimOut &lt;- experiment(mySim, replicates = 5, cache = TRUE)</code></p>
+<p>You decide after waiting 10 minutes for it to finish, that you need more replication. Rather than start from zero replicates, you can just pick up where you left off:</p>
+<p><code>mySimOut &lt;- experiment(mySim, replicates = 10, cache = TRUE)</code></p>
+<p>This will only add 5 more replicates.</p>
+</div>
+<div id="cache-a-whole-module" class="section level4">
+<h4 class="hasAnchor">
+<a href="#cache-a-whole-module" class="anchor"></a>Cache a whole module</h4>
+<p>Pass <code>.useCache = TRUE</code> as a parameter to the module, during the <code>simInit</code></p>
+<p>Some modules are inherently non-random, such as GIS modules, or parameter fitting statistical modules. We expect these to be identical results each time, so we can safely cache the entire module.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">parameters =<span class="st"> </span><span class="kw">list</span>(
+  <span class="dt">FireModule =</span> <span class="kw">list</span>(<span class="dt">.useCache =</span> <span class="ot">TRUE</span>)
+)
+mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(..., <span class="dt">params =</span> parameters)
+mySimOut &lt;-<span class="st"> </span><span class="kw">spades</span>(mySim)</code></pre></div>
+<p>The messaging should indicate the caching is happening on every event in that module.</p>
+<p><strong><em>Note: This option REQUIRES that the metadata in inputs and outputs be exactly correct, i.e., all inputObjects and outputObjects must be correctly identified and listed in the defineModule metadata</em></strong></p>
+<p><strong><em>If the module is cached, and there are errors when it is run, it almost is garanteed to be a problem with the <code>inputObjects</code> and <code>outputObjects</code> incorrectly specified.</em></strong></p>
+</div>
+<div id="cache-individual-functions" class="section level4">
+<h4 class="hasAnchor">
+<a href="#cache-individual-functions" class="anchor"></a>Cache individual functions</h4>
+<p><code>Cache(&lt;functionName&gt;, &lt;other arguments&gt;)</code></p>
+<p>This will allow fine scale control of individual function calls.</p>
+</div>
+</div>
 <div id="data-to-decisions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#data-to-decisions" class="anchor"></a>Data-to-decisions</h2>
-<ul>
-<li>This is the current vision for <code>SpaDES</code>
-</li>
-<li>We are looking for people who are interested in being part of this adventure</li>
-<li>As are others:</li>
-</ul>
+<p>Once nested Caching is used all the way up to the <code>experiment</code> level and even further up (e.g., if there is a shiny module), then even very complex models can be put into a complete workflow.</p>
+<p>The current vision for <code>SpaDES</code> is that it will allow this type of “data to decisions” complete workflow that allows for deep, robust models, across disciplines, with easily accessible front ends, that are quick and responsive to users, yet can handle data changes, module changes, etc.</p>
 <div class="centered" style="color:#0000FF">
 <p><em>Bringing the best science, data, models into the hands of policy makers in real time, on their phones</em></p>
 </div>
@@ -171,6 +219,7 @@
       <li><a href="#adding-novelty">Adding novelty</a></li>
       <li><a href="#deploying-for-policy-and-management">Deploying for policy and management</a></li>
       <li><a href="#caching">Caching</a></li>
+      <li><a href="#nested-caching">Nested Caching</a></li>
       <li><a href="#data-to-decisions">Data-to-decisions</a></li>
       </ul>
 </div>

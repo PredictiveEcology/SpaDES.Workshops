@@ -21,16 +21,18 @@ knitr::opts_chunk$set(cache = FALSE, echo = TRUE, eval = FALSE)
 
 - A fundamental unit of computer programs is the loop
 - Used in virtually every computer language
-- However, with *R* and `SpaDES`, there are 2 reasons not to:
+- However, with `R` and `SpaDES`, there are 2 reasons not to:
 
     - They are somewhat slow
     - They don't allow easy sharing of code
+    
+- Using `SpaDES`, and building this module, will not affect the first point -- loops in R and any discrete event simulator will be "slow"
   
 ## Loops in time
 
-- Some loops are used where *time* is the object moving forward
-- If one loop iteration depends on the previous loop iteration 
-- Called a **Markov Chain**
+- Some loops are used where *time* is the object being looped over
+- i.e., each iteration of the loop is moving forward in time
+- If one loop iteration depends on the previous loop iteration, it is called a **Markov Chain**
 
 ```{r}
 age <- 1
@@ -66,8 +68,18 @@ events <- {
 times = list(start = 1, end = 10) 
 ```
 
+We will pull this apart next.
 
 ## Parts of a loop
+
+Recall:
+
+```{r}
+age <- 1
+for (time in 1:10) {
+  age <- age + 1
+}
+```
 
 - Setting up (sometimes required), **initializing**
 ```{r}
