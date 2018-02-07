@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>What is SpaDES &amp; how does it work? • SpaDES.Workshops</title>
+<title>01 What is SpaDES? • SpaDES.Workshops</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
@@ -63,7 +63,7 @@
       </header><div class="row">
   <div class="col-md-9">
     <div class="page-header toc-ignore">
-      <h1>What is SpaDES &amp; how does it work?</h1>
+      <h1>01 What is SpaDES?</h1>
                         <h4 class="author">Ceres Barros</h4>
             
             <h4 class="date">January 26th, 2018</h4>
@@ -81,14 +81,12 @@
 <p>Workshop outline:</p>
 <ul>
 <li>
-<a href="#Day1"><strong>Day 1. What is SpaDES and how does it work?</strong></a>
+<a href="#Day1"><strong>Day 1. What is <code>SpaDES</code> and how does it work?</strong></a>
 <ul>
-<li><a href="#PartI">Part I (morning). User, this is SpaDES. SpaDES, meet your new best friend</a></li>
-<li><a href="#PartII">Part II (afternoon). Get your hands dirty: using SpaDES for the 1st time</a></li>
+<li><a href="#PartI">Part I. User, this is SpaDES. <code>SpaDES</code>, meet your new best friend</a></li>
+<li><a href="#PartII">Part II. Get your hands dirty: using <code>SpaDES</code> for the 1st time</a></li>
 </ul>
 </li>
-<li><a href="#Day2"><strong>Day 2.</strong></a></li>
-<li><a href="#Day3"><strong>Day 3.</strong></a></li>
 </ul>
 <hr>
 </div>
@@ -103,8 +101,8 @@
 <div id="why-is-modelling-important" class="section level4">
 <h4 class="hasAnchor">
 <a href="#why-is-modelling-important" class="anchor"></a>Why is modelling important?</h4>
-<p>Models are nowadays so important and widespread that we often don’t realize that most of what we use in our daily lives is the result of someone’s (or some team’s) model. From weather forecasting, to predicting stock market fluctuonations. From the design of your bike, to the estimation of blood sugar and insuline levels and how they vary hourly and according to different diets (in case you don’t know, this can be important for diabetes treatments, and drug dosage and scheduling)… Models are indeed ‘everywhere’.</p>
-<p><img src="images/Day1_part1_figs/models_everywhere.png" align="middle" height="450" width="750" margin="0 auto"></p>
+<p>Models are nowadays so important and widespread that we often don’t realize that most of what we use in our daily lives is the result of someone’s (or some team’s) model. From weather forecasting, to predicting stock market fluctuations. From the design of your bike, to the estimation of blood sugar and insulin levels and how they vary hourly and according to different diets (in case you don’t know, this can be important for diabetes treatments, and drug dosage and scheduling)… Models are indeed ‘everywhere’.</p>
+<p><img src="images/Day1_part1_figs/models_everywhere.png" align="middle" height="400" width="750" margin="0 auto"></p>
 </div>
 <div id="challenges-modellers-face" class="section level4">
 <h4 class="hasAnchor">
@@ -153,7 +151,7 @@
 <p>Continuous adaptive management is an existing framework that assumes a periodic re-assessment of the status of a situation or issue, e.g. the amount of waste a company produces. This leads to the design and implementation of new solutions - e.g. recycling paper or using rain water - their monitoring and evaluation, and their adjustment if need be, before the next assessment.</p>
 <p>In modelling terms, this framework implies that for a given problem/question analyses and forecasts are repeated as new data, new methodologies and new or improved models arise. This can lead to a re-assessment of risk, inform decisions and influence policy making. These can in turn feedback into the process of re-framing the initial problem/question.</p>
 <p>Although this framework is ideal, it is only seldomly applied across the scientific community.</p>
-<p>Why? Because we are yet far from developing our research in a way that is easily repeatable, “upgradeable” and shareable. This renders the application of the continuous adaptive management framework costly, both temporally and financeally, especially in interdisciplinary projects that involve multiple teams and stakeholders.</p>
+<p>Why? Because we are yet far from developing our research in a way that is easily repeatable, “upgradeable” and shareable. This renders the application of the continuous adaptive management framework costly, both temporally and financially, especially in interdisciplinary projects that involve multiple teams and stakeholders.</p>
 <p><img src="images/Day1_part1_figs/contadaptmanag_nightmare.png" align="middle" width="600"></p>
 </div>
 <div id="where-do-we-go-from-here-spades" class="section level4">
@@ -164,9 +162,9 @@
 <h5 class="hasAnchor">
 <a href="#what-is-spades" class="anchor"></a><strong>What is <code>SpaDES</code>?</strong>
 </h5>
-<p><code>SpaDES</code> - <em>Spa</em>tial <em>D</em>iscrete <em>E</em>vent <em>S</em>imulator - is a modelling framework in the form of an ensemble of <code>R</code> packages. It aims to provide modellers and non-modellers across different domains of life and earth sciences (and beyond!) with a modelling tool that they can <em>control</em>, <em>apply</em> and <em>develop</em>. In its whole, <code>SpaDES</code> bridges the gaps between modellers and model-users of different disciplines, between scientists, practitionners, managers, stakeholders and policy makers, and between scientists and the general public.</p>
+<p><code>SpaDES</code> - <em>Spa</em>tial <em>D</em>iscrete <em>E</em>vent <em>S</em>imulator - is a modelling framework in the form of an ensemble of <code>R</code> packages. It aims to provide modellers and non-modellers across different domains of life and earth sciences (and beyond!) with a modelling tool that they can <em>control</em>, <em>apply</em> and <em>develop</em>. In its whole, <code>SpaDES</code> bridges the gaps between modellers and model-users of different disciplines, between scientists, practitioners, managers, stakeholders and policy makers, and between scientists and the general public.</p>
 <p><strong>How?</strong><br>
-1. <code>SpaDES</code> is written in <code>R</code>: a widely understood programming language, highly suited to statistical analyses, but flexible and fast enough to accomodate simulation work;<br>
+1. <code>SpaDES</code> is written in <code>R</code>: a widely understood programming language, highly suited to statistical analyses, but flexible and fast enough to accommodate simulation work;<br>
 2. <code>SpaDES</code> can be used for a wide-range of modelling approaches: + process-based models; + phenomenological models; + spatially-explicit models; + … 3. <code>SpaDES</code> models are built of <em>modules</em>, i.e. self-contained, interacting pieces that execute a particular <em>event</em>, or process in the model; 4. <code>SpaDES</code> modules can be made available across the entire <code>R</code> community if module-developers wish it so; 5. <code>SpaDES</code> will soon include a web-app builder to make interactive simulation possible.</p>
 <p>Like a smart-phone where users install and use the apps that they want, <code>SpaDES</code> can be seen as a platform where a model can be “assembled” from various pre-made modules. This allows non-modellers to run someone else’s model on <em>their</em> data and <em>their</em> parameters, and, on the other hand, it allows modellers write their own modules from scratch, run them and share them with the <code>R</code> user community.</p>
 </div>
@@ -175,7 +173,8 @@
 <a href="#an-example" class="anchor"></a><strong>An example</strong>
 </h5>
 <p>Our question(s): how will forest fires affect forest age? And how will climate change affect fire regimes and in turn the vegetation? How will timber supply be affected?</p>
-<p><strong>To start we’ll need</strong><br>
+<p><img src="images/Day1_part1_figs/Smart_SpaDES.png" align="right" width="300"></p>
+<p><strong>To start we’ll need:</strong><br>
 * a vegetation dynamics module - e.g. <a href="https://github.com/PredictiveEcology/SpaDES-modules/tree/master/modules/forestAge">forestAge</a>; * a fire simulator - e.g. <a href="https://github.com/PredictiveEcology/SpaDES-modules/tree/master/modules/forestSuccessionBeacons">forestSuccessionBeacons</a> modules; * optional: + the interaction between fire and vegetation + statistical analyses/presentation of results</p>
 <p>Depending on how modules are built, the interaction between modules may or may not require additional modules. Similarly, the presentation of results and their analyses can be directly made within the module producing them, or <em>as posteriori</em> using another module. Your call. <code>SpaDES</code> is all about flexibility!</p>
 <p>Using the above mentioned modules would already allow an analysis of how fires affect forest age, and vice-versa.</p>
@@ -183,7 +182,8 @@
 Analysing the effects of climate change could then be done by varying fire-related parameters (e.g. frequency and intensity of fires) in a simulation experiment. Alternatively, an additional module could simulate climate change effects, which would feedback unto both fire parameters and vegetation.<br>
 Finally, a timber supply module could “read” the vegetation maps produced after fire simulations and calculate timber quantity and quality from forest conditions (e.g. surviving tree species and their age).</p>
 <p><strong>Reserve, add new data, and re-run</strong><br>
-Provided that modules are able to download, read and treat data adequeatly, updating the simulations for new data is easy. <code>SpaDES</code> comes with a set of functions (via the <code>reproducible</code> package) that enable caching model structure, parameters and simualtion results. This way, if new data only affects a section of the model, the user won’t have to repeat every step to update the simulations.</p>
+Provided that modules are able to download, read and treat data adequately, updating the simulations for new data is easy. <code>SpaDES</code> comes with a set of functions (via the <code>reproducible</code> package) that enable caching model structure, parameters and simulation results. This way, if new data only affects a section of the model, the user won’t have to repeat every step to update the simulations.<br>
+* Learn more about: <a href="http://spades-workshops.predictiveecology.org/articles/Existing-modules.html#how-to-share-modules">sharing modules</a> and caching (<a href="https://cran.r-project.org/web/packages/SpaDES/vignettes/iii-cache.html">here</a> and <a href="http://spades-workshops.predictiveecology.org/articles/Continuous-Workflow.html">here</a>)</p>
 <p><strong>Decorate and serve</strong><br>
 Because models are not just for modellers, a shiny app building package is being developed to transform any <code>SpaDES</code> simulation into a web-app. This provides an interactive way of visualising results, as users can change simulation parameters and turn modules on and off, whilst observing how this impacts simulation results. Importantly, it can be particularly useful when conveying results to a non-expert or even the public.</p>
 <p>Shiny web-app demo <a href="https://spades.shinyapps.io/ForestChange_ProofOfConcept/">here</a> and <a href="http://landweb.predictiveecology.org/Demo/">here</a></p>
@@ -212,35 +212,25 @@ Because models are not just for modellers, a shiny app building package is being
 <li><a href="#simList">1.3.3 Simulation object - <code>simList</code></a></li>
 <li><a href="#runSim">1.3.4 Running a <code>SpaDES</code> simulation</a></li>
 <li><a href="#changeParams">1.3.5 Change model parameters without restarting</a></li>
+<li><a href="#friendsModule">1.3.6 Add a friend’s module</a></li>
 </ul>
 </li>
+<li><a href="#shinySpaDES">1.4 Show your <code>SpaDES</code> model to the world!</a></li>
 </ul>
 <div id="installing-spades" class="section level4">
 <h4 class="hasAnchor">
 <a href="#installing-spades" class="anchor"></a><a name="InstallSpaDES"></a><strong>1.1 Installing <code>SpaDES</code></strong>
 </h4>
 <p><code>SpaDES</code> groups a series of <code>R</code> packages - <em>metapackage</em> - containing both core and additional methods to design a discrete event simulation model:</p>
-<ul>
-<li>SpaDES.core - contains the core simualtion components<br>
-</li>
-<li>reproducible - contains caching methods<br>
-</li>
-<li>quickPlot - contains methods for better visualisation of results<br>
-</li>
-<li>SpaDES.tools &amp; SpaDES.addins - contain useful tools and additional methods, such as a spread function and utilities to create new modules from templates.<br>
-</li>
-<li>SpaDES.shiny - under development. Will provide a set of methods to build shiny apps from simulation objects.</li>
-</ul>
-<p>Prior to installing <code>SpaDES</code> make sure you have:</p>
 <ol style="list-style-type: decimal">
-<li>an <strong>up to date version of <code>R</code></strong> - having RStudio, or another <code>R</code> editor might also be useful.<br>
+<li>an <strong>up to date version of <code>R</code></strong> - having R Studio, or another <code>R</code> editor might also be useful.<br>
 </li>
 <li>the package <code>devtools</code> installed<br>
 </li>
 <li>
 <a href="https://cran.r-project.org/bin/windows/Rtools/"><strong>Rtools</strong></a> (Windows), <a href="http://itunes.apple.com/us/app/xcode/id497799835?mt=12"><strong>XCode</strong></a> (Mac), or r-base (Linux; please see <a href="https://support.rstudio.com/hc/en-us/articles/200486498-Package-Development-Prerequisites">here</a> for details).</li>
 </ol>
-<p><code>SpaDES</code>is still on a relatively steep development curve. As such, it might be sometimes necessary to update a particular package from GitHub (where <code>SpaDES</code> is being developed). It might be important to keep an eye on new improvements present in GitHub that might not be in CRAN yet. You’ll find the lastest releases for each package in their respective GitHub page (e.g. <a href="https://github.com/PredictiveEcology/SpaDES.core/releases">SpaDES.core releases</a>). If you go to the <a href="https://github.com/PredictiveEcology/SpaDES.core/commits/development">commits page</a> you’ll notice that that there might be new features relatively to the latest commit.</p>
+<p><code>SpaDES</code>is still on a relatively steep development curve. As such, it might be sometimes necessary to update a particular package from Git Hub (where <code>SpaDES</code> is being developed). It might be important to keep an eye on new improvements present in Git Hub that might not be in CRAN yet. You’ll find the latest releases for each package in their respective Git Hub page (e.g. <a href="https://github.com/PredictiveEcology/SpaDES.core/releases">SpaDES.core releases</a>). If you go to the <a href="https://github.com/PredictiveEcology/SpaDES.core/commits/development">commits page</a> you’ll notice that that there might be new features relatively to the latest commit.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Install all packages and their dependencies first
 <span class="kw">install.packages</span>(<span class="st">'SpaDES'</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)
 
@@ -265,7 +255,7 @@ sampleModuleDir &lt;-<span class="st"> </span><span class="kw">system.file</span
 sampleModuleFiles &lt;-<span class="st"> </span><span class="kw">list.files</span>(sampleModuleDir, <span class="dt">pattern =</span> <span class="st">'Rmd$'</span>, <span class="dt">recursive =</span> <span class="ot">TRUE</span>, <span class="dt">full.names =</span> <span class="ot">TRUE</span>)
     
 <span class="kw">lapply</span>(sampleModuleFiles, file.edit)</code></pre></div>
-<p>All modules should come with an <em>.Rmd</em> file that provides a summary of how the module works and <em>reproducible</em> example. If you’ve ever searched for R-help on <strong>stackoverflow</strong> you’ll have noticed how peope try to provide <code>R</code> code that can be run in any machine to reproduce the problem/solution at hand. Module <em>.Rmd</em> files should also run in any machine.</p>
+<p>All modules should come with an <em>.Rmd</em> file that provides a summary of how the module works and <em>reproducible</em> example. If you’ve ever searched for R-help on <strong>stackoverflow</strong> you’ll have noticed how people try to provide <code>R</code> code that can be run in any machine to reproduce the problem/solution at hand. Module <em>.Rmd</em> files should also run in any machine.</p>
 </div>
 <div id="simulation-modelling-with-spades" class="section level4">
 <h4 class="hasAnchor">
@@ -278,17 +268,21 @@ sampleModuleFiles &lt;-<span class="st"> </span><span class="kw">list.files</spa
 <a href="#download-modules" class="anchor"></a><a name="DownloadModules"></a><strong>1.3.1 Download modules</strong>
 </h5>
 <p>The <code>LCC2005</code> module group provides a set of modules that can reproduce these dynamics (in a simple way).</p>
-<p>Let’s define the working directories of our simulation exercice (<em>SpaDESintro</em>) first.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## We'll create the necessary directories in a temporary location - feel free to change this if you wish to.
-<span class="kw">setPaths</span>(<span class="dt">cachePath =</span> <span class="kw">file.path</span>(<span class="kw">tempdir</span>(),<span class="st">'SpaDESintro/cache'</span>),
-         <span class="dt">inputPath =</span> <span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">'SpaDESintro/inputs'</span>),
-         <span class="dt">modulePath =</span> <span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">'SpaDESintro/modules'</span>),
-         <span class="dt">outputPath =</span> <span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">'SpaDESintro/outputs'</span>))
+<p>Let’s define the working directories of our simulation exercise (<em>SpaDESintro</em>) first.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">main.dir &lt;-<span class="st">  "~/"</span>
+
+## We'll create the necessary directories in a temporary location - feel free to change this if you wish to.
+<span class="kw">setPaths</span>(<span class="dt">cachePath =</span> <span class="kw">file.path</span>(main.dir,<span class="st">'SpaDESintro/cache'</span>),
+         <span class="dt">inputPath =</span> <span class="kw">file.path</span>(main.dir, <span class="st">'SpaDESintro/inputs'</span>),
+         <span class="dt">modulePath =</span> <span class="kw">file.path</span>(main.dir, <span class="st">'SpaDESintro/modules'</span>),
+         <span class="dt">outputPath =</span> <span class="kw">file.path</span>(main.dir, <span class="st">'SpaDESintro/outputs'</span>))
 
 ## verify that this is want you wanted:
 <span class="kw">getPaths</span>()</code></pre></div>
-<p>Now we’ll get <code>LCC2005</code> modules needed and save them in the <code>modules</code> folder created before. If you already have done this before and want to do it again, set the <code>overwrite</code> argument to <code>TRUE</code>.<br>
-Using <code>data = TRUE</code> will make sure the necessary data for the module is downloaded. Unfortunately, the forest age raster is no longer downloadable without creating an account on the NASA EarthData website (if you wish to do so, you can access the file “can_age04_1km.tif” <a href="https://daac.ornl.gov/NACP/guides/NA_Tree_Age.html">here</a> and download it <em>after</em> you’ve logged in).</p>
+<p>Now we’ll get <code>LCC2005</code> modules needed and save them in the <code>modules</code> folder created before. If you already have done this before and want to do it again, set the <code>overwrite</code> argument to <code>TRUE</code>.</p>
+<p>Using <code>data = TRUE</code> will make sure the necessary data for the module is downloaded. Unfortunately, the forest age raster (“can_age04_1km.tif”) is no longer downloadable without creating an account on the NASA EarthData website. Download it from <a href="https://drive.google.com/open?id=1bFv94-f_h1HEy2bZ8VCoS7Jp_zgN2kZZ">here</a> and put in inside <em>modules/forestAges/data</em>.</p>
+<p>For future reference, it is possible to create an account on the NASA EarthData website and, after logging in, you’ll find the file <a href="https://daac.ornl.gov/NACP/guides/NA_Tree_Age.html">here</a>.</p>
+<p>Otherwise get it</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Not run (use if API limit is exceeded)
 <span class="co"># ops &lt;- options(spades.useragent = "http://github.com/CeresBarros/SpaDES-modules")</span>
 
@@ -305,8 +299,8 @@ LCC2005ModuleFiles &lt;-<span class="st"> </span><span class="kw">list.files</sp
 
 ## open module Rmd files
 <span class="kw">lapply</span>(LCC2005ModuleFiles, file.edit)</code></pre></div>
-<p>As you can see, <code>LCC2005</code> is a module group, meaning that it contains several modules that work together. Find more about module structure <a href="http://spades-workshops.predictiveecology.org/articles/Modules--Thinking-in-a-modular-way.html">here</a> and <a href="http://spades-workshops.predictiveecology.org/articles/Module-details.html">here</a>.</p>
-<p>In this exrecise, we will follow a simpliflied version of the example contained in the <code>LCC2005.Rmd</code> file. We will only use the modules necessary to simulate vegetation dynamics (<code>cropReprojectLccAge</code>, <code>forestAge</code>, <code>forestSuccessionBeacons</code> and <code>LccToBeaconsReclassify</code>) and fire spread (<code>fireSpreadLcc</code>).</p>
+<p>As you can see, <code>LCC2005</code> is a module group, meaning that it contains several modules that work together. Find more about module groups <a href="http://spades-workshops.predictiveecology.org/articles/Existing-modules.html#parent-modules-a-k-a--module-groups">here</a>.</p>
+<p>In this exercise, we will follow a simplified version of the example contained in the <code>LCC2005.Rmd</code> file. We will only use the modules necessary to simulate vegetation dynamics (<code>cropReprojectLccAge</code>, <code>forestAge</code>, <code>forestSuccessionBeacons</code> and <code>LccToBeaconsReclassify</code>) and fire spread (<code>fireSpreadLcc</code>).</p>
 </div>
 <div id="simulation-set-up" class="section level5">
 <h5 class="hasAnchor">
@@ -332,7 +326,7 @@ parameters &lt;-<span class="st"> </span><span class="kw">list</span>(
                     <span class="dt">.plotInitialTime =</span> <span class="fl">0.1</span>, <span class="dt">.plotInterval =</span> <span class="dv">10</span>)
 )
 
-## build the simulation object
+## make simulation object
 mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(<span class="dt">times =</span> times, <span class="dt">params =</span> parameters, <span class="dt">modules =</span> modules,
                  <span class="dt">objects =</span> objects, <span class="dt">paths =</span> paths)</code></pre></div>
 </div>
@@ -340,7 +334,7 @@ mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(<span class=
 <h5 class="hasAnchor">
 <a href="#simulation-object---simlist" class="anchor"></a><a name="simList"></a><strong>1.3.3 Simulation object - <code>simList</code></strong>
 </h5>
-<p>The object <code>mySim</code> contains all the necessary information to run the simulation, such as the objects that are shared between modules, and how these are linked between them. It’s called a <code>simList</code>. You can find out more about the <code>simList</code> object <a href="http://spades-workshops.predictiveecology.org/articles/The-simList.html">here</a></p>
+<p>The object <code>mySim</code> contains all the necessary information to run the simulation, such as the objects that are shared between modules, and how these are linked between them. It’s called a <code>simList</code>. You can find out more about the <code>simList</code> object <a href="http://spades-workshops.predictiveecology.org/articles/The-simList.html">here</a>.</p>
 <p>Let’s have a look at what mySim contains and how modules are connected.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## list the contentes of mySim
 <span class="kw">ls.str</span>(mySim)
@@ -354,41 +348,89 @@ mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(<span class=
 <a href="#running-a-spades-simulation" class="anchor"></a><a name="runSim"></a><strong>1.3.4 Running a <code>SpaDES</code> simulation</strong>
 </h5>
 <p>Now that we’ve checked the structure of our simulation model, we can go ahead and run it.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">clearCache</span>()
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## RStudio doesn't deal well with package order re-arrangements by spades(), so turn it off when using RStudio
+opts &lt;-<span class="st"> </span><span class="kw">options</span>(<span class="dt">spades.switchPkgNamespaces =</span> <span class="ot">FALSE</span>)
+<span class="co"># options(opts)   ## reverts changes</span>
+
 <span class="kw">dev</span>() <span class="co"># to open a new plot device for faster plotting</span>
 <span class="kw">clearPlot</span>()
-<span class="kw">spades</span>(mySim, <span class="dt">debug =</span> <span class="ot">TRUE</span>)   <span class="co"># set debug = TRUE to print simualtion steps.</span></code></pre></div>
+mySim2 &lt;-<span class="st"> </span><span class="kw">spades</span>(mySim, <span class="dt">debug =</span> <span class="ot">TRUE</span>)   <span class="co"># set debug = TRUE to print simulation steps.</span></code></pre></div>
 </div>
 <div id="change-model-parameters-without-restarting" class="section level5">
 <h5 class="hasAnchor">
 <a href="#change-model-parameters-without-restarting" class="anchor"></a><a name="changeParams"></a><strong>1.3.5 Change model parameters without restarting</strong>
 </h5>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">times<span class="op">$</span>start =<span class="st"> </span><span class="dv">21</span>; times<span class="op">$</span>end &lt;-<span class="st"> </span><span class="dv">40</span>
-mySim<span class="op">@</span>params<span class="op">$</span>fireSpreadLcc<span class="op">$</span>drought &lt;-<span class="st"> </span><span class="dv">3</span>
+<p>With <code>SpaDES</code> it is possible to change a simulations’ parameters and can continue running it.<br>
+What will happen if drought intensity increases?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">end</span>(mySim2)    ## accesses the last year
+<span class="kw">end</span>(mySim2) &lt;-<span class="st"> </span><span class="dv">50</span>   ## ## add another 30 years to the end of the simulation
 
+<span class="kw">params</span>(mySim2)<span class="op">$</span>fireSpreadLcc<span class="op">$</span>drought   ## accesses the current drought parameter value
+<span class="kw">params</span>(mySim2)<span class="op">$</span>fireSpreadLcc<span class="op">$</span>drought &lt;-<span class="st"> </span><span class="dv">3</span>   ## changes it
 
-mySim &lt;-<span class="st"> </span><span class="kw">spades</span>(mySim, <span class="dt">debug =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<p>Why “overwrite” <code>mySim</code>? Explain</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## add more time, change drought parameter while continuing the simulation.
-## change fire regimes
-mySim &lt;-<span class="st"> </span><span class="kw">spades</span>(mySim)</code></pre></div>
-<p>Run experiment with different fire regimes (? maybe too advanced?)</p>
-<p>Now add a management/caribou movement (?) model your colleague designed…</p>
+<span class="kw">clearPlot</span>()
+mySim3 &lt;-<span class="st"> </span><span class="kw">spades</span>(mySim2, <span class="dt">debug =</span> <span class="ot">TRUE</span>)</code></pre></div>
+</div>
+<div id="add-a-friends-module" class="section level5">
+<h5 class="hasAnchor">
+<a href="#add-a-friends-module" class="anchor"></a><a name="friendsModule"></a><strong>1.3.6 Add a friend’s module</strong>
+</h5>
+<p>The second part of our question was to investigate how forest fires may affect harvesting. The <code>LCC2005</code> module group does not contain any module that we can use for this, but that’s OK, because we can get modules from other Git repositories.</p>
+<p>We will use an <em>extremely</em> simple module that maps areas that are adequate for forest harvesting in function of forest age (a parameter that the user inputs) and the type of forest that can be harvested (here, only coniferous forests). This module, called <code>forestHarvest</code>, will be downloaded from a different repository “CeresBarros/forestHarvest-SpaDESmodule”. Learn more about downloading and sharing modules <a href="http://spades-workshops.predictiveecology.org/articles/Existing-modules.html">here</a>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">downloadModule</span>(<span class="dt">name =</span> <span class="st">"forestHarvest"</span>, <span class="dt">repo =</span> <span class="st">"CeresBarros/forestHarvest-SpaDESmodule"</span>, <span class="dt">path =</span> <span class="kw">getPaths</span>()<span class="op">$</span>modulePath)
+
+## We've defined the paths earlier 
+paths &lt;-<span class="st"> </span><span class="kw">getPaths</span>()
+
+modules &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">"cropReprojectLccAge"</span>, <span class="st">"fireSpreadLcc"</span>, <span class="st">"forestAge"</span>, <span class="st">"forestSuccessionBeacons"</span>, <span class="st">"LccToBeaconsReclassify"</span>, <span class="st">"forestHarvest"</span>)
+
+## we don't need to suply external objects
+objects &lt;-<span class="st"> </span><span class="kw">list</span>()
+
+## define the starting and end times of the simulation
+times &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">start =</span> <span class="fl">1.0</span>, <span class="dt">end =</span> <span class="dv">50</span>)
+
+## notice the new parameter list
+parameters &lt;-<span class="st"> </span><span class="kw">list</span>(
+  <span class="dt">.globals =</span> <span class="kw">list</span>(<span class="dt">stackName =</span> <span class="st">"landscape"</span>, <span class="dt">burnStats =</span> <span class="st">"nPixelsBurned"</span>),
+  <span class="dt">.progress =</span> <span class="kw">list</span>(<span class="ot">NA</span>),
+  <span class="dt">fireSpreadLcc =</span> <span class="kw">list</span>(<span class="dt">nFires =</span> 10L, <span class="dt">drought =</span> <span class="dv">1</span>, <span class="dt">its =</span> <span class="fl">1e6</span>,
+                    <span class="dt">persistprob =</span> <span class="dv">0</span>, <span class="dt">returnInterval =</span> <span class="dv">10</span>, <span class="dt">startTime =</span> <span class="dv">0</span>,
+                    <span class="dt">.plotInitialTime =</span> <span class="fl">0.1</span>, <span class="dt">.plotInterval =</span> <span class="dv">10</span>),
+  <span class="dt">forestHarvest =</span> <span class="kw">list</span>(<span class="dt">returnInterval =</span> <span class="dv">5</span>, <span class="dt">harvAge =</span> <span class="dv">50</span>, <span class="dt">startTime =</span> <span class="dv">11</span>, <span class="dt">.plotInterval =</span> <span class="dv">5</span>)
+)
+
+## make simulation object
+mySim_manag &lt;-<span class="st"> </span><span class="kw">simInit</span>(<span class="dt">times =</span> times, <span class="dt">params =</span> parameters, <span class="dt">modules =</span> modules,
+                 <span class="dt">objects =</span> objects, <span class="dt">paths =</span> paths)
+
+<span class="kw">moduleDiagram</span>(mySim_manag)
+<span class="kw">objectDiagram</span>(mySim_manag)
+
+opts &lt;-<span class="st"> </span><span class="kw">options</span>(<span class="dt">spades.switchPkgNamespaces =</span> <span class="ot">FALSE</span>)
+<span class="kw">dev</span>()
+<span class="kw">clearPlot</span>()
+mySim_manag2 &lt;-<span class="st"> </span><span class="kw">spades</span>(mySim_manag, <span class="dt">debug =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p>Are there fewer areas where harvesting can occur if fires become larger (drought is more severe)?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">end</span>(mySim_manag2) &lt;-<span class="st"> </span><span class="dv">100</span>
+<span class="kw">params</span>(mySim_manag2)<span class="op">$</span>fireSpreadLcc<span class="op">$</span>drought &lt;-<span class="st"> </span><span class="dv">3</span>
+
+mySim_manag3 &lt;-<span class="st"> </span><span class="kw">spades</span>(mySim_manag2, <span class="dt">debug =</span> <span class="ot">TRUE</span>)</code></pre></div>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div id="spades-and-shiny" class="section level1">
-<h1 class="hasAnchor">
-<a href="#spades-and-shiny" class="anchor"></a><code>SpaDES</code> and <code>shiny</code>
-</h1>
-<p>If time permits, feel free to play around with the proof-of-concept shiny apps:</p>
+<div id="show-your-spades-model-to-the-world" class="section level4">
+<h4 class="hasAnchor">
+<a href="#show-your-spades-model-to-the-world" class="anchor"></a><a name="shinySpaDES"></a><strong>1.4 Show your <code>SpaDES</code> model to the world!</strong>
+</h4>
+<p>Soon <code>SpaDES</code> will have another package that will allow building web-apps from <code>simList</code> objects, so that simulation results can be visualised and changed interactively. For now, you can play around with the proof-of-concept shiny apps:</p>
 <ul>
 <li><a href="https://spades.shinyapps.io/ForestChange_ProofOfConcept/" class="uri">https://spades.shinyapps.io/ForestChange_ProofOfConcept/</a></li>
 <li>
 <a href="http://w-vic-a105388.pfc.forestry.ca/SpaDESUI-forEliot-Oct2016/" class="uri">http://w-vic-a105388.pfc.forestry.ca/SpaDESUI-forEliot-Oct2016/</a> (only available inside CFS firewall)</li>
 </ul>
+</div>
+</div>
+</div>
 </div>
 </div>
   </div>
@@ -405,7 +447,6 @@ mySim &lt;-<span class="st"> </span><span class="kw">spades</span>(mySim)</code>
 </li>
       </ul>
 </li>
-      <li><a href="#spades-and-shiny"><code>SpaDES</code> and <code>shiny</code></a></li>
       </ul>
 </div>
       </div>
