@@ -66,7 +66,7 @@
       <h1>My first, simple module - Moving from loops to events</h1>
                         <h4 class="author">Eliot J. B. McIntire</h4>
             
-            <h4 class="date">February 05 2018</h4>
+            <h4 class="date">February 06 2018</h4>
           </div>
 
     
@@ -79,21 +79,22 @@
 <li>A fundamental unit of computer programs is the loop</li>
 <li>Used in virtually every computer language</li>
 <li>
-<p>However, with <em>R</em> and <code>SpaDES</code>, there are 2 reasons not to:</p>
+<p>However, with <code>R</code> and <code>SpaDES</code>, there are 2 reasons not to:</p>
 <ul>
 <li>They are somewhat slow</li>
 <li>They don’t allow easy sharing of code</li>
 </ul>
 </li>
+<li><p>Using <code>SpaDES</code>, and building this module, will not affect the first point – loops in R and any discrete event simulator will be “slow”</p></li>
 </ul>
 </div>
 <div id="loops-in-time" class="section level2">
 <h2 class="hasAnchor">
 <a href="#loops-in-time" class="anchor"></a>Loops in time</h2>
 <ul>
-<li>Some loops are used where <em>time</em> is the object moving forward</li>
-<li>If one loop iteration depends on the previous loop iteration</li>
-<li>Called a <strong>Markov Chain</strong>
+<li>Some loops are used where <em>time</em> is the object being looped over</li>
+<li>i.e., each iteration of the loop is moving forward in time</li>
+<li>If one loop iteration depends on the previous loop iteration, it is called a <strong>Markov Chain</strong>
 </li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">age &lt;-<span class="st"> </span><span class="dv">1</span>
@@ -129,10 +130,16 @@ events &lt;-<span class="st"> </span>{
 }
 
 times =<span class="st"> </span><span class="kw">list</span>(<span class="dt">start =</span> <span class="dv">1</span>, <span class="dt">end =</span> <span class="dv">10</span>) </code></pre></div>
+<p>We will pull this apart next.</p>
 </div>
 <div id="parts-of-a-loop" class="section level2">
 <h2 class="hasAnchor">
 <a href="#parts-of-a-loop" class="anchor"></a>Parts of a loop</h2>
+<p>Recall:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">age &lt;-<span class="st"> </span><span class="dv">1</span>
+<span class="cf">for</span> (time <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) {
+  age &lt;-<span class="st"> </span>age <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
+}</code></pre></div>
 <ul>
 <li>Setting up (sometimes required), <strong>initializing</strong>
 </li>
