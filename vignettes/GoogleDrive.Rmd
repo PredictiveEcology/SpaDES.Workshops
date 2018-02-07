@@ -1,5 +1,5 @@
 ---
-title       : "Link to Powerpoint used in Workshops"
+title       : "Google Drive - Contains PPT, modules for examples"
 author      : "Ceres Barros, Eliot McIntire"
 date        : "Jan 30, 2018"
 output: 
