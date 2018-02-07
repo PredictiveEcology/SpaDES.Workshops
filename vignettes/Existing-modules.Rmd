@@ -56,10 +56,13 @@ These are all simple, "toy" modules so far
 
 ### What does each do?
 
-- Try it out first
+When you go to the next steps, try things out... ask some of these questions:
+
 - Where do we start?
 - Are there bugs?
 - Are there visualizations?
+- Is is complex, simple?
+- What type of module is it?
 
 
 *****
@@ -117,6 +120,7 @@ file.edit(file.path(tmpdir, "wolfAlps", "wolfAlps.Rmd"))
 - Lets do it...
 - Go back to SpaDES wiki pages (how do I find it again...?)... Maybe Google search "R SpaDES wiki"
 - [Remember the debugging tools](https://github.com/PredictiveEcology/SpaDES/wiki/Debugging)
+- `?spades` has new section on debugging that complements the above wiki
 
 
 
@@ -156,7 +160,10 @@ openModules("LCC2005", moduleDir)
 
 What is different about it?
 
-## Parent modules (a.k.a. module groups)
+
+****
+
+# Parent modules (a.k.a. module groups)
 
 - Currently, only used to identify a group of modules
 - Uses "childModules" list entry

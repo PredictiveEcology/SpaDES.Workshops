@@ -140,11 +140,13 @@
 <div id="what-does-each-do" class="section level3">
 <h3 class="hasAnchor">
 <a href="#what-does-each-do" class="anchor"></a>What does each do?</h3>
+<p>When you go to the next steps, try things out… ask some of these questions:</p>
 <ul>
-<li>Try it out first</li>
 <li>Where do we start?</li>
 <li>Are there bugs?</li>
 <li>Are there visualizations?</li>
+<li>Is is complex, simple?</li>
+<li>What type of module is it?</li>
 </ul>
 <hr>
 </div>
@@ -207,6 +209,8 @@ tmpdir &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span cla
 <li>Lets do it…</li>
 <li>Go back to SpaDES wiki pages (how do I find it again…?)… Maybe Google search “R SpaDES wiki”</li>
 <li><a href="https://github.com/PredictiveEcology/SpaDES/wiki/Debugging">Remember the debugging tools</a></li>
+<li>
+<code>?spades</code> has new section on debugging that complements the above wiki</li>
 </ul>
 <hr>
 </div>
@@ -249,11 +253,13 @@ moduleDir &lt;-<span class="st"> </span><span class="kw">file.path</span>(workDi
 <h3 class="hasAnchor">
 <a href="#examine-this-module" class="anchor"></a>Examine this module</h3>
 <p>What is different about it?</p>
+<hr>
 </div>
 </div>
-<div id="parent-modules-a-k-a--module-groups" class="section level2">
-<h2 class="hasAnchor">
-<a href="#parent-modules-a-k-a--module-groups" class="anchor"></a>Parent modules (a.k.a. module groups)</h2>
+</div>
+<div id="parent-modules-a-k-a--module-groups" class="section level1">
+<h1 class="hasAnchor">
+<a href="#parent-modules-a-k-a--module-groups" class="anchor"></a>Parent modules (a.k.a. module groups)</h1>
 <ul>
 <li>Currently, only used to identify a group of modules</li>
 <li>Uses “childModules” list entry</li>
@@ -268,7 +274,6 @@ moduleDir &lt;-<span class="st"> </span><span class="kw">file.path</span>(workDi
 <ul>
 <li>Can have grand-parents, great-grandparents, mixtures of parents, grand-parents etc.</li>
 </ul>
-</div>
 <div id="module-relationships" class="section level2">
 <h2 class="hasAnchor">
 <a href="#module-relationships" class="anchor"></a>Module relationships</h2>
@@ -434,8 +439,11 @@ lcc &lt;-<span class="st"> </span><span class="kw">spades</span>(lcc)  ## compar
 <a href="#meta-models">Meta models</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#building-models-from-modules">Building <em>models</em> from <em>modules</em></a></li>
       <li><a href="#lcc2005">LCC2005</a></li>
-      <li><a href="#parent-modules-a-k-a--module-groups">Parent modules (a.k.a. module groups)</a></li>
-      <li><a href="#module-relationships">Module relationships</a></li>
+      </ul>
+</li>
+      <li>
+<a href="#parent-modules-a-k-a--module-groups">Parent modules (a.k.a. module groups)</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#module-relationships">Module relationships</a></li>
       <li><a href="#module-directory-structure">Module directory structure</a></li>
       <li><a href="#running-a-parent-module">Running a parent module</a></li>
       <li><a href="#visual-tools">Visual tools</a></li>
