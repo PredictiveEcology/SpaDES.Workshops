@@ -1,5 +1,5 @@
 ---
-title       : "Google Drive - Contains PPT, modules for examples"
+title       : "Google Drive - Contains Powerpoint, module code for LCC2005 example"
 author      : "Ceres Barros, Eliot McIntire"
 date        : "Jan 30, 2018"
 output: 
