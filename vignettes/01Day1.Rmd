@@ -2,7 +2,10 @@
 title: "01 What is SpaDES?"
 author: "Ceres Barros"
 date: "January 26th, 2018"
-output: html_document
+output:
+  html_document:
+    toc : TRUE
+    toc_float: TRUE
 ---
 
 ```{r setup, include=FALSE}
@@ -21,7 +24,7 @@ Workshop outline:
 ***
 
 ## <a name="Day1"></a>**Day 1. What is `SpaDES` and how does it work?**
-## <a name="PartI"></a>**Part I. User, this is `SpaDES`. `SpaDES`, meet your new best friend**  
+### <a name="PartI"></a>**Part I. User, this is `SpaDES`. `SpaDES`, meet your new best friend**  
 
 #### Why is modelling important?  
 Models are nowadays so important and widespread that we often don't realize that most of what we use in our daily lives is the result of someone's (or some team's) model.  From weather forecasting, to predicting stock market fluctuations. From the design of your bike, to the estimation of blood sugar and insulin levels and how they vary hourly and according to different diets (in case you don't know, this can be important for diabetes treatments, and drug dosage and scheduling)... 
