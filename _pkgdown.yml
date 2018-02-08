@@ -25,6 +25,8 @@ articles:
     - GoogleDrive
 
   - title: "Advanced introduction to SpaDES"
+    desc: >
+      Installing SpaDES fore the first time, importing modules and running fairly simple simulations
     contents:
     - 01Day1
 
@@ -63,7 +65,7 @@ articles:
 
   - title: "Reference -- Links to SpaDES wiki pages and vignettes"
     desc: >
-      These are so key to working with SpaDES, they are on the wiki or in vignettes
+      These are key to working with SpaDES, they are on the wiki or in vignettes
     contents:
     - Debugging
     - Caching
