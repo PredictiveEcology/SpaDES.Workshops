@@ -8,7 +8,7 @@ date        : "December 9, 2016"
 knitr::opts_chunk$set(cache = TRUE, echo = TRUE, eval = FALSE)
 ```
 
-## How to share modules
+# How to share modules
 
 - We can share modules in any number of ways 
 
@@ -152,7 +152,7 @@ library(SpaDES)
 workDirectory <- file.path(dirname(tempdir()), "Lcc2005")
 moduleDir <- file.path(workDirectory, "modules") %>%
   checkPath(., create = TRUE)
-downloadModule("LCC2005", moduleDir)
+downloadModule("LCC2005", moduleDir, overwrite = TRUE)
 openModules("LCC2005", moduleDir)
 ```
 
@@ -224,7 +224,17 @@ paths <- list(
   inputPath = moduleDir,
   outputPath = outputDir
 )
+mySim <- simInit(modules = modules, paths = paths, params = parameters, times = times)
 ```
+
+## Create a new parent module
+
+The LCC2005 is a parent module that contains several children (What are they?).  Now make a new parent module from several of the LCC2005 modules, but without, say, fire.
+
+```{r}
+newModule("LCC2005NoFire", children = unlist(modules(mySim))[-6])
+```
+
 
 ## Visual tools
 

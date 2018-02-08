@@ -72,9 +72,9 @@
     
     
 <div class="contents">
-<div id="how-to-share-modules" class="section level2">
-<h2 class="hasAnchor">
-<a href="#how-to-share-modules" class="anchor"></a>How to share modules</h2>
+<div id="how-to-share-modules" class="section level1">
+<h1 class="hasAnchor">
+<a href="#how-to-share-modules" class="anchor"></a>How to share modules</h1>
 <ul>
 <li>
 <p>We can share modules in any number of ways</p>
@@ -85,7 +85,6 @@
 </ul>
 </li>
 </ul>
-</div>
 <div id="spades-modules-github-repository" class="section level2">
 <h2 class="hasAnchor">
 <a href="#spades-modules-github-repository" class="anchor"></a>SpaDES-Modules GitHub repository</h2>
@@ -125,6 +124,7 @@
 <li>R-CBM (carbon budget model)</li>
 </ul>
 <hr>
+</div>
 </div>
 <div id="modules-to-download" class="section level1">
 <h1 class="hasAnchor">
@@ -247,7 +247,7 @@ tmpdir &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span cla
 workDirectory &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">dirname</span>(<span class="kw">tempdir</span>()), <span class="st">"Lcc2005"</span>)
 moduleDir &lt;-<span class="st"> </span><span class="kw">file.path</span>(workDirectory, <span class="st">"modules"</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">checkPath</span>(., <span class="dt">create =</span> <span class="ot">TRUE</span>)
-<span class="kw">downloadModule</span>(<span class="st">"LCC2005"</span>, moduleDir)
+<span class="kw">downloadModule</span>(<span class="st">"LCC2005"</span>, moduleDir, <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)
 <span class="kw">openModules</span>(<span class="st">"LCC2005"</span>, moduleDir)</code></pre></div>
 <div id="examine-this-module" class="section level3">
 <h3 class="hasAnchor">
@@ -310,7 +310,14 @@ paths &lt;-<span class="st"> </span><span class="kw">list</span>(
   <span class="dt">modulePath =</span> moduleDir,
   <span class="dt">inputPath =</span> moduleDir,
   <span class="dt">outputPath =</span> outputDir
-)</code></pre></div>
+)
+mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(<span class="dt">modules =</span> modules, <span class="dt">paths =</span> paths, <span class="dt">params =</span> parameters, <span class="dt">times =</span> times)</code></pre></div>
+</div>
+<div id="create-a-new-parent-module" class="section level2">
+<h2 class="hasAnchor">
+<a href="#create-a-new-parent-module" class="anchor"></a>Create a new parent module</h2>
+<p>The LCC2005 is a parent module that contains several children (What are they?). Now make a new parent module from several of the LCC2005 modules, but without, say, fire.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">newModule</span>(<span class="st">"LCC2005NoFire"</span>, <span class="dt">children =</span> <span class="kw">unlist</span>(<span class="kw">modules</span>(mySim))[<span class="op">-</span><span class="dv">6</span>])</code></pre></div>
 </div>
 <div id="visual-tools" class="section level2">
 <h2 class="hasAnchor">
@@ -424,11 +431,14 @@ lcc &lt;-<span class="st"> </span><span class="kw">spades</span>(lcc)  ## compar
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#how-to-share-modules">How to share modules</a></li>
-      <li><a href="#spades-modules-github-repository">SpaDES-Modules GitHub repository</a></li>
+<li>
+<a href="#how-to-share-modules">How to share modules</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#spades-modules-github-repository">SpaDES-Modules GitHub repository</a></li>
       <li><a href="#downloading-modules">Downloading modules</a></li>
       <li><a href="#types-we-will-look-at">Types we will look at</a></li>
       <li><a href="#modules-not-on-spades-modules-yet-waiting-for-publication">Modules not on SpaDES-Modules yet, waiting for publication</a></li>
+      </ul>
+</li>
       <li>
 <a href="#modules-to-download">Modules to download</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#downloading">Downloading</a></li>
@@ -446,6 +456,7 @@ lcc &lt;-<span class="st"> </span><span class="kw">spades</span>(lcc)  ## compar
 <li><a href="#module-relationships">Module relationships</a></li>
       <li><a href="#module-directory-structure">Module directory structure</a></li>
       <li><a href="#running-a-parent-module">Running a parent module</a></li>
+      <li><a href="#create-a-new-parent-module">Create a new parent module</a></li>
       <li><a href="#visual-tools">Visual tools</a></li>
       <li><a href="#creating-a-new-parent-module">Creating a new parent module</a></li>
       <li><a href="#parent-modules">Parent modules</a></li>
