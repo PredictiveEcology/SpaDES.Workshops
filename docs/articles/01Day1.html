@@ -94,10 +94,11 @@
 <h2 class="hasAnchor">
 <a href="#day-1--what-is-spades-and-how-does-it-work" class="anchor"></a><a name="Day1"></a><strong>Day 1. What is <code>SpaDES</code> and how does it work?</strong>
 </h2>
-<div id="part-i--user-this-is-spades--spades-meet-your-new-best-friend" class="section level3">
-<h3 class="hasAnchor">
+</div>
+<div id="part-i--user-this-is-spades--spades-meet-your-new-best-friend" class="section level2">
+<h2 class="hasAnchor">
 <a href="#part-i--user-this-is-spades--spades-meet-your-new-best-friend" class="anchor"></a><a name="PartI"></a><strong>Part I. User, this is <code>SpaDES</code>. <code>SpaDES</code>, meet your new best friend</strong>
-</h3>
+</h2>
 <div id="why-is-modelling-important" class="section level4">
 <h4 class="hasAnchor">
 <a href="#why-is-modelling-important" class="anchor"></a>Why is modelling important?</h4>
@@ -192,10 +193,10 @@ Because models are not just for modellers, a shiny app building package is being
 </div>
 </div>
 </div>
-<div id="part-ii--get-your-hands-dirty-using-spades-for-the-1st-time" class="section level3">
-<h3 class="hasAnchor">
+<div id="part-ii--get-your-hands-dirty-using-spades-for-the-1st-time" class="section level2">
+<h2 class="hasAnchor">
 <a href="#part-ii--get-your-hands-dirty-using-spades-for-the-1st-time" class="anchor"></a><a name="PartII"></a><strong>Part II. Get your hands dirty: using SpaDES for the 1st time</strong>
-</h3>
+</h2>
 <p><strong>Table of contents:</strong><br><a href="#Exercise1"><strong>Exercise 1. <code>SpaDES</code> in action`</strong></a></p>
 <ul>
 <li>
@@ -213,14 +214,16 @@ Because models are not just for modellers, a shiny app building package is being
 <li><a href="#runSim">1.3.4 Running a <code>SpaDES</code> simulation</a></li>
 <li><a href="#changeParams">1.3.5 Change model parameters without restarting</a></li>
 <li><a href="#friendsModule">1.3.6 Add a friend’s module</a></li>
+<li><a href="#SaveOutputs">1.3.7 Choose to save outputs without changing module code</a></li>
 </ul>
 </li>
 <li><a href="#shinySpaDES">1.4 Show your <code>SpaDES</code> model to the world!</a></li>
 </ul>
-<div id="installing-spades" class="section level4">
-<h4 class="hasAnchor">
+</div>
+<div id="installing-spades" class="section level2">
+<h2 class="hasAnchor">
 <a href="#installing-spades" class="anchor"></a><a name="InstallSpaDES"></a><strong>1.1 Installing <code>SpaDES</code></strong>
-</h4>
+</h2>
 <p><code>SpaDES</code> groups a series of <code>R</code> packages - <em>metapackage</em> - containing both core and additional methods to design a discrete event simulation model:</p>
 <ol style="list-style-type: decimal">
 <li>an <strong>up to date version of <code>R</code></strong> - having R Studio, or another <code>R</code> editor might also be useful.<br>
@@ -232,7 +235,7 @@ Because models are not just for modellers, a shiny app building package is being
 </ol>
 <p><code>SpaDES</code>is still on a relatively steep development curve. As such, it might be sometimes necessary to update a particular package from Git Hub (where <code>SpaDES</code> is being developed). It might be important to keep an eye on new improvements present in Git Hub that might not be in CRAN yet. You’ll find the latest releases for each package in their respective Git Hub page (e.g. <a href="https://github.com/PredictiveEcology/SpaDES.core/releases">SpaDES.core releases</a>). If you go to the <a href="https://github.com/PredictiveEcology/SpaDES.core/commits/development">commits page</a> you’ll notice that that there might be new features relatively to the latest commit.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Install all packages and their dependencies first
-<span class="kw">install.packages</span>(<span class="st">'SpaDES'</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)
+<span class="kw">install.packages</span>(<span class="st">'SpaDES'</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>, <span class="dt">repos =</span> <span class="st">"http://132.156.148.172"</span>)
 
 ## now, update some of the packages from the development branch.
 devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">'PredictiveEcology/SpaDES.core@development'</span>)
@@ -241,10 +244,10 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 ## and load SpaDES
 <span class="kw">library</span>(SpaDES)</code></pre></div>
 </div>
-<div id="modules-included-in-the-spades-package" class="section level4">
-<h4 class="hasAnchor">
+<div id="modules-included-in-the-spades-package" class="section level2">
+<h2 class="hasAnchor">
 <a href="#modules-included-in-the-spades-package" class="anchor"></a><a name="SpaDES_modules"></a><strong>1.2 Modules included in the <code>SpaDES</code> package</strong>
-</h4>
+</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Locate the sample modules in SpaDES.core
 sampleModuleDir &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">'sampleModules'</span>, <span class="dt">package =</span> <span class="st">'SpaDES.core'</span>)
     
@@ -254,19 +257,23 @@ sampleModuleDir &lt;-<span class="st"> </span><span class="kw">system.file</span
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## open the sample module Rmd file to learn more about the modules and access a simple example
 sampleModuleFiles &lt;-<span class="st"> </span><span class="kw">list.files</span>(sampleModuleDir, <span class="dt">pattern =</span> <span class="st">'Rmd$'</span>, <span class="dt">recursive =</span> <span class="ot">TRUE</span>, <span class="dt">full.names =</span> <span class="ot">TRUE</span>)
     
-<span class="kw">lapply</span>(sampleModuleFiles, file.edit)</code></pre></div>
+<span class="kw">lapply</span>(sampleModuleFiles[<span class="dv">1</span>], file.edit)</code></pre></div>
 <p>All modules should come with an <em>.Rmd</em> file that provides a summary of how the module works and <em>reproducible</em> example. If you’ve ever searched for R-help on <strong>stackoverflow</strong> you’ll have noticed how people try to provide <code>R</code> code that can be run in any machine to reproduce the problem/solution at hand. Module <em>.Rmd</em> files should also run in any machine.</p>
 </div>
-<div id="simulation-modelling-with-spades" class="section level4">
-<h4 class="hasAnchor">
+<div id="simulation-modelling-with-spades" class="section level2">
+<h2 class="hasAnchor">
 <a href="#simulation-modelling-with-spades" class="anchor"></a><a name="ModellingSpaDES"></a><strong>1.3 Simulation modelling with <code>SpaDES</code></strong>
-</h4>
+</h2>
 <p>Let’s go back to the modelling question discussed briefly above.</p>
-<p>Our first objective is to simulate the the effect of fire on forest age. There are two main components to such a model, which need to interact: 1. a fire simulator 2. a forest age simulator</p>
-<div id="download-modules" class="section level5">
-<h5 class="hasAnchor">
+<p>Our first objective is to simulate the the effect of fire on forest age. There are two main components to such a model, which need to interact:</p>
+<ol style="list-style-type: decimal">
+<li>a fire simulator</li>
+<li>a forest age simulator</li>
+</ol>
+<div id="download-modules" class="section level3">
+<h3 class="hasAnchor">
 <a href="#download-modules" class="anchor"></a><a name="DownloadModules"></a><strong>1.3.1 Download modules</strong>
-</h5>
+</h3>
 <p>The <code>LCC2005</code> module group provides a set of modules that can reproduce these dynamics (in a simple way).</p>
 <p>Let’s define the working directories of our simulation exercise (<em>SpaDESintro</em>) first.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">main.dir &lt;-<span class="st">  "~/"</span>
@@ -282,14 +289,13 @@ sampleModuleFiles &lt;-<span class="st"> </span><span class="kw">list.files</spa
 <p>Now we’ll get <code>LCC2005</code> modules needed and save them in the <code>modules</code> folder created before. If you already have done this before and want to do it again, set the <code>overwrite</code> argument to <code>TRUE</code>.</p>
 <p>Using <code>data = TRUE</code> will make sure the necessary data for the module is downloaded. Unfortunately, the forest age raster (“can_age04_1km.tif”) is no longer downloadable without creating an account on the NASA EarthData website. Download it from <a href="https://drive.google.com/open?id=1bFv94-f_h1HEy2bZ8VCoS7Jp_zgN2kZZ">here</a> and put in inside <em>modules/forestAges/data</em>.</p>
 <p>For future reference, it is possible to create an account on the NASA EarthData website and, after logging in, you’ll find the file <a href="https://daac.ornl.gov/NACP/guides/NA_Tree_Age.html">here</a>.</p>
-<p>Otherwise get it</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Not run (use if API limit is exceeded)
-<span class="co"># ops &lt;- options(spades.useragent = "http://github.com/CeresBarros/SpaDES-modules")</span>
+ops &lt;-<span class="st"> </span><span class="kw">options</span>(<span class="dt">spades.useragent =</span> <span class="st">"http://github.com/CeresBarros/SpaDES-modules"</span>)
 
 ## note how we use the modules folder defined above and chose to download the necessary data
 <span class="kw">downloadModule</span>(<span class="st">'LCC2005'</span>, <span class="dt">path =</span> <span class="kw">getPaths</span>()<span class="op">$</span>modulePath, <span class="dt">repo =</span> <span class="st">'PredictiveEcology/SpaDES-modules'</span>, <span class="dt">data =</span> <span class="ot">TRUE</span>, <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)
 
-<span class="co"># options(ops)</span>
+<span class="kw">options</span>(ops)
 
 ## open the description of the LCC2005 module group - on Windows, this provides files directories
 <span class="kw">openModules</span>(<span class="st">'LCC2005'</span>, <span class="dt">path =</span> <span class="kw">getPaths</span>()<span class="op">$</span>modulePath) 
@@ -302,10 +308,10 @@ LCC2005ModuleFiles &lt;-<span class="st"> </span><span class="kw">list.files</sp
 <p>As you can see, <code>LCC2005</code> is a module group, meaning that it contains several modules that work together. Find more about module groups <a href="http://spades-workshops.predictiveecology.org/articles/Existing-modules.html#parent-modules-a-k-a--module-groups">here</a>.</p>
 <p>In this exercise, we will follow a simplified version of the example contained in the <code>LCC2005.Rmd</code> file. We will only use the modules necessary to simulate vegetation dynamics (<code>cropReprojectLccAge</code>, <code>forestAge</code>, <code>forestSuccessionBeacons</code> and <code>LccToBeaconsReclassify</code>) and fire spread (<code>fireSpreadLcc</code>).</p>
 </div>
-<div id="simulation-set-up" class="section level5">
-<h5 class="hasAnchor">
+<div id="simulation-set-up" class="section level3">
+<h3 class="hasAnchor">
 <a href="#simulation-set-up" class="anchor"></a><a name="SetupSim"></a><strong>1.3.2 Simulation set-up</strong>
-</h5>
+</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## We've defined the paths earlier 
 paths &lt;-<span class="st"> </span><span class="kw">getPaths</span>()
 
@@ -322,31 +328,40 @@ parameters &lt;-<span class="st"> </span><span class="kw">list</span>(
   <span class="dt">.globals =</span> <span class="kw">list</span>(<span class="dt">stackName =</span> <span class="st">"landscape"</span>, <span class="dt">burnStats =</span> <span class="st">"nPixelsBurned"</span>),
   <span class="dt">.progress =</span> <span class="kw">list</span>(<span class="ot">NA</span>),
   <span class="dt">fireSpreadLcc =</span> <span class="kw">list</span>(<span class="dt">nFires =</span> 10L, <span class="dt">drought =</span> <span class="dv">1</span>, <span class="dt">its =</span> <span class="fl">1e6</span>,
-                    <span class="dt">persistprob =</span> <span class="dv">0</span>, <span class="dt">returnInterval =</span> <span class="dv">10</span>, <span class="dt">startTime =</span> <span class="dv">0</span>,
-                    <span class="dt">.plotInitialTime =</span> <span class="fl">0.1</span>, <span class="dt">.plotInterval =</span> <span class="dv">10</span>)
+                    <span class="dt">persistprob =</span> <span class="dv">0</span>, <span class="dt">returnInterval =</span> <span class="dv">1</span>, <span class="dt">startTime =</span> <span class="dv">0</span>,
+                    <span class="dt">.plotInitialTime =</span> <span class="ot">NA</span>, <span class="dt">.plotInterval =</span> <span class="dv">10</span>)
 )
+<span class="kw">ls.str</span>(parameters)
 
 ## make simulation object
 mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(<span class="dt">times =</span> times, <span class="dt">params =</span> parameters, <span class="dt">modules =</span> modules,
                  <span class="dt">objects =</span> objects, <span class="dt">paths =</span> paths)</code></pre></div>
 </div>
-<div id="simulation-object---simlist" class="section level5">
-<h5 class="hasAnchor">
+<div id="simulation-object---simlist" class="section level3">
+<h3 class="hasAnchor">
 <a href="#simulation-object---simlist" class="anchor"></a><a name="simList"></a><strong>1.3.3 Simulation object - <code>simList</code></strong>
-</h5>
+</h3>
 <p>The object <code>mySim</code> contains all the necessary information to run the simulation, such as the objects that are shared between modules, and how these are linked between them. It’s called a <code>simList</code>. You can find out more about the <code>simList</code> object <a href="http://spades-workshops.predictiveecology.org/articles/The-simList.html">here</a>.</p>
 <p>Let’s have a look at what mySim contains and how modules are connected.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## list the contentes of mySim
 <span class="kw">ls.str</span>(mySim)
 
+<span class="kw">dev</span>()
+<span class="kw">plot</span>(mySim<span class="op">$</span>age)
+
 ## plot module connections
+<span class="kw">dev</span>()
 <span class="kw">moduleDiagram</span>(mySim)
-<span class="kw">objectDiagram</span>(mySim)</code></pre></div>
+<span class="kw">objectDiagram</span>(mySim)
+
+## see which events are scheduled
+<span class="kw">events</span>(mySim)</code></pre></div>
+<p>You’ll note that <code>SpaDES</code> has scheduled the initialisation events for each module.</p>
 </div>
-<div id="running-a-spades-simulation" class="section level5">
-<h5 class="hasAnchor">
+<div id="running-a-spades-simulation" class="section level3">
+<h3 class="hasAnchor">
 <a href="#running-a-spades-simulation" class="anchor"></a><a name="runSim"></a><strong>1.3.4 Running a <code>SpaDES</code> simulation</strong>
-</h5>
+</h3>
 <p>Now that we’ve checked the structure of our simulation model, we can go ahead and run it.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## RStudio doesn't deal well with package order re-arrangements by spades(), so turn it off when using RStudio
 opts &lt;-<span class="st"> </span><span class="kw">options</span>(<span class="dt">spades.switchPkgNamespaces =</span> <span class="ot">FALSE</span>)
@@ -354,30 +369,39 @@ opts &lt;-<span class="st"> </span><span class="kw">options</span>(<span class="
 
 <span class="kw">dev</span>() <span class="co"># to open a new plot device for faster plotting</span>
 <span class="kw">clearPlot</span>()
-mySim2 &lt;-<span class="st"> </span><span class="kw">spades</span>(mySim, <span class="dt">debug =</span> <span class="ot">TRUE</span>)   <span class="co"># set debug = TRUE to print simulation steps.</span></code></pre></div>
+mySim2 &lt;-<span class="st"> </span><span class="kw">spades</span>(mySim, <span class="dt">debug =</span> <span class="ot">TRUE</span>)   <span class="co"># set debug = TRUE to print simulation steps.</span>
+
+## After running the simulation, we can print the event diagram, the completed events and the scheduled events
+<span class="kw">eventDiagram</span>(mySim2)
+<span class="kw">completed</span>(mySim2)
+<span class="kw">events</span>(mySim2)</code></pre></div>
 </div>
-<div id="change-model-parameters-without-restarting" class="section level5">
-<h5 class="hasAnchor">
+<div id="change-model-parameters-without-restarting" class="section level3">
+<h3 class="hasAnchor">
 <a href="#change-model-parameters-without-restarting" class="anchor"></a><a name="changeParams"></a><strong>1.3.5 Change model parameters without restarting</strong>
-</h5>
-<p>With <code>SpaDES</code> it is possible to change a simulations’ parameters and can continue running it.<br>
-What will happen if drought intensity increases?</p>
+</h3>
+<p>With <code>SpaDES</code> it is possible to change a simulations’ parameters and can continue running it. This possible because, even though the simulation stopped at year 20, <code>SpaDES</code> has scheduled the “next” events (see the result of the <code>events</code> call above). Find out more about events and event scheduling <a href="http://spades-workshops.predictiveecology.org/articles/Loops-to-Events.html">here</a>.</p>
+<p>What will happen if drought intensity increases and fires become more frequent?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">end</span>(mySim2)    ## accesses the last year
 <span class="kw">end</span>(mySim2) &lt;-<span class="st"> </span><span class="dv">50</span>   ## ## add another 30 years to the end of the simulation
 
 <span class="kw">params</span>(mySim2)<span class="op">$</span>fireSpreadLcc<span class="op">$</span>drought   ## accesses the current drought parameter value
 <span class="kw">params</span>(mySim2)<span class="op">$</span>fireSpreadLcc<span class="op">$</span>drought &lt;-<span class="st"> </span><span class="dv">3</span>   ## changes it
+<span class="kw">params</span>(mySim2)<span class="op">$</span>fireSpreadLcc<span class="op">$</span>returnInterval  ## accesses the current fire return interval value
+<span class="kw">params</span>(mySim2)<span class="op">$</span>fireSpreadLcc<span class="op">$</span>returnInterval &lt;-<span class="st"> </span><span class="dv">1</span>  ## changes it
 
 <span class="kw">clearPlot</span>()
-mySim3 &lt;-<span class="st"> </span><span class="kw">spades</span>(mySim2, <span class="dt">debug =</span> <span class="ot">TRUE</span>)</code></pre></div>
+mySim3 &lt;-<span class="st"> </span><span class="kw">spades</span>(mySim2, <span class="dt">debug =</span> <span class="ot">TRUE</span>)
+
+<span class="kw">time</span>(mySim2)  ## prints the "current" time (i.e. the time at which the simulation finished)</code></pre></div>
 </div>
-<div id="add-a-friends-module" class="section level5">
-<h5 class="hasAnchor">
+<div id="add-a-friends-module" class="section level3">
+<h3 class="hasAnchor">
 <a href="#add-a-friends-module" class="anchor"></a><a name="friendsModule"></a><strong>1.3.6 Add a friend’s module</strong>
-</h5>
+</h3>
 <p>The second part of our question was to investigate how forest fires may affect harvesting. The <code>LCC2005</code> module group does not contain any module that we can use for this, but that’s OK, because we can get modules from other Git repositories.</p>
 <p>We will use an <em>extremely</em> simple module that maps areas that are adequate for forest harvesting in function of forest age (a parameter that the user inputs) and the type of forest that can be harvested (here, only coniferous forests). This module, called <code>forestHarvest</code>, will be downloaded from a different repository “CeresBarros/forestHarvest-SpaDESmodule”. Learn more about downloading and sharing modules <a href="http://spades-workshops.predictiveecology.org/articles/Existing-modules.html">here</a>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">downloadModule</span>(<span class="dt">name =</span> <span class="st">"forestHarvest"</span>, <span class="dt">repo =</span> <span class="st">"CeresBarros/forestHarvest-SpaDESmodule"</span>, <span class="dt">path =</span> <span class="kw">getPaths</span>()<span class="op">$</span>modulePath)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">downloadModule</span>(<span class="dt">name =</span> <span class="st">"forestHarvest"</span>, <span class="dt">repo =</span> <span class="st">"CeresBarros/forestHarvest-SpaDESmodule"</span>, <span class="dt">path =</span> <span class="kw">getPaths</span>()<span class="op">$</span>modulePath, <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)
 
 ## We've defined the paths earlier 
 paths &lt;-<span class="st"> </span><span class="kw">getPaths</span>()
@@ -388,7 +412,7 @@ modules &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="
 objects &lt;-<span class="st"> </span><span class="kw">list</span>()
 
 ## define the starting and end times of the simulation
-times &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">start =</span> <span class="fl">1.0</span>, <span class="dt">end =</span> <span class="dv">50</span>)
+times &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">start =</span> <span class="fl">1.0</span>, <span class="dt">end =</span> <span class="fl">50.0</span>)
 
 ## notice the new parameter list
 parameters &lt;-<span class="st"> </span><span class="kw">list</span>(
@@ -401,9 +425,10 @@ parameters &lt;-<span class="st"> </span><span class="kw">list</span>(
 )
 
 ## make simulation object
-mySim_manag &lt;-<span class="st"> </span><span class="kw">simInit</span>(<span class="dt">times =</span> times, <span class="dt">params =</span> parameters, <span class="dt">modules =</span> modules,
-                 <span class="dt">objects =</span> objects, <span class="dt">paths =</span> paths)
-
+mySim_manag &lt;-<span class="st"> </span><span class="kw">simInit</span>(<span class="dt">times =</span> times, <span class="dt">params =</span> parameters,
+                       <span class="dt">modules =</span> modules,
+                       <span class="dt">objects =</span> objects, <span class="dt">paths =</span> paths)
+<span class="kw">dev</span>()
 <span class="kw">moduleDiagram</span>(mySim_manag)
 <span class="kw">objectDiagram</span>(mySim_manag)
 
@@ -411,25 +436,49 @@ opts &lt;-<span class="st"> </span><span class="kw">options</span>(<span class="
 <span class="kw">dev</span>()
 <span class="kw">clearPlot</span>()
 mySim_manag2 &lt;-<span class="st"> </span><span class="kw">spades</span>(mySim_manag, <span class="dt">debug =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<p>Are there fewer areas where harvesting can occur if fires become larger (drought is more severe)?</p>
+</div>
+<div id="choose-to-save-outputs-without-changing-module-code" class="section level3">
+<h3 class="hasAnchor">
+<a href="#choose-to-save-outputs-without-changing-module-code" class="anchor"></a><a name="SaveOutputs"></a><strong>1.3.7 Choose to save outputs without changing module code</strong>
+</h3>
+<p>It is possible to set <code>SpaDES</code> to save particular objects at a user-defined interval. For this, we need to change the <code>simInit</code> call to include the <code>outputs</code> parameter, where we define the objects to be saved, the saving interval, etc. Check the <code>R</code> help for <code>simInit</code> for more details.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Change simInit to include the outputs options
+mySim_manag &lt;-<span class="st"> </span><span class="kw">simInit</span>(<span class="dt">times =</span> times, <span class="dt">params =</span> parameters,
+                       <span class="dt">modules =</span> modules,
+                       <span class="dt">objects =</span> objects, <span class="dt">paths =</span> paths,
+                       <span class="dt">outputs =</span> <span class="kw">data.frame</span>(<span class="dt">objectName =</span> <span class="st">"ageMap"</span>, <span class="dt">saveTime =</span> <span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">50</span>, <span class="dt">by =</span> <span class="dv">10</span>)))
+## Re-run the model
+mySim_manag2 &lt;-<span class="st"> </span><span class="kw">spades</span>(mySim_manag, <span class="dt">debug =</span> <span class="ot">TRUE</span>)
+
+## Print the list of saved outputs
+<span class="kw">outputs</span>(mySim_manag2)
+
+## Read the first object (two)
+ageMap01 &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="kw">outputs</span>(mySim_manag2)[<span class="dv">1</span>])
+
+## Now you can visualise the saved map in any way you want
+<span class="kw">clearPlot</span>()
+<span class="kw">Plot</span>(ageMap01[])
+<span class="kw">table</span>(ageMap01[])
+<span class="kw">hist</span>(ageMap01[])</code></pre></div>
+<p>Are there fewer areas that are appropriate for harvesting if fires become larger (i.e. drought is more severe)?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">end</span>(mySim_manag2) &lt;-<span class="st"> </span><span class="dv">100</span>
 <span class="kw">params</span>(mySim_manag2)<span class="op">$</span>fireSpreadLcc<span class="op">$</span>drought &lt;-<span class="st"> </span><span class="dv">3</span>
-
+<span class="kw">dev</span>()
+<span class="kw">clearPlot</span>()
 mySim_manag3 &lt;-<span class="st"> </span><span class="kw">spades</span>(mySim_manag2, <span class="dt">debug =</span> <span class="ot">TRUE</span>)</code></pre></div>
 </div>
 </div>
-<div id="show-your-spades-model-to-the-world" class="section level4">
-<h4 class="hasAnchor">
+<div id="show-your-spades-model-to-the-world" class="section level2">
+<h2 class="hasAnchor">
 <a href="#show-your-spades-model-to-the-world" class="anchor"></a><a name="shinySpaDES"></a><strong>1.4 Show your <code>SpaDES</code> model to the world!</strong>
-</h4>
-<p>Soon <code>SpaDES</code> will have another package that will allow building web-apps from <code>simList</code> objects, so that simulation results can be visualised and changed interactively. For now, you can play around with the proof-of-concept shiny apps:</p>
+</h2>
+<p>Soon <code>SpaDES</code> will have another package that will allow building web-apps from <code>simList</code> objects, so that simulation results can be visualised and changed interactively. For now, you can play around with the proof-of-concept Shiny apps:</p>
 <ul>
 <li><a href="https://spades.shinyapps.io/ForestChange_ProofOfConcept/" class="uri">https://spades.shinyapps.io/ForestChange_ProofOfConcept/</a></li>
 <li>
 <a href="http://w-vic-a105388.pfc.forestry.ca/SpaDESUI-forEliot-Oct2016/" class="uri">http://w-vic-a105388.pfc.forestry.ca/SpaDESUI-forEliot-Oct2016/</a> (only available inside CFS firewall)</li>
 </ul>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -444,6 +493,24 @@ mySim_manag3 &lt;-<span class="st"> </span><span class="kw">spades</span>(mySim_
 <a href="#spades-3-day-challenge"><strong><code>SpaDES</code></strong> 3-day challenge</a><ul class="nav nav-pills nav-stacked">
 <li>
 <a href="#day-1--what-is-spades-and-how-does-it-work"></a><a name="Day1" href="NA"></a><strong>Day 1. What is <code>SpaDES</code> and how does it work?</strong>
+</li>
+      <li>
+<a href="#part-i--user-this-is-spades--spades-meet-your-new-best-friend"></a><a name="PartI" href="NA"></a><strong>Part I. User, this is <code>SpaDES</code>. <code>SpaDES</code>, meet your new best friend</strong>
+</li>
+      <li>
+<a href="#part-ii--get-your-hands-dirty-using-spades-for-the-1st-time"></a><a name="PartII" href="NA"></a><strong>Part II. Get your hands dirty: using SpaDES for the 1st time</strong>
+</li>
+      <li>
+<a href="#installing-spades"></a><a name="InstallSpaDES" href="NA"></a><strong>1.1 Installing <code>SpaDES</code></strong>
+</li>
+      <li>
+<a href="#modules-included-in-the-spades-package"></a><a name="SpaDES_modules" href="NA"></a><strong>1.2 Modules included in the <code>SpaDES</code> package</strong>
+</li>
+      <li>
+<a href="#simulation-modelling-with-spades"></a><a name="ModellingSpaDES" href="NA"></a><strong>1.3 Simulation modelling with <code>SpaDES</code></strong>
+</li>
+      <li>
+<a href="#show-your-spades-model-to-the-world"></a><a name="shinySpaDES" href="NA"></a><strong>1.4 Show your <code>SpaDES</code> model to the world!</strong>
 </li>
       </ul>
 </li>
