@@ -135,10 +135,11 @@ Shiny web-app demo [here](https://spades.shinyapps.io/ForestChange_ProofOfConcep
 * [1.3 Simulation modelling with `SpaDES`](#ModellingSpaDES)
     + [1.3.1 Download modules](#DownloadModules)
     + [1.3.2 Simulation set-up](#SetupSim)
-    + [1.3.3  Simulation object - `simList`](#simList)
+    + [1.3.3 Simulation object - `simList`](#simList)
     + [1.3.4 Running a `SpaDES` simulation](#runSim)
     + [1.3.5 Change model parameters without restarting](#changeParams)
     + [1.3.6 Add a friend's module](#friendsModule)
+    + [1.3.7 Choose to save outputs without changing module code](#SaveOutputs)
 * [1.4 Show your `SpaDES` model to the world!](#shinySpaDES)  
     
 #### <a name="InstallSpaDES"></a>**1.1 Installing `SpaDES`**  
@@ -153,7 +154,7 @@ Shiny web-app demo [here](https://spades.shinyapps.io/ForestChange_ProofOfConcep
 
 ```{r SpaDESinstall}
 ## Install all packages and their dependencies first
-install.packages('SpaDES', dependencies = TRUE)
+install.packages('SpaDES', dependencies = TRUE, repos = "http://132.156.148.172")
 
 ## now, update some of the packages from the development branch.
 devtools::install_github('PredictiveEcology/SpaDES.core@development')
@@ -179,7 +180,7 @@ dir(sampleModuleDir)
 ## open the sample module Rmd file to learn more about the modules and access a simple example
 sampleModuleFiles <- list.files(sampleModuleDir, pattern = 'Rmd$', recursive = TRUE, full.names = TRUE)
     
-lapply(sampleModuleFiles, file.edit)
+lapply(sampleModuleFiles[1], file.edit)
 ```
   
 All modules should come with an *.Rmd* file that provides a summary of how the module works and *reproducible* example. If you've ever searched for R-help on **stackoverflow** you'll have noticed how people try to provide `R` code that can be run in any machine to reproduce the problem/solution at hand. Module *.Rmd* files should also run in any machine.
@@ -223,12 +224,12 @@ Otherwise get it
 
 ```{r module_downld}
 ## Not run (use if API limit is exceeded)
-# ops <- options(spades.useragent = "http://github.com/CeresBarros/SpaDES-modules")
+ops <- options(spades.useragent = "http://github.com/CeresBarros/SpaDES-modules")
 
 ## note how we use the modules folder defined above and chose to download the necessary data
 downloadModule('LCC2005', path = getPaths()$modulePath, repo = 'PredictiveEcology/SpaDES-modules', data = TRUE, overwrite = TRUE)
 
-# options(ops)
+options(ops)
 
 ## open the description of the LCC2005 module group - on Windows, this provides files directories
 openModules('LCC2005', path = getPaths()$modulePath) 
@@ -263,9 +264,10 @@ parameters <- list(
   .globals = list(stackName = "landscape", burnStats = "nPixelsBurned"),
   .progress = list(NA),
   fireSpreadLcc = list(nFires = 10L, drought = 1, its = 1e6,
-                    persistprob = 0, returnInterval = 10, startTime = 0,
-                    .plotInitialTime = 0.1, .plotInterval = 10)
+                    persistprob = 0, returnInterval = 1, startTime = 0,
+                    .plotInitialTime = NA, .plotInterval = 10)
 )
+ls.str(parameters)
 
 ## make simulation object
 mySim <- simInit(times = times, params = parameters, modules = modules,
@@ -282,9 +284,14 @@ Let's have a look at what mySim contains and how modules are connected.
 ## list the contentes of mySim
 ls.str(mySim)
 
+dev()
+plot(mySim$age)
+
 ## plot module connections
+dev()
 moduleDiagram(mySim)
 objectDiagram(mySim)
+events(mySim)
 ```
 
 
@@ -300,13 +307,17 @@ opts <- options(spades.switchPkgNamespaces = FALSE)
 dev() # to open a new plot device for faster plotting
 clearPlot()
 mySim2 <- spades(mySim, debug = TRUE)   # set debug = TRUE to print simulation steps.
+
+## After running the simulation, we can print the event diagram, the and the completed events and the scheduled events
+eventDiagram(mySim2)
+completed(mySim2)
+events(mySim2)
 ```
-  
 
 ##### <a name="changeParams"></a>**1.3.5 Change model parameters without restarting** 
 
-With `SpaDES` it is possible to change a simulations' parameters and can continue running it.  
-What will happen if drought intensity increases?  
+With `SpaDES` it is possible to change a simulations' parameters and can continue running it. This possible because, even though the simulation stopped at year 20, `SpaDES` has scheduled the "next" events (see the result of the `events` call above).    
+What will happen if drought intensity increases and fires become more frequent?  
 
 ```{r run_sim2}
 end(mySim2)    ## accesses the last year
@@ -314,9 +325,12 @@ end(mySim2) <- 50   ## ## add another 30 years to the end of the simulation
 
 params(mySim2)$fireSpreadLcc$drought   ## accesses the current drought parameter value
 params(mySim2)$fireSpreadLcc$drought <- 3   ## changes it
+params(mySim2)$fireSpreadLcc$returnInterval  ## accesses the current fire return interval value
+params(mySim2)$fireSpreadLcc$returnInterval <- 1  ## changes it
 
 clearPlot()
 mySim3 <- spades(mySim2, debug = TRUE)
+time(mySim2)
 ```
 
 
@@ -326,7 +340,7 @@ The second part of our question was to investigate how forest fires may affect h
 We will use an *extremely* simple module that maps areas that are adequate for forest harvesting in function of forest age (a parameter that the user inputs) and the type of forest that can be harvested (here, only coniferous forests). This module, called `forestHarvest`, will be downloaded from a different repository "CeresBarros/forestHarvest-SpaDESmodule". Learn more about downloading and sharing modules [here](http://spades-workshops.predictiveecology.org/articles/Existing-modules.html).  
 
 ```{r harvest}
-downloadModule(name = "forestHarvest", repo = "CeresBarros/forestHarvest-SpaDESmodule", path = getPaths()$modulePath)
+downloadModule(name = "forestHarvest", repo = "CeresBarros/forestHarvest-SpaDESmodule", path = getPaths()$modulePath, overwrite = TRUE)
 
 ## We've defined the paths earlier 
 paths <- getPaths()
@@ -337,7 +351,7 @@ modules <- list("cropReprojectLccAge", "fireSpreadLcc", "forestAge", "forestSucc
 objects <- list()
 
 ## define the starting and end times of the simulation
-times <- list(start = 1.0, end = 50)
+times <- list(start = 1.0, end = 50.0)
 
 ## notice the new parameter list
 parameters <- list(
@@ -350,9 +364,10 @@ parameters <- list(
 )
 
 ## make simulation object
-mySim_manag <- simInit(times = times, params = parameters, modules = modules,
-                 objects = objects, paths = paths)
-
+mySim_manag <- simInit(times = times, params = parameters,
+                       modules = modules,
+                       objects = objects, paths = paths)
+dev()
 moduleDiagram(mySim_manag)
 objectDiagram(mySim_manag)
 
@@ -362,12 +377,41 @@ clearPlot()
 mySim_manag2 <- spades(mySim_manag, debug = TRUE)
 ```
 
-Are there fewer areas where harvesting can occur if fires become larger (drought is more severe)? 
+
+##### <a name="SaveOutputs"></a>**1.3.7 Choose to save outputs without changing module code**  
+
+It is possible to set `SpaDES` to save particular objects at a user-defined interval. For this, we need to change the `simInit` call to include the `outputs` parameter, where we define the objects to be saved, the saving interval, etc. Check the `R` help for `simInit` for more details.
+
+```{r saveOutputs}
+## Change simInit to include the outputs options
+mySim_manag <- simInit(times = times, params = parameters,
+                       modules = modules,
+                       objects = objects, paths = paths,
+                       outputs = data.frame(objectName = "ageMap", saveTime = seq(1, 50, by = 10)))
+## Re-run the model
+mySim_manag2 <- spades(mySim_manag, debug = TRUE)
+
+## Print the list of saved outputs
+outputs(mySim_manag2)
+
+## Read the first object (two)
+ageMap01 <- readRDS(outputs(mySim_manag2)[1])
+
+## Now you can visualise the saved map in any way you want
+clearPlot()
+Plot(ageMap01[])
+table(ageMap01[])
+hist(ageMap01[])
+```
+
+
+Are there fewer appropriate areas for harvesting if fires become larger (drought is more severe)? 
 
 ```{r}
 end(mySim_manag2) <- 100
 params(mySim_manag2)$fireSpreadLcc$drought <- 3
-
+dev()
+clearPlot()
 mySim_manag3 <- spades(mySim_manag2, debug = TRUE)
 
 ```
@@ -380,4 +424,7 @@ Soon `SpaDES` will have another package that will allow building web-apps from `
 - https://spades.shinyapps.io/ForestChange_ProofOfConcept/
 - http://w-vic-a105388.pfc.forestry.ca/SpaDESUI-forEliot-Oct2016/ (only available inside CFS firewall)
 
+
+
+for(i in 1:3){}
 
