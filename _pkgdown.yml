@@ -11,8 +11,10 @@ navbar:
   title: "SpaDES Workshops"
   type: inverse
   left:
-    - text: "2018-02-07 Workshop"
+    - text: "2018-05-02 Workshop"
       href: articles/index.html
+    - text: "2018-02-07 Workshop"
+      href: articlesFeb2018/index.html
     - text: "Past Workshops"
       href: http://rpubs.com/PredictiveEcology/SpaDES-Intro-Course-Outline
   right:
@@ -20,6 +22,10 @@ navbar:
       href: https://spades.predictiveecology.org/
 
 articles:
+  - title: "Workshop overview"
+    contents:
+    - OldReadme
+
   - title: "Introduction to SpaDES"
     contents:
     - GoogleDrive
@@ -37,37 +43,4 @@ articles:
     - Loops-to-Events
     - SpaDES4Dummies
     - Convert-R-code-to-SpaDES-module
-
-  - title: "Using existing modules -- Developer's Workshop"
-    desc: >
-      If you are given a module, how do we get it, understand it, run it, test it, incorporate it into our own modules
-    contents:
-    - Existing-modules
-
-  - title: "Developing a new continuously available science -- Developer's Workshop"
-    desc: >
-      Often decision support appears a long way from raw data collection, statistical model fitting, simulation modeling, optimization
-    contents:
-      - Continuous-Workflow
-
-  - title: "Reference -- Developer's topics for reference"
-    desc: >
-      Advanced topics that can be helpful while going through the modules
-    contents:
-    - Modules--Thinking-in-a-modular-way
-    - Module-details
-    - Module-Using-parent-modules-to-integrate
-    - The-simList
-    - R-Developing-powerful-skills
-    - R-Profiling-code
-    - Sharing-Modules
-    - Simulation-Experiments-Replication
-
-  - title: "Reference -- Links to SpaDES wiki pages and vignettes"
-    desc: >
-      These are key to working with SpaDES, they are on the wiki or in vignettes
-    contents:
-    - Debugging
-    - Caching
-    - Plotting
 

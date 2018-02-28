@@ -101,9 +101,9 @@
   <span class="dt">vectorized =</span> { a &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">1000</span>) }
 )</code></pre></div>
 <pre><code>## Unit: microseconds
-##        expr      min       lq       mean   median        uq       max
-##        loop 3296.103 3991.747 5838.31849 4540.462 7555.1685 11514.802
-##  vectorized   32.847   34.900   52.14726   36.073   65.2535   130.214
+##        expr      min        lq       mean    median        uq       max
+##        loop 3395.211 3761.3600 5680.54381 4555.2475 6720.9145 11908.309
+##  vectorized   31.673   32.8465   50.09403   35.3395   58.2145   130.506
 ##  neval cld
 ##    100   b
 ##    100  a</code></pre>
@@ -116,7 +116,7 @@
 <li><p>alternatively, we wrap any block of code with <code>profvis</code></p></li>
 <li><p>This can be a <code>spades()</code> call, so it will show you the entire model:</p></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">profvis<span class="op">::</span><span class="kw">profvis</span>({a &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10000000</span>)})</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">profvis<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/profvis/topics/profvis">profvis</a></span>({a &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10000000</span>)})</code></pre></div>
 </div>
 <div id="profiling-the-spades-call" class="section level2">
 <h2 class="hasAnchor">
@@ -130,7 +130,7 @@
    <span class="dt">modules =</span> <span class="kw">list</span>(<span class="st">"randomLandscapes"</span>, <span class="st">"fireSpread"</span>, <span class="st">"caribouMovement"</span>),
    <span class="dt">paths =</span> <span class="kw">list</span>(<span class="dt">modulePath =</span> <span class="kw">system.file</span>(<span class="st">"sampleModules"</span>, <span class="dt">package =</span> <span class="st">"SpaDES"</span>))
 )
-profvis<span class="op">::</span><span class="kw">profvis</span>({<span class="kw">spades</span>(mySim)})</code></pre></div>
+profvis<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/profvis/topics/profvis">profvis</a></span>({<span class="kw">spades</span>(mySim)})</code></pre></div>
 </div>
 <div id="when-to-profile" class="section level2">
 <h2 class="hasAnchor">
