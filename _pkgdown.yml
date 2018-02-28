@@ -22,9 +22,6 @@ navbar:
       href: https://spades.predictiveecology.org/
 
 articles:
-  - title: "Workshop overview"
-    contents:
-    - OldReadme
 
   - title: "Introduction to SpaDES"
     contents:
