@@ -38,7 +38,10 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../articles/index.html">2018-02-07 Workshop</a>
+  <a href="../articles/index.html">2018-05-02 Workshop</a>
+</li>
+<li>
+  <a href="../articlesFeb2018/index.html">2018-02-07 Workshop</a>
 </li>
 <li>
   <a href="http://rpubs.com/PredictiveEcology/SpaDES-Intro-Course-Outline">Past Workshops</a>
@@ -72,9 +75,9 @@
     
     
 <div class="contents">
-<div id="the-parts" class="section level2">
+<div id="where-does-simlist-come-from" class="section level2">
 <h2 class="hasAnchor">
-<a href="#the-parts" class="anchor"></a>The parts</h2>
+<a href="#where-does-simlist-come-from" class="anchor"></a>Where does <code>simList</code> come from?</h2>
 <ol style="list-style-type: decimal">
 <li><p>Initializing a simulation using <code>simInit()</code> creates a <code>simList</code> object.</p></li>
 <li><p>Running a simulation via a <code>spades()</code> call returns a modified <code>simList</code> object.</p></li>
@@ -281,17 +284,16 @@ modulePath()
 <a href="#model-specification" class="anchor"></a>Model specification</h2>
 <p>Simple examples (using demo modules) of <code>simInit()</code> and <code>spades()</code> calls.</p>
 <ul>
-<li>examine simList structure before and after the <code>spades()</code> call</li>
+<li>examine <code>simList</code> structure before and after the <code>spades()</code> call</li>
 </ul>
-</div>
-<div id="initiliaze-an-empty-simlist-object" class="section level1">
-<h1 class="hasAnchor">
-<a href="#initiliaze-an-empty-simlist-object" class="anchor"></a>Initiliaze an empty <code>simList</code> object</h1>
+<div id="initiliaze-an-empty-simlist-object" class="section level3">
+<h3 class="hasAnchor">
+<a href="#initiliaze-an-empty-simlist-object" class="anchor"></a>Initiliaze an empty <code>simList</code> object</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">emptySim &lt;-<span class="st"> </span><span class="kw">simInit</span>()</code></pre></div>
 </div>
-<div id="inspect-the-empty-simlist-object" class="section level1">
-<h1 class="hasAnchor">
-<a href="#inspect-the-empty-simlist-object" class="anchor"></a>Inspect the empty <code>simList</code> object</h1>
+<div id="inspect-the-empty-simlist-object" class="section level3">
+<h3 class="hasAnchor">
+<a href="#inspect-the-empty-simlist-object" class="anchor"></a>Inspect the empty <code>simList</code> object</h3>
 <ol style="list-style-type: decimal">
 <li>What are the names of each of the slots in the simList?</li>
 <li>What do each of these slots contain? Hint: see <code>?'.simList-class'</code>.</li>
@@ -301,9 +303,9 @@ modulePath()
 <span class="kw">getSlots</span>(<span class="st">'simList'</span>)
 ?<span class="st">'.simList-class'</span></code></pre></div>
 </div>
-<div id="initialize-a-simulation-using-sample-modules" class="section level1">
-<h1 class="hasAnchor">
-<a href="#initialize-a-simulation-using-sample-modules" class="anchor"></a>Initialize a simulation using sample modules</h1>
+<div id="initialize-a-simulation-using-sample-modules" class="section level3">
+<h3 class="hasAnchor">
+<a href="#initialize-a-simulation-using-sample-modules" class="anchor"></a>Initialize a simulation using sample modules</h3>
 <p>This code is based on the <code>SpaDES</code> package <a href="https://github.com/PredictiveEcology/SpaDES/blob/master/demo/spades-simulation.R">demo</a>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">42</span>)
 
@@ -342,9 +344,9 @@ mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(
 
 mySim<span class="op">$</span>landscape &lt;-<span class="st"> </span><span class="kw">stack</span>(mySim<span class="op">$</span>DEM, mySim<span class="op">$</span>forestAge, mySim<span class="op">$</span>habitatQuality, mySim<span class="op">$</span>percentPine)</code></pre></div>
 </div>
-<div id="inspect-the-new-simlist-object" class="section level1">
-<h1 class="hasAnchor">
-<a href="#inspect-the-new-simlist-object" class="anchor"></a>Inspect the new <code>simList</code> object</h1>
+<div id="inspect-the-new-simlist-object" class="section level3">
+<h3 class="hasAnchor">
+<a href="#inspect-the-new-simlist-object" class="anchor"></a>Inspect the new <code>simList</code> object</h3>
 <p>Use the simList accessor functions to determine the following:</p>
 <ol style="list-style-type: decimal">
 <li>the modules included in the simulation and their package dependencies;</li>
@@ -389,21 +391,22 @@ mySim<span class="op">$</span>landscape &lt;-<span class="st"> </span><span clas
 <span class="kw">inputPath</span>(mySim)
 <span class="kw">outputPath</span>(mySim)</code></pre></div>
 </div>
-<div id="run-the-simulation" class="section level1">
-<h1 class="hasAnchor">
-<a href="#run-the-simulation" class="anchor"></a>Run the simulation</h1>
+<div id="run-the-simulation" class="section level3">
+<h3 class="hasAnchor">
+<a href="#run-the-simulation" class="anchor"></a>Run the simulation</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dev</span>()
 mySimOut &lt;-<span class="st"> </span><span class="kw">Copy</span>(mySim) ## make a deep copy of the simList
 mySimOut &lt;-<span class="st"> </span><span class="kw">spades</span>(mySimOut)</code></pre></div>
 </div>
-<div id="compare-the-simlist-before-and-after" class="section level1">
-<h1 class="hasAnchor">
-<a href="#compare-the-simlist-before-and-after" class="anchor"></a>Compare the simList before and after</h1>
+<div id="compare-the-simlist-before-and-after" class="section level3">
+<h3 class="hasAnchor">
+<a href="#compare-the-simlist-before-and-after" class="anchor"></a>Compare the simList before and after</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">times</span>(mySim)
 <span class="kw">times</span>(mySimOut)
 
 <span class="kw">objects</span>(mySim)
 <span class="kw">objects</span>(mySimOut)</code></pre></div>
+</div>
 </div>
 </div>
   </div>
@@ -413,17 +416,11 @@ mySimOut &lt;-<span class="st"> </span><span class="kw">spades</span>(mySimOut)<
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#the-parts">The parts</a></li>
+<li><a href="#where-does-simlist-come-from">Where does <code>simList</code> come from?</a></li>
       <li><a href="#how-are-simulations-specified">How are simulations specified?</a></li>
       <li><a href="#how-spades-works-simlists">How <code>SpaDES</code> works: simLists</a></li>
       <li><a href="#accessing-the-parts-of-a-simlists">Accessing the parts of a simLists</a></li>
       <li><a href="#model-specification">Model specification</a></li>
-      <li><a href="#initiliaze-an-empty-simlist-object">Initiliaze an empty <code>simList</code> object</a></li>
-      <li><a href="#inspect-the-empty-simlist-object">Inspect the empty <code>simList</code> object</a></li>
-      <li><a href="#initialize-a-simulation-using-sample-modules">Initialize a simulation using sample modules</a></li>
-      <li><a href="#inspect-the-new-simlist-object">Inspect the new <code>simList</code> object</a></li>
-      <li><a href="#run-the-simulation">Run the simulation</a></li>
-      <li><a href="#compare-the-simlist-before-and-after">Compare the simList before and after</a></li>
       </ul>
 </div>
       </div>

@@ -2,18 +2,19 @@ urls:
   reference: http://spades-workshops.predictiveecology.org//reference
   article: http://spades-workshops.predictiveecology.org//articles
 articles:
-  01Day1: 01Day1.html
   Building-a-module: Building-a-module.html
   Caching: Caching.html
   Continuous-Workflow: Continuous-Workflow.html
   Convert-R-code-to-SpaDES-module: Convert-R-code-to-SpaDES-module.html
   Debugging: Debugging.html
   Existing-modules: Existing-modules.html
+  Feb2018_Day1: Feb2018_Day1.html
   GoogleDrive: GoogleDrive.html
   Loops-to-Events: Loops-to-Events.html
   Module-details: Module-details.html
   Module-Using-parent-modules-to-integrate: Module-Using-parent-modules-to-integrate.html
   Modules--Thinking-in-a-modular-way: Modules--Thinking-in-a-modular-way.html
+  MyFirstModule: MyFirstModule.html
   OldReadme: OldReadme.html
   Plotting: Plotting.html
   R-Developing-powerful-skills: R-Developing-powerful-skills.html
@@ -22,4 +23,5 @@ articles:
   Simulation-Experiments-Replication: Simulation-Experiments-Replication.html
   SpaDES4Dummies: SpaDES4Dummies.html
   The-simList: The-simList.html
+  WhatIsSpades: WhatIsSpades.html
 

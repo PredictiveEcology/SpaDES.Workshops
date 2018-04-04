@@ -34,7 +34,7 @@ articles:
     desc: >
       Installing SpaDES fore the first time, importing modules and running fairly simple simulations
     contents:
-    - 01Day1
+    - Feb2018_Day1
 
   - title: "Making new modules -- Developer's Workshop"
     desc: >

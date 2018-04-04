@@ -30,7 +30,7 @@ Workshop outline:
 Models are nowadays so important and widespread that we often don't realize that most of what we use in our daily lives is the result of someone's (or some team's) model.  From weather forecasting, to predicting stock market fluctuations. From the design of your bike, to the estimation of blood sugar and insulin levels and how they vary hourly and according to different diets (in case you don't know, this can be important for diabetes treatments, and drug dosage and scheduling)... 
 Models are indeed 'everywhere'.  
 
-<img src="images/Day1_part1_figs/models_everywhere.png" align="middle" height="400" width="750" margin="0 auto" />
+<img src="images/Feb2018_Day1/models_everywhere.png" align="middle" height="400" width="750" margin="0 auto" />
 
 
 #### Challenges modellers face  
@@ -46,9 +46,9 @@ In a world where disciplines often interact to study complex questions, like cli
 2.  **High complexity**
     + often solving a question, or problem, requires the cooperation of different teams, each contributing with distinct data and, possibly, models that need to be integrated;
 
-<img src="images/Day1_part1_figs/High_complexity.png" align="middle" width="300" />
+<img src="images/Feb2018_Day1/High_complexity.png" align="middle" width="300" />
 
-<img src="images/Day1_part1_figs/Big_data_modelupdates.png" align="right" width="200" />
+<img src="images/Feb2018_Day1/Big_data_modelupdates.png" align="right" width="200" />
 
 
 3.  **Era of *big data* **
@@ -72,7 +72,7 @@ Although this framework is ideal, it is only seldomly applied across the scienti
 
 Why? Because we are yet far from developing our research in a way that is easily repeatable, "upgradeable" and shareable. This renders the application of the continuous adaptive management framework costly, both temporally and financially, especially in interdisciplinary projects that involve multiple teams and stakeholders.
 
-<img src="images/Day1_part1_figs/contadaptmanag_nightmare.png" align="middle" width="600" />  
+<img src="images/Feb2018_Day1/contadaptmanag_nightmare.png" align="middle" width="600" />  
   
   
 #### Where do we go from here? **`SpaDES`!**  
@@ -98,7 +98,7 @@ Like a smart-phone where users install and use the apps that they want, `SpaDES`
 ##### **An example**
 Our question(s): how will forest fires affect forest age? And how will climate change affect fire regimes and in turn the vegetation? How will timber supply be affected?  
 
-<img src="images/Day1_part1_figs/Smart_SpaDES.png" align="right" width="300" />
+<img src="images/Feb2018_Day1/Smart_SpaDES.png" align="right" width="300" />
 
 
 **To start we'll need:**  

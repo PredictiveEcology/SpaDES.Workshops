@@ -10,7 +10,7 @@ library(magrittr)
 library(SpaDES)
 ```
 
-## The parts
+## Where does `simList` come from?
 
 1. Initializing a simulation using `simInit()` creates a `simList` object.
 
@@ -65,16 +65,16 @@ data.frame(other_accessors = other_accessors) %>%
 
 Simple examples (using demo modules) of `simInit()` and `spades()` calls.
 
-- examine simList structure before and after the `spades()` call
+- examine `simList` structure before and after the `spades()` call
 
 
-# Initiliaze an empty `simList` object
+### Initiliaze an empty `simList` object
 
 ```{r empty-simList}
 emptySim <- simInit()
 ```
 
-# Inspect the empty `simList` object
+### Inspect the empty `simList` object
 
 1. What are the names of each of the slots in the simList?
 2. What do each of these slots contain? Hint: see `?'.simList-class'`.
@@ -86,7 +86,7 @@ getSlots('simList')
 ?'.simList-class'
 ```
 
-# Initialize a simulation using sample modules
+### Initialize a simulation using sample modules
 
 This code is based on the `SpaDES` package [demo](https://github.com/PredictiveEcology/SpaDES/blob/master/demo/spades-simulation.R).
 
@@ -129,7 +129,7 @@ mySim <- simInit(
 mySim$landscape <- stack(mySim$DEM, mySim$forestAge, mySim$habitatQuality, mySim$percentPine)
 ```
 
-# Inspect the new `simList` object
+### Inspect the new `simList` object
 
 Use the simList accessor functions to determine the following:
 
@@ -177,7 +177,7 @@ inputPath(mySim)
 outputPath(mySim)
 ```
 
-# Run the simulation
+### Run the simulation
 
 ```{r run-sim}
 dev()
@@ -185,7 +185,7 @@ mySimOut <- Copy(mySim) ## make a deep copy of the simList
 mySimOut <- spades(mySimOut)
 ```
 
-# Compare the simList before and after
+### Compare the simList before and after
 
 ```{r compare-sims}
 times(mySim)

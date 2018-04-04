@@ -22,22 +22,37 @@ navbar:
       href: https://spades.predictiveecology.org/
 
 articles:
-
-  - title: "Introduction to SpaDES"
+  - title: "Part 1: Introducing a modular simulation platform for non-programmers"
+    desc: >
+      Why SpaDES, what it is for, and how does it help us? Plus: importing modules and running fairly simple simulations from pre-made modules
     contents:
     - GoogleDrive
+    - WhatIsSpades
 
-  - title: "Advanced introduction to SpaDES"
+  - title: "Part 2: Getting started with SpaDES in R"
     desc: >
-      Installing SpaDES fore the first time, importing modules and running fairly simple simulations
+      How to start from the beginning, making simple modules, making modules interact
     contents:
-    - 01Day1
-
-  - title: "Making new modules -- Developer's Workshop"
-    desc: >
-      How to start from the beginning, why SpaDES, simple raster modules, interacting among modules
-    contents:
-    - Loops-to-Events
+    - MyFirstModule
     - SpaDES4Dummies
-    - Convert-R-code-to-SpaDES-module
+
+  - title: "Reference -- Developer's topics for reference"
+    desc: >
+      Advanced topics that can be helpful while going through the modules
+    contents:
+    - The-simList
+    - Module-details
+    - Module-Using-parent-modules-to-integrate
+    - Sharing-Modules
+    - Simulation-Experiments-Replication
+    - R-Developing-powerful-skills
+    - R-Profiling-code
+
+  - title: "Reference -- Links to SpaDES wiki pages and vignettes"
+    desc: >
+      These are key to working with SpaDES, they are on the wiki or in vignettes
+    contents:
+    - Debugging
+    - Caching
+    - Plotting
 
