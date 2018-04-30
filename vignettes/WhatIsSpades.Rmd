@@ -116,7 +116,7 @@ Shiny web-app demo [here](https://spades.shinyapps.io/ForestChange_ProofOfConcep
 ***
 ***
 
-## Part II. Get your hands dirty: using `SpaDES` for the 1st time
+## Exercises. Getting started with `SpaDES` in `R`
 
 ### 1.1 Installing `SpaDES`  
 
@@ -199,7 +199,7 @@ getPaths()
 
 Now we'll get `LCC2005` modules needed and save them in the `modules` folder created before. If you already have done this before and want to do it again, set the `overwrite` argument to `TRUE`.  
 
-Using `data = TRUE` will make sure the necessary data for the module is downloaded. Unfortunately, the forest age raster ("can_age04_1km.tif") is no longer downloadable without creating an account on the NASA EarthData website. Download it from [here](https://drive.google.com/open?id=1bFv94-f_h1HEy2bZ8VCoS7Jp_zgN2kZZ) and put in inside *modules/forestAges/data*.  
+Using `data = TRUE` will make sure the necessary data for the module is downloaded. Unfortunately, the forest age raster ("can_age04_1km.tif") is no longer downloadable without creating an account on the NASA EarthData website. Download it from [here](https://drive.google.com/file/d/1bD957dewv3U-cbISfeUEz1QpGg5DurR-/view?usp=sharing) and put in inside *modules/forestAges/data*.  
 
 For future reference, it is possible to create an account on the NASA EarthData website and, after logging in, you'll find the file [here](https://daac.ornl.gov/NACP/guides/NA_Tree_Age.html).  
 

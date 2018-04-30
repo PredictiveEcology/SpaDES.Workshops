@@ -47,7 +47,7 @@ devtools::install_github("PredictiveEcology/SpaDES.core", ref = "development")
 
 ```
 
-For a direct link to the workshops, click on the top navigation bar.
+For a direct link to the workshops, click on the top navigation bar or go [here](http://spades-workshops.predictiveecology.org/)
 
 ## Resources:
 
