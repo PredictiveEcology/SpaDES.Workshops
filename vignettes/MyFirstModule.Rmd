@@ -1,7 +1,7 @@
 ---
 title: "My first SpaDES module - from `R` to `SpaDES`"
 author: "Ceres Barros"
-date: "April 3, 2018"
+date: "May 2, 2018"
 output:
   html_document:
     toc : TRUE

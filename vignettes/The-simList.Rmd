@@ -47,9 +47,9 @@ See also `?'.simList-class'`
 emptySim <- simInit()
 slots <- paste0(slotNames(emptySim))
 accessors <- c('envir', 'modules', 'params', 'events', 'current', 'completed', 'depends', 'times', 'inputs', 'outputs', 'paths') %>% 
-  paste0('()')
+paste0('()')
 data.frame(slot = slots, accessor = accessors) %>%
-  knitr::kable(format = 'html', padding = 0)
+knitr::kable(format = 'html', padding = 0)
 ```
 
 ```{r simList-accessors2, echo=FALSE, eval=TRUE}

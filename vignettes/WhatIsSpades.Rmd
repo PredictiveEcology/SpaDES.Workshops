@@ -1,7 +1,7 @@
 ---
 title: "What is SpaDES?"
 author: "Ceres Barros"
-date: "April 3, 2018"
+date: "May 2, 2018"
 output: 
   html_document:
     toc : TRUE
@@ -116,7 +116,7 @@ Shiny web-app demo [here](https://spades.shinyapps.io/ForestChange_ProofOfConcep
 ***
 ***
 
-## Part II. Get your hands dirty: using `SpaDES` for the 1st time
+## Exercises. Getting started with `SpaDES` in `R`
 
 ### 1.1 Installing `SpaDES`  
 
@@ -130,19 +130,23 @@ Shiny web-app demo [here](https://spades.shinyapps.io/ForestChange_ProofOfConcep
 
 ```{r SpaDESinstall}
 ## Install all packages and their dependencies first
-install.packages('SpaDES', dependencies = TRUE, repos = "http://132.156.148.172")
+install.packages('SpaDES', dependencies = TRUE)
 
 ## now, update some of the packages from the development branch.
-devtools::install_github('PredictiveEcology/SpaDES.core@development')
-devtools::install_github('PredictiveEcology/reproducible@development')
+devtools::install_github("PredictiveEcology/quickPlot", ref = "CEFWorkshop" , dependencies = FALSE)
+devtools::install_github("PredictiveEcology/reproducible", ref = "CEFWorkshop", dependencies = FALSE)
+devtools::install_github("PredictiveEcology/SpaDES.tools", ref = "CEFWorkshop", dependencies = FALSE)
+devtools::install_github("PredictiveEcology/SpaDES.core", ref = "CEFWorkshop", dependencies = FALSE)
 
-## and load SpaDES
-library(SpaDES)
 ```
+
 
 ### 1.2 Modules included in the `SpaDES` package
 
 ```{r sampleModuleDir}
+## load SpaDES
+library(SpaDES)
+
 ## Locate the sample modules in SpaDES.core
 sampleModuleDir <- system.file('sampleModules', package = 'SpaDES.core')
     
@@ -155,8 +159,11 @@ dir(sampleModuleDir)
 ```{r sampleModuleFiles}
 ## open the sample module Rmd file to learn more about the modules and access a simple example
 sampleModuleFiles <- list.files(sampleModuleDir, pattern = 'Rmd$', recursive = TRUE, full.names = TRUE)
-    
-lapply(sampleModuleFiles[1], file.edit)
+
+## open the first file
+file.edit(sampleModuleFiles[1])
+## or all:
+lapply(sampleModuleFiles, file.edit)
 ```
   
 All modules should come with an *.Rmd* file that provides a summary of how the module works and *reproducible* example. If you've ever searched for R-help on **stackoverflow** you'll have noticed how people try to provide `R` code that can be run in any machine to reproduce the problem/solution at hand. Module *.Rmd* files should also run in any machine.
@@ -179,7 +186,7 @@ The `LCC2005` module group provides a set of modules that can reproduce these dy
 Let's define the working directories of our simulation exercise (*SpaDESintro*) first.  
 
 ```{r def_dirs}
-main.dir <-  "~/"
+main.dir <-  "~/temp_SpaDESws/"
 
 ## We'll create the necessary directories in a temporary location - feel free to change this if you wish to.
 setPaths(cachePath = file.path(main.dir,'SpaDESintro/cache'),
@@ -193,19 +200,14 @@ getPaths()
 
 Now we'll get `LCC2005` modules needed and save them in the `modules` folder created before. If you already have done this before and want to do it again, set the `overwrite` argument to `TRUE`.  
 
-Using `data = TRUE` will make sure the necessary data for the module is downloaded. Unfortunately, the forest age raster ("can_age04_1km.tif") is no longer downloadable without creating an account on the NASA EarthData website. Download it from [here](https://drive.google.com/open?id=1bFv94-f_h1HEy2bZ8VCoS7Jp_zgN2kZZ) and put in inside *modules/forestAges/data*.  
+Using `data = TRUE` will make sure the necessary data for the module is downloaded. Unfortunately, the forest age raster ("can_age04_1km.tif") is no longer downloadable without creating an account on the NASA EarthData website. Download it from [here](https://drive.google.com/file/d/1bD957dewv3U-cbISfeUEz1QpGg5DurR-/view?usp=sharing) and put in inside *modules/forestAges/data*.  
 
 For future reference, it is possible to create an account on the NASA EarthData website and, after logging in, you'll find the file [here](https://daac.ornl.gov/NACP/guides/NA_Tree_Age.html).  
 
 
 ```{r module_downld}
-## Not run (use if API limit is exceeded)
-ops <- options(spades.useragent = "http://github.com/CeresBarros/SpaDES-modules")
-
 ## note how we use the modules folder defined above and chose to download the necessary data
 downloadModule('LCC2005', path = getPaths()$modulePath, repo = 'PredictiveEcology/SpaDES-modules', data = TRUE, overwrite = TRUE)
-
-options(ops)
 
 ## open the description of the LCC2005 module group - on Windows, this provides files directories
 openModules('LCC2005', path = getPaths()$modulePath) 
@@ -214,6 +216,7 @@ openModules('LCC2005', path = getPaths()$modulePath)
 LCC2005ModuleFiles <- list.files(getPaths()$modulePath, pattern = 'Rmd$', recursive = TRUE, full.names = TRUE)
 
 ## open module Rmd files
+file.edit(LCC2005ModuleFiles[1])
 lapply(LCC2005ModuleFiles, file.edit)
 ```
   
@@ -227,7 +230,7 @@ In this exercise, we will follow a simplified version of the example contained i
 ## We've defined the paths earlier 
 paths <- getPaths()
 
-## we'll several, but not all the modules in LCC2005
+## we'll use several, but not all the modules in LCC2005
 modules <- list("cropReprojectLccAge", "fireSpreadLcc", "forestAge", "forestSuccessionBeacons", "LccToBeaconsReclassify")
 
 ## we don't need to suply external objects
@@ -243,6 +246,8 @@ parameters <- list(
                     persistprob = 0, returnInterval = 1, startTime = 0,
                     .plotInitialTime = NA, .plotInterval = 10)
 )
+
+## list parameters
 ls.str(parameters)
 
 ## make simulation object
@@ -292,6 +297,8 @@ eventDiagram(mySim2)
 completed(mySim2)
 events(mySim2)
 ```
+
+<img src="images/Feb2018_Day1/LCC2005_plot.png" align="middle" height="400" width="750" margin="0 auto" />
 
 #### 1.3.5 Change model parameters without restarting
 
@@ -359,6 +366,8 @@ clearPlot()
 mySim_manag2 <- spades(mySim_manag, debug = TRUE)
 ```
 
+<img src="images/Feb2018_Day1/LCC2005harvest_plot.png" align="middle" height="400" width="750" margin="0 auto" />
+
 
 #### 1.3.7 Choose to save outputs without changing module code
 
@@ -377,11 +386,11 @@ mySim_manag2 <- spades(mySim_manag, debug = TRUE)
 outputs(mySim_manag2)
 
 ## Read the first object (two)
-ageMap01 <- readRDS(outputs(mySim_manag2)[1])
+ageMap01 <- readRDS(outputs(mySim_manag2)$file[1])
 
 ## Now you can visualise the saved map in any way you want
 clearPlot()
-Plot(ageMap01[])
+Plot(ageMap01)
 table(ageMap01[])
 hist(ageMap01[])
 ```
@@ -399,7 +408,62 @@ mySim_manag3 <- spades(mySim_manag2, debug = TRUE)
 ```
 
 
-### 1.4 Show your `SpaDES` model to the world!
+### 1.4 `SpaDES` is not all "toy models"
+Although `SpaDES` is still being developed it has already been used to "translate" other important models that have been vastly used in ecology, both for purely academic purposes and in an applied context.
+One of them is LANDIS II. LANDIS-II is a fairly complex landscape model that simulates forest succession in terms of biomass per species age cohorts (Scheller et al. 2007) and can be coupled to other models to simulate vegetation responses to various drivers, like climate change and fire.
+What is the interest of translating LANDIS-II into `R`? It allows a better control and transparency of all pre-simulation work. `R` brings the stats to the model and the work becomes self-contained, transparent and reproducible.
+
+McIntire's team has already done the hard part - bringing LANDIS into `R` - as new users find new applications to the models, they might want to develop other modules that will interact with LBM-R.
+
+```{r LBMR}
+## get LBMR module - note: this is temporary as this module is yet unplublished
+downloadModule("LBMR", repo = "CeresBarros/SpaDES-modules", path = getPaths()$modulePath, overwrite = TRUE)
+
+## setup the simulation
+paths <- getPaths()
+times <- list(start = 0, end = 50)
+parameters <- list(
+  .globals = list(verbose = FALSE),
+  LBMR = list(.plotInitialTime = 1, successionTimestep = 2)
+
+)
+modules <- list("LBMR")
+
+mySim <- simInit(times = times, params = parameters, modules = modules, paths = paths)
+
+moduleDiagram(mySim)
+objectDiagram(mySim)
+
+## run the simulation
+clearPlot()
+mySimOut <- spades(mySim, debug = TRUE)
+
+```
+
+<img src="images/Feb2018_Day1/LBMR_plot.png" align="middle" height="400" width="750" margin="0 auto" />
+
+Like before, parameters can be changed, notably the seed dispersal mechanism. The default is the `wardDispersal`, which ... But `noDispersal` and `universalDispersal` are also available.
+
+```{r LBMR2}
+## Check the available parameters
+parameters(mySim)
+## Note how this differs from
+ls.str(parameters)
+
+parameters <- list(
+  .globals = list(verbose = FALSE),
+  LBMR = list(.plotInitialTime = 1, successionTimestep = 2, seedingAlgorithm = "noDispersal")
+
+)
+modules <- list("LBMR")
+
+dev()
+clearPlot()
+mySim <- simInit(times = times, params = parameters, modules = modules, paths = paths)
+mySimOut <- spades(mySim, debug = TRUE)
+```
+
+### 1.5 Show your `SpaDES` model to the world!
 
 Soon `SpaDES` will have another package that will allow building web-apps from `simList` objects, so that simulation results can be visualised and changed interactively. For now, you can play around with the proof-of-concept Shiny apps:
 
