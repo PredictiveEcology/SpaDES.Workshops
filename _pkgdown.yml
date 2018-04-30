@@ -12,9 +12,9 @@ navbar:
   type: inverse
   left:
     - text: "2018-05-02 Workshop"
-      href: articles/index.html
+      href: docs/articles/index.html
     - text: "2018-02-07 Workshop"
-      href: articlesFeb2018/index.html
+      href: docs/articlesFeb2018/index.html
     - text: "Past Workshops"
       href: http://rpubs.com/PredictiveEcology/SpaDES-Intro-Course-Outline
   right:
