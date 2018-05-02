@@ -225,7 +225,7 @@ sampleModuleFiles &lt;-<span class="st"> </span><span class="kw">list.files</spa
 <a href="#simulation-modelling-with-spades" class="anchor"></a>1.3 Simulation modelling with <code>SpaDES</code>
 </h3>
 <p>Let’s go back to the modelling question discussed briefly above.</p>
-<p>Our first objective is to simulate the the effect of fire on forest age. There are two main components to such a model, which need to interact:</p>
+<p>Our first objective is to simulate the effect of fire on forest age. There are two main components to such a model, which need to interact:</p>
 <ol style="list-style-type: decimal">
 <li>a fire simulator</li>
 <li>a forest age simulator</li>
@@ -251,7 +251,7 @@ sampleModuleFiles &lt;-<span class="st"> </span><span class="kw">list.files</spa
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## note how we use the modules folder defined above and chose to download the necessary data
 <span class="kw">downloadModule</span>(<span class="st">'LCC2005'</span>, <span class="dt">path =</span> <span class="kw">getPaths</span>()<span class="op">$</span>modulePath, <span class="dt">repo =</span> <span class="st">'PredictiveEcology/SpaDES-modules'</span>, <span class="dt">data =</span> <span class="ot">TRUE</span>, <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)
 
-## open the description of the LCC2005 module group - on Windows, this provides files directories
+## open the description of the LCC2005 module group - on Windows this provides files directories
 <span class="kw">openModules</span>(<span class="st">'LCC2005'</span>, <span class="dt">path =</span> <span class="kw">getPaths</span>()<span class="op">$</span>modulePath) 
 
 ## list all module files within LCC2005 and open them
@@ -272,12 +272,13 @@ paths &lt;-<span class="st"> </span><span class="kw">getPaths</span>()
 ## we'll use several, but not all the modules in LCC2005
 modules &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">"cropReprojectLccAge"</span>, <span class="st">"fireSpreadLcc"</span>, <span class="st">"forestAge"</span>, <span class="st">"forestSuccessionBeacons"</span>, <span class="st">"LccToBeaconsReclassify"</span>)
 
-## we don't need to suply external objects
+## we don't need to supply external objects
 objects &lt;-<span class="st"> </span><span class="kw">list</span>()
 
 ## define the starting and end times of the simulation
 times &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">start =</span> <span class="fl">1.0</span>, <span class="dt">end =</span> <span class="fl">20.0</span>)
 
+## define parameters. This will override any default parameters during this simulation.
 parameters &lt;-<span class="st"> </span><span class="kw">list</span>(
   <span class="dt">.globals =</span> <span class="kw">list</span>(<span class="dt">stackName =</span> <span class="st">"landscape"</span>, <span class="dt">burnStats =</span> <span class="st">"nPixelsBurned"</span>),
   <span class="dt">.progress =</span> <span class="kw">list</span>(<span class="ot">NA</span>),
@@ -299,7 +300,7 @@ mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(<span class=
 </h4>
 <p>The object <code>mySim</code> contains all the necessary information to run the simulation, such as the objects that are shared between modules, and how these are linked between them. It’s called a <code>simList</code>. You can find out more about the <code>simList</code> object <a href="http://spades-workshops.predictiveecology.org/articles/The-simList.html">here</a>.</p>
 <p>Let’s have a look at what mySim contains and how modules are connected.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## list the contentes of mySim
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## list the contents of mySim
 <span class="kw">ls.str</span>(mySim)
 
 <span class="kw">dev</span>()
@@ -335,10 +336,11 @@ mySim2 &lt;-<span class="st"> </span><span class="kw">spades</span>(mySim, <span
 <div id="change-model-parameters-without-restarting" class="section level4">
 <h4 class="hasAnchor">
 <a href="#change-model-parameters-without-restarting" class="anchor"></a>1.3.5 Change model parameters without restarting</h4>
-<p>With <code>SpaDES</code> it is possible to change a simulations’ parameters and can continue running it. This possible because, even though the simulation stopped at year 20, <code>SpaDES</code> has scheduled the “next” events (see the result of the <code>events</code> call above). Find out more about events and event scheduling <a href="http://spades-workshops.predictiveecology.org/articles/Loops-to-Events.html">here</a>.</p>
+<p>With <code>SpaDES</code> it is possible to change a simulations’ parameters and then continue running it. This is possible because, even though the simulation stopped at year 20, <code>SpaDES</code> has scheduled the “next” events (see the result of the <code>events</code> call above). Find out more about events and event scheduling <a href="http://spades-workshops.predictiveecology.org/articles/Loops-to-Events.html">here</a>.</p>
 <p>What will happen if drought intensity increases and fires become more frequent?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">end</span>(mySim2)    ## accesses the last year
-<span class="kw">end</span>(mySim2) &lt;-<span class="st"> </span><span class="dv">50</span>   ## ## add another 30 years to the end of the simulation
+<span class="kw">end</span>(mySim2) &lt;-<span class="st"> </span><span class="dv">50</span>   ## add another 30 years to the end of the simulation. 
+                    ## Alternatively use end(mySim2) &lt;- end(mySim2) + 30
 
 <span class="kw">params</span>(mySim2)<span class="op">$</span>fireSpreadLcc<span class="op">$</span>drought   ## accesses the current drought parameter value
 <span class="kw">params</span>(mySim2)<span class="op">$</span>fireSpreadLcc<span class="op">$</span>drought &lt;-<span class="st"> </span><span class="dv">3</span>   ## changes it
@@ -428,7 +430,7 @@ mySim_manag3 &lt;-<span class="st"> </span><span class="kw">spades</span>(mySim_
 <a href="#spades-is-not-all-toy-models" class="anchor"></a>1.4 <code>SpaDES</code> is not all “toy models”</h3>
 <p>Although <code>SpaDES</code> is still being developed it has already been used to “translate” other important models that have been vastly used in ecology, both for purely academic purposes and in an applied context. One of them is LANDIS II. LANDIS-II is a fairly complex landscape model that simulates forest succession in terms of biomass per species age cohorts (Scheller et al. 2007) and can be coupled to other models to simulate vegetation responses to various drivers, like climate change and fire. What is the interest of translating LANDIS-II into <code>R</code>? It allows a better control and transparency of all pre-simulation work. <code>R</code> brings the stats to the model and the work becomes self-contained, transparent and reproducible.</p>
 <p>McIntire’s team has already done the hard part - bringing LANDIS into <code>R</code> - as new users find new applications to the models, they might want to develop other modules that will interact with LBM-R.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## get LBMR module - note: this is temporary as this module is yet unplublished
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## get LBMR module - note: this is temporary as this module is yet unpublished
 <span class="kw">downloadModule</span>(<span class="st">"LBMR"</span>, <span class="dt">repo =</span> <span class="st">"CeresBarros/SpaDES-modules"</span>, <span class="dt">path =</span> <span class="kw">getPaths</span>()<span class="op">$</span>modulePath, <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)
 
 ## setup the simulation
