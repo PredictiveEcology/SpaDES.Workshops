@@ -209,7 +209,7 @@ For future reference, it is possible to create an account on the NASA EarthData 
 ## note how we use the modules folder defined above and chose to download the necessary data
 downloadModule('LCC2005', path = getPaths()$modulePath, repo = 'PredictiveEcology/SpaDES-modules', data = TRUE, overwrite = TRUE)
 
-## open the description of the LCC2005 module group - on Windows. This provides files directories
+## open the description of the LCC2005 module group - on Windows this provides files directories
 openModules('LCC2005', path = getPaths()$modulePath) 
 
 ## list all module files within LCC2005 and open them
