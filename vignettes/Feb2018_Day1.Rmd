@@ -415,7 +415,7 @@ hist(ageMap01[])
 
 Are there fewer areas that are appropriate for harvesting if fires become larger (i.e. drought is more severe)? 
 
-```{r}
+```{r changesFromSave}
 end(mySim_manag2) <- 100
 params(mySim_manag2)$fireSpreadLcc$drought <- 3
 dev()
@@ -431,4 +431,3 @@ Soon `SpaDES` will have another package that will allow building web-apps from `
 
 - https://spades.shinyapps.io/ForestChange_ProofOfConcept/
 - http://w-vic-a105388.pfc.forestry.ca/SpaDESUI-forEliot-Oct2016/ (only available inside CFS firewall)
-

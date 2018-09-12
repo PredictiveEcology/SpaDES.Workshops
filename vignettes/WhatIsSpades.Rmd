@@ -1,7 +1,7 @@
 ---
 title: "What is SpaDES?"
 author: "Ceres Barros"
-date: "April 3, 2018"
+date: "May 2, 2018"
 output: 
   html_document:
     toc : TRUE
@@ -138,14 +138,15 @@ devtools::install_github("PredictiveEcology/reproducible", ref = "CEFWorkshop", 
 devtools::install_github("PredictiveEcology/SpaDES.tools", ref = "CEFWorkshop", dependencies = FALSE)
 devtools::install_github("PredictiveEcology/SpaDES.core", ref = "CEFWorkshop", dependencies = FALSE)
 
-## and load SpaDES
-library(SpaDES)
 ```
 
 
 ### 1.2 Modules included in the `SpaDES` package
 
 ```{r sampleModuleDir}
+## load SpaDES
+library(SpaDES)
+
 ## Locate the sample modules in SpaDES.core
 sampleModuleDir <- system.file('sampleModules', package = 'SpaDES.core')
     
@@ -172,7 +173,7 @@ All modules should come with an *.Rmd* file that provides a summary of how the m
 
 Let's go back to the modelling question discussed briefly above.  
 
-Our first objective is to simulate the the effect of fire on forest age. There are two main components to such a model, which need to interact:  
+Our first objective is to simulate the effect of fire on forest age. There are two main components to such a model, which need to interact:  
 
 1. a fire simulator
 2. a forest age simulator  
@@ -199,16 +200,16 @@ getPaths()
 
 Now we'll get `LCC2005` modules needed and save them in the `modules` folder created before. If you already have done this before and want to do it again, set the `overwrite` argument to `TRUE`.  
 
-Using `data = TRUE` will make sure the necessary data for the module is downloaded. Unfortunately, the forest age raster ("can_age04_1km.tif") is no longer downloadable without creating an account on the NASA EarthData website. Download it from [here](https://drive.google.com/file/d/1bD957dewv3U-cbISfeUEz1QpGg5DurR-/view?usp=sharing) and put in inside *modules/forestAges/data*.  
+Using `data = TRUE` will make sure the necessary data for the module is downloaded. Unfortunately, the forest age raster ("can_age04_1km.tif") is no longer downloadable without creating an account on the NASA EarthData website. Download it from [here](https://drive.google.com/file/d/1bD957dewv3U-cbISfeUEz1QpGg5DurR-/view?usp=sharing) and put in inside *modules/forestAges/data* (this will only be possible during the workshop).  
 
 For future reference, it is possible to create an account on the NASA EarthData website and, after logging in, you'll find the file [here](https://daac.ornl.gov/NACP/guides/NA_Tree_Age.html).  
 
 
 ```{r module_downld}
 ## note how we use the modules folder defined above and chose to download the necessary data
-downloadModule('LCC2005', path = getPaths()$modulePath, repo = 'PredictiveEcology/SpaDES-modules', data = TRUE, overwrite = TRUE)
+downloadModule('LCC2005', path = getPaths()$modulePath, repo = 'CeresBarros/SpaDES-modules', data = TRUE, overwrite = TRUE)
 
-## open the description of the LCC2005 module group - on Windows, this provides files directories
+## open the description of the LCC2005 module group - on Windows this provides files directories
 openModules('LCC2005', path = getPaths()$modulePath) 
 
 ## list all module files within LCC2005 and open them
@@ -232,12 +233,13 @@ paths <- getPaths()
 ## we'll use several, but not all the modules in LCC2005
 modules <- list("cropReprojectLccAge", "fireSpreadLcc", "forestAge", "forestSuccessionBeacons", "LccToBeaconsReclassify")
 
-## we don't need to suply external objects
+## we don't need to supply external objects
 objects <- list()
 
 ## define the starting and end times of the simulation
 times <- list(start = 1.0, end = 20.0)
 
+## define parameters. This will override any default parameters during this simulation.
 parameters <- list(
   .globals = list(stackName = "landscape", burnStats = "nPixelsBurned"),
   .progress = list(NA),
@@ -261,7 +263,7 @@ The object `mySim` contains all the necessary information to run the simulation,
 Let's have a look at what mySim contains and how modules are connected.  
 
 ```{r mysim}
-## list the contentes of mySim
+## list the contents of mySim
 ls.str(mySim)
 
 dev()
@@ -283,10 +285,6 @@ You'll note that `SpaDES` has scheduled the initialisation events for each modul
 Now that we've checked the structure of our simulation model, we can go ahead and run it.  
 
 ```{r run_spades}
-## RStudio doesn't deal well with package order re-arrangements by spades(), so turn it off when using RStudio
-opts <- options(spades.switchPkgNamespaces = FALSE)
-# options(opts)   ## reverts changes
-
 dev() # to open a new plot device for faster plotting
 clearPlot()
 mySim2 <- spades(mySim, debug = TRUE)   # set debug = TRUE to print simulation steps.
@@ -297,17 +295,18 @@ completed(mySim2)
 events(mySim2)
 ```
 
-<img src="images/Feb2018_Day1/LCC2005_plot.png" align="middle" height="400" width="750" margin="0 auto" />
+<img src="images/Feb2018_Day1/LCC2005_plot.png" align="middle" height="400" width="400" margin="0 auto" />
 
 #### 1.3.5 Change model parameters without restarting
 
-With `SpaDES` it is possible to change a simulations' parameters and can continue running it. This possible because, even though the simulation stopped at year 20, `SpaDES` has scheduled the "next" events (see the result of the `events` call above). Find out more about events and event scheduling [here](http://spades-workshops.predictiveecology.org/articles/Loops-to-Events.html).  
+With `SpaDES` it is possible to change a simulations' parameters and then continue running it. This is possible because, even though the simulation stopped at year 20, `SpaDES` has scheduled the "next" events (see the result of the `events` call above). Find out more about events and event scheduling [here](http://spades-workshops.predictiveecology.org/articles/Loops-to-Events.html).  
 
 What will happen if drought intensity increases and fires become more frequent?  
 
 ```{r run_sim2}
 end(mySim2)    ## accesses the last year
-end(mySim2) <- 50   ## ## add another 30 years to the end of the simulation
+end(mySim2) <- 50   ## add another 30 years to the end of the simulation. 
+                    ## Alternatively use end(mySim2) <- end(mySim2) + 30
 
 params(mySim2)$fireSpreadLcc$drought   ## accesses the current drought parameter value
 params(mySim2)$fireSpreadLcc$drought <- 3   ## changes it
@@ -317,7 +316,8 @@ params(mySim2)$fireSpreadLcc$returnInterval <- 1  ## changes it
 clearPlot()
 mySim3 <- spades(mySim2, debug = TRUE)
 
-time(mySim2)  ## prints the "current" time (i.e. the time at which the simulation finished)
+time(mySim2) ## "current" time (i.e. the time at which the simulation finished)
+time(mySim3)
 ```
 
 
@@ -359,13 +359,12 @@ dev()
 moduleDiagram(mySim_manag)
 objectDiagram(mySim_manag)
 
-opts <- options(spades.switchPkgNamespaces = FALSE)
 dev()
 clearPlot()
 mySim_manag2 <- spades(mySim_manag, debug = TRUE)
 ```
 
-<img src="images/Feb2018_Day1/LCC2005harvest_plot.png" align="middle" height="400" width="750" margin="0 auto" />
+<img src="images/Feb2018_Day1/LCC2005harvest_plot.png" align="middle" height="400" width="400" margin="0 auto" />
 
 
 #### 1.3.7 Choose to save outputs without changing module code
@@ -389,9 +388,9 @@ ageMap01 <- readRDS(outputs(mySim_manag2)$file[1])
 
 ## Now you can visualise the saved map in any way you want
 clearPlot()
-Plot(ageMap01)
+Plot(ageMap01, title = "Age map")
 table(ageMap01[])
-hist(ageMap01[])
+Plot(hist(ageMap01[]), title = "Age distribution")
 ```
 
 
@@ -403,7 +402,6 @@ params(mySim_manag2)$fireSpreadLcc$drought <- 3
 dev()
 clearPlot()
 mySim_manag3 <- spades(mySim_manag2, debug = TRUE)
-
 ```
 
 
@@ -415,31 +413,29 @@ What is the interest of translating LANDIS-II into `R`? It allows a better contr
 McIntire's team has already done the hard part - bringing LANDIS into `R` - as new users find new applications to the models, they might want to develop other modules that will interact with LBM-R.
 
 ```{r LBMR}
-## get LBMR module - note: this is temporary as this module is yet unplublished
-downloadModule("LBMR", repo = "CeresBarros/SpaDES-modules", path = getPaths()$modulePath, overwrite = TRUE)
+## get LBMR module - note: this is temporary as this module is yet unpublished
+downloadModule("LBMR", repo = "CeresBarros/SpaDES-modules", path = getPaths()$modulePath, data = TRUE, overwrite = TRUE)
 
 ## setup the simulation
 paths <- getPaths()
-times <- list(start = 0, end = 50)
+times <- list(start = 0, end = 10)
 parameters <- list(
   .globals = list(verbose = FALSE),
   LBMR = list(.plotInitialTime = 1, successionTimestep = 2)
-
 )
 modules <- list("LBMR")
 
 mySim <- simInit(times = times, params = parameters, modules = modules, paths = paths)
 
-moduleDiagram(mySim)
+dev()
 objectDiagram(mySim)
 
 ## run the simulation
 clearPlot()
 mySimOut <- spades(mySim, debug = TRUE)
-
 ```
 
-<img src="images/Feb2018_Day1/LBMR_plot.png" align="middle" height="400" width="750" margin="0 auto" />
+<img src="images/Feb2018_Day1/LBMR_plot.png" align="middle" height="400" width="400" margin="0 auto" />
 
 Like before, parameters can be changed, notably the seed dispersal mechanism. The default is the `wardDispersal`, which ... But `noDispersal` and `universalDispersal` are also available.
 

@@ -1,7 +1,7 @@
 ---
 title: "My first SpaDES module - from `R` to `SpaDES`"
 author: "Ceres Barros"
-date: "April 3, 2018"
+date: "May 2, 2018"
 output:
   html_document:
     toc : TRUE
@@ -131,14 +131,14 @@ newModule("loop", path = getPaths()$modulePath)
 **/!\\ Atention: running `newModule` twice will overwrite any changes! /!\\**
   
 4. Now manually open the *.R* and *.Rmd* scripts
-  + First part of *loop.R* contains metadata, the econd part contains event execution and scheduling functions, and the third part contains event functions (content).
+  + First part of *loop.R* contains metadata, the second part contains event execution and scheduling functions, and the third part contains event functions (content).
   + The *loop.Rmd* file is a template for documenting the module.
   
 ### Exercise 1.2. Coding a module
 We will first built the module "skeleton" and then define its parameters and eventual inputs/outpupts.
 
 1. Skip to the `doEvent` function
-  + `doEvent` is the core any SpaDES module
+  + `doEvent` is the core of any SpaDES module
   + It is where events are executed and scheduled
   + When modules are created with `newModule`, `doEvent` is automatically suffixed with the module name (in this case "loop", so `doEvent.loop`) - **/!\\** this is **very** important **/!\\**
   
@@ -325,7 +325,7 @@ Notice that below the `doEvent.loop` function there are templates for other func
 
 ```{r eventFunctions}
 ### Initialisation function
-loopInit(sim) <- function(sim) {
+loopInit <- function(sim) {
   sim$age <- 1
   return(invisible(sim))
 }
