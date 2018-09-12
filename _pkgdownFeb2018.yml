@@ -11,11 +11,11 @@ navbar:
   title: "SpaDES Workshops"
   type: inverse
   left:
-    - text: "2018-05-02 Workshop"
+    - text: "2018-05-02"
       href: articles/index.html
-    - text: "2018-02-07 Workshop"
+    - text: "2018-02-07"
       href: articlesFeb2018/index.html
-    - text: "Past Workshops"
+    - text: "Prior to 2018"
       href: http://rpubs.com/PredictiveEcology/SpaDES-Intro-Course-Outline
   right:
     - icon: fa-github

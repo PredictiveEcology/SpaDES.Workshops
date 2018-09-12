@@ -12,7 +12,7 @@ We have organized a set of sessions, back to back, starting from the most “gen
 
 - **Part 2: Getting started with SpaDES in R** - 3 hours – **1 pm May 2** - This is intended to dive a little bit into the code, learn how to create relatively simple modules and establish links between modules.
 
-- **Developers** - 3 days – **NOT BEING OFFERED DURING THIS WORKSHOP** - This 3 days workshop starts with the **Intro** and **Advanced Intro** above, and continues much deeper for developers of models. That means that if somebody who is interested in developing, but has already a good grasp on what SpaDES does and the higher level concepts, they can join this workshop.  ***See below for instructions***
+- **Part 3:  - 3 days – **NOT BEING OFFERED DURING THIS WORKSHOP** - This 3 days workshop starts with the **Intro** and **Advanced Intro** above, and continues much deeper for developers of models. That means that if somebody who is interested in developing, but has already a good grasp on what SpaDES does and the higher level concepts, they can join this workshop.  ***See below for instructions***
 
 
 ### Location:

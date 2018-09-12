@@ -1,6 +1,6 @@
-urls:
-  reference: http://spades-workshops.predictiveecology.org//reference
-  article: http://spades-workshops.predictiveecology.org//articles
+pandoc: 1.19.2.1
+pkgdown: 1.1.0
+pkgdown_sha: ~
 articles:
   Building-a-module: Building-a-module.html
   Caching: Caching.html
@@ -24,4 +24,7 @@ articles:
   SpaDES4Dummies: SpaDES4Dummies.html
   The-simList: The-simList.html
   WhatIsSpades: WhatIsSpades.html
+urls:
+  reference: http://spades-workshops.predictiveecology.org//reference
+  article: http://spades-workshops.predictiveecology.org//articles
 

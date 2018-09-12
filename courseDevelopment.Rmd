@@ -1,0 +1,16 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+
+
+```{r}
+library(pkgdown)
+devtools::load_all(".")
+options('reproducible.cachePath' = "cache")
+build_site(new_process = FALSE)
+replaceRemoteLinksInArticles(replacementList)
+
+```
