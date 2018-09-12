@@ -35,24 +35,16 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">SpaDES.Workshops</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-<<<<<<< Updated upstream
-  <a href="../docs/articles/index.html">2018-05-02 Workshop</a>
-</li>
-<li>
-  <a href="../docs/articlesFeb2018/index.html">2018-02-07 Workshop</a>
-=======
   <a href="../articles/index.html">2018-Fall</a>
 </li>
 <li>
   <a href="../articlesMay2018/index.html">2018-May</a>
->>>>>>> Stashed changes
 </li>
 <li>
   <a href="../articlesFeb2018/index.html">2018-Feb</a>
@@ -83,17 +75,12 @@
       <h1>What is SpaDES?</h1>
                         <h4 class="author">Ceres Barros</h4>
             
-<<<<<<< Updated upstream
             <h4 class="date">May 2, 2018</h4>
-          </div>
-=======
-            <h4 class="date">April 3, 2018</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/PredictiveEcology/SpaDES.Workshops/blob/master/vignettes/WhatIsSpades.Rmd"><code>vignettes/WhatIsSpades.Rmd</code></a></small>
       <div class="hidden name"><code>WhatIsSpades.Rmd</code></div>
 
     </div>
->>>>>>> Stashed changes
 
     
     
@@ -219,14 +206,7 @@ Because models are not just for modellers, a shiny app building package is being
 devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"PredictiveEcology/quickPlot"</span>, <span class="dt">ref =</span> <span class="st">"CEFWorkshop"</span> , <span class="dt">dependencies =</span> <span class="ot">FALSE</span>)
 devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"PredictiveEcology/reproducible"</span>, <span class="dt">ref =</span> <span class="st">"CEFWorkshop"</span>, <span class="dt">dependencies =</span> <span class="ot">FALSE</span>)
 devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"PredictiveEcology/SpaDES.tools"</span>, <span class="dt">ref =</span> <span class="st">"CEFWorkshop"</span>, <span class="dt">dependencies =</span> <span class="ot">FALSE</span>)
-<<<<<<< HEAD
-devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"PredictiveEcology/SpaDES.core"</span>, <span class="dt">ref =</span> <span class="st">"CEFWorkshop"</span>, <span class="dt">dependencies =</span> <span class="ot">FALSE</span>)
-
-## and load SpaDES
-<span class="kw">library</span>(SpaDES)</code></pre></div>
-=======
 devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"PredictiveEcology/SpaDES.core"</span>, <span class="dt">ref =</span> <span class="st">"CEFWorkshop"</span>, <span class="dt">dependencies =</span> <span class="ot">FALSE</span>)</code></pre></div>
->>>>>>> master
 </div>
 <div id="modules-included-in-the-spades-package" class="section level3">
 <h3 class="hasAnchor">
@@ -275,21 +255,12 @@ sampleModuleFiles &lt;-<span class="st"> </span><span class="kw">list.files</spa
 ## verify that this is want you wanted:
 <span class="kw">getPaths</span>()</code></pre></div>
 <p>Now we’ll get <code>LCC2005</code> modules needed and save them in the <code>modules</code> folder created before. If you already have done this before and want to do it again, set the <code>overwrite</code> argument to <code>TRUE</code>.</p>
-<<<<<<< HEAD
-<p>Using <code>data = TRUE</code> will make sure the necessary data for the module is downloaded. Unfortunately, the forest age raster (“can_age04_1km.tif”) is no longer downloadable without creating an account on the NASA EarthData website. Download it from <a href="https://drive.google.com/file/d/1bD957dewv3U-cbISfeUEz1QpGg5DurR-/view?usp=sharing">here</a> and put in inside <em>modules/forestAges/data</em>.</p>
-<p>For future reference, it is possible to create an account on the NASA EarthData website and, after logging in, you’ll find the file <a href="https://daac.ornl.gov/NACP/guides/NA_Tree_Age.html">here</a>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## note how we use the modules folder defined above and chose to download the necessary data
-<span class="kw">downloadModule</span>(<span class="st">'LCC2005'</span>, <span class="dt">path =</span> <span class="kw">getPaths</span>()<span class="op">$</span>modulePath, <span class="dt">repo =</span> <span class="st">'PredictiveEcology/SpaDES-modules'</span>, <span class="dt">data =</span> <span class="ot">TRUE</span>, <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)
-
-## open the description of the LCC2005 module group - on Windows, this provides files directories
-=======
 <p>Using <code>data = TRUE</code> will make sure the necessary data for the module is downloaded. Unfortunately, the forest age raster (“can_age04_1km.tif”) is no longer downloadable without creating an account on the NASA EarthData website. Download it from <a href="https://drive.google.com/file/d/1bD957dewv3U-cbISfeUEz1QpGg5DurR-/view?usp=sharing">here</a> and put in inside <em>modules/forestAges/data</em> (this will only be possible during the workshop).</p>
 <p>For future reference, it is possible to create an account on the NASA EarthData website and, after logging in, you’ll find the file <a href="https://daac.ornl.gov/NACP/guides/NA_Tree_Age.html">here</a>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## note how we use the modules folder defined above and chose to download the necessary data
 <span class="kw">downloadModule</span>(<span class="st">'LCC2005'</span>, <span class="dt">path =</span> <span class="kw">getPaths</span>()<span class="op">$</span>modulePath, <span class="dt">repo =</span> <span class="st">'CeresBarros/SpaDES-modules'</span>, <span class="dt">data =</span> <span class="ot">TRUE</span>, <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)
 
 ## open the description of the LCC2005 module group - on Windows this provides files directories
->>>>>>> master
 <span class="kw">openModules</span>(<span class="st">'LCC2005'</span>, <span class="dt">path =</span> <span class="kw">getPaths</span>()<span class="op">$</span>modulePath) 
 
 ## list all module files within LCC2005 and open them
@@ -365,11 +336,7 @@ mySim2 &lt;-<span class="st"> </span><span class="kw">spades</span>(mySim, <span
 <span class="kw">eventDiagram</span>(mySim2)
 <span class="kw">completed</span>(mySim2)
 <span class="kw">events</span>(mySim2)</code></pre></div>
-<<<<<<< HEAD
-<p><img src="images/Feb2018_Day1/LCC2005_plot.png" align="middle" height="400" width="750" margin="0 auto"></p>
-=======
 <p><img src="images/Feb2018_Day1/LCC2005_plot.png" align="middle" height="400" width="400" margin="0 auto"></p>
->>>>>>> master
 </div>
 <div id="change-model-parameters-without-restarting" class="section level4">
 <h4 class="hasAnchor">
@@ -430,11 +397,7 @@ mySim_manag &lt;-<span class="st"> </span><span class="kw">simInit</span>(<span 
 <span class="kw">dev</span>()
 <span class="kw">clearPlot</span>()
 mySim_manag2 &lt;-<span class="st"> </span><span class="kw">spades</span>(mySim_manag, <span class="dt">debug =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<<<<<<< HEAD
-<p><img src="images/Feb2018_Day1/LCC2005harvest_plot.png" align="middle" height="400" width="750" margin="0 auto"></p>
-=======
 <p><img src="images/Feb2018_Day1/LCC2005harvest_plot.png" align="middle" height="400" width="400" margin="0 auto"></p>
->>>>>>> master
 </div>
 <div id="choose-to-save-outputs-without-changing-module-code" class="section level4">
 <h4 class="hasAnchor">
@@ -456,11 +419,7 @@ ageMap01 &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span cla
 
 ## Now you can visualise the saved map in any way you want
 <span class="kw">clearPlot</span>()
-<<<<<<< HEAD
-<span class="kw">Plot</span>(ageMap01)
-=======
 <span class="kw">Plot</span>(ageMap01, <span class="dt">title =</span> <span class="st">"Age map"</span>)
->>>>>>> master
 <span class="kw">table</span>(ageMap01[])
 <span class="kw">Plot</span>(<span class="kw">hist</span>(ageMap01[]), <span class="dt">title =</span> <span class="st">"Age distribution"</span>)</code></pre></div>
 <p>Are there fewer areas that are appropriate for harvesting if fires become larger (i.e. drought is more severe)?</p>
@@ -476,18 +435,6 @@ mySim_manag3 &lt;-<span class="st"> </span><span class="kw">spades</span>(mySim_
 <a href="#spades-is-not-all-toy-models" class="anchor"></a>1.4 <code>SpaDES</code> is not all “toy models”</h3>
 <p>Although <code>SpaDES</code> is still being developed it has already been used to “translate” other important models that have been vastly used in ecology, both for purely academic purposes and in an applied context. One of them is LANDIS II. LANDIS-II is a fairly complex landscape model that simulates forest succession in terms of biomass per species age cohorts (Scheller et al. 2007) and can be coupled to other models to simulate vegetation responses to various drivers, like climate change and fire. What is the interest of translating LANDIS-II into <code>R</code>? It allows a better control and transparency of all pre-simulation work. <code>R</code> brings the stats to the model and the work becomes self-contained, transparent and reproducible.</p>
 <p>McIntire’s team has already done the hard part - bringing LANDIS into <code>R</code> - as new users find new applications to the models, they might want to develop other modules that will interact with LBM-R.</p>
-<<<<<<< HEAD
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## get LBMR module - note: this is temporary as this module is yet unplublished
-<span class="kw">downloadModule</span>(<span class="st">"LBMR"</span>, <span class="dt">repo =</span> <span class="st">"CeresBarros/SpaDES-modules"</span>, <span class="dt">path =</span> <span class="kw">getPaths</span>()<span class="op">$</span>modulePath, <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)
-
-## setup the simulation
-paths &lt;-<span class="st"> </span><span class="kw">getPaths</span>()
-times &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">start =</span> <span class="dv">0</span>, <span class="dt">end =</span> <span class="dv">50</span>)
-parameters &lt;-<span class="st"> </span><span class="kw">list</span>(
-  <span class="dt">.globals =</span> <span class="kw">list</span>(<span class="dt">verbose =</span> <span class="ot">FALSE</span>),
-  <span class="dt">LBMR =</span> <span class="kw">list</span>(<span class="dt">.plotInitialTime =</span> <span class="dv">1</span>, <span class="dt">successionTimestep =</span> <span class="dv">2</span>)
-
-=======
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## get LBMR module - note: this is temporary as this module is yet unpublished
 <span class="kw">downloadModule</span>(<span class="st">"LBMR"</span>, <span class="dt">repo =</span> <span class="st">"CeresBarros/SpaDES-modules"</span>, <span class="dt">path =</span> <span class="kw">getPaths</span>()<span class="op">$</span>modulePath, <span class="dt">data =</span> <span class="ot">TRUE</span>, <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)
 
@@ -497,27 +444,18 @@ times &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt
 parameters &lt;-<span class="st"> </span><span class="kw">list</span>(
   <span class="dt">.globals =</span> <span class="kw">list</span>(<span class="dt">verbose =</span> <span class="ot">FALSE</span>),
   <span class="dt">LBMR =</span> <span class="kw">list</span>(<span class="dt">.plotInitialTime =</span> <span class="dv">1</span>, <span class="dt">successionTimestep =</span> <span class="dv">2</span>)
->>>>>>> master
 )
 modules &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">"LBMR"</span>)
 
 mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(<span class="dt">times =</span> times, <span class="dt">params =</span> parameters, <span class="dt">modules =</span> modules, <span class="dt">paths =</span> paths)
 
-<<<<<<< HEAD
-<span class="kw">moduleDiagram</span>(mySim)
-=======
 <span class="kw">dev</span>()
->>>>>>> master
 <span class="kw">objectDiagram</span>(mySim)
 
 ## run the simulation
 <span class="kw">clearPlot</span>()
 mySimOut &lt;-<span class="st"> </span><span class="kw">spades</span>(mySim, <span class="dt">debug =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<<<<<<< HEAD
-<p><img src="images/Feb2018_Day1/LBMR_plot.png" align="middle" height="400" width="750" margin="0 auto"></p>
-=======
 <p><img src="images/Feb2018_Day1/LBMR_plot.png" align="middle" height="400" width="400" margin="0 auto"></p>
->>>>>>> master
 <p>Like before, parameters can be changed, notably the seed dispersal mechanism. The default is the <code>wardDispersal</code>, which … But <code>noDispersal</code> and <code>universalDispersal</code> are also available.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Check the available parameters
 <span class="kw">parameters</span>(mySim)

@@ -23,18 +23,21 @@ replacementList <-
 #'
 #' @export
 replaceRemoteLinksInArticles <- function(replacements) {
-  filesToUpdate <- c("", "articles", "articlesFeb2018")
+  filesToUpdate <- c("", "articles", "articlesFeb2018", "articlesMay2018")
   lapply(filesToUpdate, function(f) {
     lapply(names(replacements), function(nam) {
-      indexHTML <- file.path("docs", f, "index.html")
-      cc <- readLines(indexHTML)
-      if (is.null(replacements[[nam]])) {
-        cc1 <- grep(nam, cc, invert = TRUE, value = TRUE)
-      } else {
-        cc1 <- gsub(cc, pattern = nam,
-                    replacement = replacements[[nam]])
+      for (indexHTML in dir(file.path("docs", "articles"), pattern = ".html", full.names = TRUE)) {
+        #browser(expr = "Released package" == nam && grepl("articlesMay2018", f) && grepl("WhatIs", indexHTML))
+        cc <- readLines(indexHTML)
+        if (is.null(replacements[[nam]])) {
+          cc1 <- grep(nam, cc, invert = TRUE, value = TRUE)
+        } else {
+          cc1 <- gsub(cc, pattern = nam,
+                      replacement = replacements[[nam]])
+        }
+        writeLines(cc1, indexHTML)
+        indexHTML
       }
-      writeLines(cc1, indexHTML)
     })
 
   })
