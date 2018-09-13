@@ -26,7 +26,7 @@ replaceRemoteLinksInArticles <- function(replacements) {
   filesToUpdate <- c("", "articles", "articlesFeb2018", "articlesMay2018")
   lapply(filesToUpdate, function(f) {
     lapply(names(replacements), function(nam) {
-      for (indexHTML in dir(file.path("docs", "articles"), pattern = ".html", full.names = TRUE)) {
+      for (indexHTML in dir(file.path("docs", f), pattern = ".html", full.names = TRUE)) {
         #browser(expr = "Released package" == nam && grepl("articlesMay2018", f) && grepl("WhatIs", indexHTML))
         cc <- readLines(indexHTML)
         if (is.null(replacements[[nam]])) {
