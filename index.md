@@ -2,7 +2,7 @@
 
 # Next SpaDES Workshop:
 
-## Fall, 2018, Pacific Forestry Centre -- Dates pending
+## Sept 24-26, 2018, Pacific Forestry Centre
 
 If you are interested in being put on the email list for this or future courses, please email to eliot.mcintire at canada.ca
 

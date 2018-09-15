@@ -2,25 +2,25 @@
 
 # Next SpaDES Workshop:
 
-## May 2, 2018, Centre d'etude de la forêt, Laval University, Quebec City
+## Sept 24-26, 2018, Pacific Forestry Centre
 
 If you are interested in being put on the email list for this or future courses, please email to eliot.mcintire at canada.ca
 
 We have organized a set of sessions, back to back, starting from the most “general”, and ending with the most “detailed”. The hope is to attract non-modelers (e.g., managers, scientists, practitioners) to the first session, people who think they might want to see more how models work (e.g., scientists, students, technicians), and those who want to build and use models for research and operational purposes (e.g., scientists, technicians, programmers).
 
-- **Part 1: Introducing a modular simulation platform for non-programmers** - 3 hours – **9 am May 2** - This is a high level intro for scientists, managers, policy makers, decision makers, coupled with high-level exercises in SpaDES that will take you through how to run pre-made SpaDES modules, run modules from other people, and change model parameters.
+- **Part 1: Introducing a modular simulation platform for non-programmers** - 1.5 hours – **day 1 - 9 am - break** - This is a high level intro for scientists, managers, policy makers, decision makers, coupled with high-level exercises in SpaDES that will take you through how to run pre-made SpaDES modules, run modules from other people, and change model parameters.
 
-- **Part 2: Getting started with SpaDES in R** - 3 hours – **1 pm May 2** - This is intended to dive a little bit into the code, learn how to create relatively simple modules and establish links between modules.
+- **Part 2: Getting started with SpaDES in R** - 4.5 hours – **day 1 - mid morning through to end of day** - This is intended to dive a little bit into the code, learn how to create relatively simple modules and establish links between modules. ***See below for instructions***
 
-- **Part 3:  - 3 days – **NOT BEING OFFERED DURING THIS WORKSHOP** - This 3 days workshop starts with the **Intro** and **Advanced Intro** above, and continues much deeper for developers of models. That means that if somebody who is interested in developing, but has already a good grasp on what SpaDES does and the higher level concepts, they can join this workshop.  ***See below for instructions***
+- **Part 3:  - days 2 and 3** – a much deeper dive for developers of models. That means that if somebody who is interested in developing, but has already a good grasp on what SpaDES does and the higher level concepts, they can join this workshop.  ***See below for instructions***
 
 
 ### Location:
 
-**CEF annual conference 2018, Laval University, Quebec City**
+**Pacific Forestry Centre**
 
 
-### [Developers workshop](articlesFeb2018/index.html)
+### [Part 2 and 3](articles/index.html)
 
 When following the Developer's workshop, please pre-install the `SpaDES` packages and dependencies:
 
@@ -47,7 +47,7 @@ devtools::install_github("PredictiveEcology/SpaDES.core", ref = "development")
 
 ```
 
-For a direct link to the workshops, click on the top navigation bar or [here](http://spades-workshops.predictiveecology.org/).
+For a direct link to the workshops, click on the top navigation bar or go [here](http://spades-workshops.predictiveecology.org/)
 
 ## Resources:
 
