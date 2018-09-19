@@ -19,26 +19,20 @@ We have organized a set of sessions, back to back, starting from the most “gen
 
 **Pacific Forestry Centre - Dilbert Hall**
 
+Participants attending in person who are not known to CFS will have to sign in at the front desk. We will have name tags for each visitor.
+
 ### Remote Connecting:
 
-Password every day: spades
+Password every day (may not be required): spades
 
-**Monday Sept 24**
-
+**Monday Sept 24**: 
 https://pwgsc-nh.webex.com/pwgsc-nh/j.php?MTID=m563024ba07f52ff94e8e84938a8170c8  
-Meeting Number: 557 242 772
 
-
-**Tuesday Sept 25**
-
+**Tuesday Sept 25**: 
 https://pwgsc-nh.webex.com/pwgsc-nh/j.php?MTID=m4a37b92fd12b467686442e126cf36d16  
-Meeting Number: 558 017 771 
 
-
-**Wednesday Sept 26**
-
+**Wednesday Sept 26**: 
 https://pwgsc-nh.webex.com/pwgsc-nh/j.php?MTID=mb43e1b9e5691e45a7c04af6d9939d1f3  
-Meeting Number: 554 888 016 
 
 
 
