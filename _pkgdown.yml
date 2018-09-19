@@ -24,19 +24,32 @@ navbar:
       href: https://spades.predictiveecology.org/
 
 articles:
-  - title: "Part 1: Introducing a modular simulation platform for non-programmers"
+  - title: "Introducing a modular data platform"
     desc: >
       Why SpaDES, what it is for, and how does it help us? Plus: importing modules and running fairly simple simulations from pre-made modules
     contents:
     - GoogleDrive
     - WhatIsSpades
 
-  - title: "Part 2: Getting started with SpaDES in R"
+  - title: "Getting started with SpaDES in R"
     desc: >
       How to start from the beginning, making simple modules, making modules interact
     contents:
     - MyFirstModule
     - SpaDES4Dummies
+    - Convert-R-code-to-SpaDES-module
+
+  - title: "Using existing modules -- Developer's Workshop"
+    desc: >
+      If you are given a module, how do we get it, understand it, run it, test it, incorporate it into our own modules
+    contents:
+    - Existing-modules
+
+  - title: "Developing a new continuously available science -- Developer's Workshop"
+    desc: >
+      Often decision support appears a long way from raw data collection, statistical model fitting, simulation modeling, optimization
+    contents:
+      - Continuous-Workflow
 
   - title: "Reference -- Developer's topics for reference"
     desc: >

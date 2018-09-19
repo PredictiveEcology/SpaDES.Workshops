@@ -2,7 +2,7 @@
 
 # Next SpaDES Workshop:
 
-## Sept 24-26, 2018, Pacific Forestry Centre
+## Sept 24-26, 2018, Pacific Forestry Centre, 9am - 4pm each day
 
 If you are interested in being put on the email list for this or future courses, please email to eliot.mcintire at canada.ca
 
@@ -12,7 +12,7 @@ We have organized a set of sessions, back to back, starting from the most “gen
 
 - **Part 2: Getting started with SpaDES in R** - 4.5 hours – **day 1 - mid morning through to end of day** - This is intended to dive a little bit into the code, learn how to create relatively simple modules and establish links between modules. ***See below for instructions***
 
-- **Part 3:  - days 2 and 3** – a much deeper dive for developers of models. That means that if somebody who is interested in developing, but has already a good grasp on what SpaDES does and the higher level concepts, they can join this workshop.  ***See below for instructions***
+- **Part 3:  - days 2 and 3 - 9am to end of day each day** – a much deeper dive for developers of models. That means that if somebody who is interested in developing, but has already a good grasp on what SpaDES does and the higher level concepts, they can join this workshop.  ***See below for instructions***
 
 
 ### Location:
