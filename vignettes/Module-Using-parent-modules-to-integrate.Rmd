@@ -1,7 +1,7 @@
 ---
-title       : "Modules -- Integrating among modules"
-author      : "Alex M Chubaty & Eliot McIntire"
-date        : "December 9, 2016"
+title: "Modules -- Integrating among modules"
+author: "Alex M Chubaty & Eliot McIntire"
+date: "December 9, 2016"
 ---
 
 ```{r setup, include=FALSE}

@@ -23,7 +23,7 @@ replacementList <-
 #'
 #' @export
 replaceRemoteLinksInArticles <- function(replacements) {
-  filesToUpdate <- c("", "articles", "articlesFeb2018", "articlesMay2018")
+  filesToUpdate <- c("", "articles")#, "articlesFeb2018", "articlesMay2018")
   lapply(filesToUpdate, function(f) {
     lapply(names(replacements), function(nam) {
       for (indexHTML in dir(file.path("docs", f), pattern = ".html", full.names = TRUE)) {
