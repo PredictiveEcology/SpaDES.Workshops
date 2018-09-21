@@ -133,10 +133,10 @@ Shiny web-app demo [here](https://spades.shinyapps.io/ForestChange_ProofOfConcep
 install.packages('SpaDES', dependencies = TRUE)
 
 ## now, update some of the packages from the development branch.
-devtools::install_github("PredictiveEcology/quickPlot", ref = "CEFWorkshop" , dependencies = FALSE)
-devtools::install_github("PredictiveEcology/reproducible", ref = "CEFWorkshop", dependencies = FALSE)
-devtools::install_github("PredictiveEcology/SpaDES.tools", ref = "CEFWorkshop", dependencies = FALSE)
-devtools::install_github("PredictiveEcology/SpaDES.core", ref = "CEFWorkshop", dependencies = FALSE)
+devtools::install_github("PredictiveEcology/quickPlot", ref = "development" , dependencies = FALSE)
+devtools::install_github("PredictiveEcology/reproducible", ref = "development", dependencies = FALSE)
+devtools::install_github("PredictiveEcology/SpaDES.tools", ref = "development", dependencies = FALSE)
+devtools::install_github("PredictiveEcology/SpaDES.core", ref = "development", dependencies = FALSE)
 
 ```
 
@@ -200,15 +200,33 @@ getPaths()
 
 Now we'll get `LCC2005` modules needed and save them in the `modules` folder created before. If you already have done this before and want to do it again, set the `overwrite` argument to `TRUE`.  
 
-Using `data = TRUE` will make sure the necessary data for the module is downloaded. Unfortunately, the forest age raster ("can_age04_1km.tif") is no longer downloadable without creating an account on the NASA EarthData website. Download it from [here](https://drive.google.com/file/d/1bD957dewv3U-cbISfeUEz1QpGg5DurR-/view?usp=sharing) and put in inside *modules/forestAges/data* (this will only be possible during the workshop).  
+```{r module_downld}
+## note how we use the modules folder defined above and chose to download the necessary data
+downloadModule('LCC2005', path = getPaths()$modulePath, repo = 'PredictiveEcology/SpaDES-modules', overwrite = TRUE)
+
+```
+
+Now we can download the data needed for the modules.
+
+```{r data_downld}
+
+downloadData("LccToBeaconsReclassify")
+```
+
+But what happens if the module doesn't require any data?
+Let's try to download data for any other module that doesn't need data
+````{r data_notReq}
+
+downloadData("fireSpreadLcc") # Note it will hit the error "Error in curl::curl_fetch_memory(url, handle = handle) : Could not resolve host: NA".
+
+downloadData("cropReprojectLccAge") # Note that there is an error in the end of this download (at the last file). This is related to a missing map that we will fix below
+```
+
+Unfortunately, the forest age raster ("can_age04_1km.tif") is no longer downloadable without creating an account on the NASA EarthData website. Download it from [here](https://drive.google.com/file/d/1bD957dewv3U-cbISfeUEz1QpGg5DurR-/view?usp=sharing) and put in inside *modules/cropReprojectLccAge/data* and *modules/forestAge/data* (this will only be possible during the workshop).  
 
 For future reference, it is possible to create an account on the NASA EarthData website and, after logging in, you'll find the file [here](https://daac.ornl.gov/NACP/guides/NA_Tree_Age.html).  
 
-
-```{r module_downld}
-## note how we use the modules folder defined above and chose to download the necessary data
-downloadModule('LCC2005', path = getPaths()$modulePath, repo = 'CeresBarros/SpaDES-modules', data = TRUE, overwrite = TRUE)
-
+```{r open_mdl}
 ## open the description of the LCC2005 module group - on Windows this provides files directories
 openModules('LCC2005', path = getPaths()$modulePath) 
 
@@ -244,7 +262,7 @@ parameters <- list(
   .globals = list(stackName = "landscape", burnStats = "nPixelsBurned"),
   .progress = list(NA),
   fireSpreadLcc = list(nFires = 10L, drought = 1, its = 1e6,
-                    persistprob = 0, returnInterval = 1, startTime = 0,
+                    persistprob = 0, returnInterval = 1, startTime = 1,
                     .plotInitialTime = NA, .plotInterval = 10)
 )
 
@@ -271,7 +289,6 @@ plot(mySim$age)
 
 ## plot module connections
 dev()
-moduleDiagram(mySim)
 objectDiagram(mySim)
 
 ## see which events are scheduled
@@ -346,7 +363,7 @@ parameters <- list(
   .globals = list(stackName = "landscape", burnStats = "nPixelsBurned"),
   .progress = list(NA),
   fireSpreadLcc = list(nFires = 10L, drought = 1, its = 1e6,
-                    persistprob = 0, returnInterval = 10, startTime = 0,
+                    persistprob = 0, returnInterval = 10, startTime = 1,
                     .plotInitialTime = 0.1, .plotInterval = 10),
   forestHarvest = list(returnInterval = 5, harvAge = 50, startTime = 11, .plotInterval = 5)
 )
@@ -378,6 +395,8 @@ mySim_manag <- simInit(times = times, params = parameters,
                        objects = objects, paths = paths,
                        outputs = data.frame(objectName = "ageMap", saveTime = seq(1, 50, by = 10)))
 ## Re-run the model
+dev()
+clearPlot()
 mySim_manag2 <- spades(mySim_manag, debug = TRUE)
 
 ## Print the list of saved outputs
@@ -387,12 +406,17 @@ outputs(mySim_manag2)
 ageMap01 <- readRDS(outputs(mySim_manag2)$file[1])
 
 ## Now you can visualise the saved map in any way you want
+dev()
 clearPlot()
 Plot(ageMap01, title = "Age map")
-table(ageMap01[])
-Plot(hist(ageMap01[]), title = "Age distribution")
-```
+tble <- table(ageMap01[])
+frq <- as.data.frame(tble)
+names(frq)[1] <- "ageClass"
+frq # Frequency of age distribution
 
+hst <- hist(ageMap01[])
+Plot(hst, title = "Age distribution")
+```
 
 Are there fewer areas that are appropriate for harvesting if fires become larger (i.e. drought is more severe)? 
 
@@ -405,63 +429,62 @@ mySim_manag3 <- spades(mySim_manag2, debug = TRUE)
 ```
 
 
-### 1.4 `SpaDES` is not all "toy models"
-Although `SpaDES` is still being developed it has already been used to "translate" other important models that have been vastly used in ecology, both for purely academic purposes and in an applied context.
-One of them is LANDIS II. LANDIS-II is a fairly complex landscape model that simulates forest succession in terms of biomass per species age cohorts (Scheller et al. 2007) and can be coupled to other models to simulate vegetation responses to various drivers, like climate change and fire.
-What is the interest of translating LANDIS-II into `R`? It allows a better control and transparency of all pre-simulation work. `R` brings the stats to the model and the work becomes self-contained, transparent and reproducible.
+<!-- ### 1.4 `SpaDES` is not all "toy models" -->
+<!-- Although `SpaDES` is still being developed it has already been used to "translate" other important models that have been vastly used in ecology, both for purely academic purposes and in an applied context. -->
+<!-- One of them is LANDIS II. LANDIS-II is a fairly complex landscape model that simulates forest succession in terms of biomass per species age cohorts (Scheller et al. 2007) and can be coupled to other models to simulate vegetation responses to various drivers, like climate change and fire. -->
+<!-- What is the interest of translating LANDIS-II into `R`? It allows a better control and transparency of all pre-simulation work. `R` brings the stats to the model and the work becomes self-contained, transparent and reproducible. -->
 
-McIntire's team has already done the hard part - bringing LANDIS into `R` - as new users find new applications to the models, they might want to develop other modules that will interact with LBM-R.
+<!-- McIntire's team has already done the hard part - bringing LANDIS into `R` - as new users find new applications to the models, they might want to develop other modules that will interact with LBM-R. -->
 
-```{r LBMR}
-## get LBMR module - note: this is temporary as this module is yet unpublished
-downloadModule("LBMR", repo = "CeresBarros/SpaDES-modules", path = getPaths()$modulePath, data = TRUE, overwrite = TRUE)
+<!-- ```{r LBMR} -->
+<!-- ## get LBMR module - note: this is temporary as this module is yet unpublished -->
+<!-- downloadModule("LBMR", repo = "eliot/SpaDES-modules", path = getPaths()$modulePath, data = TRUE, overwrite = TRUE) -->
 
-## setup the simulation
-paths <- getPaths()
-times <- list(start = 0, end = 10)
-parameters <- list(
-  .globals = list(verbose = FALSE),
-  LBMR = list(.plotInitialTime = 1, successionTimestep = 2)
-)
-modules <- list("LBMR")
+<!-- ## setup the simulation -->
+<!-- paths <- getPaths() -->
+<!-- times <- list(start = 0, end = 10) -->
+<!-- parameters <- list( -->
+<!--   .globals = list(verbose = FALSE), -->
+<!--   LBMR = list(.plotInitialTime = 1, successionTimestep = 2) -->
+<!-- ) -->
+<!-- modules <- list("LBMR") -->
 
-mySim <- simInit(times = times, params = parameters, modules = modules, paths = paths)
+<!-- mySim <- simInit(times = times, params = parameters, modules = modules, paths = paths) -->
 
-dev()
-objectDiagram(mySim)
+<!-- dev() -->
+<!-- objectDiagram(mySim) -->
 
-## run the simulation
-clearPlot()
-mySimOut <- spades(mySim, debug = TRUE)
-```
+<!-- ## run the simulation -->
+<!-- clearPlot() -->
+<!-- mySimOut <- spades(mySim, debug = TRUE) -->
+<!-- ``` -->
 
-<img src="images/Feb2018_Day1/LBMR_plot.png" align="middle" height="400" width="400" margin="0 auto" />
+<!-- <img src="images/Feb2018_Day1/LBMR_plot.png" align="middle" height="400" width="400" margin="0 auto" /> -->
 
-Like before, parameters can be changed, notably the seed dispersal mechanism. The default is the `wardDispersal`, which ... But `noDispersal` and `universalDispersal` are also available.
+<!-- Like before, parameters can be changed, notably the seed dispersal mechanism. The default is the `wardDispersal`, which ... But `noDispersal` and `universalDispersal` are also available. -->
 
-```{r LBMR2}
-## Check the available parameters
-parameters(mySim)
-## Note how this differs from
-ls.str(parameters)
+<!-- ```{r LBMR2} -->
+<!-- ## Check the available parameters -->
+<!-- parameters(mySim) -->
+<!-- ## Note how this differs from -->
+<!-- ls.str(parameters) -->
 
-parameters <- list(
-  .globals = list(verbose = FALSE),
-  LBMR = list(.plotInitialTime = 1, successionTimestep = 2, seedingAlgorithm = "noDispersal")
+<!-- parameters <- list( -->
+<!--   .globals = list(verbose = FALSE), -->
+<!--   LBMR = list(.plotInitialTime = 1, successionTimestep = 2, seedingAlgorithm = "noDispersal") -->
 
-)
-modules <- list("LBMR")
+<!-- ) -->
+<!-- modules <- list("LBMR") -->
 
-dev()
-clearPlot()
-mySim <- simInit(times = times, params = parameters, modules = modules, paths = paths)
-mySimOut <- spades(mySim, debug = TRUE)
-```
+<!-- dev() -->
+<!-- clearPlot() -->
+<!-- mySim <- simInit(times = times, params = parameters, modules = modules, paths = paths) -->
+<!-- mySimOut <- spades(mySim, debug = TRUE) -->
+<!-- ``` -->
 
 ### 1.5 Show your `SpaDES` model to the world!
 
-Soon `SpaDES` will have another package that will allow building web-apps from `simList` objects, so that simulation results can be visualised and changed interactively. For now, you can play around with the proof-of-concept Shiny apps:
+Soon `SpaDES` will have another package that will allow building web-apps from `simList` objects, so that simulation results can be visualised and changed interactively. For now, you can play around with the proof-of-concept Shiny app, but also with the real LandWeb project:
 
 - https://spades.shinyapps.io/ForestChange_ProofOfConcept/
-- http://w-vic-a105388.pfc.forestry.ca/SpaDESUI-forEliot-Oct2016/ (only available inside CFS firewall)
-
+- http://landweb.ca/
