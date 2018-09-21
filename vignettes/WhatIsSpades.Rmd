@@ -429,60 +429,7 @@ mySim_manag3 <- spades(mySim_manag2, debug = TRUE)
 ```
 
 
-<!-- ### 1.4 `SpaDES` is not all "toy models" -->
-<!-- Although `SpaDES` is still being developed it has already been used to "translate" other important models that have been vastly used in ecology, both for purely academic purposes and in an applied context. -->
-<!-- One of them is LANDIS II. LANDIS-II is a fairly complex landscape model that simulates forest succession in terms of biomass per species age cohorts (Scheller et al. 2007) and can be coupled to other models to simulate vegetation responses to various drivers, like climate change and fire. -->
-<!-- What is the interest of translating LANDIS-II into `R`? It allows a better control and transparency of all pre-simulation work. `R` brings the stats to the model and the work becomes self-contained, transparent and reproducible. -->
-
-<!-- McIntire's team has already done the hard part - bringing LANDIS into `R` - as new users find new applications to the models, they might want to develop other modules that will interact with LBM-R. -->
-
-<!-- ```{r LBMR} -->
-<!-- ## get LBMR module - note: this is temporary as this module is yet unpublished -->
-<!-- downloadModule("LBMR", repo = "eliot/SpaDES-modules", path = getPaths()$modulePath, data = TRUE, overwrite = TRUE) -->
-
-<!-- ## setup the simulation -->
-<!-- paths <- getPaths() -->
-<!-- times <- list(start = 0, end = 10) -->
-<!-- parameters <- list( -->
-<!--   .globals = list(verbose = FALSE), -->
-<!--   LBMR = list(.plotInitialTime = 1, successionTimestep = 2) -->
-<!-- ) -->
-<!-- modules <- list("LBMR") -->
-
-<!-- mySim <- simInit(times = times, params = parameters, modules = modules, paths = paths) -->
-
-<!-- dev() -->
-<!-- objectDiagram(mySim) -->
-
-<!-- ## run the simulation -->
-<!-- clearPlot() -->
-<!-- mySimOut <- spades(mySim, debug = TRUE) -->
-<!-- ``` -->
-
-<!-- <img src="images/Feb2018_Day1/LBMR_plot.png" align="middle" height="400" width="400" margin="0 auto" /> -->
-
-<!-- Like before, parameters can be changed, notably the seed dispersal mechanism. The default is the `wardDispersal`, which ... But `noDispersal` and `universalDispersal` are also available. -->
-
-<!-- ```{r LBMR2} -->
-<!-- ## Check the available parameters -->
-<!-- parameters(mySim) -->
-<!-- ## Note how this differs from -->
-<!-- ls.str(parameters) -->
-
-<!-- parameters <- list( -->
-<!--   .globals = list(verbose = FALSE), -->
-<!--   LBMR = list(.plotInitialTime = 1, successionTimestep = 2, seedingAlgorithm = "noDispersal") -->
-
-<!-- ) -->
-<!-- modules <- list("LBMR") -->
-
-<!-- dev() -->
-<!-- clearPlot() -->
-<!-- mySim <- simInit(times = times, params = parameters, modules = modules, paths = paths) -->
-<!-- mySimOut <- spades(mySim, debug = TRUE) -->
-<!-- ``` -->
-
-### 1.5 Show your `SpaDES` model to the world!
+### 1.4 Show your `SpaDES` model to the world!
 
 Soon `SpaDES` will have another package that will allow building web-apps from `simList` objects, so that simulation results can be visualised and changed interactively. For now, you can play around with the proof-of-concept Shiny app, but also with the real LandWeb project:
 
