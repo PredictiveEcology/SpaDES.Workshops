@@ -25,10 +25,10 @@ setPaths(cachePath = file.path(main.dir,'cache'),
          modulePath = file.path(main.dir, 'modules'),
          outputPath = file.path(main.dir, 'outputs'))
 
-SpaDES.core::downloadModule(name = "integratedSask", 
+SpaDES.core::downloadModule(name = "integratedSask",
                             path = getPaths()$modulePath, 
                             repo = "tati-micheletti/scfmModules",
-                            overwrite = TRUE)
+                            overwrite = TRUE) # It can't find the repo to download the module, don't know why
 
 times <- list(start = 0, end = 15)
 
