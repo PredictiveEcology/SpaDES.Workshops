@@ -39,8 +39,8 @@ These are all simple, "toy" modules so far
 
 ## Modules not on SpaDES-Modules yet, waiting for publication
 
-- Landis_BiomassSuccessionR
-- Landis_BiomassSuccessionR_Climate
+- Land-R_Biomass
+- Land-R_BiomassClimate
 - ECCC Caribou Population projection
 - R-CBM (carbon budget model)
 
@@ -149,11 +149,12 @@ A model (as defined in the `SpaDES` world) consists of multiple interacting comp
 library(igraph)
 library(SpaDES)
 
-workDirectory <- file.path(dirname(tempdir()), "Lcc2005")
-moduleDir <- file.path(workDirectory, "modules") %>%
-  checkPath(., create = TRUE)
-downloadModule("LCC2005", moduleDir, overwrite = TRUE)
-openModules("LCC2005", moduleDir)
+setPaths(cachePath = "~/temp_SpaDESws/cache", 
+         inputPath = "~/temp_SpaDESws/inputs", 
+         modulePath = "~/temp_SpaDESws/modules", 
+         outputPath = "~/temp_SpaDESws/outputs")
+
+openModules("LCC2005", getPaths()$modulePath)
 ```
 
 ### Examine this module
@@ -190,6 +191,8 @@ g <- data.frame(from = c("grandparentModule", "grandparentModule",
                        "childModuleB1", "childModuleB2")) %>% 
   graph_from_data_frame()
 plot(g, mark.groups = list(1:7, c(2,4,5), c(3,6,7)))
+
+### NOT RENDERING IN THE WEBSITE!
 ```
 
 ## Module directory structure
@@ -206,10 +209,23 @@ moduleRepo/
 ```
 ## Running a parent module
 
+If you restarted your R session, first prepare the global setup again
+```{r}
+library(SpaDES)
+
+# Remember, if you changed it in the previous step, keep it the same. Otherwise it won't find your modules!
+setPaths(cachePath = "~/temp_SpaDESws/cache", 
+         inputPath = "~/temp_SpaDESws/inputs", 
+         modulePath = "~/temp_SpaDESws/modules", 
+         outputPath = "~/temp_SpaDESws/outputs")
+```
+
+
+Then prepare the simulation
+
 ```{r run-lcc, echo=TRUE, eval=FALSE}
 # setup simulation
-outputDir <- file.path(workDirectory, "simOutputs")
-cacheDir <- checkPath(file.path(outputDir, "cache"), create = TRUE)
+
 times <- list(start = 2005.0, end = 2020.0, timeunit = "year")
 parameters <- list(
   .globals = list(burnStats = "fireStats"),
@@ -219,10 +235,10 @@ parameters <- list(
 )
 modules <- list("LCC2005")
 paths <- list(
-  cachePath = cacheDir,
-  modulePath = moduleDir,
-  inputPath = moduleDir,
-  outputPath = outputDir
+  cachePath = getPaths()$cachePath,
+  modulePath = getPaths()$modulePath,
+  inputPath = getPaths()$inputPath,
+  outputPath = getPaths()$outputPath
 )
 mySim <- simInit(modules = modules, paths = paths, params = parameters, times = times)
 ```
@@ -232,9 +248,12 @@ mySim <- simInit(modules = modules, paths = paths, params = parameters, times = 
 The LCC2005 is a parent module that contains several children (What are they?).  Now make a new parent module from several of the LCC2005 modules, but without, say, fire.
 
 ```{r}
-newModule("LCC2005NoFire", children = unlist(modules(mySim))[-6])
+allButFire <- unlist(modules(mySim))[-6]
+newModule("LCC2005NoFire", children = allButFire)
+openModules("LCC2005NoFire", getPaths()$modulePath)
 ```
 
+Go ahead and open the *LCC2005NoFire.R* and check the child modules in the metadata.
 
 ## Visual tools
 
