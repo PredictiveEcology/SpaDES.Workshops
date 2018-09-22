@@ -226,7 +226,7 @@ Then prepare the simulation
 ```{r run-lcc, echo=TRUE, eval=FALSE}
 # setup simulation
 
-times <- list(start = 2005.0, end = 2020.0, timeunit = "year")
+times <- list(start = 2005.0, end = 2015.0, timeunit = "year")
 parameters <- list(
   .globals = list(burnStats = "fireStats"),
   fireSpreadLcc = list(drought = 1.2),
