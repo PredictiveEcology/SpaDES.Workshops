@@ -186,13 +186,13 @@ The `LCC2005` module group provides a set of modules that can reproduce these dy
 Let's define the working directories of our simulation exercise (*SpaDESintro*) first.  
 
 ```{r def_dirs}
-main.dir <-  "~/temp_SpaDESws/"
+main.dir <-  "~/temp_SpaDESws"
 
 ## We'll create the necessary directories in a temporary location - feel free to change this if you wish to.
-setPaths(cachePath = file.path(main.dir,'SpaDESintro/cache'),
-         inputPath = file.path(main.dir, 'SpaDESintro/inputs'),
-         modulePath = file.path(main.dir, 'SpaDESintro/modules'),
-         outputPath = file.path(main.dir, 'SpaDESintro/outputs'))
+setPaths(cachePath = file.path(main.dir,'cache'),
+         inputPath = file.path(main.dir, 'inputs'),
+         modulePath = file.path(main.dir, 'modules'),
+         outputPath = file.path(main.dir, 'outputs'))
 
 ## verify that this is want you wanted:
 getPaths()
