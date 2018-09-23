@@ -208,14 +208,21 @@ dependencies &lt;-<span class="st"> </span>tools<span class="op">::</span><span 
 <span class="co"># Update any versions of these dependencies that are already on your machine</span>
 <span class="kw">update.packages</span>(<span class="dt">oldPkgs =</span> <span class="kw">unlist</span>(dependencies), <span class="dt">ask =</span> <span class="ot">FALSE</span>, <span class="dt">checkBuilt =</span> <span class="ot">TRUE</span>) 
 
+<span class="co"># Install any dependencies that are missing -- </span>
+<span class="co">#   install.packages is not getting correct dependencies</span>
+missingPkgs &lt;-<span class="st"> </span>dependencies<span class="op">$</span>SpaDES[<span class="op">!</span>(dependencies<span class="op">$</span>SpaDES <span class="op">%in%</span><span class="st"> </span><span class="kw">rownames</span>(<span class="kw">installed.packages</span>()))]
+<span class="cf">if</span> (<span class="kw">length</span>(missingPkgs))
+  <span class="kw">install.packages</span>(missingPkgs, <span class="dt">dependencies =</span> <span class="ot">FALSE</span>)
+
 ###################
-## Install all packages and their dependencies first
+## Install all SpaDES packages 
 ###################
-<span class="kw">install.packages</span>(<span class="st">'SpaDES'</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)
+<span class="kw">install.packages</span>(<span class="st">'SpaDES'</span>, <span class="dt">dependencies =</span> <span class="ot">FALSE</span>)
+
 
 ## now, update some of the packages from the development branch.
-devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"PredictiveEcology/quickPlot"</span>, <span class="dt">ref =</span> <span class="st">"development"</span> , <span class="dt">dependencies =</span> <span class="ot">FALSE</span>)
-devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"PredictiveEcology/reproducible"</span>, <span class="dt">ref =</span> <span class="st">"development"</span>, <span class="dt">dependencies =</span> <span class="ot">FALSE</span>)
+devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"PredictiveEcology/reproducible"</span>, <span class="dt">ref =</span> <span class="st">"development"</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)
+devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"PredictiveEcology/quickPlot"</span>, <span class="dt">ref =</span> <span class="st">"development"</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)
 devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"PredictiveEcology/SpaDES.tools"</span>, <span class="dt">ref =</span> <span class="st">"development"</span>, <span class="dt">dependencies =</span> <span class="ot">FALSE</span>)
 devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"PredictiveEcology/SpaDES.core"</span>, <span class="dt">ref =</span> <span class="st">"development"</span>, <span class="dt">dependencies =</span> <span class="ot">FALSE</span>)</code></pre></div>
 </div>
@@ -223,6 +230,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <h3 class="hasAnchor">
 <a href="#modules-included-in-the-spades-package" class="anchor"></a>1.2 Modules included in the <code>SpaDES</code> package</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## load SpaDES
+## RESTART R -- using Ctrl-Shift-F10 (may work if in Rstudio) or other
 <span class="kw">library</span>(SpaDES)
 
 ## Locate the sample modules in SpaDES.core
@@ -460,7 +468,7 @@ hst &lt;-<span class="st"> </span><span class="kw">hist</span>(ageMap01[])
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">end</span>(mySim_manag2) &lt;-<span class="st"> </span><span class="dv">100</span>
 <span class="kw">params</span>(mySim_manag2)<span class="op">$</span>fireSpreadLcc<span class="op">$</span>drought &lt;-<span class="st"> </span><span class="dv">3</span>
 <span class="kw">dev</span>()
-<span class="kw">clearPlot</span>()N
+<span class="kw">clearPlot</span>()
 mySim_manag3 &lt;-<span class="st"> </span><span class="kw">spades</span>(mySim_manag2, <span class="dt">debug =</span> <span class="ot">TRUE</span>)</code></pre></div>
 </div>
 </div>
