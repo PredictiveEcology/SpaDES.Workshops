@@ -60,7 +60,7 @@ Need the reusable work flow, and reproducible science ... but with a GUI
 ```
 
 - [Caching vignette](https://cran.r-project.org/web/packages/SpaDES/vignettes/iii-cache.html) 
-- [wolf model shows a caching use case](http://htmlpreview.github.io/?https://github.com/PredictiveEcology/SpaDES-modules/blob/master/modules/wolfAlps/wolfAlps.html)
+- [wolf model shows a caching use case](https://htmlpreview.github.io/?https://github.com/PredictiveEcology/wolfAlps/blob/master/wolfAlps.html)
 
 ## Nested Caching
 

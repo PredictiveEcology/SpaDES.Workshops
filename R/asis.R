@@ -57,8 +57,13 @@ build_articles1 <- function (pkg = ".", quiet = TRUE, lazy = TRUE, override = li
   }
   pkgdown:::rule("Building articles")
   pkgdown:::build_articles_index(pkg)
-  purrr::walk(pkg$vignettes$name, Cache, FUN = build_article, pkg = pkg,
-              quiet = quiet, lazy = lazy)
+  #browser()
+  # use lapply, so can use try ... sometimes a single vignette failes, e.g., HTTP 404.
+  #   don't want all to fail
+  lapply(pkg$vignettes$name, function(ff)
+    try(Cache(build_article, ff, pkg = pkg, quiet = quiet, lazy = lazy)))
+  #try(purrr::walk(pkg$vignettes$name, Cache, FUN = build_article, pkg = pkg,
+  #            quiet = quiet, lazy = lazy))
   preview_site(pkg, "articles", preview = preview)
 }
 assignInNamespace("build_articles", build_articles1, ns = "pkgdown")

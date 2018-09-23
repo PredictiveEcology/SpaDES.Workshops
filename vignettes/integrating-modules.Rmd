@@ -1,0 +1,109 @@
+---
+title: "Integrating different disciplines? With SpaDES is possible!"
+author: "Tati Micheletti"
+date: "21 September 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## What if I needed an integrated analysis?
+
+```{r setup_integrated}
+# Load libraries  
+  library(SpaDES)
+  library(magrittr)
+  library(raster)
+
+main.dir <-  "~/temp_SpaDESws"
+
+## We'll create the necessary directories in a temporary location - feel free to change this if you wish to.
+setPaths(cachePath = file.path(main.dir,'cache'),
+         inputPath = file.path(main.dir, 'inputs'),
+         modulePath = file.path(main.dir, 'modules'),
+         outputPath = file.path(main.dir, 'outputs'))
+
+SpaDES.core::downloadModule(name = "integratedSask",
+                            path = getPaths()$modulePath, 
+                            repo = "tati-micheletti/scfmModules",
+                            overwrite = TRUE) # It can't find the repo to download the module, don't know why
+
+times <- list(start = 0, end = 15)
+
+```
+
+
+Steve has a nice set of forest succession and a fire simulation models for a region in Saskatchewan.
+```{r fire}
+parameters <- list(
+  stateVars = list(persistTimes = c(20, 10, 10)),
+  ageModule  = list(initialAge = 25,
+  .plotInitialTime = 0),
+  scfmSpread = list(.plotInitialTime = 0,
+  pOverRide = 0.28)
+  )
+
+objects <- list(scfmPars = list(pSpread=0.225,
+                    p0 = 0.115,
+                    naiveP0 = 0.15, 
+                    pIgnition = 0.04, #0.00004, #0.0000112,
+                    maxBurnCells=NA
+                    ),
+                  numTypes = 8,
+                  landscapeAttr = list(cellSize=6.25),
+                  nNbrs = 8,
+                  url.vegMap = "ftp://ftp.ccrs.nrcan.gc.ca/ad/NLCCLandCover/LandcoverCanada2005_250m/LandCoverOfCanada2005_V1_4.zip",
+                  url.studyArea = "http://sis.agr.gc.ca/cansis/nsdb/ecostrat/district/ecodistrict_shp.zip",
+                  areaInHa = pi,
+                   polyMatrix = matrix(c(-113.552320, 55.442529), ncol = 2), areaSize = 50000
+              )
+
+# List the modules to use
+modulesFire <- list("scfmCrop", "scfmLandcoverInit", # Downloading and cropping rasters 
+                "scfmRegime", "scfmDisturbanceDriver", "scfmIgnition", "scfmEscape", "scfmSpread", # Fire module 
+                "ageModule", # Tree aging 
+                "mapBurns") # What burns (considers age)
+
+mySim <- simInit(times = times, params = parameters, modules = modulesFire, objects = objects, paths = paths, loadOrder = unlist(modules))
+
+# SIMULATION
+mySimOut <- Cache(spades, mySim, debug = TRUE)
+```
+
+John, who has a forestry company wants to understand the forest dynamics and the fire to plan how he will harvest in the same region.
+
+```{r harvest}
+parameters <- list(
+  stateVars = list(persistTimes = c(20, 10, 10)),
+  ageModule  = list(initialAge = 25,
+  .plotInitialTime = 0),
+  scfmSpread = list(.plotInitialTime = 0,
+  pOverRide = 0.28)
+  )
+
+# List the modules to use
+modulesHarvest <- list("scfmCrop", "scfmLandcoverInit", 
+                       "loadYieldTables", "Hanzlik", "strataMapFromVegMap", "scfmHarvest", "stateVars") 
+
+mySim2 <- simInit(times = times, params = parameters, modules = modulesHarvest, objects = objects, paths = paths, loadOrder = unlist(modules))
+
+# SIMULATION
+mySimOut2 <- Cache(spades, mySim2, debug = TRUE)
+```
+
+Tati, in the mean time, has been working with the boreal birds and developed a bird model to predict how probable it is to find two bird species based on forest cover in the same region. Eliot, on the other hand, has been working with the Caribou group and developed a model for its population that focuses mainly in the availability of high quality habitat also in this region in Saskatchewan.
+
+With `SpaDES`, we can relatively easily write all these models as SpaDES modules and integrate all in one analysis.
+
+```{r all}
+modules <- list("integratedSask")
+
+mySim3 <- simInit(times = times, params = parameters, modules = modulesHarvest, objects = objects, paths = paths, loadOrder = unlist(modules))
+
+# SIMULATION
+mySimOut3 <- Cache(spades, mySim3, debug = TRUE)
+```
+
+

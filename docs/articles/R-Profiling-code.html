@@ -113,12 +113,9 @@
   <span class="dt">vectorized =</span> { a &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">1000</span>) }
 )</code></pre></div>
 <pre><code>## Unit: microseconds
-##        expr      min       lq       mean    median       uq       max
-##        loop 3853.007 4010.349 6267.63034 5575.3945 7649.267 11821.501
-##  vectorized   32.553   34.313   48.90333   39.2985   54.842   165.112
-##  neval
-##    100
-##    100</code></pre>
+##        expr      min       lq       mean   median       uq      max neval
+##        loop 2991.623 3137.485 3880.21691 3450.906 4208.475 8683.512   100
+##  vectorized   29.902   31.543   36.13059   32.455   35.554   68.191   100</code></pre>
 </div>
 <div id="profiling-and-benchmarking-3" class="section level2">
 <h2 class="hasAnchor">

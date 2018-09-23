@@ -1,0 +1,3 @@
+[submodule "scfmModules"]
+	path = scfmModules
+	url = https://github.com/tati-micheletti/scfmModules.git
