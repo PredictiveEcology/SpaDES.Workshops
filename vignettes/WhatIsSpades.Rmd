@@ -138,14 +138,21 @@ dependencies <- tools::package_dependencies("SpaDES", recursive = TRUE)
 # Update any versions of these dependencies that are already on your machine
 update.packages(oldPkgs = unlist(dependencies), ask = FALSE, checkBuilt = TRUE) 
 
+# Install any dependencies that are missing -- 
+#   install.packages is not getting correct dependencies
+missingPkgs <- dependencies$SpaDES[!(dependencies$SpaDES %in% rownames(installed.packages()))]
+if (length(missingPkgs))
+  install.packages(missingPkgs, dependencies = FALSE)
+
 ###################
-## Install all packages and their dependencies first
+## Install all SpaDES packages 
 ###################
-install.packages('SpaDES', dependencies = TRUE)
+install.packages('SpaDES', dependencies = FALSE)
+
 
 ## now, update some of the packages from the development branch.
-devtools::install_github("PredictiveEcology/quickPlot", ref = "development" , dependencies = FALSE)
-devtools::install_github("PredictiveEcology/reproducible", ref = "development", dependencies = FALSE)
+devtools::install_github("PredictiveEcology/reproducible", ref = "development", dependencies = TRUE)
+devtools::install_github("PredictiveEcology/quickPlot", ref = "development", dependencies = TRUE)
 devtools::install_github("PredictiveEcology/SpaDES.tools", ref = "development", dependencies = FALSE)
 devtools::install_github("PredictiveEcology/SpaDES.core", ref = "development", dependencies = FALSE)
 
@@ -156,6 +163,7 @@ devtools::install_github("PredictiveEcology/SpaDES.core", ref = "development", d
 
 ```{r sampleModuleDir}
 ## load SpaDES
+## RESTART R -- using Ctrl-Shift-F10 (may work if in Rstudio) or other
 library(SpaDES)
 
 ## Locate the sample modules in SpaDES.core

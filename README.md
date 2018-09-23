@@ -47,15 +47,25 @@ Please pre-install the `SpaDES` packages and dependencies. `SpaDES` has many R p
 # Restart your R session so it is clear
 # Ctrl-shift-F10 if you are in Rstudio #
 
-# If you have any of our packages or their dependencies, please update them first
+###################
+# Make sure your existing packages are updated, and correct for the version of R
+###################
 # Get latest versions of key SpaDES packages from CRAN
 dependencies <- tools::package_dependencies("SpaDES", recursive = TRUE)
 
 # Update any versions of these dependencies that are already on your machine
 update.packages(oldPkgs = unlist(dependencies), ask = FALSE, checkBuilt = TRUE) 
 
-# install the latest version of the SpaDES packages and any dependencies not yet installed
-install.packages("SpaDES", dependencies = TRUE) # install "suggested" packages too with TRUE
+# Install any dependencies that are missing -- 
+#   install.packages is not getting correct dependencies
+missingPkgs <- dependencies$SpaDES[!(dependencies$SpaDES %in% rownames(installed.packages()))]
+if (length(missingPkgs))
+  install.packages(missingPkgs, dependencies = FALSE)
+
+###################
+## Install all SpaDES packages 
+###################
+install.packages('SpaDES', dependencies = FALSE)
 
 # For the workshop, there are a few minor bug fixes that are not in the CRAN version
 # Restart your R session so it is clear
