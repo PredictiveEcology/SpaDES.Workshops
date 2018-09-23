@@ -1,7 +1,7 @@
 ---
 title: "What is SpaDES?"
-author: "Ceres Barros"
-date: "May 2, 2018"
+author: "Ceres Barros, Eliot McIntire, Tati Micheletti"
+date: "Sept 22, 2018"
 output: 
   html_document:
     toc : TRUE
@@ -160,13 +160,11 @@ dir(sampleModuleDir)
 ## open the sample module Rmd file to learn more about the modules and access a simple example
 sampleModuleFiles <- list.files(sampleModuleDir, pattern = 'Rmd$', recursive = TRUE, full.names = TRUE)
 
-## open the first file
-file.edit(sampleModuleFiles[1])
-## or all:
-lapply(sampleModuleFiles, file.edit)
+## open the Rmd file
+file.edit(sampleModuleFiles)
 ```
   
-All modules should come with an *.Rmd* file that provides a summary of how the module works and *reproducible* example. If you've ever searched for R-help on **stackoverflow** you'll have noticed how people try to provide `R` code that can be run in any machine to reproduce the problem/solution at hand. Module *.Rmd* files should also run in any machine.
+As a best practice, modules should come with an *.Rmd* file that provides a summary of how the module works and *reproducible* example, though this is not actually imposed. If you've ever searched for R-help on **stackoverflow** you'll have noticed how people try to provide `R` code that can be run in any machine to reproduce the problem/solution at hand. Module *.Rmd* files should also run in any machine.
 
   
 ### 1.3 Simulation modelling with `SpaDES`
@@ -210,24 +208,41 @@ Now we can download the data needed for the modules.
 
 ```{r data_downld}
 
-downloadData("LccToBeaconsReclassify")
+downloadData("LccToBeaconsReclassify") # 41 MB file
 ```
 
 But what happens if the module doesn't require any data?
-Let's try to download data for any other module that doesn't need data
+Let's try to download data for any other module that doesn't need data. 
+
+In the next block, why does the second one re-download the same dataset as we just downloaded?
 ````{r data_notReq}
 
 downloadData("fireSpreadLcc") # Note it will hit the error "Error in curl::curl_fetch_memory(url, handle = handle) : Could not resolve host: NA".
 
-downloadData("cropReprojectLccAge") # Note that there is an error in the end of this download (at the last file). This is related to a missing map that we will fix below
+downloadData("cropReprojectLccAge") # Note that there is an error in the end of this download (at the last file). "Could not resolve host: ftp.daac.ornl.gov". This is related to a missing map that we will fix below
 ```
 
-Unfortunately, the forest age raster ("can_age04_1km.tif") is no longer downloadable without creating an account on the NASA EarthData website. Download it from [here](https://drive.google.com/file/d/1bD957dewv3U-cbISfeUEz1QpGg5DurR-/view?usp=sharing) and put in inside *modules/cropReprojectLccAge/data* and *modules/forestAge/data* (this will only be possible during the workshop).  
+Unfortunately, the forest age raster ("can_age04_1km.tif") is no longer downloadable without creating an account on the NASA EarthData website. We have provided a copy on Google Drive. You can download it manually from [here](https://drive.google.com/file/d/1bD957dewv3U-cbISfeUEz1QpGg5DurR-/view?usp=sharing) and put in inside *file.path(getPaths()$modulePath, "/cropReprojectLccAge/data")* and *modules/forestAge/data* (this will only be possible during the workshop). However, downloading objects/files from the internet is a common problem. To enhance reproducibility, the function will not download a file again if it has a local copy:
+
+
+```{prepInputs}
+# downloads
+age <- prepInputs(url = "https://drive.google.com/file/d/1bD957dewv3U-cbISfeUEz1QpGg5DurR-/view?usp=sharing",
+           destinationPath = file.path(getPaths()$modulePath, "/cropReprojectLccAge/data"))
+
+# doesn't download, because it is already there -- uses Checksums
+age <- prepInputs(url = "https://drive.google.com/file/d/1bD957dewv3U-cbISfeUEz1QpGg5DurR-/view?usp=sharing",
+           destinationPath = file.path(getPaths()$modulePath, "/cropReprojectLccAge/data"))
+
+file.copy(raster::filename(age),
+          file.path(getPaths()$modulePath, "/forestAge/data"))
+
+```
 
 For future reference, it is possible to create an account on the NASA EarthData website and, after logging in, you'll find the file [here](https://daac.ornl.gov/NACP/guides/NA_Tree_Age.html).  
 
 ```{r open_mdl}
-## open the description of the LCC2005 module group - on Windows this provides files directories
+## open the description of the LCC2005 module group - on Windows this doesn't work because of an Rstudio issue, instead the message provides the lines to copy and paste
 openModules('LCC2005', path = getPaths()$modulePath) 
 
 ## list all module files within LCC2005 and open them
@@ -285,7 +300,8 @@ Let's have a look at what mySim contains and how modules are connected.
 ls.str(mySim)
 
 dev()
-plot(mySim$age)
+mySim$age[] <- mySim$age[]
+Plot(mySim$age, title = "National age map") # usually faster than plot(mySim$age)
 
 ## plot module connections
 dev()
@@ -408,7 +424,7 @@ ageMap01 <- readRDS(outputs(mySim_manag2)$file[1])
 ## Now you can visualise the saved map in any way you want
 dev()
 clearPlot()
-Plot(ageMap01, title = "Age map")
+Plot(ageMap01, title = "Stand age")
 tble <- table(ageMap01[])
 frq <- as.data.frame(tble)
 names(frq)[1] <- "ageClass"
@@ -424,7 +440,7 @@ Are there fewer areas that are appropriate for harvesting if fires become larger
 end(mySim_manag2) <- 100
 params(mySim_manag2)$fireSpreadLcc$drought <- 3
 dev()
-clearPlot()
+clearPlot()N
 mySim_manag3 <- spades(mySim_manag2, debug = TRUE)
 ```
 
