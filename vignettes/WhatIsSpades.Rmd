@@ -459,7 +459,7 @@ Are there fewer areas that are appropriate for harvesting if fires become larger
 end(mySim_manag2) <- 100
 params(mySim_manag2)$fireSpreadLcc$drought <- 3
 dev()
-clearPlot()N
+clearPlot()
 mySim_manag3 <- spades(mySim_manag2, debug = TRUE)
 ```
 
