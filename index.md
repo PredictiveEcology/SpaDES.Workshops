@@ -65,6 +65,10 @@ devtools::install_github("PredictiveEcology/SpaDES.core", ref = "development")
 
 ```
 
+If you are comfortable with `GitHub.com`, you can clone the entire `SpaDES.Workshops` repository and thus have all the *.Rmd files used in this workshop:
+
+`https://github.com/PredictiveEcology/SpaDES.Workshops`
+
 For a direct link to the workshops, click on the top navigation bar or go [here](http://spades-workshops.predictiveecology.org/)
 
 ## Resources:
