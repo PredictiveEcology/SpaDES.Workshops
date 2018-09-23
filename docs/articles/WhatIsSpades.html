@@ -35,7 +35,6 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">SpaDES.Workshops</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
       </span>
     </div>
 
@@ -200,7 +199,18 @@ Because models are not just for modellers, a shiny app building package is being
 <a href="https://cran.r-project.org/bin/windows/Rtools/"><strong>Rtools</strong></a> (Windows), <a href="http://itunes.apple.com/us/app/xcode/id497799835?mt=12"><strong>XCode</strong></a> (Mac), or r-base (Linux; please see <a href="https://support.rstudio.com/hc/en-us/articles/200486498-Package-Development-Prerequisites">here</a> for details).</li>
 </ol>
 <p><code>SpaDES</code>is still on a relatively steep development curve. As such, it might be sometimes necessary to update a particular package from Git Hub (where <code>SpaDES</code> is being developed). It might be important to keep an eye on new improvements present in Git Hub that might not be in CRAN yet. You’ll find the latest releases for each package in their respective Git Hub page (e.g. <a href="https://github.com/PredictiveEcology/SpaDES.core/releases">SpaDES.core releases</a>). If you go to the <a href="https://github.com/PredictiveEcology/SpaDES.core/commits/development">commits page</a> you’ll notice that that there might be new features relatively to the latest commit.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Install all packages and their dependencies first
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">###################
+<span class="co"># Make sure your existing packages are updated, and correct for the version of R</span>
+###################
+<span class="co"># Get latest versions of key SpaDES packages from CRAN</span>
+dependencies &lt;-<span class="st"> </span>tools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tools/topics/package_dependencies">package_dependencies</a></span>(<span class="st">"SpaDES"</span>, <span class="dt">recursive =</span> <span class="ot">TRUE</span>)
+
+<span class="co"># Update any versions of these dependencies that are already on your machine</span>
+<span class="kw">update.packages</span>(<span class="dt">oldPkgs =</span> <span class="kw">unlist</span>(dependencies), <span class="dt">ask =</span> <span class="ot">FALSE</span>, <span class="dt">checkBuilt =</span> <span class="ot">TRUE</span>) 
+
+###################
+## Install all packages and their dependencies first
+###################
 <span class="kw">install.packages</span>(<span class="st">'SpaDES'</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)
 
 ## now, update some of the packages from the development branch.

@@ -17,12 +17,30 @@ We have organized a set of sessions, back to back, starting from the most “gen
 
 ### Location:
 
-**Pacific Forestry Centre**
+**Pacific Forestry Centre - Dilbert Hall**
+
+Participants attending in person who are not known to CFS will have to sign in at the front desk. We will have name tags for each visitor.
+
+### Remote Connecting:
+
+Password every day (may not be required): spades
+
+**Monday Sept 24**: 
+https://pwgsc-nh.webex.com/pwgsc-nh/j.php?MTID=m563024ba07f52ff94e8e84938a8170c8  
+
+**Tuesday Sept 25**: 
+https://pwgsc-nh.webex.com/pwgsc-nh/j.php?MTID=m4a37b92fd12b467686442e126cf36d16  
+
+**Wednesday Sept 26**: 
+https://pwgsc-nh.webex.com/pwgsc-nh/j.php?MTID=mb43e1b9e5691e45a7c04af6d9939d1f3  
 
 
-### [Part 2 and 3](articles/index.html)
 
-When following the Developer's workshop, please pre-install the `SpaDES` packages and dependencies:
+### [Installing SpaDES](articles/index.html)
+
+*PLEASE NOTE -- R must be installed as an administrator because we are using developer tools*
+
+Please pre-install the `SpaDES` packages and dependencies. `SpaDES` has many R packages that it depends on. The following approach seems to be the least prone to problems. If there are problems, read the error messages and try to deal with the error message. The most common one is that some package dependency is missing. 
 
 
 ```
@@ -34,7 +52,7 @@ When following the Developer's workshop, please pre-install the `SpaDES` package
 dependencies <- tools::package_dependencies("SpaDES", recursive = TRUE)
 
 # Update any versions of these dependencies that are already on your machine
-update.packages(oldPkgs = unlist(dependencies), ask = FALSE) 
+update.packages(oldPkgs = unlist(dependencies), ask = FALSE, checkBuilt = TRUE) 
 
 # install the latest version of the SpaDES packages and any dependencies not yet installed
 install.packages("SpaDES", dependencies = TRUE) # install "suggested" packages too with TRUE

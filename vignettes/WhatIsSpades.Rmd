@@ -129,7 +129,18 @@ Shiny web-app demo [here](https://spades.shinyapps.io/ForestChange_ProofOfConcep
 `SpaDES`is still on a relatively steep development curve. As such, it might be sometimes necessary to update a particular package from Git Hub (where `SpaDES` is being developed). It might be important to keep an eye on new improvements present in Git Hub that might not be in CRAN yet. You'll find the latest releases for each package in their respective Git Hub page (e.g. [SpaDES.core releases](https://github.com/PredictiveEcology/SpaDES.core/releases)). If you go to the [commits page](https://github.com/PredictiveEcology/SpaDES.core/commits/development) you'll notice that that there might be new features relatively to the latest commit.  
 
 ```{r SpaDESinstall}
+###################
+# Make sure your existing packages are updated, and correct for the version of R
+###################
+# Get latest versions of key SpaDES packages from CRAN
+dependencies <- tools::package_dependencies("SpaDES", recursive = TRUE)
+
+# Update any versions of these dependencies that are already on your machine
+update.packages(oldPkgs = unlist(dependencies), ask = FALSE, checkBuilt = TRUE) 
+
+###################
 ## Install all packages and their dependencies first
+###################
 install.packages('SpaDES', dependencies = TRUE)
 
 ## now, update some of the packages from the development branch.
