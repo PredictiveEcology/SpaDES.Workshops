@@ -38,7 +38,7 @@ https://pwgsc-nh.webex.com/pwgsc-nh/j.php?MTID=mb43e1b9e5691e45a7c04af6d9939d1f3
 
 ### [Installing SpaDES](articles/index.html)
 
-*PLEASE NOTE -- R must be installed as an administrator because we are using developer tools*
+**PLEASE NOTE -- R must be installed as an administrator because we are using developer tools**
 
 Please pre-install the `SpaDES` packages and dependencies. `SpaDES` has many R packages that it depends on. The following approach seems to be the least prone to problems. If there are problems, read the error messages and try to deal with the error message. The most common one is that some package dependency is missing. 
 
