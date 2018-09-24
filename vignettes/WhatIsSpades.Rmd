@@ -470,3 +470,13 @@ Soon `SpaDES` will have another package that will allow building web-apps from `
 
 - https://spades.shinyapps.io/ForestChange_ProofOfConcept/
 - http://landweb.ca/
+
+### 1.5 Use Github.com
+
+We have shown, in this section, `downloadModule`. It is good for people who are *using* modules, but who don't plan on *developing* modules. For that, we **should** use version control. All the modules we looked at today can be *cloned* by going to the web page:
+
+`https://github.com/PredictiveEcology/SpaDES-modules`
+
+Also, some of these modules are their own repository, and so you can clone them directly from their own, e.g., `LandMine`:
+
+`https://github.com/PredictiveEcology/LandMine`
