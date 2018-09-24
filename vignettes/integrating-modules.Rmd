@@ -6,16 +6,16 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
 ## What if I needed an integrated analysis?
 
 ```{r setup_integrated}
 # Load libraries  
-library(SpaDES)
-library(magrittr)
-library(raster)
+library(SpaDES.core)
+#library(magrittr)
+#library(raster)
 
 main.dir <-  "~/temp_SpaDESws"
 
@@ -87,10 +87,10 @@ parameters <- list(
 modulesHarvest <- list("scfmCrop", "scfmLandcoverInit", 
                        "loadYieldTables", "Hanzlik", "strataMapFromVegMap", "scfmHarvest", "stateVars") 
 
-mySim2 <- simInit(times = times, params = parameters, modules = modulesHarvest, objects = objects, paths = paths, loadOrder = unlist(modules))
+mySim2 <- simInit(times = times, params = parameters, modules = modulesHarvest, objects = objects, paths = getPaths(), loadOrder = unlist(modulesHarvest))
 
 # SIMULATION
-mySimOut2 <- Cache(spades, mySim2, debug = TRUE)
+mySimOut2 <- Cache(spades, mySim2)
 ```
 
 Tati, in the mean time, has been working with the boreal birds and developed a bird model to predict how probable it is to find two bird species based on forest cover in the same region. Eliot, on the other hand, has been working with the Caribou group and developed a model for its population that focuses mainly in the availability of high quality habitat also in this region in Saskatchewan.
@@ -100,7 +100,7 @@ With `SpaDES`, we can relatively easily write all these models as SpaDES modules
 ```{r all}
 modules <- list("integratedSask")
 
-mySim3 <- simInit(times = times, params = parameters, modules = modulesHarvest, objects = objects, paths = paths, loadOrder = unlist(modules))
+mySim3 <- simInit(times = times, params = parameters, modules = modulesHarvest, objects = objects, paths = getPaths(), loadOrder = unlist(modulesHarvest))
 
 # SIMULATION
 mySimOut3 <- Cache(spades, mySim3, debug = TRUE)
