@@ -35,6 +35,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">SpaDES.Workshops</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
       </span>
     </div>
 
@@ -92,7 +93,7 @@
 <span class="co">#library(magrittr)</span>
 <span class="co">#library(raster)</span>
 
-main.dir &lt;-<span class="st">  "~/temp_SpaDESws"</span>
+main.dir &lt;-<span class="st">  "~/integratedExample"</span>
 
 ## We'll create the necessary directories in a temporary location - feel free to change this if you wish to.
 <span class="kw">setPaths</span>(<span class="dt">cachePath =</span> <span class="kw">file.path</span>(main.dir,<span class="st">'cache'</span>),
@@ -103,7 +104,7 @@ main.dir &lt;-<span class="st">  "~/temp_SpaDESws"</span>
 <span class="kw">downloadModule</span>(<span class="dt">name =</span> <span class="st">"integratedSask"</span>,
                <span class="dt">path =</span> <span class="kw">getPaths</span>()<span class="op">$</span>modulePath, 
                <span class="dt">repo =</span> <span class="st">"PredictiveEcology/scfmModules"</span>,
-               <span class="dt">overwrite =</span> <span class="ot">TRUE</span>) <span class="co"># It can't find the repo to download the module, don't know why</span>
+               <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)
 
 times &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">start =</span> <span class="dv">0</span>, <span class="dt">end =</span> <span class="dv">15</span>)</code></pre></div>
 <p>Steve has a nice set of forest succession and a fire simulation models for a region in Saskatchewan.</p>
