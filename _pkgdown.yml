@@ -44,6 +44,7 @@ articles:
       If you are given a module, how do we get it, understand it, run it, test it, incorporate it into our own modules
     contents:
     - Existing-modules
+    - integrating-modules
 
   - title: "Developing a new continuously available science -- Developer's Workshop"
     desc: >

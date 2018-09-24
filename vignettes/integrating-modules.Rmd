@@ -13,9 +13,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r setup_integrated}
 # Load libraries  
-  library(SpaDES)
-  library(magrittr)
-  library(raster)
+library(SpaDES)
+library(magrittr)
+library(raster)
 
 main.dir <-  "~/temp_SpaDESws"
 
@@ -25,10 +25,10 @@ setPaths(cachePath = file.path(main.dir,'cache'),
          modulePath = file.path(main.dir, 'modules'),
          outputPath = file.path(main.dir, 'outputs'))
 
-SpaDES.core::downloadModule(name = "integratedSask",
-                            path = getPaths()$modulePath, 
-                            repo = "tati-micheletti/scfmModules",
-                            overwrite = TRUE) # It can't find the repo to download the module, don't know why
+downloadModule(name = "integratedSask",
+               path = getPaths()$modulePath, 
+               repo = "PredictiveEcology/scfmModules",
+               overwrite = TRUE) # It can't find the repo to download the module, don't know why
 
 times <- list(start = 0, end = 15)
 
@@ -66,7 +66,7 @@ modulesFire <- list("scfmCrop", "scfmLandcoverInit", # Downloading and cropping 
                 "ageModule", # Tree aging 
                 "mapBurns") # What burns (considers age)
 
-mySim <- simInit(times = times, params = parameters, modules = modulesFire, objects = objects, paths = paths, loadOrder = unlist(modules))
+mySim <- simInit(times = times, params = parameters, modules = modulesFire, objects = objects, paths = getPaths(), loadOrder = unlist(modulesFire))
 
 # SIMULATION
 mySimOut <- Cache(spades, mySim, debug = TRUE)
