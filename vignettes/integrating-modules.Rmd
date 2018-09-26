@@ -11,6 +11,13 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 ## What if I needed an integrated analysis?
 
+Let's set up a 16 module model with 5 main groups: 
+1. Vegetation succession  
+2. Fire  
+3. Harvesting  
+4. Birds  
+5. Caribou  
+
 ```{r setup_integrated}
 # Load libraries  
 library(SpaDES.core)
@@ -35,7 +42,8 @@ times <- list(start = 0, end = 15)
 ```
 
 
-Steve has a nice set of forest succession and a fire simulation models for a region in Saskatchewan.
+Steve, a fire specialist has a nice set of forest succession and a fire simulation models for a region in Saskatchewan. We will run his set of modules:
+
 ```{r fire}
 parameters <- list(
   stateVars = list(persistTimes = c(20, 10, 10)),
@@ -72,7 +80,7 @@ mySim <- simInit(times = times, params = parameters, modules = modulesFire, obje
 mySimOut <- Cache(spades, mySim, debug = TRUE)
 ```
 
-John, who has a forestry company wants to understand the forest dynamics and the fire to plan how he will harvest in the same region.
+John, who has a forestry company wants to understand the forest dynamics to plan how he will harvest in the same region.
 
 ```{r harvest}
 parameters <- list(
