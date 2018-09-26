@@ -106,7 +106,8 @@ Tati, in the mean time, has been working with the boreal birds and developed a b
 With `SpaDES`, we can relatively easily write all these models as SpaDES modules and integrate all in one analysis.
 
 ```{r all}
-modules <- list("integratedSask")
+modules <- unique(c(modulesFire, modulesHarvest, 
+                    "birdsAlberta", "caribouAlberta"))
 
 mySim3 <- simInit(times = times, params = parameters, modules = modulesHarvest, objects = objects, paths = getPaths(), loadOrder = unlist(modulesHarvest))
 
