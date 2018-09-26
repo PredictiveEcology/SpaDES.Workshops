@@ -87,6 +87,11 @@
 <div id="what-if-i-needed-an-integrated-analysis" class="section level2">
 <h2 class="hasAnchor">
 <a href="#what-if-i-needed-an-integrated-analysis" class="anchor"></a>What if I needed an integrated analysis?</h2>
+<p>Let’s set up a 16 module model with 5 main groups: 1. Vegetation succession<br>
+2. Fire<br>
+3. Harvesting<br>
+4. Birds<br>
+5. Caribou</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load libraries  </span>
 <span class="kw">library</span>(SpaDES.core)
 <span class="co">#library(magrittr)</span>
@@ -106,7 +111,7 @@ main.dir &lt;-<span class="st">  "~/integratedExample"</span>
                <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)
 
 times &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">start =</span> <span class="dv">0</span>, <span class="dt">end =</span> <span class="dv">15</span>)</code></pre></div>
-<p>Steve has a nice set of forest succession and a fire simulation models for a region in Saskatchewan.</p>
+<p>Steve, a fire specialist has a nice set of forest succession and a fire simulation models for a region in Saskatchewan. We will run his set of modules:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">parameters &lt;-<span class="st"> </span><span class="kw">list</span>(
   <span class="dt">stateVars =</span> <span class="kw">list</span>(<span class="dt">persistTimes =</span> <span class="kw">c</span>(<span class="dv">20</span>, <span class="dv">10</span>, <span class="dv">10</span>)),
   <span class="dt">ageModule  =</span> <span class="kw">list</span>(<span class="dt">initialAge =</span> <span class="dv">25</span>,
@@ -140,7 +145,7 @@ mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(<span class=
 
 <span class="co"># SIMULATION</span>
 mySimOut &lt;-<span class="st"> </span><span class="kw">Cache</span>(spades, mySim, <span class="dt">debug =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<p>John, who has a forestry company wants to understand the forest dynamics and the fire to plan how he will harvest in the same region.</p>
+<p>John, who has a forestry company wants to understand the forest dynamics to plan how he will harvest in the same region.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">parameters &lt;-<span class="st"> </span><span class="kw">list</span>(
   <span class="dt">stateVars =</span> <span class="kw">list</span>(<span class="dt">persistTimes =</span> <span class="kw">c</span>(<span class="dv">20</span>, <span class="dv">10</span>, <span class="dv">10</span>)),
   <span class="dt">ageModule  =</span> <span class="kw">list</span>(<span class="dt">initialAge =</span> <span class="dv">25</span>,
@@ -159,7 +164,8 @@ mySim2 &lt;-<span class="st"> </span><span class="kw">simInit</span>(<span class
 mySimOut2 &lt;-<span class="st"> </span><span class="kw">Cache</span>(spades, mySim2)</code></pre></div>
 <p>Tati, in the mean time, has been working with the boreal birds and developed a bird model to predict how probable it is to find two bird species based on forest cover in the same region. Eliot, on the other hand, has been working with the Caribou group and developed a model for its population that focuses mainly in the availability of high quality habitat also in this region in Saskatchewan.</p>
 <p>With <code>SpaDES</code>, we can relatively easily write all these models as SpaDES modules and integrate all in one analysis.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">modules &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">"integratedSask"</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">modules &lt;-<span class="st"> </span><span class="kw">unique</span>(<span class="kw">c</span>(modulesFire, modulesHarvest, 
+                    <span class="st">"birdsAlberta"</span>, <span class="st">"caribouAlberta"</span>))
 
 mySim3 &lt;-<span class="st"> </span><span class="kw">simInit</span>(<span class="dt">times =</span> times, <span class="dt">params =</span> parameters, <span class="dt">modules =</span> modulesHarvest, <span class="dt">objects =</span> objects, <span class="dt">paths =</span> <span class="kw">getPaths</span>(), <span class="dt">loadOrder =</span> <span class="kw">unlist</span>(modulesHarvest))
 
