@@ -109,7 +109,7 @@ With `SpaDES`, we can relatively easily write all these models as SpaDES modules
 modules <- unique(c(modulesFire, modulesHarvest, 
                     "birdsAlberta", "caribouAlberta"))
 
-mySim3 <- simInit(times = times, params = parameters, modules = modulesHarvest, objects = objects, paths = getPaths(), loadOrder = unlist(modulesHarvest))
+mySim3 <- simInit(times = times, params = parameters, modules = modules, objects = objects, paths = getPaths(), loadOrder = unlist(modules))
 
 # SIMULATION
 mySimOut3 <- Cache(spades, mySim3, debug = TRUE)

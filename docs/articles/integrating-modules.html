@@ -167,7 +167,7 @@ mySimOut2 &lt;-<span class="st"> </span><span class="kw">Cache</span>(spades, my
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">modules &lt;-<span class="st"> </span><span class="kw">unique</span>(<span class="kw">c</span>(modulesFire, modulesHarvest, 
                     <span class="st">"birdsAlberta"</span>, <span class="st">"caribouAlberta"</span>))
 
-mySim3 &lt;-<span class="st"> </span><span class="kw">simInit</span>(<span class="dt">times =</span> times, <span class="dt">params =</span> parameters, <span class="dt">modules =</span> modulesHarvest, <span class="dt">objects =</span> objects, <span class="dt">paths =</span> <span class="kw">getPaths</span>(), <span class="dt">loadOrder =</span> <span class="kw">unlist</span>(modulesHarvest))
+mySim3 &lt;-<span class="st"> </span><span class="kw">simInit</span>(<span class="dt">times =</span> times, <span class="dt">params =</span> parameters, <span class="dt">modules =</span> modules, <span class="dt">objects =</span> objects, <span class="dt">paths =</span> <span class="kw">getPaths</span>(), <span class="dt">loadOrder =</span> <span class="kw">unlist</span>(modules))
 
 <span class="co"># SIMULATION</span>
 mySimOut3 &lt;-<span class="st"> </span><span class="kw">Cache</span>(spades, mySim3, <span class="dt">debug =</span> <span class="ot">TRUE</span>)</code></pre></div>
