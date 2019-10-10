@@ -1,14 +1,13 @@
-replacementList <-
-  list("SpaDES4Dummies.html" = "https://htmlpreview.github.io/?https://github.com/CeresBarros/SpaDES4Dummies/blob/master/SpaDES4Dummies.html",
-       "GoogleDrive.html" = "https://drive.google.com/open?id=1XnfUTRk59dORiPbdN2sreGDXNmDjcUle",
-       "Caching.html" = "https://cran.r-project.org/web/packages/SpaDES/vignettes/iii-cache.html",
-       "Plotting.html" = "http://quickplot.predictiveecology.org/articles/iii-plotting.html",
-       "Debugging.html" = "https://github.com/PredictiveEcology/SpaDES/wiki/Debugging",
-       "Articles <small>version&nbsp;0.1.0</small>" = "Content",
-       "[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9] Workshop" = "2018-02-07",
-       "Past Workshops" = "Prior to 2018",
-       "Released package" = NULL
-       )
+replacementList <- list(
+  "[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9] Workshop" = "2019-10-10",
+  "Articles <small>version&nbsp;0.1.0</small>" = "Content",
+  "Caching.html" = "https://cran.r-project.org/web/packages/SpaDES/vignettes/iii-cache.html",
+  "Debugging.html" = "https://github.com/PredictiveEcology/SpaDES/wiki/Debugging",
+  "Past Workshops" = "Prior to 2019",
+  "Plotting.html" = "http://quickplot.predictiveecology.org/articles/iii-plotting.html",
+  "Released package" = NULL,
+  "SpaDES4Dummies.html" = "https://htmlpreview.github.io/?https://github.com/CeresBarros/SpaDES4Dummies/blob/master/SpaDES4Dummies.html"
+)
 
 #library(pkgdown)
 #library(reproducible)
