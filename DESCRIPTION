@@ -1,17 +1,22 @@
 Package: SpaDES.Workshops
 Type: Package
 Title: 1/2 day and 3 days workshops for ecological modeling with SpaDES
-Description: SpaDES is an R package that enables reproducible workflows, decision support via web apps, and ecological modeling tools.
+Description: SpaDES is an R package that enables reproducible workflows,
+    decision support via web apps, and ecological modeling tools.
 URL:
     https://spades-workshops.predictiveecology.org/,
     https://github.com/PredictiveEcology/SpaDES.Workshops
-Date: 2018-01-21
+Date: 2019-10-10
 Version: 0.1.0
 Authors@R: c(
     person("Eliot J B", "McIntire", email = "eliot.mcintire@canada.ca",
-    role = c("aut", "cre")),
+           role = c("aut", "cre")),
     person("Ceres", "Barros", email = "ceres.barros@ubc.ca",
-    role = c("aut"))
+           role = c("aut")),
+    person("Tati", "Micheletti", email = "tati.micheletti@gmail.com",
+           role = c("aut")),
+    person("Alex M", "Chubaty", email = "alex.chubaty@gmail.com",
+           role = c("aut"))
     )
 Depends:
     R (>= 3.3.2)
@@ -21,6 +26,5 @@ License: GPL-3
 VignetteBuilder: knitr, rmarkdown
 BugReports: https://github.com/PredictiveEcology/SpaDES.Workshops/issues
 ByteCompile: yes
-Collate: 
-    'asis.R'
-RoxygenNote: 6.1.0.9000
+Encoding: UTF-8
+RoxygenNote: 6.1.1
