@@ -15,10 +15,10 @@ replacementList <- list(
 #lockBinding("build_articles_index", env = as.environment("package:pkgdown"))
 #assignInNamespace("build_articles_index", build_articles_index2, ns = "pkgdown")
 
-
-#' Ttitle2
+####################################################################################################
+#' \code{replaceRemoteLinksInArticles}
 #'
-#' That
+#' Lorem ipsum ...
 #'
 #' @export
 replaceRemoteLinksInArticles <- function(replacements) {
@@ -31,25 +31,22 @@ replaceRemoteLinksInArticles <- function(replacements) {
         if (is.null(replacements[[nam]])) {
           cc1 <- grep(nam, cc, invert = TRUE, value = TRUE)
         } else {
-          cc1 <- gsub(cc, pattern = nam,
-                      replacement = replacements[[nam]])
+          cc1 <- gsub(cc, pattern = nam, replacement = replacements[[nam]])
         }
         writeLines(cc1, indexHTML)
         indexHTML
       }
     })
-
   })
 }
 
-#' Title
+####################################################################################################
+#' \CODE{build_articles1}
 #'
-#' Thus
+#' Lorem ipsum ...
 #'
 #' @importFrom reproducible Cache
-build_articles1 <- function (pkg = ".", quiet = TRUE, lazy = TRUE, override = list(),
-          preview = NA)
-{
+build_articles1 <- function(pkg = ".", quiet = TRUE, lazy = TRUE, override = list(), preview = NA) {
   pkg <- pkgdown:::section_init(pkg, depth = 1L, override = override)
   if (nrow(pkg$vignettes) == 0L) {
     return(invisible())
