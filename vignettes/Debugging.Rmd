@@ -16,3 +16,7 @@ knitr::opts_chunk$set(cache = FALSE, echo = TRUE, eval = TRUE)
 ```
 
 
+<!--
+  this is a dummy file that will be replaced with a link to the Debugging vignette when site rebuilt
+  see `replacementList` defined in `asis.R`
+-->
