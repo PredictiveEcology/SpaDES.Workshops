@@ -1,7 +1,5 @@
 url: http://spades-workshops.predictiveecology.org/
 
-
-
 template:
   params:
     bootswatch: flatly
