@@ -55,7 +55,7 @@ if (length(missingPkgs))
   install.packages(missingPkgs, dependencies = FALSE)
 
 ## Install all SpaDES packages 
-install.packages('SpaDES', dependencies = FALSE)
+install.packages("SpaDES", dependencies = FALSE)
 
 ## For the workshop, there are a few minor fixes and enhancements that are not in the CRAN version
 ## Restart your R session so it is clear
@@ -63,6 +63,16 @@ install.packages('SpaDES', dependencies = FALSE)
 reproducible::Require("devtools") # installs (if needed) and loads
 devtools::install_github("PredictiveEcology/SpaDES.core", ref = "development")
 ```
+
+### Installing additional packages
+
+```r
+install.packages("achubaty/amc@development")
+install.packages("PredictiveEcology/LandR@development")
+install.packages("PredictiveEcology/pemisc@development")
+```
+
+### Workshop materials
 
 If you are comfortable with `GitHub.com`, you can clone the entire `SpaDES.Workshops` repository and thus have all the `*.Rmd` files used in this workshop:
 

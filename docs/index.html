@@ -129,13 +129,24 @@ if (length(missingPkgs))
   install.packages(missingPkgs, dependencies = FALSE)
 
 ## Install all SpaDES packages 
-install.packages('SpaDES', dependencies = FALSE)
+install.packages("SpaDES", dependencies = FALSE)
 
 ## For the workshop, there are a few minor fixes and enhancements that are not in the CRAN version
 ## Restart your R session so it is clear
 # Ctrl-shift-F10 if you are in Rstudio #
 reproducible::Require("devtools") # installs (if needed) and loads
 devtools::install_github("PredictiveEcology/SpaDES.core", ref = "development")</code></pre>
+</div>
+<div id="installing-additional-packages" class="section level3">
+<h3 class="hasAnchor">
+<a href="#installing-additional-packages" class="anchor"></a>Installing additional packages</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"achubaty/amc@development"</span>)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"PredictiveEcology/LandR@development"</span>)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"PredictiveEcology/pemisc@development"</span>)</a></code></pre></div>
+</div>
+<div id="workshop-materials" class="section level3">
+<h3 class="hasAnchor">
+<a href="#workshop-materials" class="anchor"></a>Workshop materials</h3>
 <p>If you are comfortable with <code>GitHub.com</code>, you can clone the entire <code>SpaDES.Workshops</code> repository and thus have all the <code>*.Rmd</code> files used in this workshop:</p>
 <p><code>https://github.com/PredictiveEcology/SpaDES.Workshops</code></p>
 <p>For a direct link to the workshops, click on the top navigation bar or go <a href="http://spades-workshops.predictiveecology.org/">here</a></p>
