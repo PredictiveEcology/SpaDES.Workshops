@@ -2,11 +2,11 @@
 % Please edit documentation in R/asis.R
 \name{build_articles1}
 \alias{build_articles1}
-\title{Title}
+\title{\code{build_articles1}}
 \usage{
 build_articles1(pkg = ".", quiet = TRUE, lazy = TRUE,
   override = list(), preview = NA)
 }
 \description{
-Thus
+Lorem ipsum ...
 }

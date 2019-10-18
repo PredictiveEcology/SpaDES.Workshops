@@ -1,7 +1,7 @@
 ---
 title       : "Debugging"
 author      : "Eliot McIntire"
-date        : "Jan 30, 2018"
+date        : "2019 October 17"
 output: 
   html_document: 
     number_sections: yes
@@ -14,7 +14,6 @@ editor_options:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(cache = FALSE, echo = TRUE, eval = TRUE)
 ```
-
 
 <!--
   this is a dummy file that will be replaced with a link to the Debugging vignette when site rebuilt

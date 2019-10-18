@@ -1,7 +1,7 @@
 ---
 title       : "Caching"
 author      : "Eliot McIntire"
-date        : "Jan 30, 2018"
+date        : "2019 October 17"
 output: 
   html_document: 
     number_sections: yes

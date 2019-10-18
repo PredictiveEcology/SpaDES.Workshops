@@ -1,0 +1,22 @@
+---
+title       : "Cheatsheets"
+author      : "Alex M Chubaty"
+date        : "October 17, 2019"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = FALSE, echo = TRUE, eval = FALSE)
+```
+
+Checkout RStudio's repository of useful cheatsheets: <https://github.com/rstudio/cheatsheets>.
+
+- [RStudio IDE](https://github.com/rstudio/cheatsheets/blob/master/rstudio-ide.pdf)
+
+## By topic
+
+- [spatial data](http://www.maths.lancs.ac.uk/~rowlings/Teaching/UseR2012/cheatsheet.html)
+
+## Packages
+
+- [`data.table`](https://github.com/rstudio/cheatsheets/blob/master/datatable.pdf)
+- [`sf`](https://github.com/rstudio/cheatsheets/blob/master/sf.pdf)

@@ -2,10 +2,10 @@
 % Please edit documentation in R/asis.R
 \name{replaceRemoteLinksInArticles}
 \alias{replaceRemoteLinksInArticles}
-\title{Ttitle2}
+\title{\code{replaceRemoteLinksInArticles}}
 \usage{
 replaceRemoteLinksInArticles(replacements)
 }
 \description{
-That
+Lorem ipsum ...
 }

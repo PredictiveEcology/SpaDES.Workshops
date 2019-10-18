@@ -1,7 +1,7 @@
 ---
 title       : "SpaDES4Dummies - Building new modules, and connecting them"
 author      : "Ceres Barros, Tatiane Micheletti, Eliot McIntire"
-date        : "Jan 30, 2018"
+date        : "2019 October 17"
 output: 
   html_document: 
     number_sections: yes
@@ -15,4 +15,7 @@ editor_options:
 knitr::opts_chunk$set(cache = FALSE, echo = TRUE, eval = TRUE)
 ```
 
-
+<!--
+  this is a dummy file that will be replaced with a link to the SpaDES4Dummies vignette when site rebuilt
+  see `replacementList` defined in `asis.R`
+-->

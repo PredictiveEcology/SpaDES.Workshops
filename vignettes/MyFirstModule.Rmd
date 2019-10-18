@@ -1,7 +1,7 @@
 ---
-title: "My first SpaDES module - from `R` to `SpaDES`"
+title:  "My first `SpaDES` module - from `R` to `SpaDES`"
 author: "Ceres Barros, Eliot McIntire & Tati Micheletti"
-date: "Sept 21, 2018"
+date:   "2019 October 17"
 output:
   html_document:
     toc : TRUE
@@ -12,6 +12,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
+<!-- TODO: reduce overlap between this and the 'loops to events' vignette -->
 
 ## Loops: what are they and why use them?
 
@@ -335,8 +336,10 @@ age
 
 Note that mySimOut is a *pointer* to the updated/changed `mySim` not a true new `simList` object
 
-### Exercise 1.4. Make it even more SpaDESy
-Notice that below the `doEvent.loop` function there are templates for other funcitons that can be used inside the events. Keeping the code inside these functions increases modularity and flexibility, as functions are self-contained.
+### Exercise 1.4. Make it even more `SpaDES`y
+
+Notice that below the `doEvent.loop` function there are templates for other funcitons that can be used inside the events.
+Keeping the code inside these functions increases modularity and flexibility, as functions are self-contained.
 
 1. Make separate functions to be used in the `init` and the `addOneYear` events.
 
@@ -353,7 +356,10 @@ aging <- function(age = sim$age) {
   return(age)
 }
 ```
-NOTE: We present above two different ways of specifying a function. One always passed the sim object to the function and return the sim oject modified. The second returns the results of a function to the sim list as a new object in it.
+
+NOTE: We present above two different ways of specifying a function.
+One always passed the `sim` object to the function and return the `sim` oject modified.
+The second returns the results of a function to the `sim` object as a new object "in" it.
 
 2. Now you'll need to adapt the code inside `doEvent.loop` so that the appropriate functions are called inside their respective events
 
@@ -385,4 +391,3 @@ doEvent.loop = function(sim, eventTime, eventType) {
   return(invisible(sim))
 }
 ```
-

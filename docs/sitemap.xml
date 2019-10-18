@@ -16,6 +16,9 @@
     <loc>http://spades-workshops.predictiveecology.org//articles/Caching.html</loc>
   </url>
   <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/Cheatsheets.html</loc>
+  </url>
+  <url>
     <loc>http://spades-workshops.predictiveecology.org//articles/Continuous-Workflow.html</loc>
   </url>
   <url>
@@ -28,31 +31,19 @@
     <loc>http://spades-workshops.predictiveecology.org//articles/Existing-modules.html</loc>
   </url>
   <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/Feb2018_Day1.html</loc>
-  </url>
-  <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/GoogleDrive.html</loc>
-  </url>
-  <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/integrating-modules.html</loc>
-  </url>
-  <url>
     <loc>http://spades-workshops.predictiveecology.org//articles/Loops-to-Events.html</loc>
   </url>
   <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/Module-details.html</loc>
+    <loc>http://spades-workshops.predictiveecology.org//articles/Module-Using-parent-modules-to-integrate.html</loc>
   </url>
   <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/Module-Using-parent-modules-to-integrate.html</loc>
+    <loc>http://spades-workshops.predictiveecology.org//articles/Module-details.html</loc>
   </url>
   <url>
     <loc>http://spades-workshops.predictiveecology.org//articles/Modules--Thinking-in-a-modular-way.html</loc>
   </url>
   <url>
     <loc>http://spades-workshops.predictiveecology.org//articles/MyFirstModule.html</loc>
-  </url>
-  <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/OldReadme.html</loc>
   </url>
   <url>
     <loc>http://spades-workshops.predictiveecology.org//articles/Plotting.html</loc>
@@ -73,9 +64,15 @@
     <loc>http://spades-workshops.predictiveecology.org//articles/SpaDES4Dummies.html</loc>
   </url>
   <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/SpaDESInAction.html</loc>
+  </url>
+  <url>
     <loc>http://spades-workshops.predictiveecology.org//articles/The-simList.html</loc>
   </url>
   <url>
     <loc>http://spades-workshops.predictiveecology.org//articles/WhatIsSpades.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/integrating-modules.html</loc>
   </url>
 </urlset>

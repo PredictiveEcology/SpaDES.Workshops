@@ -1,7 +1,7 @@
 ---
-title: "Integrating different disciplines? With SpaDES is possible!"
+title:  "Integrating different disciplines? With SpaDES is possible!"
 author: "Tati Micheletti"
-date: "21 September 2018"
+date:   "2019 October 17"
 output: html_document
 ---
 
@@ -38,11 +38,10 @@ downloadModule(name = "integratedSask",
                overwrite = TRUE)
 
 times <- list(start = 0, end = 15)
-
 ```
 
-
-Steve, a fire specialist has a nice set of forest succession and a fire simulation models for a region in Saskatchewan. We will run his set of modules:
+Steve Cumming, a fire specialist has a nice set of forest succession and a fire simulation models for a region in Saskatchewan.
+We will run his set of modules:
 
 ```{r fire}
 parameters <- list(
@@ -53,19 +52,21 @@ parameters <- list(
   pOverRide = 0.28)
   )
 
-objects <- list(scfmPars = list(pSpread=0.225,
-                    p0 = 0.115,
-                    naiveP0 = 0.15, 
-                    pIgnition = 0.04, #0.00004, #0.0000112,
-                    maxBurnCells=NA
-                    ),
-                  numTypes = 8,
-                  landscapeAttr = list(cellSize=6.25),
-                  nNbrs = 8,
-                  url.vegMap = "ftp://ftp.ccrs.nrcan.gc.ca/ad/NLCCLandCover/LandcoverCanada2005_250m/LandCoverOfCanada2005_V1_4.zip",
-                  url.studyArea = "http://sis.agr.gc.ca/cansis/nsdb/ecostrat/district/ecodistrict_shp.zip",
-                  areaInHa = pi,
-                   polyMatrix = matrix(c(-113.552320, 55.442529), ncol = 2), areaSize = 50000
+objects <- list(scfmPars = list(pSpread = 0.225,
+                                p0 = 0.115,
+                                naiveP0 = 0.15, 
+                                pIgnition = 0.04, #0.00004, #0.0000112,
+                                maxBurnCells = NA
+                                ),
+                numTypes = 8,
+                landscapeAttr = list(cellSize = 6.25),
+                nNbrs = 8,
+                url.vegMap = paste0("ftp://ftp.ccrs.nrcan.gc.ca/ad/NLCCLandCover/",
+                                    "LandcoverCanada2005_250m/LandCoverOfCanada2005_V1_4.zip"),
+                url.studyArea = "http://sis.agr.gc.ca/cansis/nsdb/ecostrat/district/ecodistrict_shp.zip",
+                areaInHa = pi,
+                polyMatrix = matrix(c(-113.552320, 55.442529), ncol = 2),
+                areaSize = 50000
               )
 
 # List the modules to use
@@ -89,30 +90,38 @@ parameters <- list(
   .plotInitialTime = 0),
   scfmSpread = list(.plotInitialTime = 0,
   pOverRide = 0.28)
-  )
+)
 
 # List the modules to use
 modulesHarvest <- list("scfmCrop", "scfmLandcoverInit", 
                        "loadYieldTables", "Hanzlik", "strataMapFromVegMap", "scfmHarvest", "stateVars") 
 
-mySim2 <- simInit(times = times, params = parameters, modules = modulesHarvest, objects = objects, paths = getPaths(), loadOrder = unlist(modulesHarvest))
+mySim2 <- simInit(times = times,
+                  params = parameters,
+                  modules = modulesHarvest,
+                  objects = objects,
+                  paths = getPaths(),
+                  loadOrder = unlist(modulesHarvest))
 
 # SIMULATION
 mySimOut2 <- Cache(spades, mySim2)
 ```
 
-Tati, in the mean time, has been working with the boreal birds and developed a bird model to predict how probable it is to find two bird species based on forest cover in the same region. Eliot, on the other hand, has been working with the Caribou group and developed a model for its population that focuses mainly in the availability of high quality habitat also in this region in Saskatchewan.
+Tati, in the mean time, has been working with the boreal birds and developed a bird model to predict how probable it is to find two bird species based on forest cover in the same region.
+Eliot, on the other hand, has been working with the Caribou group and developed a model for its population that focuses mainly in the availability of high quality habitat also in this region in Saskatchewan.
 
 With `SpaDES`, we can relatively easily write all these models as SpaDES modules and integrate all in one analysis.
 
 ```{r all}
-modules <- unique(c(modulesFire, modulesHarvest, 
-                    "birdsAlberta", "caribouAlberta"))
+modules <- unique(c(modulesFire, modulesHarvest, "birdsAlberta", "caribouAlberta"))
 
-mySim3 <- simInit(times = times, params = parameters, modules = modules, objects = objects, paths = getPaths(), loadOrder = unlist(modules))
+mySim3 <- simInit(times = times,
+                  params = parameters,
+                  modules = modules,
+                  objects = objects,
+                  paths = getPaths(),
+                  loadOrder = unlist(modules))
 
 # SIMULATION
 mySimOut3 <- Cache(spades, mySim3, debug = TRUE)
 ```
-
-

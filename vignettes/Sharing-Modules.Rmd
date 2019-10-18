@@ -1,7 +1,9 @@
 ---
 title       : "Sharing modules and data"
 author      : "Alex M Chubaty & Eliot McIntire"
-date        : "December 9, 2016"
+date        : "2019 October 17"
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -21,7 +23,7 @@ This is the default repo in `SpaDES`.
     - it's easily accessible using `downloadModule()`
 
 ```{r module-repo-option, echo=TRUE, eval=TRUE}
-getOption('spades.modulesRepo') ## default url prefix is GitHub
+getOption('spades.moduleRepo') ## default url prefix is GitHub.com
 ```
 
 ## Other `SpaDES` module repositories
@@ -81,7 +83,7 @@ We, and many others, use GitHub extensively for all our group's work
 
 ## `shine` function
 
-`SpaDES` has a simple function that takes any simList and makes a web app from it:
+`SpaDES.shiny` (on GitHub) has a simple function that takes any simList and makes a web app from it:
 
 ```{r shine}
 ?shine

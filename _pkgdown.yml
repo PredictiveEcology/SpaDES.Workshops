@@ -1,18 +1,18 @@
 url: http://spades-workshops.predictiveecology.org/
 
-
-
 template:
   params:
     bootswatch: flatly
     ganalytics: UA-58633549-3
 
 navbar:
-  title: "SpaDES Workshops"
+  title: "`SpaDES` Workshops"
   type: inverse
   left:
-    - text: "2018-Fall"
+    - text: "2019-Fall"
       href: articles/index.html
+    - text: "2018-Fall"
+      href: articlesSept2018/index.html
     - text: "2018-May"
       href: articlesMay2018/index.html
     - text: "2018-Feb"
@@ -26,12 +26,11 @@ navbar:
 articles:
   - title: "Introducing a modular data platform"
     desc: >
-      Why SpaDES, what it is for, and how does it help us? Plus: importing modules and running fairly simple simulations from pre-made modules
+      Why `SpaDES`, what it is for, and how does it help us? Plus: importing modules and running fairly simple simulations from pre-made modules
     contents:
-    - GoogleDrive
     - WhatIsSpades
 
-  - title: "Getting started with SpaDES in R"
+  - title: "Getting started with `SpaDES` in R"
     desc: >
       How to start from the beginning, making simple modules, making modules interact
     contents:
@@ -63,11 +62,10 @@ articles:
     - R-Developing-powerful-skills
     - R-Profiling-code
 
-  - title: "Reference -- Links to SpaDES wiki pages and vignettes"
+  - title: "Reference -- Links to `SpaDES` wiki pages and vignettes"
     desc: >
-      These are key to working with SpaDES, they are on the wiki or in vignettes
+      These are key to working with `SpaDES`, they are on the wiki or in vignettes
     contents:
     - Debugging
     - Caching
     - Plotting
-

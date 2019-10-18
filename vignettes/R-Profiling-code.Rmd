@@ -5,7 +5,7 @@ date        : "December 9, 2016"
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(cache=FALSE, echo=TRUE, eval=FALSE)
+knitr::opts_chunk$set(cache = FALSE, echo = TRUE, eval = FALSE)
 ```
 
 ## Profiling and Benchmarking (1)
@@ -13,10 +13,11 @@ knitr::opts_chunk$set(cache=FALSE, echo=TRUE, eval=FALSE)
 - In general, the usual claim is to worry about 'execution speed later'
 - This is not 100% true with R
 - If you use vectorization (no or few loops), and these packages listed here, then you will have a good start
-- AFTER that, then you can use 2 great tools:
+- AFTER that, then you can use several great tools:
 
-    - `profvis` package (built into the latest Rstudio previews, but not the official release version)
-    - `microbenchmark` package
+    - `profvis` package (built into the latest Rstudio)
+    - `microbenchmark::microbenchmark()`
+    - `bench::mark()
 
 ## Profiling and Benchmarking (2)
 
@@ -26,7 +27,9 @@ microbenchmark::microbenchmark(
     a <- vector()
     for (i in 1:1000) a[i] <- runif(1)
   },
-  vectorized = { a <- runif(1000) }
+  vectorized = {
+    a <- runif(1000)
+  }
 )
 ```
 

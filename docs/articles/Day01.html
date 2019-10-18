@@ -84,8 +84,8 @@
             
             <h4 class="date">January 26th, 2018</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/PredictiveEcology/SpaDES.Workshops/blob/master/vignettes/Feb2018_Day1.Rmd"><code>vignettes/Feb2018_Day1.Rmd</code></a></small>
-      <div class="hidden name"><code>Feb2018_Day1.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/PredictiveEcology/SpaDES.Workshops/blob/master/vignettes/Day01.Rmd"><code>vignettes/Day01.Rmd</code></a></small>
+      <div class="hidden name"><code>Day01.Rmd</code></div>
 
     </div>
 
@@ -121,7 +121,7 @@
 <h4 class="hasAnchor">
 <a href="#why-is-modelling-important" class="anchor"></a>Why is modelling important?</h4>
 <p>Models are nowadays so important and widespread that we often don’t realize that most of what we use in our daily lives is the result of someone’s (or some team’s) model. From weather forecasting, to predicting stock market fluctuations. From the design of your bike, to the estimation of blood sugar and insulin levels and how they vary hourly and according to different diets (in case you don’t know, this can be important for diabetes treatments, and drug dosage and scheduling)… Models are indeed ‘everywhere’.</p>
-<p><img src="images/Feb2018_Day1/models_everywhere.png" align="middle" height="400" width="750" margin="0 auto"></p>
+<p><img src="images/Day1/models_everywhere.png" align="middle" height="400" width="750" margin="0 auto"></p>
 </div>
 <div id="challenges-modellers-face" class="section level4">
 <h4 class="hasAnchor">
@@ -143,8 +143,8 @@
 </ul>
 </li>
 </ol>
-<p><img src="images/Feb2018_Day1/High_complexity.png" align="middle" width="300"></p>
-<p><img src="images/Feb2018_Day1/Big_data_modelupdates.png" align="right" width="200"></p>
+<p><img src="images/Day1/High_complexity.png" align="middle" width="300"></p>
+<p><img src="images/Day1/Big_data_modelupdates.png" align="right" width="200"></p>
 <ol start="3" style="list-style-type: decimal">
 <li>
 <strong>Era of <em>big data</em> </strong>
@@ -156,7 +156,7 @@
 <li>
 <strong>Reproducibility and transparency</strong>
 <ul>
-<li>one of the first premisses of scientific method is to repeat analyses and verify whether hypotheses hold in different conditions -&gt; science <em>must</em> be reproducible in order to progress;</li>
+<li>one of the first premises of scientific method is to repeat analyses and verify whether hypotheses hold in different conditions -&gt; science <em>must</em> be reproducible in order to progress;</li>
 <li>models (and modellers!) should be open to change and adaptation;</li>
 <li>results and conclusions <em>must</em> be shared with stakeholders, managers, policy makers and the general public.</li>
 </ul>
@@ -167,11 +167,11 @@
 <h4 class="hasAnchor">
 <a href="#how-do-we-tackle-these-issues---continuous-adaptive-management" class="anchor"></a>How do we tackle these issues? -&gt; <em>continuous adaptive management</em>
 </h4>
-<p>Continuous adaptive management is an existing framework that assumes a periodic re-assessment of the status of a situation or issue, e.g. the amount of waste a company produces. This leads to the design and implementation of new solutions - e.g. recycling paper or using rain water - their monitoring and evaluation, and their adjustment if need be, before the next assessment.</p>
+<p>Continuous adaptive management is an existing framework that assumes a periodic re-assessment of the status of a situation or issue, <em>e.g.</em>, the amount of waste a company produces. This leads to the design and implementation of new solutions - <em>e.g.</em>, recycling paper or using rain water - their monitoring and evaluation, and their adjustment if need be, before the next assessment.</p>
 <p>In modelling terms, this framework implies that for a given problem/question analyses and forecasts are repeated as new data, new methodologies and new or improved models arise. This can lead to a re-assessment of risk, inform decisions and influence policy making. These can in turn feedback into the process of re-framing the initial problem/question.</p>
 <p>Although this framework is ideal, it is only seldomly applied across the scientific community.</p>
 <p>Why? Because we are yet far from developing our research in a way that is easily repeatable, “upgradeable” and shareable. This renders the application of the continuous adaptive management framework costly, both temporally and financially, especially in interdisciplinary projects that involve multiple teams and stakeholders.</p>
-<p><img src="images/Feb2018_Day1/contadaptmanag_nightmare.png" align="middle" width="600"></p>
+<p><img src="images/Day1/contadaptmanag_nightmare.png" align="middle" width="600"></p>
 </div>
 <div id="where-do-we-go-from-here-spades" class="section level4">
 <h4 class="hasAnchor">
@@ -181,10 +181,28 @@
 <h5 class="hasAnchor">
 <a href="#what-is-spades" class="anchor"></a><strong>What is <code>SpaDES</code>?</strong>
 </h5>
-<p><code>SpaDES</code> - <em>Spa</em>tial <em>D</em>iscrete <em>E</em>vent <em>S</em>imulator - is a modelling framework in the form of an ensemble of <code>R</code> packages. It aims to provide modellers and non-modellers across different domains of life and earth sciences (and beyond!) with a modelling tool that they can <em>control</em>, <em>apply</em> and <em>develop</em>. In its whole, <code>SpaDES</code> bridges the gaps between modellers and model-users of different disciplines, between scientists, practitioners, managers, stakeholders and policy makers, and between scientists and the general public.</p>
-<p><strong>How?</strong><br>
-1. <code>SpaDES</code> is written in <code>R</code>: a widely understood programming language, highly suited to statistical analyses, but flexible and fast enough to accommodate simulation work;<br>
-2. <code>SpaDES</code> can be used for a wide-range of modelling approaches: + process-based models; + phenomenological models; + spatially-explicit models; + … 3. <code>SpaDES</code> models are built of <em>modules</em>, i.e. self-contained, interacting pieces that execute a particular <em>event</em>, or process in the model; 4. <code>SpaDES</code> modules can be made available across the entire <code>R</code> community if module-developers wish it so; 5. <code>SpaDES</code> will soon include a web-app builder to make interactive simulation possible.</p>
+<p><code>SpaDES</code> - <strong>Spa</strong>tial <strong>D</strong>iscrete <strong>E</strong>vent <strong>S</strong>imulator - is a modelling framework in the form of an ensemble of <code>R</code> packages. It aims to provide modellers and non-modellers across different domains of life and earth sciences (and beyond!) with a modelling tool that they can <em>control</em>, <em>apply</em> and <em>develop</em>. In its whole, <code>SpaDES</code> bridges the gaps between modellers and model-users of different disciplines, between scientists, practitioners, managers, stakeholders and policy makers, and between scientists and the general public.</p>
+<p><strong>How?</strong></p>
+<ol style="list-style-type: decimal">
+<li>
+<code>SpaDES</code> is written in <code>R</code>: a widely understood programming language, highly suited to statistical analyses, but flexible and fast enough to accommodate simulation work;<br>
+</li>
+<li>
+<code>SpaDES</code> can be used for a wide-range of modelling approaches:
+<ul>
+<li>process-based models;</li>
+<li>phenomenological models;</li>
+<li>spatially-explicit models;</li>
+<li>…</li>
+</ul>
+</li>
+<li>
+<code>SpaDES</code> models are built of <em>modules</em>, <em>i.e.</em>, self-contained, interacting pieces that execute a particular <em>event</em>, or process in the model;</li>
+<li>
+<code>SpaDES</code> modules can be made available across the entire <code>R</code> community if module-developers wish it so;</li>
+<li>
+<code>SpaDES</code> will soon include a web-app builder to make interactive simulation possible.</li>
+</ol>
 <p>Like a smart-phone where users install and use the apps that they want, <code>SpaDES</code> can be seen as a platform where a model can be “assembled” from various pre-made modules. This allows non-modellers to run someone else’s model on <em>their</em> data and <em>their</em> parameters, and, on the other hand, it allows modellers write their own modules from scratch, run them and share them with the <code>R</code> user community.</p>
 </div>
 <div id="an-example" class="section level5">
@@ -192,22 +210,31 @@
 <a href="#an-example" class="anchor"></a><strong>An example</strong>
 </h5>
 <p>Our question(s): how will forest fires affect forest age? And how will climate change affect fire regimes and in turn the vegetation? How will timber supply be affected?</p>
-<p><img src="images/Feb2018_Day1/Smart_SpaDES.png" align="right" width="300"></p>
-<p><strong>To start we’ll need:</strong><br>
-* a vegetation dynamics module - e.g. <a href="https://github.com/PredictiveEcology/SpaDES-modules/tree/master/modules/forestAge">forestAge</a>; * a fire simulator - e.g. <a href="https://github.com/PredictiveEcology/SpaDES-modules/tree/master/modules/forestSuccessionBeacons">forestSuccessionBeacons</a> modules; * optional: + the interaction between fire and vegetation + statistical analyses/presentation of results</p>
+<p><img src="images/Day1/Smart_SpaDES.png" align="right" width="300"></p>
+<p><strong>To start we’ll need:</strong></p>
+<ul>
+<li><p>a vegetation dynamics module - <em>e.g.</em>, <a href="https://github.com/PredictiveEcology/SpaDES-modules/tree/master/modules/forestAge">forestAge</a>;</p></li>
+<li><p>a fire simulator - <em>e.g.</em>, <a href="https://github.com/PredictiveEcology/SpaDES-modules/tree/master/modules/forestSuccessionBeacons">forestSuccessionBeacons</a> modules;</p></li>
+<li>optional:
+<ul>
+<li>the interaction between fire and vegetation</li>
+<li>statistical analyses/presentation of results</li>
+</ul>
+</li>
+</ul>
 <p>Depending on how modules are built, the interaction between modules may or may not require additional modules. Similarly, the presentation of results and their analyses can be directly made within the module producing them, or <em>as posteriori</em> using another module. Your call. <code>SpaDES</code> is all about flexibility!</p>
 <p>Using the above mentioned modules would already allow an analysis of how fires affect forest age, and vice-versa.</p>
-<p><strong>Then add climate-change, timber supply models…</strong><br>
-Analysing the effects of climate change could then be done by varying fire-related parameters (e.g. frequency and intensity of fires) in a simulation experiment. Alternatively, an additional module could simulate climate change effects, which would feedback unto both fire parameters and vegetation.<br>
-Finally, a timber supply module could “read” the vegetation maps produced after fire simulations and calculate timber quantity and quality from forest conditions (e.g. surviving tree species and their age).</p>
+<p><strong>Then add climate-change, timber supply models…</strong></p>
+<p>Analysing the effects of climate change could then be done by varying fire-related parameters (<em>e.g.</em>, frequency and intensity of fires) in a simulation experiment. Alternatively, an additional module could simulate climate change effects, which would feedback unto both fire parameters and vegetation.<br>
+Finally, a timber supply module could “read” the vegetation maps produced after fire simulations and calculate timber quantity and quality from forest conditions (<em>e.g.</em>, surviving tree species and their age).</p>
 <p><strong>Reserve, add new data, and re-run</strong><br>
-Provided that modules are able to download, read and treat data adequately, updating the simulations for new data is easy. <code>SpaDES</code> comes with a set of functions (via the <code>reproducible</code> package) that enable caching model structure, parameters and simulation results. This way, if new data only affects a section of the model, the user won’t have to repeat every step to update the simulations.<br>
-* Learn more about: <a href="http://spades-workshops.predictiveecology.org/articles/Existing-modules.html#how-to-share-modules">sharing modules</a> and caching (<a href="https://cran.r-project.org/web/packages/SpaDES/vignettes/iii-cache.html">here</a> and <a href="http://spades-workshops.predictiveecology.org/articles/Continuous-Workflow.html">here</a>)</p>
-<p><strong>Decorate and serve</strong><br>
-Because models are not just for modellers, a shiny app building package is being developed to transform any <code>SpaDES</code> simulation into a web-app. This provides an interactive way of visualising results, as users can change simulation parameters and turn modules on and off, whilst observing how this impacts simulation results. Importantly, it can be particularly useful when conveying results to a non-expert or even the public.</p>
+Provided that modules are able to download, read and treat data adequately, updating the simulations for new data is easy. <code>SpaDES</code> comes with a set of functions (via the <code>reproducible</code> package) that enable caching model structure, parameters and simulation results. This way, if new data only affects a section of the model, the user won’t have to repeat every step to update the simulations.</p>
+<ul>
+<li>Learn more about: <a href="http://spades-workshops.predictiveecology.org/articles/Existing-modules.html#how-to-share-modules">sharing modules</a> and caching (<a href="https://cran.r-project.org/web/packages/SpaDES/vignettes/iii-cache.html">here</a> and <a href="http://spades-workshops.predictiveecology.org/articles/Continuous-Workflow.html">here</a>)</li>
+</ul>
+<p><strong>Decorate and serve</strong></p>
+<p>Because models are not just for modellers, a shiny app building package is being developed to transform any <code>SpaDES</code> simulation into a web-app. This provides an interactive way of visualising results, as users can change simulation parameters and turn modules on and off, whilst observing how this impacts simulation results. Importantly, it can be particularly useful when conveying results to a non-expert or even the public.</p>
 <p>Shiny web-app demo <a href="https://spades.shinyapps.io/ForestChange_ProofOfConcept/">here</a> and <a href="http://landweb.predictiveecology.org/Demo/">here</a></p>
-<hr>
-<hr>
 </div>
 </div>
 </div>
@@ -216,7 +243,8 @@ Because models are not just for modellers, a shiny app building package is being
 <h2 class="hasAnchor">
 <a href="#part-ii--get-your-hands-dirty-using-spades-for-the-1st-time" class="anchor"></a><a name="PartII"></a><strong>Part II. Get your hands dirty: using SpaDES for the 1st time</strong>
 </h2>
-<p><strong>Table of contents:</strong><br><a href="#Exercise1"><strong>Exercise 1. <code>SpaDES</code> in action`</strong></a></p>
+<p><strong>Table of contents:</strong></p>
+<p><a href="#Exercise1"><strong>Exercise 1. <code>SpaDES</code> in action`</strong></a></p>
 <ul>
 <li>
 <a href="#InstallSpaDES">1.1 Installing <code>SpaDES</code></a><br>
@@ -252,7 +280,7 @@ Because models are not just for modellers, a shiny app building package is being
 <li>
 <a href="https://cran.r-project.org/bin/windows/Rtools/"><strong>Rtools</strong></a> (Windows), <a href="http://itunes.apple.com/us/app/xcode/id497799835?mt=12"><strong>XCode</strong></a> (Mac), or r-base (Linux; please see <a href="https://support.rstudio.com/hc/en-us/articles/200486498-Package-Development-Prerequisites">here</a> for details).</li>
 </ol>
-<p><code>SpaDES</code>is still on a relatively steep development curve. As such, it might be sometimes necessary to update a particular package from Git Hub (where <code>SpaDES</code> is being developed). It might be important to keep an eye on new improvements present in Git Hub that might not be in CRAN yet. You’ll find the latest releases for each package in their respective Git Hub page (e.g. <a href="https://github.com/PredictiveEcology/SpaDES.core/releases">SpaDES.core releases</a>). If you go to the <a href="https://github.com/PredictiveEcology/SpaDES.core/commits/development">commits page</a> you’ll notice that that there might be new features relatively to the latest commit.</p>
+<p>We are still adding features to <code>SpaDES</code>, so it might be sometimes necessary to update a particular package from GitHub (where <code>SpaDES</code> is being developed). It might be important to keep an eye on new improvements present in Git Hub that might not be in CRAN yet. You’ll find the latest releases for each package in their respective Git Hub page (<em>e.g.</em>, <a href="https://github.com/PredictiveEcology/SpaDES.core/releases">SpaDES.core releases</a>). If you go to the <a href="https://github.com/PredictiveEcology/SpaDES.core/commits/development">commits page</a> you’ll notice that that there might be new features relatively to the latest commit.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co">## Install all packages and their dependencies first</span></a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">'SpaDES'</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>, <span class="dt">repos =</span> <span class="st">"http://132.156.148.172"</span>)</a>
 <a class="sourceLine" id="cb1-3" data-line-number="3"></a>
@@ -277,7 +305,7 @@ Because models are not just for modellers, a shiny app building package is being
 <a class="sourceLine" id="cb3-2" data-line-number="2">sampleModuleFiles &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span>(sampleModuleDir, <span class="dt">pattern =</span> <span class="st">'Rmd$'</span>, <span class="dt">recursive =</span> <span class="ot">TRUE</span>, <span class="dt">full.names =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3">    </a>
 <a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(sampleModuleFiles[<span class="dv">1</span>], file.edit)</a></code></pre></div>
-<p>All modules should come with an <em>.Rmd</em> file that provides a summary of how the module works and <em>reproducible</em> example. If you’ve ever searched for R-help on <strong>stackoverflow</strong> you’ll have noticed how people try to provide <code>R</code> code that can be run in any machine to reproduce the problem/solution at hand. Module <em>.Rmd</em> files should also run in any machine.</p>
+<p>All modules should come with an <code>.Rmd</code> file that provides a summary of how the module works and <em>reproducible</em> example. If you’ve ever searched for R-help on <strong>StackOverflow</strong> you’ll have noticed how people try to provide <code>R</code> code that can be run in any machine to reproduce the problem/solution at hand. Module <code>.Rmd</code> files should also run in any machine.</p>
 </div>
 <div id="simulation-modelling-with-spades" class="section level2">
 <h2 class="hasAnchor">
@@ -286,8 +314,8 @@ Because models are not just for modellers, a shiny app building package is being
 <p>Let’s go back to the modelling question discussed briefly above.</p>
 <p>Our first objective is to simulate the the effect of fire on forest age. There are two main components to such a model, which need to interact:</p>
 <ol style="list-style-type: decimal">
-<li>a fire simulator</li>
-<li>a forest age simulator</li>
+<li>a fire simulator;</li>
+<li>a forest age simulator.</li>
 </ol>
 <div id="download-modules" class="section level3">
 <h3 class="hasAnchor">
@@ -295,7 +323,7 @@ Because models are not just for modellers, a shiny app building package is being
 </h3>
 <p>The <code>LCC2005</code> module group provides a set of modules that can reproduce these dynamics (in a simple way).</p>
 <p>Let’s define the working directories of our simulation exercise (<em>SpaDESintro</em>) first.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">main.dir &lt;-<span class="st">  "~/"</span></a>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">main.dir &lt;-<span class="st">  "~"</span></a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">## We'll create the necessary directories in a temporary location - feel free to change this if you wish to.</span></a>
 <a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw">setPaths</span>(<span class="dt">cachePath =</span> <span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(main.dir,<span class="st">'SpaDESintro/cache'</span>),</a>
@@ -306,7 +334,7 @@ Because models are not just for modellers, a shiny app building package is being
 <a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">## verify that this is want you wanted:</span></a>
 <a class="sourceLine" id="cb4-10" data-line-number="10"><span class="kw">getPaths</span>()</a></code></pre></div>
 <p>Now we’ll get <code>LCC2005</code> modules needed and save them in the <code>modules</code> folder created before. If you already have done this before and want to do it again, set the <code>overwrite</code> argument to <code>TRUE</code>.</p>
-<p>Using <code>data = TRUE</code> will make sure the necessary data for the module is downloaded. Unfortunately, the forest age raster (“can_age04_1km.tif”) is no longer downloadable without creating an account on the NASA EarthData website. Download it from <a href="https://drive.google.com/open?id=1bFv94-f_h1HEy2bZ8VCoS7Jp_zgN2kZZ">here</a> and put in inside <em>modules/forestAges/data</em>.</p>
+<p>Using <code>data = TRUE</code> will make sure the necessary data for the module is downloaded. Unfortunately, the forest age raster (“can_age04_1km.tif”) is no longer downloadable without creating an account on the NASA EarthData website. Download it from <a href="https://drive.google.com/open?id=1bFv94-f_h1HEy2bZ8VCoS7Jp_zgN2kZZ">here</a> and put in inside <em>modules/forestAge/data</em>.</p>
 <p>For future reference, it is possible to create an account on the NASA EarthData website and, after logging in, you’ll find the file <a href="https://daac.ornl.gov/NACP/guides/NA_Tree_Age.html">here</a>.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co">## Not run (use if API limit is exceeded)</span></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2">ops &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/options.html">options</a></span>(<span class="dt">spades.useragent =</span> <span class="st">"http://github.com/CeresBarros/SpaDES-modules"</span>)</a>
@@ -418,43 +446,45 @@ Because models are not just for modellers, a shiny app building package is being
 <h3 class="hasAnchor">
 <a href="#add-a-friends-module" class="anchor"></a><a name="friendsModule"></a><strong>1.3.6 Add a friend’s module</strong>
 </h3>
-<p>The second part of our question was to investigate how forest fires may affect harvesting. The <code>LCC2005</code> module group does not contain any module that we can use for this, but that’s OK, because we can get modules from other Git repositories.</p>
+<p>The second part of our question was to investigate how forest fires may affect harvesting. The <code>LCC2005</code> module group does not contain any module that we can use for this, but that’s OK, because we can get modules from other GitHub repositories.</p>
 <p>We will use an <em>extremely</em> simple module that maps areas that are adequate for forest harvesting in function of forest age (a parameter that the user inputs) and the type of forest that can be harvested (here, only coniferous forests). This module, called <code>forestHarvest</code>, will be downloaded from a different repository “CeresBarros/forestHarvest-SpaDESmodule”. Learn more about downloading and sharing modules <a href="http://spades-workshops.predictiveecology.org/articles/Existing-modules.html">here</a>.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">downloadModule</span>(<span class="dt">name =</span> <span class="st">"forestHarvest"</span>, <span class="dt">repo =</span> <span class="st">"CeresBarros/forestHarvest-SpaDESmodule"</span>, <span class="dt">path =</span> <span class="kw">getPaths</span>()<span class="op">$</span>modulePath, <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="co">## We've defined the paths earlier </span></a>
-<a class="sourceLine" id="cb10-4" data-line-number="4">paths &lt;-<span class="st"> </span><span class="kw">getPaths</span>()</a>
-<a class="sourceLine" id="cb10-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb10-6" data-line-number="6">modules &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"cropReprojectLccAge"</span>, <span class="st">"fireSpreadLcc"</span>, <span class="st">"forestAge"</span>, <span class="st">"forestSuccessionBeacons"</span>, <span class="st">"LccToBeaconsReclassify"</span>, <span class="st">"forestHarvest"</span>)</a>
-<a class="sourceLine" id="cb10-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb10-8" data-line-number="8"><span class="co">## we don't need to suply external objects</span></a>
-<a class="sourceLine" id="cb10-9" data-line-number="9">objects &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>()</a>
-<a class="sourceLine" id="cb10-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb10-11" data-line-number="11"><span class="co">## define the starting and end times of the simulation</span></a>
-<a class="sourceLine" id="cb10-12" data-line-number="12">times &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">start =</span> <span class="fl">1.0</span>, <span class="dt">end =</span> <span class="fl">50.0</span>)</a>
-<a class="sourceLine" id="cb10-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb10-14" data-line-number="14"><span class="co">## notice the new parameter list</span></a>
-<a class="sourceLine" id="cb10-15" data-line-number="15">parameters &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
-<a class="sourceLine" id="cb10-16" data-line-number="16">  <span class="dt">.globals =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">stackName =</span> <span class="st">"landscape"</span>, <span class="dt">burnStats =</span> <span class="st">"nPixelsBurned"</span>),</a>
-<a class="sourceLine" id="cb10-17" data-line-number="17">  <span class="dt">.progress =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">NA</span>),</a>
-<a class="sourceLine" id="cb10-18" data-line-number="18">  <span class="dt">fireSpreadLcc =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">nFires =</span> 10L, <span class="dt">drought =</span> <span class="dv">1</span>, <span class="dt">its =</span> <span class="fl">1e6</span>,</a>
-<a class="sourceLine" id="cb10-19" data-line-number="19">                    <span class="dt">persistprob =</span> <span class="dv">0</span>, <span class="dt">returnInterval =</span> <span class="dv">10</span>, <span class="dt">startTime =</span> <span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb10-20" data-line-number="20">                    <span class="dt">.plotInitialTime =</span> <span class="fl">0.1</span>, <span class="dt">.plotInterval =</span> <span class="dv">10</span>),</a>
-<a class="sourceLine" id="cb10-21" data-line-number="21">  <span class="dt">forestHarvest =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">returnInterval =</span> <span class="dv">5</span>, <span class="dt">harvAge =</span> <span class="dv">50</span>, <span class="dt">startTime =</span> <span class="dv">11</span>, <span class="dt">.plotInterval =</span> <span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb10-22" data-line-number="22">)</a>
-<a class="sourceLine" id="cb10-23" data-line-number="23"></a>
-<a class="sourceLine" id="cb10-24" data-line-number="24"><span class="co">## make simulation object</span></a>
-<a class="sourceLine" id="cb10-25" data-line-number="25">mySim_manag &lt;-<span class="st"> </span><span class="kw">simInit</span>(<span class="dt">times =</span> times, <span class="dt">params =</span> parameters,</a>
-<a class="sourceLine" id="cb10-26" data-line-number="26">                       <span class="dt">modules =</span> modules,</a>
-<a class="sourceLine" id="cb10-27" data-line-number="27">                       <span class="dt">objects =</span> objects, <span class="dt">paths =</span> paths)</a>
-<a class="sourceLine" id="cb10-28" data-line-number="28"><span class="kw">dev</span>()</a>
-<a class="sourceLine" id="cb10-29" data-line-number="29"><span class="kw">moduleDiagram</span>(mySim_manag)</a>
-<a class="sourceLine" id="cb10-30" data-line-number="30"><span class="kw">objectDiagram</span>(mySim_manag)</a>
-<a class="sourceLine" id="cb10-31" data-line-number="31"></a>
-<a class="sourceLine" id="cb10-32" data-line-number="32">opts &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/options.html">options</a></span>(<span class="dt">spades.switchPkgNamespaces =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb10-33" data-line-number="33"><span class="kw">dev</span>()</a>
-<a class="sourceLine" id="cb10-34" data-line-number="34"><span class="kw">clearPlot</span>()</a>
-<a class="sourceLine" id="cb10-35" data-line-number="35">mySim_manag2 &lt;-<span class="st"> </span><span class="kw">spades</span>(mySim_manag, <span class="dt">debug =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">downloadModule</span>(<span class="dt">name =</span> <span class="st">"forestHarvest"</span>, <span class="dt">repo =</span> <span class="st">"CeresBarros/forestHarvest-SpaDESmodule"</span>,</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">               <span class="dt">path =</span> <span class="kw">getPaths</span>()<span class="op">$</span>modulePath, <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="co">## We've defined the paths earlier </span></a>
+<a class="sourceLine" id="cb10-5" data-line-number="5">paths &lt;-<span class="st"> </span><span class="kw">getPaths</span>()</a>
+<a class="sourceLine" id="cb10-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb10-7" data-line-number="7">modules &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"cropReprojectLccAge"</span>, <span class="st">"fireSpreadLcc"</span>, <span class="st">"forestAge"</span>,</a>
+<a class="sourceLine" id="cb10-8" data-line-number="8">                <span class="st">"forestSuccessionBeacons"</span>, <span class="st">"LccToBeaconsReclassify"</span>, <span class="st">"forestHarvest"</span>)</a>
+<a class="sourceLine" id="cb10-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb10-10" data-line-number="10"><span class="co">## we don't need to suply external objects</span></a>
+<a class="sourceLine" id="cb10-11" data-line-number="11">objects &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>()</a>
+<a class="sourceLine" id="cb10-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb10-13" data-line-number="13"><span class="co">## define the starting and end times of the simulation</span></a>
+<a class="sourceLine" id="cb10-14" data-line-number="14">times &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">start =</span> <span class="fl">1.0</span>, <span class="dt">end =</span> <span class="fl">50.0</span>)</a>
+<a class="sourceLine" id="cb10-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb10-16" data-line-number="16"><span class="co">## notice the new parameter list</span></a>
+<a class="sourceLine" id="cb10-17" data-line-number="17">parameters &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
+<a class="sourceLine" id="cb10-18" data-line-number="18">  <span class="dt">.globals =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">stackName =</span> <span class="st">"landscape"</span>, <span class="dt">burnStats =</span> <span class="st">"nPixelsBurned"</span>),</a>
+<a class="sourceLine" id="cb10-19" data-line-number="19">  <span class="dt">.progress =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">NA</span>),</a>
+<a class="sourceLine" id="cb10-20" data-line-number="20">  <span class="dt">fireSpreadLcc =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">nFires =</span> 10L, <span class="dt">drought =</span> <span class="dv">1</span>, <span class="dt">its =</span> <span class="fl">1e6</span>,</a>
+<a class="sourceLine" id="cb10-21" data-line-number="21">                    <span class="dt">persistprob =</span> <span class="dv">0</span>, <span class="dt">returnInterval =</span> <span class="dv">10</span>, <span class="dt">startTime =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb10-22" data-line-number="22">                    <span class="dt">.plotInitialTime =</span> <span class="fl">0.1</span>, <span class="dt">.plotInterval =</span> <span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb10-23" data-line-number="23">  <span class="dt">forestHarvest =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">returnInterval =</span> <span class="dv">5</span>, <span class="dt">harvAge =</span> <span class="dv">50</span>, <span class="dt">startTime =</span> <span class="dv">11</span>, <span class="dt">.plotInterval =</span> <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb10-24" data-line-number="24">)</a>
+<a class="sourceLine" id="cb10-25" data-line-number="25"></a>
+<a class="sourceLine" id="cb10-26" data-line-number="26"><span class="co">## make simulation object</span></a>
+<a class="sourceLine" id="cb10-27" data-line-number="27">mySim_manag &lt;-<span class="st"> </span><span class="kw">simInit</span>(<span class="dt">times =</span> times, <span class="dt">params =</span> parameters,</a>
+<a class="sourceLine" id="cb10-28" data-line-number="28">                       <span class="dt">modules =</span> modules,</a>
+<a class="sourceLine" id="cb10-29" data-line-number="29">                       <span class="dt">objects =</span> objects, <span class="dt">paths =</span> paths)</a>
+<a class="sourceLine" id="cb10-30" data-line-number="30"><span class="kw">dev</span>()</a>
+<a class="sourceLine" id="cb10-31" data-line-number="31"><span class="kw">moduleDiagram</span>(mySim_manag)</a>
+<a class="sourceLine" id="cb10-32" data-line-number="32"><span class="kw">objectDiagram</span>(mySim_manag)</a>
+<a class="sourceLine" id="cb10-33" data-line-number="33"></a>
+<a class="sourceLine" id="cb10-34" data-line-number="34">opts &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/options.html">options</a></span>(<span class="dt">spades.switchPkgNamespaces =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb10-35" data-line-number="35"><span class="kw">dev</span>()</a>
+<a class="sourceLine" id="cb10-36" data-line-number="36"><span class="kw">clearPlot</span>()</a>
+<a class="sourceLine" id="cb10-37" data-line-number="37">mySim_manag2 &lt;-<span class="st"> </span><span class="kw">spades</span>(mySim_manag, <span class="dt">debug =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 <div id="choose-to-save-outputs-without-changing-module-code" class="section level3">
 <h3 class="hasAnchor">
@@ -465,22 +495,23 @@ Because models are not just for modellers, a shiny app building package is being
 <a class="sourceLine" id="cb11-2" data-line-number="2">mySim_manag &lt;-<span class="st"> </span><span class="kw">simInit</span>(<span class="dt">times =</span> times, <span class="dt">params =</span> parameters,</a>
 <a class="sourceLine" id="cb11-3" data-line-number="3">                       <span class="dt">modules =</span> modules,</a>
 <a class="sourceLine" id="cb11-4" data-line-number="4">                       <span class="dt">objects =</span> objects, <span class="dt">paths =</span> paths,</a>
-<a class="sourceLine" id="cb11-5" data-line-number="5">                       <span class="dt">outputs =</span> <span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">objectName =</span> <span class="st">"ageMap"</span>, <span class="dt">saveTime =</span> <span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="dv">1</span>, <span class="dv">50</span>, <span class="dt">by =</span> <span class="dv">10</span>)))</a>
-<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="co">## Re-run the model</span></a>
-<a class="sourceLine" id="cb11-7" data-line-number="7">mySim_manag2 &lt;-<span class="st"> </span><span class="kw">spades</span>(mySim_manag, <span class="dt">debug =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb11-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="co">## Print the list of saved outputs</span></a>
-<a class="sourceLine" id="cb11-10" data-line-number="10"><span class="kw">outputs</span>(mySim_manag2)</a>
-<a class="sourceLine" id="cb11-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb11-12" data-line-number="12"><span class="co">## Read the first object (two)</span></a>
-<a class="sourceLine" id="cb11-13" data-line-number="13">ageMap01 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span>(<span class="kw">outputs</span>(mySim_manag2)[<span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb11-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb11-15" data-line-number="15"><span class="co">## Now you can visualise the saved map in any way you want</span></a>
-<a class="sourceLine" id="cb11-16" data-line-number="16"><span class="kw">clearPlot</span>()</a>
-<a class="sourceLine" id="cb11-17" data-line-number="17"><span class="kw">Plot</span>(ageMap01[])</a>
-<a class="sourceLine" id="cb11-18" data-line-number="18"><span class="kw"><a href="https://rdrr.io/r/base/table.html">table</a></span>(ageMap01[])</a>
-<a class="sourceLine" id="cb11-19" data-line-number="19"><span class="kw"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(ageMap01[])</a></code></pre></div>
-<p>Are there fewer areas that are appropriate for harvesting if fires become larger (i.e. drought is more severe)?</p>
+<a class="sourceLine" id="cb11-5" data-line-number="5">                       <span class="dt">outputs =</span> <span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">objectName =</span> <span class="st">"ageMap"</span>,</a>
+<a class="sourceLine" id="cb11-6" data-line-number="6">                                            <span class="dt">saveTime =</span> <span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="dv">1</span>, <span class="dv">50</span>, <span class="dt">by =</span> <span class="dv">10</span>)))</a>
+<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="co">## Re-run the model</span></a>
+<a class="sourceLine" id="cb11-8" data-line-number="8">mySim_manag2 &lt;-<span class="st"> </span><span class="kw">spades</span>(mySim_manag, <span class="dt">debug =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb11-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb11-10" data-line-number="10"><span class="co">## Print the list of saved outputs</span></a>
+<a class="sourceLine" id="cb11-11" data-line-number="11"><span class="kw">outputs</span>(mySim_manag2)</a>
+<a class="sourceLine" id="cb11-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb11-13" data-line-number="13"><span class="co">## Read the first object (two)</span></a>
+<a class="sourceLine" id="cb11-14" data-line-number="14">ageMap01 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span>(<span class="kw">outputs</span>(mySim_manag2)[<span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb11-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb11-16" data-line-number="16"><span class="co">## Now you can visualise the saved map in any way you want</span></a>
+<a class="sourceLine" id="cb11-17" data-line-number="17"><span class="kw">clearPlot</span>()</a>
+<a class="sourceLine" id="cb11-18" data-line-number="18"><span class="kw">Plot</span>(ageMap01[])</a>
+<a class="sourceLine" id="cb11-19" data-line-number="19"><span class="kw"><a href="https://rdrr.io/r/base/table.html">table</a></span>(ageMap01[])</a>
+<a class="sourceLine" id="cb11-20" data-line-number="20"><span class="kw"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(ageMap01[])</a></code></pre></div>
+<p>Are there fewer areas that are appropriate for harvesting if fires become larger (<em>i.e.</em>, drought is more severe)?</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/stats/start.html">end</a></span>(mySim_manag2) &lt;-<span class="st"> </span><span class="dv">100</span></a>
 <a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw">params</span>(mySim_manag2)<span class="op">$</span>fireSpreadLcc<span class="op">$</span>drought &lt;-<span class="st"> </span><span class="dv">3</span></a>
 <a class="sourceLine" id="cb12-3" data-line-number="3"><span class="kw">dev</span>()</a>

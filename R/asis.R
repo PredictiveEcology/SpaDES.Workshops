@@ -6,6 +6,7 @@ replacementList <- list(
   "Past Workshops" = "Prior to 2019",
   "Plotting.html" = "http://quickplot.predictiveecology.org/articles/iii-plotting.html",
   "Released package" = NULL,
+  "SpaDESInAction.html" = "https://htmlpreview.github.io/?https://github.com/tati-micheletti/SpaDESinAction/blob/master/runSimulation.html",
   "SpaDES4Dummies.html" = "https://htmlpreview.github.io/?https://github.com/CeresBarros/SpaDES4Dummies/blob/master/SpaDES4Dummies.html"
 )
 
@@ -41,7 +42,7 @@ replaceRemoteLinksInArticles <- function(replacements) {
 }
 
 ####################################################################################################
-#' \CODE{build_articles1}
+#' \code{build_articles1}
 #'
 #' Lorem ipsum ...
 #'

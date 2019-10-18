@@ -1,7 +1,9 @@
 ---
 title       : "simList -- What is in it?"
 author      : "Alex M Chubaty & Eliot McIntire"
-date        : "December 7, 2016"
+date        : "2019 October 17"
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -46,17 +48,19 @@ See also `?'.simList-class'`
 ```{r simList-accessors, echo=FALSE, eval=TRUE}
 emptySim <- simInit()
 slots <- paste0(slotNames(emptySim))
-accessors <- c('envir', 'modules', 'params', 'events', 'current', 'completed', 'depends', 'times', 'inputs', 'outputs', 'paths') %>% 
-paste0('()')
+accessors <- c("modules", "params", "events", "current", "completed", "depends",
+               "times", "inputs", "outputs", "paths", "envir", "objects") %>% 
+  paste0("()")
 data.frame(slot = slots, accessor = accessors) %>%
-knitr::kable(format = 'html', padding = 0)
+  knitr::kable(format = "html", padding = 0)
 ```
 
 ```{r simList-accessors2, echo=FALSE, eval=TRUE}
-other_accessors <- c('packages', 'globals', 'start', 'end', 'timeunit', 'timeunits', 'objects', 'paths', 'cachePath', 'inputPath', 'outputPath', 'modulePath') %>%
-  paste0('()')
+other_accessors <- c("packages", "globals", "start", "end", "timeunit", "timeunits",
+                     "paths", "cachePath", "inputPath", "outputPath", "modulePath") %>%
+  paste0("()")
 data.frame(other_accessors = other_accessors) %>%
-  knitr::kable(format = 'html', padding = 0)
+  knitr::kable(format = "html", padding = 0)
 ```
 </div>
 

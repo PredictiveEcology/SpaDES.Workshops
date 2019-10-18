@@ -1,7 +1,7 @@
 ---
 title       : "Modules -- Downloading and using existing modules"
 author      : "Alex M Chubaty & Eliot McIntire"
-date        : "December 9, 2016"
+date        : "2019 October 17"
 ---
 
 ```{r setup, include=FALSE}
@@ -14,14 +14,14 @@ knitr::opts_chunk$set(cache = TRUE, echo = TRUE, eval = FALSE)
 
     - email
     - Cloud (Dropbox, Google Drive, etc.)
-    - Version Control repository -- SpaDES-Modules
+    - Version Control repository (e.g.,`SpaDES-Modules`)
     
 ## SpaDES-Modules GitHub repository
 
 - We have created a repository on GitHub for this purpose (like *CRAN* for SpaDES modules)
 - Of course, one can use any location, but we start here
-- It is open for viewing, but not for submitting to (like *CRAN*)
-- Therefore it is curated to some extent
+- It is open for viewing, even submitting to (like *CRAN*) via (pull request for now)
+- It is curated to some extent (like *CRAN*)
 
 ## Downloading modules
 
@@ -80,7 +80,6 @@ downloadModule("fireSpreadLcc", path = tmpdir)
 - Where is it? (where is tmpdir?)
 - What does it look like?
 
-
 *****
 
 ## Agent modules
@@ -122,8 +121,6 @@ file.edit(file.path(tmpdir, "wolfAlps", "wolfAlps.Rmd"))
 - [Remember the debugging tools](https://github.com/PredictiveEcology/SpaDES/wiki/Debugging)
 - `?spades` has new section on debugging that complements the above wiki
 
-
-
 *****
 
 # Meta models
@@ -160,7 +157,6 @@ openModules("LCC2005", getPaths()$modulePath)
 ### Examine this module
 
 What is different about it?
-
 
 ****
 
@@ -209,7 +205,7 @@ moduleRepo/
 ```
 ## Running a parent module
 
-If you restarted your R session, first prepare the global setup again
+If you restarted your R session, first prepare the global setup again:
 ```{r}
 library(SpaDES)
 
@@ -220,8 +216,7 @@ setPaths(cachePath = "~/temp_SpaDESws/cache",
          outputPath = "~/temp_SpaDESws/outputs")
 ```
 
-
-Then prepare the simulation
+Then, prepare the simulation:
 
 ```{r run-lcc, echo=TRUE, eval=FALSE}
 # setup simulation
@@ -298,6 +293,7 @@ The new **CFS-FD** model (Forest Dynamics Model)
 - But the vegetation module is actually a parent module with 3 modules:
     
     - mortality, growth, and regeneration modules
+
 - fire module is actually 4 modules:
     
     - ignition, escape, spread, severity modules

@@ -1,7 +1,7 @@
 ---
 title       : "Modules -- Thinking in a modular way"
 author      : "Alex M Chubaty & Eliot McIntire"
-date        : "December 7, 2016"
+date        : "2019 October 17"
 output: 
   html_document: 
     number_sections: yes

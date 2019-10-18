@@ -1,14 +1,12 @@
 ---
-title: "My first, simple module - Moving from loops to events"
+title:  "My first, simple module - Moving from loops to events"
 author: "Eliot J. B. McIntire"
-date: "`r strftime(Sys.Date(), '%B %d %Y')`"
+date:   "2019 October 17"
 output: 
   html_document: 
     number_sections: yes
     toc: true
     toc_float: true
-vignette: |
-  %\VignetteEngine{knitr::rmarkdown} %\VignetteIndexEntry{01 Diving into SpaDES} %\VignetteDepends{SpaDES.core, SpaDES.tools} %\VignetteKeyword{discrete event simulation, spatial simulation models, workshops} %\VignetteEncoding{UTF-8}
 editor_options: 
   chunk_output_type: console
 ---
@@ -115,7 +113,6 @@ aging <- function(age) {
 }
 
 times = list(start = 1, end = 10)        # bounds
-
 ```
 
 - This creates a queue -- a list of events that need to occur
@@ -200,13 +197,12 @@ doEvent.loop = function(sim, eventTime, eventType, debug = FALSE) {
 - We hit "run" (actually the function is called `spades`)
 - Sensible defaults come with the `newModule` function
 
-## The .Rmd file contents
+## The `.Rmd` file contents
 
 ```{r}
 times <- list(start = 1, end = 10)
-modulePath <- file.path("C:/Eliot")
+modulePath <- file.path("~/GitHub/SpaDES.workshops")
 modules <- list("loop")
-
 ```
 
 ## Compare Loop and Event versions
@@ -221,7 +217,7 @@ for (time in 1:10) {
 
 # Event
 mySim <- simInit(times = times, modules = modules,
-                 paths = list(modulePath = "C:/Eliot/GitHub/SpaDES.Workshops"))
+                 paths = list(modulePath = "~/GitHub/SpaDES.Workshops"))
 mySimOut <- spades(mySim, debug = TRUE)
 
 # Compare them -- yes!
@@ -233,12 +229,12 @@ age
 
 - You will need:
 
-    - `SpaDES` loaded
-    - `newModule(   )`
-    - open the .Rmd file
-    - open the .R file
-    - create an initial value of an object in the init event
-    - create a loop event
-    - do something to that object in the loop event
-    - `scheduleEvent(   )` for the next time in the future
-    - `time(sim)` gives you current time in the simulation
+    - `SpaDES` loaded;
+    - `newModule()`;
+    - open the `.Rmd` file;
+    - open the `.R` file;
+    - create an initial value of an object in the init event;
+    - create a loop event;
+    - do something to that object in the loop event;
+    - `scheduleEvent(...)` for the next time in the future;
+    - `time(sim)` gives you current time in the simulation.

@@ -1,12 +1,12 @@
 Package: SpaDES.Workshops
 Type: Package
-Title: 1/2 day and 3 days workshops for ecological modeling with SpaDES
+Title: Training workshops for ecological modeling with SpaDES
 Description: SpaDES is an R package that enables reproducible workflows,
     decision support via web apps, and ecological modeling tools.
 URL:
     https://spades-workshops.predictiveecology.org/,
     https://github.com/PredictiveEcology/SpaDES.Workshops
-Date: 2019-10-10
+Date: 2019-10-17
 Version: 0.1.0
 Authors@R: c(
     person("Eliot J B", "McIntire", email = "eliot.mcintire@canada.ca",
@@ -19,7 +19,7 @@ Authors@R: c(
            role = c("aut"))
     )
 Depends:
-    R (>= 3.3.2)
+    R (>= 3.5)
 Imports:
     reproducible
 License: GPL-3

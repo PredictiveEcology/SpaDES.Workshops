@@ -1,22 +1,22 @@
 ---
 title       : "R -- developing powerful skills"
 author      : "Alex M Chubaty & Eliot McIntire"
-date        : "December 9, 2016"
+date        : "2019 October 17"
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(cache=FALSE, echo=TRUE, eval=FALSE)
+knitr::opts_chunk$set(cache = FALSE, echo = TRUE, eval = FALSE)
 ```
 
 ## Need for speed
 
 R is widely seen as being 'slow' (see [julia](http://julialang.org/#high-performance-jit-compiler) web page) 
 
-**But**, if you use a few specific tools, then this becomes irrelevant because of the powerful tools in various packages in R
+**But**, if you use a few specific tools, then this becomes irrelevant because of the powerful tools in various packages in R.
  
 ## An aside
  
-Pure R, when the most efficient vectorized code is used, appears to be 1/2x the speed of the most efficient C++.
+Pure R, when the most efficient vectorized code is used, appears to be half the speed of the most efficient C++.
 
 See Hadley Wickham's [page on Rcpp](http://adv-r.had.co.nz/Rcpp.html), scroll down to "Vector input, vector output"... ), noting that if it took 10 minutes to write the C++ code, it would have to be 150,000 times faster to make it worth it.
  
@@ -35,7 +35,8 @@ We will show how to profile your code at the end of this section.
 
 ## "Vectorization"
 
-- This is at the core of making R fast. If you don't do this, then it is probably not useful to use R as a simulation engine.
+This is at the core of making R fast.
+If you don't do this, then it is probably not useful to use R as a simulation engine.
 
 ```{r vectorization}
 # Instead of 
@@ -134,7 +135,6 @@ a <- rnorm(1000)
 
     - [stack exchange](http://gis.stackexchange.com/questions/45327/tutorials-to-handle-spatial-data-in-r)
     - [NEON](http://neondataskills.org/R-package/sp/)
-    
 
 ## `sf`
 
@@ -160,16 +160,15 @@ install.packages('data.table')
 
 ## `data.table` tutorials
 
-- [Data Camp](https://www.datacamp.com/community/tutorials/data-table-r-tutorial#gs.s=AE7o0)
-- [Cheat sheet](https://www.datacamp.com/community/tutorials/data-table-cheat-sheet#gs.rFn247Q)
+- [Cheat sheet](https://github.com/rstudio/cheatsheets/blob/master/datatable.pdf)
 
 ## `raster` and `data.table` together
 
-- The current implementation of `LANDIS-SpaDES` uses a "reduced" data structure throughout
+- The current implementation of `LandR` (based on LANDIS-II) uses a "reduced" data structure throughout
 
 - Instead of keeping rasters of everything (one can imagine that there is redundancy, i.e., 2 pixels next to each other may be identical)
 
-- We make one raster of "id" and one data.table with a column called "id"
+- We make one raster of `id` and one `data.table` with a column called `id`
 
 - Then we can have as many columns as we want of information about each of these places
 
@@ -201,4 +200,3 @@ install.packages('Rcpp')
 
 - Essentially see [Dirk Eddelbuettel's book, Seamless R and C++](http://dirk.eddelbuettel.com/code/rcpp.html)
 - [Hadley's section in Advanced R](http://adv-r.had.co.nz/Rcpp.html)
-
