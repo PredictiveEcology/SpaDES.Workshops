@@ -67,9 +67,9 @@ devtools::install_github("PredictiveEcology/SpaDES.core", ref = "development")
 ### Installing additional packages
 
 ```r
-install.packages("achubaty/amc@development")
-install.packages("PredictiveEcology/LandR@development")
-install.packages("PredictiveEcology/pemisc@development")
+install_github("achubaty/amc@development")
+install_github("PredictiveEcology/LandR@development")
+install_github("PredictiveEcology/pemisc@development")
 ```
 
 ### Workshop materials
