@@ -2,7 +2,7 @@
 
 # Upcoming `SpaDES` Workshops:
 
-If you are interested in being put on the email list future courses, please email:
+If you are interested in being put on the email list for future courses, please email:
 
 - Eliot McIntire (eliot.mcintire at canada.ca)
 - Alex Chubaty (achubaty at for-cast.ca).
