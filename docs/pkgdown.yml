@@ -1,7 +1,29 @@
-pandoc: 2.3.1
+pandoc: 2.7.3
 pkgdown: 1.4.1
 pkgdown_sha: ~
-articles: []
+articles:
+  Building_a_module: Building_a_module.html
+  Caching: Caching.html
+  Cheatsheets: Cheatsheets.html
+  Continuous_Workflow: Continuous_Workflow.html
+  Convert_R_code_to_SpaDES_module: Convert_R_code_to_SpaDES_module.html
+  Debugging: Debugging.html
+  Existing_modules: Existing_modules.html
+  Loops_to_Events: Loops_to_Events.html
+  Module_Using_parent_modules_to_integrate: Module_Using_parent_modules_to_integrate.html
+  Module_details: Module_details.html
+  Modules_Thinking_in_a_modular_way: Modules_Thinking_in_a_modular_way.html
+  MyFirstModule: MyFirstModule.html
+  Plotting: Plotting.html
+  R_Developing_powerful_skills: R_Developing_powerful_skills.html
+  R_Profiling_code: R_Profiling_code.html
+  Sharing_Modules: Sharing_Modules.html
+  Simulation_Experiments_Replication: Simulation_Experiments_Replication.html
+  SpaDES4Dummies: SpaDES4Dummies.html
+  SpaDESInAction: SpaDESInAction.html
+  The_simList: The_simList.html
+  WhatIsSpades: WhatIsSpades.html
+  integrating_modules: integrating_modules.html
 urls:
   reference: http://spades-workshops.predictiveecology.org//reference
   article: http://spades-workshops.predictiveecology.org//articles

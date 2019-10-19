@@ -10,7 +10,7 @@
     <loc>http://spades-workshops.predictiveecology.org//reference/replaceRemoteLinksInArticles.html</loc>
   </url>
   <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/Building-a-module.html</loc>
+    <loc>http://spades-workshops.predictiveecology.org//articles/Building_a_module.html</loc>
   </url>
   <url>
     <loc>http://spades-workshops.predictiveecology.org//articles/Caching.html</loc>
@@ -19,28 +19,28 @@
     <loc>http://spades-workshops.predictiveecology.org//articles/Cheatsheets.html</loc>
   </url>
   <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/Continuous-Workflow.html</loc>
+    <loc>http://spades-workshops.predictiveecology.org//articles/Continuous_Workflow.html</loc>
   </url>
   <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/Convert-R-code-to-SpaDES-module.html</loc>
+    <loc>http://spades-workshops.predictiveecology.org//articles/Convert_R_code_to_SpaDES_module.html</loc>
   </url>
   <url>
     <loc>http://spades-workshops.predictiveecology.org//articles/Debugging.html</loc>
   </url>
   <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/Existing-modules.html</loc>
+    <loc>http://spades-workshops.predictiveecology.org//articles/Existing_modules.html</loc>
   </url>
   <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/Loops-to-Events.html</loc>
+    <loc>http://spades-workshops.predictiveecology.org//articles/Loops_to_Events.html</loc>
   </url>
   <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/Module-Using-parent-modules-to-integrate.html</loc>
+    <loc>http://spades-workshops.predictiveecology.org//articles/Module_Using_parent_modules_to_integrate.html</loc>
   </url>
   <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/Module-details.html</loc>
+    <loc>http://spades-workshops.predictiveecology.org//articles/Module_details.html</loc>
   </url>
   <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/Modules--Thinking-in-a-modular-way.html</loc>
+    <loc>http://spades-workshops.predictiveecology.org//articles/Modules_Thinking_in_a_modular_way.html</loc>
   </url>
   <url>
     <loc>http://spades-workshops.predictiveecology.org//articles/MyFirstModule.html</loc>
@@ -49,16 +49,16 @@
     <loc>http://spades-workshops.predictiveecology.org//articles/Plotting.html</loc>
   </url>
   <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/R-Developing-powerful-skills.html</loc>
+    <loc>http://spades-workshops.predictiveecology.org//articles/R_Developing_powerful_skills.html</loc>
   </url>
   <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/R-Profiling-code.html</loc>
+    <loc>http://spades-workshops.predictiveecology.org//articles/R_Profiling_code.html</loc>
   </url>
   <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/Sharing-Modules.html</loc>
+    <loc>http://spades-workshops.predictiveecology.org//articles/Sharing_Modules.html</loc>
   </url>
   <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/Simulation-Experiments-Replication.html</loc>
+    <loc>http://spades-workshops.predictiveecology.org//articles/Simulation_Experiments_Replication.html</loc>
   </url>
   <url>
     <loc>http://spades-workshops.predictiveecology.org//articles/SpaDES4Dummies.html</loc>
@@ -67,12 +67,12 @@
     <loc>http://spades-workshops.predictiveecology.org//articles/SpaDESInAction.html</loc>
   </url>
   <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/The-simList.html</loc>
+    <loc>http://spades-workshops.predictiveecology.org//articles/The_simList.html</loc>
   </url>
   <url>
     <loc>http://spades-workshops.predictiveecology.org//articles/WhatIsSpades.html</loc>
   </url>
   <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/integrating-modules.html</loc>
+    <loc>http://spades-workshops.predictiveecology.org//articles/integrating_modules.html</loc>
   </url>
 </urlset>
