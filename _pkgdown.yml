@@ -36,31 +36,32 @@ articles:
     contents:
     - MyFirstModule
     - SpaDES4Dummies
-    - Convert-R-code-to-SpaDES-module
+    - Convert_R_code_to_SpaDES_module
 
   - title: "Using existing modules -- Developer's Workshop"
     desc: >
       If you are given a module, how do we get it, understand it, run it, test it, incorporate it into our own modules
     contents:
-    - Existing-modules
-    - integrating-modules
+    - Existing_modules
+    - integrating_modules
+    - SpaDESInAction
 
   - title: "Developing a new continuously available science -- Developer's Workshop"
     desc: >
       Often decision support appears a long way from raw data collection, statistical model fitting, simulation modeling, optimization
     contents:
-      - Continuous-Workflow
+      - Continuous_Workflow
 
   - title: "Reference -- Developer's topics for reference"
     desc: >
       Advanced topics that can be helpful while going through the modules
     contents:
-    - The-simList
-    - Module-details
-    - Sharing-Modules
-    - Simulation-Experiments-Replication
-    - R-Developing-powerful-skills
-    - R-Profiling-code
+    - The_simList
+    - Module_details
+    - Sharing_Modules
+    - Simulation_Experiments_Replication
+    - R_Developing_powerful_skills
+    - R_Profiling_code
 
   - title: "Reference -- Links to `SpaDES` wiki pages and vignettes"
     desc: >
