@@ -20,3 +20,8 @@ Checkout RStudio's repository of useful cheatsheets: <https://github.com/rstudio
 
 - [`data.table`](https://github.com/rstudio/cheatsheets/blob/master/datatable.pdf)
 - [`sf`](https://github.com/rstudio/cheatsheets/blob/master/sf.pdf)
+
+## Version control
+
+- [Git & GitHub](https://github.github.com/training-kit/downloads/github-git-cheat-sheet.pdf)
+- [GitKraken](https://www.gitkraken.com/resources/gitkraken-cheat-sheet)
