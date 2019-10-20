@@ -112,7 +112,7 @@ Provided that modules are able to download, read and treat data adequately, upda
 **Decorate and serve**  
 Because models are not just for modellers, a shiny app building package is being developed to transform any `SpaDES` simulation into a web-app. This provides an interactive way of visualising results, as users can change simulation parameters and turn modules on and off, whilst observing how this impacts simulation results. Importantly, it can be particularly useful when conveying results to a non-expert or even the public.  
 
-Shiny web-app demo [here](https://spades.shinyapps.io/ForestChange_ProofOfConcept/) and [here](http://landweb.predictiveecology.org/Demo/)
+Shiny web-app demo [here](https://spades.shinyapps.io/ForestChange_ProofOfConcept/) and [here](http://landweb.ca)
 
 ***
 ***
@@ -469,7 +469,8 @@ mySim_manag3 <- spades(mySim_manag2, debug = TRUE)
 
 ### 1.4 Show your `SpaDES` model to the world!
 
-Soon `SpaDES` will have another package that will allow building web-apps from `simList` objects, so that simulation results can be visualised and changed interactively. For now, you can play around with the proof-of-concept Shiny app, but also with the real LandWeb project:
+Soon `SpaDES` will have another package that will allow building web-apps from `simList` objects, so that simulation results can be visualised and changed interactively.
+For now, you can play around with the proof-of-concept `shiny` app, but also with the real LandWeb project:
 
 - https://spades.shinyapps.io/ForestChange_ProofOfConcept/
 - http://landweb.ca/

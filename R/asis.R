@@ -1,13 +1,13 @@
 replacementList <- list(
   "[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9] Workshop" = "2019-10-10",
   "Articles <small>version&nbsp;0.1.0</small>" = "Content",
-  "Caching.html" = "https://cran.r-project.org/web/packages/SpaDES/vignettes/iii-cache.html",
-  "Debugging.html" = "https://github.com/PredictiveEcology/SpaDES/wiki/Debugging",
+  "06c-Caching.html" = "https://cran.r-project.org/web/packages/SpaDES/vignettes/iii-cache.html",
+  "06d-Debugging.html" = "https://github.com/PredictiveEcology/SpaDES/wiki/Debugging",
   "Past Workshops" = "Prior to 2019",
-  "Plotting.html" = "http://quickplot.predictiveecology.org/articles/iii-plotting.html",
+  "06b-Plotting.html" = "http://quickplot.predictiveecology.org/articles/iii-plotting.html",
   "Released package" = NULL,
-  "SpaDESInAction.html" = "https://htmlpreview.github.io/?https://github.com/tati-micheletti/SpaDESinAction/blob/master/runSimulation.html",
-  "SpaDES4Dummies.html" = "https://htmlpreview.github.io/?https://github.com/CeresBarros/SpaDES4Dummies/blob/master/SpaDES4Dummies.html"
+  "03c-SpaDESInAction.html" = "https://htmlpreview.github.io/?https://github.com/tati-micheletti/SpaDESinAction/blob/master/runSimulation.html",
+  "02b-SpaDES4Dummies.html" = "https://htmlpreview.github.io/?https://github.com/CeresBarros/SpaDES4Dummies/blob/master/SpaDES4Dummies.html"
 )
 
 #library(pkgdown)

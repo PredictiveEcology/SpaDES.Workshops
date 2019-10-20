@@ -2,28 +2,28 @@ pandoc: 2.7.3
 pkgdown: 1.4.1
 pkgdown_sha: ~
 articles:
-  Building_a_module: Building_a_module.html
-  Caching: Caching.html
-  Cheatsheets: Cheatsheets.html
-  Continuous_Workflow: Continuous_Workflow.html
-  Convert_R_code_to_SpaDES_module: Convert_R_code_to_SpaDES_module.html
-  Debugging: Debugging.html
-  Existing_modules: Existing_modules.html
-  Loops_to_Events: Loops_to_Events.html
-  Module_Using_parent_modules_to_integrate: Module_Using_parent_modules_to_integrate.html
-  Module_details: Module_details.html
-  Modules_Thinking_in_a_modular_way: Modules_Thinking_in_a_modular_way.html
-  MyFirstModule: MyFirstModule.html
-  Plotting: Plotting.html
-  R_Developing_powerful_skills: R_Developing_powerful_skills.html
-  R_Profiling_code: R_Profiling_code.html
-  Sharing_Modules: Sharing_Modules.html
-  Simulation_Experiments_Replication: Simulation_Experiments_Replication.html
-  SpaDES4Dummies: SpaDES4Dummies.html
-  SpaDESInAction: SpaDESInAction.html
-  The_simList: The_simList.html
-  WhatIsSpades: WhatIsSpades.html
-  integrating_modules: integrating_modules.html
+  01a-WhatIsSpades: 01a-WhatIsSpades.html
+  02a-MyFirstModule: 02a-MyFirstModule.html
+  02b-SpaDES4Dummies: 02b-SpaDES4Dummies.html
+  02c-Convert_R_code_to_SpaDES_module: 02c-Convert_R_code_to_SpaDES_module.html
+  03a-Existing_modules: 03a-Existing_modules.html
+  03b-integrating_modules: 03b-integrating_modules.html
+  03c-SpaDESInAction: 03c-SpaDESInAction.html
+  04-Continuous_Workflow: 04-Continuous_Workflow.html
+  05-Modules_Thinking_in_a_modular_way: 05-Modules_Thinking_in_a_modular_way.html
+  05a-The_simList: 05a-The_simList.html
+  05b-Module_details: 05b-Module_details.html
+  05c-Building_a_module: 05c-Building_a_module.html
+  05d-Loops_to_Events: 05d-Loops_to_Events.html
+  05e-Sharing_Modules: 05e-Sharing_Modules.html
+  05f-parent_modules: 05f-parent_modules.html
+  05g-Simulation_Experiments_Replication: 05g-Simulation_Experiments_Replication.html
+  05h-R_Developing_powerful_skills: 05h-R_Developing_powerful_skills.html
+  05i-R_Profiling_code: 05i-R_Profiling_code.html
+  06a-Cheatsheets: 06a-Cheatsheets.html
+  06b-Plotting: 06b-Plotting.html
+  06c-Caching: 06c-Caching.html
+  06d-Debugging: 06d-Debugging.html
 urls:
   reference: http://spades-workshops.predictiveecology.org//reference
   article: http://spades-workshops.predictiveecology.org//articles

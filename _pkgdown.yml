@@ -26,47 +26,54 @@ navbar:
 articles:
   - title: "Introducing a modular data platform"
     desc: >
-      Why `SpaDES`, what it is for, and how does it help us? Plus: importing modules and running fairly simple simulations from pre-made modules
+      Why `SpaDES`, what it is for, and how does it help us?
+      Plus: importing modules and running fairly simple simulations from pre-made modules.
     contents:
-    - WhatIsSpades
+    - 01a-WhatIsSpades
 
   - title: "Getting started with `SpaDES` in R"
     desc: >
       How to start from the beginning, making simple modules, making modules interact
     contents:
-    - MyFirstModule
-    - SpaDES4Dummies
-    - Convert_R_code_to_SpaDES_module
+    - 02a-MyFirstModule
+    - 02b-SpaDES4Dummies
+    - 02c-Convert_R_code_to_SpaDES_module
 
   - title: "Using existing modules -- Developer's Workshop"
     desc: >
-      If you are given a module, how do we get it, understand it, run it, test it, incorporate it into our own modules
+      If you are given a module, how do we get it, understand it, run it, test it,
+      incorporate it into our own modules.
     contents:
-    - Existing_modules
-    - integrating_modules
-    - SpaDESInAction
+    - 03a-Existing_modules
+    - 03b-integrating_modules
+    - 03c-SpaDESInAction
 
   - title: "Developing a new continuously available science -- Developer's Workshop"
     desc: >
-      Often decision support appears a long way from raw data collection, statistical model fitting, simulation modeling, optimization
+      Often decision support appears a long way from raw data collection, statistical model fitting,
+      simulation modeling, optimization.
     contents:
-      - Continuous_Workflow
+      - 04-Continuous_Workflow
 
-  - title: "Reference -- Developer's topics for reference"
+  - title: "Module development -- Developer's Workshop"
     desc: >
-      Advanced topics that can be helpful while going through the modules
+      Advanced topics that can be helpful while going through the modules.
     contents:
-    - The_simList
-    - Module_details
-    - Sharing_Modules
-    - Simulation_Experiments_Replication
-    - R_Developing_powerful_skills
-    - R_Profiling_code
+    - 05a-The_simList
+    - 05b-Module_details
+    - 05c-Building_a_module
+    - 05d-Loops_to_Events
+    - 05e-Sharing_Modules
+    - 05f-parent_modules
+    - 05g-Simulation_Experiments_Replication
+    - 05h-R_Developing_powerful_skills
+    - 05i-R_Profiling_code
 
-  - title: "Reference -- Links to `SpaDES` wiki pages and vignettes"
+  - title: "Reference -- Links to `SpaDES` wiki pages, vignettes, and other cheatsheets"
     desc: >
-      These are key to working with `SpaDES`, they are on the wiki or in vignettes
+      These are key to effectively working with `SpaDES`, they are on the wiki or in vignettes.
     contents:
-    - Debugging
-    - Caching
-    - Plotting
+    - 06a-Cheatsheets
+    - 06b-Plotting
+    - 06c-Caching
+    - 06d-Debugging
