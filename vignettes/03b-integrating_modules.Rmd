@@ -1,7 +1,7 @@
 ---
 title:  "Integrating different disciplines? With SpaDES is possible!"
 author: "Tati Micheletti"
-date:   "2019 October 17"
+date        : "October 2019"
 output: html_document
 ---
 

@@ -1,5 +1,5 @@
 ---
-title       : "Converting R code to a `SpaDES` module - seed establishment"
+title       : "Exercises: Converting R code to a `SpaDES` module"
 author      : "Alex M Chubaty & Eliot McIntire"
 date        : "October 2019"
 output: 

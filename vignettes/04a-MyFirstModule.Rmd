@@ -1,7 +1,7 @@
 ---
 title:  "My first `SpaDES` module - from `R` to `SpaDES`"
 author: "Ceres Barros, Eliot McIntire & Tati Micheletti"
-date:   "2019 October 17"
+date:   "2019 October"
 output:
   html_document:
     toc : TRUE
@@ -12,13 +12,11 @@ output:
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
-<!-- TODO: reduce overlap between this and the 'loops to events' vignette -->
-
 ## Loops: what are they and why use them?
 
-- Loops are fundamental programming units, used in virtually any language
-- Loops allow repeating a set of instructions, without "duplicating" code
-- Loops are often used to iterate something over "time" - this is common in an ecological setting.
+- fundamental programming units (most languages have them)
+- used to repeat a set of instructions, without "duplicating" code
+- often used in ecology to iterate something over "time"
   + usually, each 'time-step' depends on the previous one. Note in the examples below, how we start an `age` object at 1, and increment it at each step of `time`, or `t`. In both cases `time` and `t` are the loop *counters*, but only in the second case is the counter being effectively "used" inside the loop.
 
 ```{r loop_example}
@@ -56,6 +54,7 @@ In both cases, we have to:
 - define the **content** of the for-loop that is going to be iterated
 
 ## From loops to events
+
 - In R, we try to avoid loops because:
   + they are slow
   + they make code harder to share amongst users
@@ -66,6 +65,7 @@ In both cases, we have to:
 In SpaDES, events are first *defined*, then *scheduled* to happen at a particular point in time:
 
 ### Loops in `R`
+
 ```{r loopsToEvents}
 ## initializing
 age <- 1

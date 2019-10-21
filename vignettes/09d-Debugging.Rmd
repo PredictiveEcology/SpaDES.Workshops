@@ -1,7 +1,7 @@
 ---
-title       : "Caching"
+title       : "Debugging"
 author      : "Eliot McIntire"
-date        : "2019 October 17"
+date        : "October 2019"
 output: 
   html_document: 
     number_sections: yes
@@ -16,6 +16,6 @@ knitr::opts_chunk$set(cache = FALSE, echo = TRUE, eval = TRUE)
 ```
 
 <!--
-  this is a dummy file that will be replaced with a link to the Caching vignette when site rebuilt
+  this is a dummy file that will be replaced with a link to the Debugging vignette when site rebuilt
   see `replacementList` defined in `asis.R`
 -->

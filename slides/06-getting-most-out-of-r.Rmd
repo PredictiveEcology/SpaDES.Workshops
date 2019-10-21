@@ -1,22 +1,25 @@
 ---
-title       : "R -- developing powerful skills"
+title       : "Getting the most out of R"
 author      : "Alex M Chubaty & Eliot McIntire"
-date        : "2019 October 17"
+date        : "October 2019"
+output:
+  ioslides_presentation:
+    logo: ../images/SpaDES-hexsticker.png
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(cache = FALSE, echo = TRUE, eval = FALSE)
+knitr::opts_chunk$set(cache = TRUE, echo = TRUE, eval = FALSE)
 ```
 
 ## Need for speed
 
 R is widely seen as being 'slow' (see [julia](http://julialang.org/#high-performance-jit-compiler) web page) 
 
-**But**, if you use a few specific tools, then this becomes irrelevant because of the powerful tools in various packages in R.
+**But**, if you use a few specific tools, then this becomes irrelevant because of the powerful tools in various packages in R
  
 ## An aside
  
-Pure R, when the most efficient vectorized code is used, appears to be half the speed of the most efficient C++.
+Pure R, when the most efficient vectorized code is used, appears to be 1/2x the speed of the most efficient C++.
 
 See Hadley Wickham's [page on Rcpp](http://adv-r.had.co.nz/Rcpp.html), scroll down to "Vector input, vector output"... ), noting that if it took 10 minutes to write the C++ code, it would have to be 150,000 times faster to make it worth it.
  
@@ -35,8 +38,7 @@ We will show how to profile your code at the end of this section.
 
 ## "Vectorization"
 
-This is at the core of making R fast.
-If you don't do this, then it is probably not useful to use R as a simulation engine.
+- This is at the core of making R fast. If you don't do this, then it is probably not useful to use R as a simulation engine.
 
 ```{r vectorization}
 # Instead of 
@@ -86,7 +88,7 @@ a <- rnorm(1000)
     - For `data.frame` type data (i.e., columns of data)
     - Very fast when object gets large, but is actually slower if the `data.frame` is small (<100,000 rows)
     
-- `SpaDES` -- many functions; will be moved into a separate package soon
+- `SpaDES.tools`
 
 - `Rcpp`
 
@@ -135,6 +137,7 @@ a <- rnorm(1000)
 
     - [stack exchange](http://gis.stackexchange.com/questions/45327/tutorials-to-handle-spatial-data-in-r)
     - [NEON](http://neondataskills.org/R-package/sp/)
+    
 
 ## `sf`
 
@@ -164,7 +167,7 @@ install.packages('data.table')
 
 ## `raster` and `data.table` together
 
-- The current implementation of `LandR` (based on LANDIS-II) uses a "reduced" data structure throughout
+- The current implementation of LandR Biomass model (based on LANDIS-II) uses a "reduced" data structure throughout
 
 - Instead of keeping rasters of everything (one can imagine that there is redundancy, i.e., 2 pixels next to each other may be identical)
 
@@ -200,3 +203,77 @@ install.packages('Rcpp')
 
 - Essentially see [Dirk Eddelbuettel's book, Seamless R and C++](http://dirk.eddelbuettel.com/code/rcpp.html)
 - [Hadley's section in Advanced R](http://adv-r.had.co.nz/Rcpp.html)
+
+## Profiling and Benchmarking (1)
+
+- In general, the usual claim is to worry about 'execution speed later'
+- This is not 100% true with R
+- If you use vectorization (no or few loops), and these packages listed here, then you will have a good start
+- AFTER that, then you can use 2 great tools:
+
+    - `profvis` package (built into the latest Rstudio)
+    - `microbenchmark::microbenchmark()`
+    - `bench::mark()
+
+## Profiling and Benchmarking (2)
+
+```{r microbenchmark, eval=TRUE, echo=TRUE}
+microbenchmark::microbenchmark(
+  loop = {
+    a <- vector()
+    for (i in 1:1000) a[i] <- rnorm(1)
+  },
+  vectorized = {
+    a <- rnorm(1000)
+  }
+)
+```
+
+## Profiling and Benchmarking (3)
+
+Recent versions of Rstudio version have 'Profile' as a menu item.
+
+- alternatively, we wrap any block of code with `profvis`
+
+- This can be a `spades()` call, so it will show you the entire model:
+
+```{r profiling, eval=TRUE, echo=TRUE}
+profvis::profvis({a <- rnorm(10000000)})
+```
+
+## Profiling the `spades` call
+
+Try it:
+
+```{r profiling spades, eval=FALSE, echo=TRUE}
+mySim <- simInit(
+   times = list(start = 0.0, end = 2.0, timeunit = "year"),
+   params = list(
+     .globals = list(stackName = "landscape", burnStats = "nPixelsBurned")
+   ),
+   modules = list("randomLandscapes", "fireSpread", "caribouMovement"),
+   paths = list(modulePath = system.file("sampleModules", package = "SpaDES"))
+)
+profvis::profvis({spades(mySim)})
+```
+
+## When to profile
+
+- First, you should have started building your code with the packages we have discussed
+- It will be too late if you have loops in your code, and you are ready to profile to improve it
+
+If you have used these tools, then:
+
+- When you have mostly finished whatever we are coding
+- Don't ever start making code more efficient until you have profiled
+- It is almost impossible to tell which bits are the slow parts, without profiling or benchmarking
+
+## Strategies for profiling
+
+- Can do an entire `SpaDES` model call
+- Can pinpoint specific functions
+- Can test alternative ways of implementing the same thing
+
+## Next 
+
+Building *models* with modules ...

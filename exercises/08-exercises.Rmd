@@ -1,0 +1,27 @@
+---
+title       : "Exercises: Sharing Modules and Data"
+author      : "Alex M Chubaty & Eliot McIntire"
+date        : "October 2019"
+output: 
+  html_document: 
+    number_sections: yes
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, echo = TRUE, eval = FALSE)
+```
+
+# `shine`
+
+1. Explore the `LCC2005` (or your working parent module) using the `shine` function:
+
+    ```{r shine}
+    shine(lcc05)
+    ```
+
+# Sharing your module and data with others
+
+Before you can add your newly created module to a `SpaDES` module repository, you must ensure it is complete!
+
+1. Review the [module development checklist](https://github.com/PredictiveEcology/SpaDES/wiki/Getting-Started-Guide#module-development-checklist), and update your parent module and all children accordingly.

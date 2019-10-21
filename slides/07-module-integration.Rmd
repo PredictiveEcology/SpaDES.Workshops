@@ -1,7 +1,10 @@
 ---
-title:  "Modules -- Integrating among modules"
-author: "Alex M Chubaty & Eliot McIntire"
-date:   "2019 October 17"
+title       : "Module integration"
+author      : "Alex M Chubaty & Eliot McIntire"
+date        : "October 2019"
+output:
+  ioslides_presentation:
+    logo: ../images/SpaDES-hexsticker.png
 ---
 
 ```{r setup, include=FALSE}
@@ -113,10 +116,10 @@ lcc <- simInit(times = times, params = parameters,
                modules = modules, paths = paths)
 
 objectDiagram(lcc)
-moduleDiagram(lcc)
+moduleDiagram(lcc, showParents = TRUE)
 eventDiagram(lcc)
 
-lcc <- spades(lcc)  ## compare the diagrams after running sim
+lcc_out <- spades(Copy(lcc))  ## compare the diagrams after running sim
 ```
 
 ### What do/would these do?
@@ -134,7 +137,7 @@ newModule('moduleName', file.path('path/to/my/module/directory'),
 
 Alternatively, use the RStudio addin which is simply a GUI wrapper for this function (select 'parent' type):
 
-![](images/screenshot-new-module-addin.png)
+![](../images/screenshot-new-module-addin.png)
 
 ## Parent modules
 

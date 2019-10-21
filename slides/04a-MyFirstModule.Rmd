@@ -1,0 +1,103 @@
+---
+title:  "My first `SpaDES` module - from `R` to `SpaDES`"
+author: "Ceres Barros, Eliot McIntire & Tati Micheletti"
+date:   "2019 October"
+output:
+  ioslides_presentation:
+    logo: ../images/SpaDES-hexsticker.png
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+```
+
+<!-- TODO: reduce overlap between this and the 'loops to events' vignette -->
+
+## Loops: what are they and why use them?
+
+- fundamental programming units (most languages have them)
+- used to repeat a set of instructions, without "duplicating" code
+- often used in ecology to iterate something over "time"
+  + usually, each 'time-step' depends on the previous one. Note in the examples below, how we start an `age` object at 1, and increment it at each step of `time`, or `t`. In both cases `time` and `t` are the loop *counters*, but only in the second case is the counter being effectively "used" inside the loop.
+
+## Loop example in R
+
+```{r loop_example}
+age <- 1
+for (time in 1:10) {
+  age <- age + 1
+}
+```
+
+- **initialise** a storage vector
+- define time **boundaries**
+- define the **increment**
+- define the **content** (what's done)
+
+## From loops to events
+
+- In R, we try to avoid loops because:
+  + they are slow
+  + they make code harder to share amongst users
+
+## From loops to events
+
+- It's easy to think about "events" in ecology
+
+<img src="../images/MyFirstModule/Plant_phenology.png" align="middle" width="400" margin="0 auto" />
+  
+In SpaDES, events are first *defined*, then *scheduled* to happen at a particular point in time:
+
+## Events in `SpaDES`
+
+```{r loopsToEvents}
+## initialisation
+age <- 1                              
+
+## boundaries
+times = list(start = 1, end = 10) 
+
+## event definition (content)
+aging <- function(age) {
+  age <- age + 1                
+}
+
+## event execution and scheduling
+events <- {
+  doEvent("aging")
+  scheduleEvent("aging", when = now + 1)
+}
+```
+
+## Events in `SpaDES`
+
+- Event execution and scheduling in `SpaDES` use same components of a for-loop: **initialize**, **bounds**, **step**, **content**
+
+- This creates an *event queue*
+
+## What would that sequence look like?
+
+1. what is happening now
+2. What are the next thing(s) in the queue
+
+```{r}
+#     eventTime moduleName  eventType
+#  1:         0       loop       init
+#  2:         0       loop addOneYear
+#  3:         1       loop addOneYear
+#  4:         2       loop addOneYear
+#  5:         3       loop addOneYear
+#  6:         4       loop addOneYear
+#  7:         5       loop addOneYear
+#  8:         6       loop addOneYear
+#  9:         7       loop addOneYear
+# 10:         8       loop addOneYear
+# 11:         9       loop addOneYear
+# 12:        10       loop addOneYear 
+```
+
+## Why contain the iterated code in a function?
+
+- iterated code remains isolated from execution and scheduling - cleaner, more organised
+- easier to share
+- easier to change and update - modular!

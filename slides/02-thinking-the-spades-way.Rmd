@@ -1,12 +1,10 @@
 ---
-title       : "Modules -- Thinking in a modular way"
+title       : "Thinking the `SpaDES` way"
 author      : "Alex M Chubaty & Eliot McIntire"
-date        : "2019 October 17"
-output: 
-  html_document: 
-    number_sections: yes
-    toc: true
-    toc_float: true
+date        : "October 2019"
+output:
+  ioslides_presentation:
+    logo: ../images/SpaDES-hexsticker.png
 ---
 
 ```{r setup, include=FALSE}
@@ -29,11 +27,11 @@ knitr::opts_chunk$set(cache = TRUE, echo = TRUE, eval = FALSE)
 
     - SELES (very generic)
     - HexSim
-    - NetLogoR (Individual based models)
+    - NetLogoR (individual based models)
     
 - More specific DESs
 
-    - LANDIS (forest dynamics)
+    - LANDIS-II (forest dynamics)
 
 ## Events
 
@@ -53,7 +51,7 @@ knitr::opts_chunk$set(cache = TRUE, echo = TRUE, eval = FALSE)
     
 - What is contained in one module is highly idiosyncratic .
 
-## Modules and Modularity
+## Modules → Modularity
 
 `SpaDES` is implemented in a way that facilitates *modularity* of code:
   
@@ -151,7 +149,7 @@ What might be needed for a DES to run...
     - a schedule of events
     - outputs
 
-- Will be covered in detail [next](The-simList.html)
+- Will be covered in detail [next](http://Rpubs.com/PredictiveEcology/SpaDES-Intro-03-getting-technical)
 
 ## Data
 

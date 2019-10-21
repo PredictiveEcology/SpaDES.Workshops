@@ -12,7 +12,7 @@ replacementList <- list(
 
 #library(pkgdown)
 #library(reproducible)
-# unlockBinding("build_articles_index", env = as.environment("package:pkgdown"))
+#unlockBinding("build_articles_index", env = as.environment("package:pkgdown"))
 #lockBinding("build_articles_index", env = as.environment("package:pkgdown"))
 #assignInNamespace("build_articles_index", build_articles_index2, ns = "pkgdown")
 

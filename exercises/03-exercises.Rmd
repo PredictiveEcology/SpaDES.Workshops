@@ -1,0 +1,158 @@
+---
+title       : "Exercises: Getting Technical"
+author      : "Alex M Chubaty & Eliot McIntire"
+date        : "October 2019"
+output: 
+  html_document: 
+    number_sections: yes
+    toc: yes
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, echo = TRUE, eval = FALSE)
+```
+
+# Load the `SpaDES` package
+
+Load the following packages:
+
+- `igraph`
+- `rgdal`
+- `SpaDES`
+
+```{r load-packages}
+library(igraph)
+library(rgdal)
+library(SpaDES)
+
+if (packageVersion("SpaDES") < "1.3.1.9016")
+  stop("Please update your version of SpaDES to the latest development version.")
+```
+
+# Initiliaze an empty `simList` object
+
+```{r empty-simList}
+emptySim <- simInit()
+```
+
+# Inspect the empty `simList` object
+
+1. What are the names of each of the slots in the simList?
+2. What do each of these slots contain? Hint: see `?'.simList-class'`.
+
+```{r inspect-emptySim}
+str(emptySim)
+slotNames(emptySim)
+getSlots('simList')
+?'.simList-class'
+```
+
+# Initialize a simulation using sample modules
+
+This code is based on the `SpaDES` package [demo](https://github.com/PredictiveEcology/SpaDES/blob/master/demo/spades-simulation.R).
+
+```{r demo}
+set.seed(42)
+
+filelist <- data.frame(
+  files = dir(system.file("maps", package = "SpaDES"),
+              full.names = TRUE, pattern = "tif"),
+  functions = "rasterToMemory",
+  packages = "SpaDES",
+  stringsAsFactors = FALSE
+)
+
+# create the simList object 'mySim'
+mySim <- simInit(
+  times = list(start = 0.0, end = 100.00),
+  params = list(
+    .progress = list(type = NA, interval = NA),
+    .globals = list(burnStats = "nPixelsBurned"),
+    randomLandscapes = list(
+      nx = 1e2, ny = 1e2, .saveObjects = "landscape",
+      .plotInitialTime = NA, .plotInterval = NA, inRAM = TRUE
+    ),
+    caribouMovement = list(
+      N = 1e2, .saveObjects = c("caribou"),
+      .plotInitialTime = 1, .plotInterval = 1, moveInterval = 1
+    ),
+    fireSpread = list(
+      nFires = 1e1, spreadprob = 0.235, persistprob = 0, its = 1e6,
+      returnInterval = 10, startTime = 0,
+      .plotInitialTime = 0, .plotInterval = 10
+    )
+  ),
+  modules = list("randomLandscapes", "fireSpread", "caribouMovement"),
+  inputs = filelist,
+  paths = list(modulePath = system.file("sampleModules", package = "SpaDES"))
+)
+
+mySim$landscape <- stack(mySim$DEM, mySim$forestAge, mySim$habitatQuality, mySim$percentPine)
+```
+
+# Inspect the new `simList` object
+
+Use the simList accessor functions to determine the following:
+
+1. the modules included in the simulation and their package dependencies;
+2. the global parameter values used;
+3. the module-specific parameter values used;
+4. the simulation start and end times;
+5. the timeunits used by the modules in the simulation;
+6. the scheduled and completed event queues;
+7. the objects (functions, data, etc.) used in the simulation;
+8. the file paths used for simulation inputs and outputs.
+
+```{r inspect-simList}
+# list modules used in the simulation
+modules(mySim)
+
+# list module dependencies and packages used
+depends(mySim)
+packages(mySim)
+
+# list global and module-specific param values
+globals(mySim)
+params(mySim)
+P(mySim)       ## bonus: how do params() and P() differ?
+
+# list start and end times
+times(mySim)
+start(mySim)
+end(mySim)
+
+# get the simulation and module timeunits
+timeunit(mySim)
+timeunits(mySim)
+
+# get the scheduled and completed event queues
+events(mySim)
+completed(mySim)
+
+# list the objects (functions, data, etc.) stored in the simList
+objects(mySim)
+
+# list the file paths used in the simulation
+paths(mySim)
+inputPath(mySim)
+outputPath(mySim)
+```
+
+# Run the simulation
+
+```{r run-sim}
+dev()
+mySimOut <- Copy(mySim) ## make a deep copy of the simList
+mySimOut <- spades(mySimOut)
+```
+
+# Compare the simList before and after
+
+```{r compare-sims}
+times(mySim)
+times(mySimOut)
+
+objects(mySim)
+objects(mySimOut)
+```

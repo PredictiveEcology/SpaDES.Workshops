@@ -1,0 +1,82 @@
+---
+title       : "Workshop Prerequisites"
+author      : "Alex M Chubaty & Eliot McIntire"
+date        : "October 2019"
+output:
+  ioslides_presentation:
+    logo: ../images/SpaDES-hexsticker.png
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, echo = TRUE, eval = FALSE)
+```
+
+## Install a recent version of R
+
+`SpaDES` requires R version `3.5.0` or greater but works best with R version `3.6.1` or greater. 
+
+Download and install the latest version of R (3.6.1) from [https://cran.rstudio.com/](https://cran.rstudio.com/)
+
+## Install the latest RStudio
+
+![](../images/RStudio-Logo-Blue-Gray-125.png)
+
+Download and install the latest RStudio from [https://www.rstudio.com/products/rstudio/download](https://www.rstudio.com/products/rstudio/download)
+
+Developer preview versions are available from [https://www.rstudio.com/products/rstudio/download/preview/](https://www.rstudio.com/products/rstudio/download/preview/)
+
+## Install `SpaDES`
+
+Ensure you have updated the packages on your computer, installed the latest development version of the `SpaDES` package and its dependencies:
+
+```{r install-SpaDES}
+## update your packages and install prerequisites
+update.packages(ask = FALSE, checkBuilt = TRUE)
+install.packages(c("devtools", "knitr", "profvis", "rmarkdown", "SpaDES"),
+                 dependencies = TRUE)
+
+## install SpaDES to your default package library
+## to install elsewhere use 'withr::with_libpaths()'
+devtools::install_github("PredictiveEcology/SpaDES@development",
+                         dependencies = TRUE)
+
+# check package version
+packageVersion("SpaDES")
+```
+
+## Additional dependencies
+
+**Important note (esp. for non-Windows users):**
+
+> Installing `SpaDES` will install a number of additional spatial packages, some of which have additional system dependencies not covered by simply installing the R package.
+
+See [this post](http://predictiveecology.org/2015/04/24/installing-R-spatial-packages.html) on how to ensure you can install the system dependencies required to install these packages.
+
+## Brainstorm your `SpaDES` needs
+
+- Use a pre-existing module as is? Which one(s)?
+
+- Modify a pre-exising module? Enhance it? Fix bugs?
+
+- Are you going to make a new module?
+
+- Add a new module to a group of other modules (*e.g.*, add fires to vegetation dynamics)?
+
+- Learn some ecological modeling?
+
+- Come with specific problems ...
+
+## Data & Model
+
+- Bring any data that you would like to work with
+- If you have a conceptual model that you would like to work on, bring it
+
+## Create a new RStudio project
+
+1. From the *File* menu, select *New Project...*.
+2. Select *New Directory*.
+3. Select *Empty Project*.
+4. Name your project and select where to save it.
+5. Don't worry about 'Packrat' and 'Git repositories'. Leave these unchecked.
+6. (Optional) You may want to open your project in a new Rstudio session.
+7. As we go through the workshop, keep your code in an `.R` or `.Rmd` file.

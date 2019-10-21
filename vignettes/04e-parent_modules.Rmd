@@ -1,129 +1,12 @@
 ---
-title       : "Modules -- Downloading and using existing modules"
-author      : "Alex M Chubaty & Eliot McIntire"
+title:  "Modules -- Integrating among modules"
+author: "Alex M Chubaty & Eliot McIntire"
 date        : "October 2019"
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(cache = TRUE, echo = TRUE, eval = FALSE)
 ```
-
-# How to share modules
-
-- We can share modules in any number of ways 
-
-    - email
-    - Cloud (Dropbox, Google Drive, etc.)
-    - Version Control repository (e.g.,`SpaDES-Modules`)
-    
-## SpaDES-Modules GitHub repository
-
-- We have created a repository on GitHub for this purpose (like *CRAN* for SpaDES modules)
-- Of course, one can use any location, but we start here
-- It is open for viewing, even submitting to (like *CRAN*) via (pull request for now)
-- It is curated to some extent (like *CRAN*)
-
-## Downloading modules
-
-- There are several modules on SpaDES-Modules
-- Several types (agent-based, raster, GIS, etc)
-- We have several that are NOT hosted here, yet... 
-- After publishing them, we will host them here.
-
-## Types we will look at 
-
-These are all simple, "toy" modules so far
-
-- Spread module (fire)
-- Agent-based modules (caribou, wolf)
-
-## Modules not on SpaDES-Modules yet, waiting for publication
-
-- Land-R_Biomass
-- Land-R_BiomassClimate
-- ECCC Caribou Population projection
-- R-CBM (carbon budget model)
-
-****
-
-# Modules to download
-
-## Downloading
-
-- fireSpread
-- caribouMovementLcc
-- caribou2movements
-
-### What does each do?
-
-When you go to the next steps, try things out... ask some of these questions:
-
-- Where do we start?
-- Are there bugs?
-- Are there visualizations?
-- Is is complex, simple?
-- What type of module is it?
-
-
-*****
-
-### Fire spread module
-
-- Lets start with a simple spreading module
-
-```{r}
-library(SpaDES)
-tmpdir <- file.path(dirname(tempdir()), "Modules")
-downloadModule("fireSpreadLcc", path = tmpdir)
-```
-
-- Where is it? (where is tmpdir?)
-- What does it look like?
-
-*****
-
-## Agent modules
-
-### Download toy movement module
-
-- Lets start with a simple movement module
-
-```{r}
-library(SpaDES)
-tmpdir <- file.path(dirname(tempdir()), "Modules")
-downloadModule("caribouMovementLcc", path = tmpdir)
-```
-
-### Wolf Alps & Caribou Gaspesie
-
-- In SpaDES-Modules repository, 
-- Two published movement modules 
-- [Wolfs recolonizing the Alps](https://htmlpreview.github.io/?https://github.com/PredictiveEcology/SpaDES-modules/blob/master/modules/wolfAlps/wolfAlps.html)
-- [Caribou in Gaspésie](https://htmlpreview.github.io/?https://github.com/PredictiveEcology/SpaDES-modules/blob/master/modules/caribou2Movements/caribou2Movements.Rmd)
-
-### Try one out
-
-```{r}
-downloadModule("caribou2Movements", path = tmpdir)
-downloadModule("wolfAlps", path = tmpdir) # ignore warning about file size
-
-# Can open the .Rmd (how to run it) or .R (module code)
-file.edit(file.path(tmpdir, "caribou2Movements", "caribou2Movements.Rmd"))
-file.edit(file.path(tmpdir, "wolfAlps", "wolfAlps.Rmd"))
-```
-
-- Can you get either to run?
-
-### Debugging
-
-- Lets do it...
-- Go back to SpaDES wiki pages (how do I find it again...?)... Maybe Google search "R SpaDES wiki"
-- [Remember the debugging tools](https://github.com/PredictiveEcology/SpaDES/wiki/Debugging)
-- `?spades` has new section on debugging that complements the above wiki
-
-*****
-
-# Meta models
 
 ## Building *models* from *modules*
 
@@ -146,21 +29,18 @@ A model (as defined in the `SpaDES` world) consists of multiple interacting comp
 library(igraph)
 library(SpaDES)
 
-setPaths(cachePath = "~/temp_SpaDESws/cache", 
-         inputPath = "~/temp_SpaDESws/inputs", 
-         modulePath = "~/temp_SpaDESws/modules", 
-         outputPath = "~/temp_SpaDESws/outputs")
-
-openModules("LCC2005", getPaths()$modulePath)
+workDirectory <- file.path(dirname(tempdir()), "Lcc2005")
+moduleDir <- file.path(workDirectory, "modules") %>%
+  checkPath(., create = TRUE)
+downloadModule("LCC2005", moduleDir)
+openModules("LCC2005", moduleDir)
 ```
 
 ### Examine this module
 
 What is different about it?
 
-****
-
-# Parent modules (a.k.a. module groups)
+## Parent modules (a.k.a. module groups)
 
 - Currently, only used to identify a group of modules
 - Uses "childModules" list entry
@@ -187,8 +67,6 @@ g <- data.frame(from = c("grandparentModule", "grandparentModule",
                        "childModuleB1", "childModuleB2")) %>% 
   graph_from_data_frame()
 plot(g, mark.groups = list(1:7, c(2,4,5), c(3,6,7)))
-
-### NOT RENDERING IN THE WEBSITE!
 ```
 
 ## Module directory structure
@@ -205,23 +83,11 @@ moduleRepo/
 ```
 ## Running a parent module
 
-If you restarted your R session, first prepare the global setup again:
-```{r}
-library(SpaDES)
-
-# Remember, if you changed it in the previous step, keep it the same. Otherwise it won't find your modules!
-setPaths(cachePath = "~/temp_SpaDESws/cache", 
-         inputPath = "~/temp_SpaDESws/inputs", 
-         modulePath = "~/temp_SpaDESws/modules", 
-         outputPath = "~/temp_SpaDESws/outputs")
-```
-
-Then, prepare the simulation:
-
 ```{r run-lcc, echo=TRUE, eval=FALSE}
 # setup simulation
-
-times <- list(start = 2005.0, end = 2015.0, timeunit = "year")
+outputDir <- file.path(workDirectory, "simOutputs")
+cacheDir <- checkPath(file.path(outputDir, "cache"), create = TRUE)
+times <- list(start = 2005.0, end = 2020.0, timeunit = "year")
 parameters <- list(
   .globals = list(burnStats = "fireStats"),
   fireSpreadLcc = list(drought = 1.2),
@@ -230,25 +96,12 @@ parameters <- list(
 )
 modules <- list("LCC2005")
 paths <- list(
-  cachePath = getPaths()$cachePath,
-  modulePath = getPaths()$modulePath,
-  inputPath = getPaths()$inputPath,
-  outputPath = getPaths()$outputPath
+  cachePath = cacheDir,
+  modulePath = moduleDir,
+  inputPath = moduleDir,
+  outputPath = outputDir
 )
-mySim <- simInit(modules = modules, paths = paths, params = parameters, times = times)
 ```
-
-## Create a new parent module
-
-The LCC2005 is a parent module that contains several children (What are they?).  Now make a new parent module from several of the LCC2005 modules, but without, say, fire.
-
-```{r}
-allButFire <- unlist(modules(mySim))[-6]
-newModule("LCC2005NoFire", children = allButFire)
-openModules("LCC2005NoFire", getPaths()$modulePath)
-```
-
-Go ahead and open the *LCC2005NoFire.R* and check the child modules in the metadata.
 
 ## Visual tools
 
@@ -293,7 +146,6 @@ The new **CFS-FD** model (Forest Dynamics Model)
 - But the vegetation module is actually a parent module with 3 modules:
     
     - mortality, growth, and regeneration modules
-
 - fire module is actually 4 modules:
     
     - ignition, escape, spread, severity modules
