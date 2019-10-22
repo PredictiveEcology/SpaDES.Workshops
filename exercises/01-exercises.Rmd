@@ -23,7 +23,7 @@ Make sure R, Rstudio, `SpaDES` are all installed.
 
     ```{r sampleModuleDir}
     ## Locate the `SpaDES` sample modules
-    sampleModuleDir <- system.file('sampleModules', package = 'SpaDES')
+    sampleModuleDir <- system.file('sampleModules', package = 'SpaDES.core')
     
     ## identify the modules in this directory
     dir(sampleModuleDir)
