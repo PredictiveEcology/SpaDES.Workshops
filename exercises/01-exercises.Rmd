@@ -7,11 +7,16 @@ output:
     number_sections: yes
     toc: true
     toc_float: true
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(cache = TRUE, echo = TRUE, eval = FALSE)
 ```
+
+Make sure R, Rstudio, `SpaDES` are all installed.
+
 # `SpaDES` sample modules
 
 1.  Which modules are included with the `SpaDES` package?
@@ -26,11 +31,15 @@ knitr::opts_chunk$set(cache = TRUE, echo = TRUE, eval = FALSE)
 
 2. What do each of the sample modules do? *I.e.*, what does each one demonstrate?
 
-    ```{r sampleModuleFiles}
-    ## open the sample module files to learn more about each module
-    sampleModuleFiles <- list.files(sampleModuleDir, recursive = TRUE, full.names = TRUE)
-    lapply(sampleModuleFiles, file.edit)
-    ```
+As a best practice, modules should come with a `.Rmd` file that provides a summary of how the module works and *reproducible* example, though this is not actually imposed.
+If you've ever searched for R-help on **stackoverflow** you'll have noticed how people try to provide `R` code that can be run in any machine to reproduce the problem/solution at hand.
+Module `.Rmd` files should also run in any machine.
+
+```{r sampleModuleFiles}
+## open the sample module files to learn more about each module
+sampleModuleFiles <- list.files(sampleModuleDir, recursive = TRUE, full.names = TRUE)
+lapply(sampleModuleFiles, file.edit)
+```
 
 # `LCC2005` vegetation dynamics modules
 
@@ -41,20 +50,63 @@ Download and examine the `LCC2005` vegetation dynamics modules to learn more abo
 moduleDir <- file.path(tempdir(), 'SpaDES_modules')
 
 ## download all necessary modules
-downloadModule('LCC2005', path = moduleDir, data = TRUE)
+downloadModule('LCC2005', path = getPaths()$modulePath, repo = 'PredictiveEcology/SpaDES-modules', overwrite = TRUE)
 
 ## look at module or helper .Rmd file
 openModules('LCC2005', path = moduleDir) 
 ```
 
-# `wolfAlps` module
+Now we can download the data needed for the modules.
 
-Download and examine the `wolfAlps` individual based model to learn more about it.
-
-```{r wolf}
-downloadModule("wolfAlps", path = moduleDir, data = TRUE)
-openModules("wolfAlps", path = moduleDir)
+```{r data_downld}
+downloadData("LccToBeaconsReclassify") # 41 MB file
 ```
+
+But what happens if the module doesn't require any data?
+Let's try to download data for any other module that doesn't need data. 
+
+In the next block, why does the second one re-download the same dataset as we just downloaded?
+
+````{r data_notReq}
+
+downloadData("fireSpreadLcc") # Note it will hit the error "Error in curl::curl_fetch_memory(url, handle = handle) : Could not resolve host: NA".
+
+downloadData("cropReprojectLccAge") # Note that there is an error in the end of this download (at the last file). "Could not resolve host: ftp.daac.ornl.gov". This is related to a missing map that we will fix below
+```
+
+Unfortunately, the forest age raster (`can_age04_1km.tif`) is no longer downloadable without creating an account on the NASA EarthData website.
+We have provided a copy, which you can download from [here](https://github.com/PredictiveEcology/SpaDES.Workshops/raw/master/can_age04_1km.tif) and put in `file.path(getPaths()$modulePath, "cropReprojectLccAge/data")` and `file.path(getPaths()$modulePath, "modules/forestAge/data")` (this will only be possible during the workshop).
+However, downloading objects/files from the internet is a common problem.
+To enhance reproducibility, the function will not download a file again if it has a local copy:
+
+```{r prepInputs}
+# downloads
+age <- prepInputs(url = "https://github.com/PredictiveEcology/SpaDES.Workshops/raw/master/can_age04_1km.tif",
+                  destinationPath = file.path(getPaths()$modulePath, "cropReprojectLccAge/data"))
+
+# doesn't download, because it is already there -- uses Checksums
+age <- prepInputs(url = "https://github.com/PredictiveEcology/SpaDES.Workshops/raw/master/can_age04_1km.tif",
+                  destinationPath = file.path(getPaths()$modulePath, "cropReprojectLccAge/data"))
+
+file.copy(raster::filename(age),
+          file.path(getPaths()$modulePath, "forestAge/data"))
+```
+
+For future reference, it is possible to create an account on the NASA EarthData website and, after logging in, you'll find the file [here](https://daac.ornl.gov/NACP/guides/NA_Tree_Age.html).  
+
+```{r open_mdl}
+## open the description of the LCC2005 module group - on Windows this doesn't work because of an Rstudio issue, instead the message provides the lines to copy and paste
+openModules('LCC2005', path = getPaths()$modulePath) 
+
+## list all module files within LCC2005 and open them
+LCC2005ModuleFiles <- list.files(getPaths()$modulePath, pattern = 'Rmd$', recursive = TRUE, full.names = TRUE)
+
+## open module Rmd files
+file.edit(LCC2005ModuleFiles[1])
+lapply(LCC2005ModuleFiles, file.edit)
+```
+  
+As you can see, `LCC2005` is a module group, meaning that it contains several modules that work together.
 
 # `SpaDES` and `shiny`
 

@@ -245,17 +245,17 @@ downloadData("cropReprojectLccAge") # Note that there is an error in the end of 
 ```
 
 Unfortunately, the forest age raster (`can_age04_1km.tif`) is no longer downloadable without creating an account on the NASA EarthData website.
-We have provided a copy, which you can download from [here](https://drive.google.com/file/d/1bD957dewv3U-cbISfeUEz1QpGg5DurR-/view?usp=sharing) and put in `file.path(getPaths()$modulePath, "cropReprojectLccAge/data")` and `file.path(getPaths()$modulePath, "modules/forestAge/data")` (this will only be possible during the workshop).
+We have provided a copy, which you can download from [here](https://github.com/PredictiveEcology/SpaDES.Workshops/raw/master/can_age04_1km.tif) and put in `file.path(getPaths()$modulePath, "cropReprojectLccAge/data")` and `file.path(getPaths()$modulePath, "modules/forestAge/data")` (this will only be possible during the workshop).
 However, downloading objects/files from the internet is a common problem.
 To enhance reproducibility, the function will not download a file again if it has a local copy:
 
 ```{r prepInputs}
 # downloads
-age <- prepInputs(url = "https://drive.google.com/file/d/1bD957dewv3U-cbISfeUEz1QpGg5DurR-/view?usp=sharing",
+age <- prepInputs(url = "https://github.com/PredictiveEcology/SpaDES.Workshops/raw/master/can_age04_1km.tif",
                   destinationPath = file.path(getPaths()$modulePath, "cropReprojectLccAge/data"))
 
 # doesn't download, because it is already there -- uses Checksums
-age <- prepInputs(url = "https://drive.google.com/file/d/1bD957dewv3U-cbISfeUEz1QpGg5DurR-/view?usp=sharing",
+age <- prepInputs(url = "https://github.com/PredictiveEcology/SpaDES.Workshops/raw/master/can_age04_1km.tif",
                   destinationPath = file.path(getPaths()$modulePath, "cropReprojectLccAge/data"))
 
 file.copy(raster::filename(age),

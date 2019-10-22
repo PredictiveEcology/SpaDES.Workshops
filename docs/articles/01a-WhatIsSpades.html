@@ -80,9 +80,9 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>What is <code>SpaDES</code>?</h1>
-                        <h4 class="author">Ceres Barros, Eliot McIntire, Tati Micheletti</h4>
+                        <h4 class="author">Ceres Barros, Eliot McIntire, Tati Micheletti, Alex Chubaty</h4>
             
-            <h4 class="date">2019 October 17</h4>
+            <h4 class="date">October 2019</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/PredictiveEcology/SpaDES.Workshops/blob/master/vignettes/01a-WhatIsSpades.Rmd"><code>vignettes/01a-WhatIsSpades.Rmd</code></a></small>
       <div class="hidden name"><code>01a-WhatIsSpades.Rmd</code></div>
@@ -97,7 +97,7 @@
 <div id="why-is-modelling-important" class="section level3">
 <h3 class="hasAnchor">
 <a href="#why-is-modelling-important" class="anchor"></a>Why is modelling important?</h3>
-<p>Models are nowadays so important and widespread that we often don’t realize that most of what we use in our daily lives is the result of someone’s (or some team’s) model From weather forecasting, to predicting stock market fluctuations. From the design of your bike, to the estimation of blood sugar and insulin levels and how they vary hourly and according to different diets (in case you don’t know, this can be important for diabetes treatments, and drug dosage and scheduling)… Models are indeed ‘everywhere’.</p>
+<p>Models are nowadays so important and widespread that we often don’t realize that most of what we use in our daily lives is the result of someone’s (or some team’s) model. From weather forecasting, to predicting stock market fluctuations. From the design of your bike, to the estimation of blood sugar and insulin levels and how they vary hourly and according to different diets (in case you don’t know, this can be important for diabetes treatments, and drug dosage and scheduling)… Models are indeed ‘everywhere’.</p>
 <p><img src="images/Day01/models_everywhere.png" align="middle" height="400" width="750" margin="0 auto"></p>
 </div>
 <div id="challenges-modellers-face" class="section level3">
@@ -187,8 +187,10 @@
 Analysing the effects of climate change could then be done by varying fire-related parameters (e.g. frequency and intensity of fires) in a simulation experiment. Alternatively, an additional module could simulate climate change effects, which would feedback unto both fire parameters and vegetation.<br>
 Finally, a timber supply module could “read” the vegetation maps produced after fire simulations and calculate timber quantity and quality from forest conditions (e.g. surviving tree species and their age).</p>
 <p><strong>Reserve, add new data, and re-run</strong><br>
-Provided that modules are able to download, read and treat data adequately, updating the simulations for new data is easy. <code>SpaDES</code> comes with a set of functions (via the <code>reproducible</code> package) that enable caching model structure, parameters and simulation results. This way, if new data only affects a section of the model, the user won’t have to repeat every step to update the simulations.<br>
-* Learn more about: <a href="http://spades-workshops.predictiveecology.org/articles/Existing-modules.html#how-to-share-modules">sharing modules</a> and caching (<a href="https://cran.r-project.org/web/packages/SpaDES/vignettes/iii-cache.html">here</a> and <a href="http://spades-workshops.predictiveecology.org/articles/Continuous-Workflow.html">here</a>)</p>
+Provided that modules are able to download, read and treat data adequately, updating the simulations for new data is easy. <code>SpaDES</code> comes with a set of functions (via the <code>reproducible</code> package) that enable caching model structure, parameters and simulation results. This way, if new data only affects a section of the model, the user won’t have to repeat every step to update the simulations.</p>
+<ul>
+<li>Learn more about: <a href="http://spades-workshops.predictiveecology.org/articles/03a-Existing-modules.html#how-to-share-modules">sharing modules</a> and caching (<a href="https://cran.r-project.org/web/packages/SpaDES/vignettes/iii-cache.html">here</a> and <a href="http://spades-workshops.predictiveecology.org/articles/Continuous-Workflow.html">here</a>)</li>
+</ul>
 <p><strong>Decorate and serve</strong><br>
 Because models are not just for modellers, a shiny app building package is being developed to transform any <code>SpaDES</code> simulation into a web-app. This provides an interactive way of visualising results, as users can change simulation parameters and turn modules on and off, whilst observing how this impacts simulation results. Importantly, it can be particularly useful when conveying results to a non-expert or even the public.</p>
 <p>Shiny web-app demo <a href="https://spades.shinyapps.io/ForestChange_ProofOfConcept/">here</a> and <a href="http://landweb.ca">here</a></p>
@@ -269,8 +271,8 @@ Because models are not just for modellers, a shiny app building package is being
 <p>Let’s go back to the modelling question discussed briefly above.</p>
 <p>Our first objective is to simulate the effect of fire on forest age. There are two main components to such a model, which need to interact:</p>
 <ol style="list-style-type: decimal">
-<li>a fire simulator</li>
-<li>a forest age simulator</li>
+<li>a fire simulator;</li>
+<li>a forest age simulator.</li>
 </ol>
 <div id="download-modules" class="section level4">
 <h4 class="hasAnchor">
@@ -297,7 +299,7 @@ Because models are not just for modellers, a shiny app building package is being
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">downloadData</span>(<span class="st">"fireSpreadLcc"</span>) <span class="co"># Note it will hit the error "Error in curl::curl_fetch_memory(url, handle = handle) : Could not resolve host: NA".</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a></span>
 <span id="cb7-3"><a href="#cb7-3"></a><span class="kw">downloadData</span>(<span class="st">"cropReprojectLccAge"</span>) <span class="co"># Note that there is an error in the end of this download (at the last file). "Could not resolve host: ftp.daac.ornl.gov". This is related to a missing map that we will fix below</span></span></code></pre></div>
-<p>Unfortunately, the forest age raster (<code>can_age04_1km.tif</code>) is no longer downloadable without creating an account on the NASA EarthData website. We have provided a copy, which you can download from <a href="https://drive.google.com/file/d/1bD957dewv3U-cbISfeUEz1QpGg5DurR-/view?usp=sharing">here</a> and put in <code><a href="https://rdrr.io/r/base/file.path.html">file.path(getPaths()$modulePath, "cropReprojectLccAge/data")</a></code> and `<code><a href="https://rdrr.io/r/base/file.path.html">file.path(getPaths()$modulePath, "modules/forestAge/data")</a></code> (this will only be possible during the workshop). However, downloading objects/files from the internet is a common problem. To enhance reproducibility, the function will not download a file again if it has a local copy:</p>
+<p>Unfortunately, the forest age raster (<code>can_age04_1km.tif</code>) is no longer downloadable without creating an account on the NASA EarthData website. We have provided a copy, which you can download from <a href="https://drive.google.com/file/d/1bD957dewv3U-cbISfeUEz1QpGg5DurR-/view?usp=sharing">here</a> and put in <code><a href="https://rdrr.io/r/base/file.path.html">file.path(getPaths()$modulePath, "cropReprojectLccAge/data")</a></code> and <code><a href="https://rdrr.io/r/base/file.path.html">file.path(getPaths()$modulePath, "modules/forestAge/data")</a></code> (this will only be possible during the workshop). However, downloading objects/files from the internet is a common problem. To enhance reproducibility, the function will not download a file again if it has a local copy:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># downloads</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a>age &lt;-<span class="st"> </span><span class="kw">prepInputs</span>(<span class="dt">url =</span> <span class="st">"https://drive.google.com/file/d/1bD957dewv3U-cbISfeUEz1QpGg5DurR-/view?usp=sharing"</span>,</span>
 <span id="cb8-3"><a href="#cb8-3"></a>                  <span class="dt">destinationPath =</span> <span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="kw">getPaths</span>()<span class="op">$</span>modulePath, <span class="st">"cropReprojectLccAge/data"</span>))</span>
@@ -318,7 +320,7 @@ Because models are not just for modellers, a shiny app building package is being
 <span id="cb9-7"><a href="#cb9-7"></a><span class="co">## open module Rmd files</span></span>
 <span id="cb9-8"><a href="#cb9-8"></a><span class="kw"><a href="https://rdrr.io/r/utils/file.edit.html">file.edit</a></span>(LCC2005ModuleFiles[<span class="dv">1</span>])</span>
 <span id="cb9-9"><a href="#cb9-9"></a><span class="kw"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(LCC2005ModuleFiles, file.edit)</span></code></pre></div>
-<p>As you can see, <code>LCC2005</code> is a module group, meaning that it contains several modules that work together. Find more about module groups <a href="http://spades-workshops.predictiveecology.org/articles/Existing-modules.html#parent-modules-a-k-a--module-groups">here</a>.</p>
+<p>As you can see, <code>LCC2005</code> is a module group, meaning that it contains several modules that work together. Find more about module groups <a href="http://spades-workshops.predictiveecology.org/articles/03a-Existing-modules.html#parent-modules-a-k-a--module-groups">here</a>.</p>
 <p>In this exercise, we will follow a simplified version of the example contained in the <code>LCC2005.Rmd</code> file. We will only use the modules necessary to simulate vegetation dynamics (<code>cropReprojectLccAge</code>, <code>forestAge</code>, <code>forestSuccessionBeacons</code> and <code>LccToBeaconsReclassify</code>) and fire spread (<code>fireSpreadLcc</code>).</p>
 </div>
 <div id="simulation-setup" class="section level4">
@@ -356,8 +358,8 @@ Because models are not just for modellers, a shiny app building package is being
 <h4 class="hasAnchor">
 <a href="#simulation-object---simlist" class="anchor"></a>1.3.3 Simulation object - <code>simList</code>
 </h4>
-<p>The object <code>mySim</code> contains all the necessary information to run the simulation, such as the objects that are shared between modules, and how these are linked between them. It’s called a <code>simList</code>. You can find out more about the <code>simList</code> object <a href="http://spades-workshops.predictiveecology.org/articles/The-simList.html">here</a>.</p>
-<p>Let’s have a look at what mySim contains and how modules are connected.</p>
+<p>The object <code>mySim</code> contains all the necessary information to run the simulation, such as the objects that are shared between modules, and how these are linked between them. It’s called a <code>simList</code>. You can find out more about the <code>simList</code> object <a href="http://spades-workshops.predictiveecology.org/articles/05a-The-simList.html">here</a>.</p>
+<p>Let’s have a look at what <code>mySim</code> contains and how modules are connected.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co">## list the contents of mySim</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a><span class="kw"><a href="https://rdrr.io/r/utils/ls_str.html">ls.str</a></span>(mySim)</span>
 <span id="cb11-3"><a href="#cb11-3"></a></span>
@@ -390,7 +392,7 @@ Because models are not just for modellers, a shiny app building package is being
 <div id="change-model-parameters-without-restarting" class="section level4">
 <h4 class="hasAnchor">
 <a href="#change-model-parameters-without-restarting" class="anchor"></a>1.3.5 Change model parameters without restarting</h4>
-<p>With <code>SpaDES</code> it is possible to change a simulations’ parameters and then continue running it. This is possible because, even though the simulation stopped at year 20, <code>SpaDES</code> has scheduled the “next” events (see the result of the <code>events</code> call above). Find out more about events and event scheduling <a href="http://spades-workshops.predictiveecology.org/articles/Loops-to-Events.html">here</a>.</p>
+<p>With <code>SpaDES</code> it is possible to change a simulations’ parameters and then continue running it. This is possible because, even though the simulation stopped at year 20, <code>SpaDES</code> has scheduled the “next” events (see the result of the <code>events</code> call above). Find out more about events and event scheduling <a href="http://spades-workshops.predictiveecology.org/articles/05d-Loops-to-Events.html">here</a>.</p>
 <p>What will happen if drought intensity increases and fires become more frequent?</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw"><a href="https://rdrr.io/r/stats/start.html">end</a></span>(mySim2)    <span class="co">## accesses the last year</span></span>
 <span id="cb13-2"><a href="#cb13-2"></a><span class="kw"><a href="https://rdrr.io/r/stats/start.html">end</a></span>(mySim2) &lt;-<span class="st"> </span><span class="dv">50</span>   <span class="co">## add another 30 years to the end of the simulation. </span></span>
@@ -411,7 +413,7 @@ Because models are not just for modellers, a shiny app building package is being
 <h4 class="hasAnchor">
 <a href="#add-a-friends-module" class="anchor"></a>1.3.6 Add a friend’s module</h4>
 <p>The second part of our question was to investigate how forest fires may affect harvesting. The <code>LCC2005</code> module group does not contain any module that we can use for this, but that’s OK, because we can get modules from other Git repositories.</p>
-<p>We will use an <em>extremely</em> simple module that maps areas that are adequate for forest harvesting in function of forest age (a parameter that the user inputs) and the type of forest that can be harvested (here, only coniferous forests). This module, called <code>forestHarvest</code>, will be downloaded from a different repository “CeresBarros/forestHarvest-SpaDESmodule”. Learn more about downloading and sharing modules <a href="http://spades-workshops.predictiveecology.org/articles/Existing-modules.html">here</a>.</p>
+<p>We will use an <em>extremely</em> simple module that maps areas that are adequate for forest harvesting in function of forest age (a parameter that the user inputs) and the type of forest that can be harvested (here, only coniferous forests). This module, called <code>forestHarvest</code>, will be downloaded from a different repository “CeresBarros/forestHarvest-SpaDESmodule”. Learn more about downloading and sharing modules <a href="http://spades-workshops.predictiveecology.org/articles/03a-Existing-modules.html">here</a>.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">downloadModule</span>(<span class="dt">name =</span> <span class="st">"forestHarvest"</span>, <span class="dt">repo =</span> <span class="st">"CeresBarros/forestHarvest-SpaDESmodule"</span>, <span class="dt">path =</span> <span class="kw">getPaths</span>()<span class="op">$</span>modulePath, <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb14-2"><a href="#cb14-2"></a></span>
 <span id="cb14-3"><a href="#cb14-3"></a><span class="co">## We've defined the paths earlier </span></span>

@@ -124,8 +124,7 @@ A module is an **R script** with 3 parts:
     
 3. **Anything else**
 
-    - custom functions
-    - initial data preparation steps
+    - e.g., initial data preparation steps
     
 
 ## Running `SpaDES`
@@ -149,7 +148,7 @@ What might be needed for a DES to run...
     - a schedule of events
     - outputs
 
-- Will be covered in detail [next](http://Rpubs.com/PredictiveEcology/SpaDES-Intro-03-getting-technical)
+(Will be covered in detail later)
 
 ## Data
 

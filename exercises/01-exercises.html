@@ -12,7 +12,6 @@
 
 <meta name="author" content="Alex M Chubaty &amp; Eliot McIntire" />
 
-<meta name="date" content="2016-12-07" />
 
 <title>Exercises: SpaDES in action</title>
 
@@ -1506,11 +1505,12 @@ div.tocify {
 
 <h1 class="title toc-ignore">Exercises: <code>SpaDES</code> in action</h1>
 <h4 class="author">Alex M Chubaty &amp; Eliot McIntire</h4>
-<h4 class="date">December 7, 2016</h4>
+<h4 class="date">October 2019</h4>
 
 </div>
 
 
+<p>Make sure R, Rstudio, <code>SpaDES</code> are all installed.</p>
 <div id="spades-sample-modules" class="section level1">
 <h1><span class="header-section-number">1</span> <code>SpaDES</code> sample modules</h1>
 <ol style="list-style-type: decimal">
@@ -1520,11 +1520,12 @@ sampleModuleDir &lt;- system.file(&#39;sampleModules&#39;, package = &#39;SpaDES
 
 ## identify the modules in this directory
 dir(sampleModuleDir)</code></pre></li>
-<li><p>What do each of the sample modules do? <em>I.e.</em>, what does each one demonstrate?</p>
+<li><p>What do each of the sample modules do? <em>I.e.</em>, what does each one demonstrate?</p></li>
+</ol>
+<p>As a best practice, modules should come with a <code>.Rmd</code> file that provides a summary of how the module works and <em>reproducible</em> example, though this is not actually imposed. If you’ve ever searched for R-help on <strong>stackoverflow</strong> you’ll have noticed how people try to provide <code>R</code> code that can be run in any machine to reproduce the problem/solution at hand. Module <code>.Rmd</code> files should also run in any machine.</p>
 <pre class="r"><code>## open the sample module files to learn more about each module
 sampleModuleFiles &lt;- list.files(sampleModuleDir, recursive = TRUE, full.names = TRUE)
-lapply(sampleModuleFiles, file.edit)</code></pre></li>
-</ol>
+lapply(sampleModuleFiles, file.edit)</code></pre>
 </div>
 <div id="lcc2005-vegetation-dynamics-modules" class="section level1">
 <h1><span class="header-section-number">2</span> <code>LCC2005</code> vegetation dynamics modules</h1>
@@ -1533,23 +1534,46 @@ lapply(sampleModuleFiles, file.edit)</code></pre></li>
 moduleDir &lt;- file.path(tempdir(), &#39;SpaDES_modules&#39;)
 
 ## download all necessary modules
-downloadModule(&#39;LCC2005&#39;, path = moduleDir, data = TRUE)
+downloadModule(&#39;LCC2005&#39;, path = getPaths()$modulePath, repo = &#39;PredictiveEcology/SpaDES-modules&#39;, overwrite = TRUE)
 
 ## look at module or helper .Rmd file
 openModules(&#39;LCC2005&#39;, path = moduleDir) </code></pre>
-</div>
-<div id="wolfalps-module" class="section level1">
-<h1><span class="header-section-number">3</span> <code>wolfAlps</code> module</h1>
-<p>Download and examine the <code>wolfAlps</code> individual based model to learn more about it.</p>
-<pre class="r"><code>downloadModule(&quot;wolfAlps&quot;, path = moduleDir, data = TRUE)
-openModules(&quot;wolfAlps&quot;, path = moduleDir)</code></pre>
+<p>Now we can download the data needed for the modules.</p>
+<pre class="r"><code>downloadData(&quot;LccToBeaconsReclassify&quot;) # 41 MB file</code></pre>
+<p>But what happens if the module doesn’t require any data? Let’s try to download data for any other module that doesn’t need data.</p>
+<p>In the next block, why does the second one re-download the same dataset as we just downloaded?</p>
+<pre class="r"><code>downloadData(&quot;fireSpreadLcc&quot;) # Note it will hit the error &quot;Error in curl::curl_fetch_memory(url, handle = handle) : Could not resolve host: NA&quot;.
+
+downloadData(&quot;cropReprojectLccAge&quot;) # Note that there is an error in the end of this download (at the last file). &quot;Could not resolve host: ftp.daac.ornl.gov&quot;. This is related to a missing map that we will fix below</code></pre>
+<p>Unfortunately, the forest age raster (<code>can_age04_1km.tif</code>) is no longer downloadable without creating an account on the NASA EarthData website. We have provided a copy, which you can download from <a href="https://github.com/PredictiveEcology/SpaDES.Workshops/raw/master/can_age04_1km.tif">here</a> and put in <code>file.path(getPaths()$modulePath, &quot;cropReprojectLccAge/data&quot;)</code> and <code>file.path(getPaths()$modulePath, &quot;modules/forestAge/data&quot;)</code> (this will only be possible during the workshop). However, downloading objects/files from the internet is a common problem. To enhance reproducibility, the function will not download a file again if it has a local copy:</p>
+<pre class="r"><code># downloads
+age &lt;- prepInputs(url = &quot;https://github.com/PredictiveEcology/SpaDES.Workshops/raw/master/can_age04_1km.tif&quot;,
+                  destinationPath = file.path(getPaths()$modulePath, &quot;cropReprojectLccAge/data&quot;))
+
+# doesn&#39;t download, because it is already there -- uses Checksums
+age &lt;- prepInputs(url = &quot;https://github.com/PredictiveEcology/SpaDES.Workshops/raw/master/can_age04_1km.tif&quot;,
+                  destinationPath = file.path(getPaths()$modulePath, &quot;cropReprojectLccAge/data&quot;))
+
+file.copy(raster::filename(age),
+          file.path(getPaths()$modulePath, &quot;forestAge/data&quot;))</code></pre>
+<p>For future reference, it is possible to create an account on the NASA EarthData website and, after logging in, you’ll find the file <a href="https://daac.ornl.gov/NACP/guides/NA_Tree_Age.html">here</a>.</p>
+<pre class="r"><code>## open the description of the LCC2005 module group - on Windows this doesn&#39;t work because of an Rstudio issue, instead the message provides the lines to copy and paste
+openModules(&#39;LCC2005&#39;, path = getPaths()$modulePath) 
+
+## list all module files within LCC2005 and open them
+LCC2005ModuleFiles &lt;- list.files(getPaths()$modulePath, pattern = &#39;Rmd$&#39;, recursive = TRUE, full.names = TRUE)
+
+## open module Rmd files
+file.edit(LCC2005ModuleFiles[1])
+lapply(LCC2005ModuleFiles, file.edit)</code></pre>
+<p>As you can see, <code>LCC2005</code> is a module group, meaning that it contains several modules that work together.</p>
 </div>
 <div id="spades-and-shiny" class="section level1">
-<h1><span class="header-section-number">4</span> <code>SpaDES</code> and <code>shiny</code></h1>
+<h1><span class="header-section-number">3</span> <code>SpaDES</code> and <code>shiny</code></h1>
 <p>If time permits, feel free to play around with the proof-of-concept shiny apps:</p>
 <ul>
 <li><a href="https://spades.shinyapps.io/ForestChange_ProofOfConcept/" class="uri">https://spades.shinyapps.io/ForestChange_ProofOfConcept/</a></li>
-<li><a href="http://w-vic-a105388.pfc.forestry.ca/SpaDESUI-forEliot-Oct2016/" class="uri">http://w-vic-a105388.pfc.forestry.ca/SpaDESUI-forEliot-Oct2016/</a> (only available inside CFS firewall)</li>
+<li><a href="http://landweb.ca/" class="uri">http://landweb.ca/</a></li>
 </ul>
 </div>
 

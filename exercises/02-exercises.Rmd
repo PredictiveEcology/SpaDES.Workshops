@@ -4,7 +4,7 @@ author      : "Alex M Chubaty & Eliot McIntire"
 date        : "October 2019"
 output: 
   html_document: 
-    number_sections: yes
+    number_sections: no
     toc: yes
     toc_float: true
 ---
@@ -15,7 +15,7 @@ knitr::opts_chunk$set(cache = TRUE, echo = TRUE, eval = FALSE)
 
 ## Exercise 1. Thinking the SpaDES way.
 
-Lorem ipsum ...
+No exercises.
 
 ## Exercise 2. Make your first module
 
