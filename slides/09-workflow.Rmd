@@ -63,7 +63,7 @@ Need the reusable work flow, and reproducible science ... but with a GUI
 ?Cache
 ```
 
-[wolf model shows a caching use case](http://htmlpreview.github.io/?https://github.com/PredictiveEcology/SpaDES-modules/blob/master/modules/wolfAlps/wolfAlps.html)
+[wolf model shows a caching use case](https://htmlpreview.github.io/?https://github.com/PredictiveEcology/wolfAlps/blob/0c6b1fb1a3d6ee0e6a86260f8c405b659a6e1c5d/wolfAlps.html)
 
 ## Data-to-decisions
 
