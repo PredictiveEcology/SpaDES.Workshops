@@ -57,7 +57,7 @@ distFromSource <- distanceFromPoints(quality, sourceLocations) # raster function
 
 # Create establishment map, a function of inverse distance and quality, 
 # Actual establishment is determined with a threshold parameter
-establish <- (1/distFromSource * quality) > establishThresh
+establish <- (1 / distFromSource * quality) > establishThresh
 
 clearPlot()
 Plot(distFromSource, title = "Distance from source")

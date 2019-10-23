@@ -1,6 +1,6 @@
 ---
-title:  "My first `SpaDES` module - from `R` to `SpaDES`"
-author: "Ceres Barros, Eliot McIntire & Tati Micheletti"
+title:  "My first `SpaDES` module"
+author: "Ceres Barros, Eliot McIntire, Tati Micheletti, Alex Chubaty"
 date:   "2019 October"
 output:
   ioslides_presentation:

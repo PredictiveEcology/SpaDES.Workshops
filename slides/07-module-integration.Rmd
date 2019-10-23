@@ -5,6 +5,8 @@ date        : "October 2019"
 output:
   ioslides_presentation:
     logo: ../images/SpaDES-hexsticker.png
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}

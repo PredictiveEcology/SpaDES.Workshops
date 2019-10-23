@@ -41,7 +41,7 @@ str(emptySim)
 
 **NOTE:** `simList`s are S4 objects, so we can use `getSlots()` and `slotNames()` to examine the object.
 
-See also `?'.simList-class'`
+See also `?simList`
 
 **Exercises 03, numbers 2 & 3.**
 

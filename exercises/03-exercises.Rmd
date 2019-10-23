@@ -7,6 +7,8 @@ output:
     number_sections: yes
     toc: yes
     toc_float: true
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -56,10 +58,10 @@ This code is based on the `SpaDES` package [demo](https://github.com/PredictiveE
 set.seed(42)
 
 filelist <- data.frame(
-  files = dir(system.file("maps", package = "SpaDES"),
+  files = dir(system.file("maps", package = "quickPlot"),
               full.names = TRUE, pattern = "tif"),
   functions = "rasterToMemory",
-  packages = "SpaDES",
+  packages = "SpaDES.core",
   stringsAsFactors = FALSE
 )
 
@@ -85,7 +87,7 @@ mySim <- simInit(
   ),
   modules = list("randomLandscapes", "fireSpread", "caribouMovement"),
   inputs = filelist,
-  paths = list(modulePath = system.file("sampleModules", package = "SpaDES"))
+  paths = list(modulePath = system.file("sampleModules", package = "SpaDES.core"))
 )
 
 mySim$landscape <- stack(mySim$DEM, mySim$forestAge, mySim$habitatQuality, mySim$percentPine)

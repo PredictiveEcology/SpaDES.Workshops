@@ -238,7 +238,9 @@ Recent versions of Rstudio version have 'Profile' as a menu item.
 - This can be a `spades()` call, so it will show you the entire model:
 
 ```{r profiling, eval=TRUE, echo=TRUE}
-profvis::profvis({a <- rnorm(10000000)})
+profvis::profvis({
+  a <- rnorm(10000000)
+})
 ```
 
 ## Profiling the `spades` call

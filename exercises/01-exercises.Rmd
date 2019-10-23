@@ -23,11 +23,11 @@ Make sure R, Rstudio, `SpaDES` are all installed.
 
     ```{r sampleModuleDir}
     ## Locate the `SpaDES` sample modules
-    sampleModuleDir <- system.file('sampleModules', package = 'SpaDES')
+    sampleModuleDir <- system.file('sampleModules', package = 'SpaDES.core')
     
     ## identify the modules in this directory
     dir(sampleModuleDir)
-    ```
+```
 
 2. What do each of the sample modules do? *I.e.*, what does each one demonstrate?
 
@@ -49,8 +49,10 @@ Download and examine the `LCC2005` vegetation dynamics modules to learn more abo
 ## specify where to save files
 moduleDir <- file.path(tempdir(), 'SpaDES_modules')
 
+setPaths(modulePath = moduleDir)
+
 ## download all necessary modules
-downloadModule('LCC2005', path = getPaths()$modulePath, repo = 'PredictiveEcology/SpaDES-modules', overwrite = TRUE)
+downloadModule('LCC2005', path = moduleDir, repo = 'PredictiveEcology/SpaDES-modules', overwrite = TRUE)
 
 ## look at module or helper .Rmd file
 openModules('LCC2005', path = moduleDir) 
@@ -75,31 +77,45 @@ downloadData("cropReprojectLccAge") # Note that there is an error in the end of 
 ```
 
 Unfortunately, the forest age raster (`can_age04_1km.tif`) is no longer downloadable without creating an account on the NASA EarthData website.
-We have provided a copy, which you can download from [here](https://github.com/PredictiveEcology/SpaDES.Workshops/raw/master/can_age04_1km.tif) and put in `file.path(getPaths()$modulePath, "cropReprojectLccAge/data")` and `file.path(getPaths()$modulePath, "modules/forestAge/data")` (this will only be possible during the workshop).
+We have provided a copy, which you can download from [here](https://github.com/PredictiveEcology/SpaDES.Workshops/raw/master/can_age04_1km.tif) and put in `file.path(moduleDir, "cropReprojectLccAge/data")` and `file.path(moduleDir, "modules/forestAge/data")` (this will only be possible during the workshop).
 However, downloading objects/files from the internet is a common problem.
 To enhance reproducibility, the function will not download a file again if it has a local copy:
 
 ```{r prepInputs}
+library(reproducible)
+
 # downloads
 age <- prepInputs(url = "https://github.com/PredictiveEcology/SpaDES.Workshops/raw/master/can_age04_1km.tif",
-                  destinationPath = file.path(getPaths()$modulePath, "cropReprojectLccAge/data"))
+                  destinationPath = file.path(moduleDir, "cropReprojectLccAge/data"))
 
 # doesn't download, because it is already there -- uses Checksums
 age <- prepInputs(url = "https://github.com/PredictiveEcology/SpaDES.Workshops/raw/master/can_age04_1km.tif",
-                  destinationPath = file.path(getPaths()$modulePath, "cropReprojectLccAge/data"))
+                  destinationPath = file.path(moduleDir, "cropReprojectLccAge/data"))
 
 file.copy(raster::filename(age),
-          file.path(getPaths()$modulePath, "forestAge/data"))
+          file.path(moduleDir, "forestAge/data"))
+
+library(sp)
+library(raster)
+
+plot(age)
+
+library(quickPlot)
+
+dev()
+Plot(age)
+clearPlot()
+rePlot()
 ```
 
 For future reference, it is possible to create an account on the NASA EarthData website and, after logging in, you'll find the file [here](https://daac.ornl.gov/NACP/guides/NA_Tree_Age.html).  
 
 ```{r open_mdl}
 ## open the description of the LCC2005 module group - on Windows this doesn't work because of an Rstudio issue, instead the message provides the lines to copy and paste
-openModules('LCC2005', path = getPaths()$modulePath) 
+openModules('LCC2005', path = moduleDir) 
 
 ## list all module files within LCC2005 and open them
-LCC2005ModuleFiles <- list.files(getPaths()$modulePath, pattern = 'Rmd$', recursive = TRUE, full.names = TRUE)
+LCC2005ModuleFiles <- list.files(moduleDir, pattern = 'Rmd$', recursive = TRUE, full.names = TRUE)
 
 ## open module Rmd files
 file.edit(LCC2005ModuleFiles[1])

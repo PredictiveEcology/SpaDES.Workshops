@@ -1546,10 +1546,10 @@ getSlots(&#39;simList&#39;)
 <pre class="r"><code>set.seed(42)
 
 filelist &lt;- data.frame(
-  files = dir(system.file(&quot;maps&quot;, package = &quot;SpaDES&quot;),
+  files = dir(system.file(&quot;maps&quot;, package = &quot;quickPlot&quot;),
               full.names = TRUE, pattern = &quot;tif&quot;),
   functions = &quot;rasterToMemory&quot;,
-  packages = &quot;SpaDES&quot;,
+  packages = &quot;SpaDES.core&quot;,
   stringsAsFactors = FALSE
 )
 
@@ -1575,7 +1575,7 @@ mySim &lt;- simInit(
   ),
   modules = list(&quot;randomLandscapes&quot;, &quot;fireSpread&quot;, &quot;caribouMovement&quot;),
   inputs = filelist,
-  paths = list(modulePath = system.file(&quot;sampleModules&quot;, package = &quot;SpaDES&quot;))
+  paths = list(modulePath = system.file(&quot;sampleModules&quot;, package = &quot;SpaDES.core&quot;))
 )
 
 mySim$landscape &lt;- stack(mySim$DEM, mySim$forestAge, mySim$habitatQuality, mySim$percentPine)</code></pre>

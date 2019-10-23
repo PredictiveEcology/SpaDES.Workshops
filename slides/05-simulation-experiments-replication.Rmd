@@ -46,8 +46,8 @@ It is as easy as `replicates = 2` to do two replicates:
 ```{r experiment2}
 ?experiment # for details
 
-# See Example 5
-#  ... run mySim from top of help file
+## See Example 5
+##  ... run mySim from top of help file
 sims <- experiment(mySim, replicates = 2)
 attr(sims, "experiment")$expDesign # shows 2 reps of same expt
 ```
@@ -198,6 +198,8 @@ predVals <- predict(glmObj, newdata = data.frame(
     - standard errors, covariance matrices
     - random effects terms
     
+## Using this in simulation models
+
 - For the first 25 years of simulation modeling in ecology, parameters were copied into simulation models and hard coded
 - This made it difficult to update the simulation model if there are new data and the regression needs to be re-fit
 - Using `SpaDES` we can now fit the data and use the parameters all inside the simulation
