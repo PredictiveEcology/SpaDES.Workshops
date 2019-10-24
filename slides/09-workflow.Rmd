@@ -6,6 +6,8 @@ date        : "October 2019"
 output:
   ioslides_presentation:
     logo: ../images/SpaDES-hexsticker.png
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -24,60 +26,75 @@ knitr::opts_chunk$set(cache = TRUE, echo = TRUE, eval = FALSE)
 
 - Ideally, we can rerun all decision support tools over and over again
 - Must be MUCH easier the second, third, etc. time
-- If there is an incremental change in input data, then we shouldn't need to redo the same effort as the first time around.
+- If there is an incremental change in input data, then we shouldn't need to redo the same effort as the first time around (e.g., `Cache`).
 
-## Why a Discrete Event Simulator is necessary?
+## Why reproducible?
 
-- There is much fanfare about using Rmarkdown as a tool for reproducibility (*i.e*, Rmarkdown = "code, output, narrative")
-- But this allows *exact* reproducibility
+- Rerun analysis/model
+- New computer or new team member
+- Rebuild a figure (e.g., for publication)
+- Address reviewer comments prior to publication
+- Quickly update with new data
+- Quickly update downstream reporting
+- Defendability & transparency
 
-    - **Everything will be run exactly as before**
-    
-- What happens if the goal is to run it again, but with slight changes to the input data?
-- The Rmarkdown approach can deal with this to a certain extent, but it will be clunky
+**Beyond reproducibility: _reusablility_**
 
-## Adding novelty
+## Open-ness and accessibility
 
-- What happens if you want to add something new, but keep it mostly the same
-- You have a good vegetation model and a good caribou model, but you want to add a wolf model
-- With Rmarkdown, you would have to edit the original file
-- With `SpaDES`, you can use the other modules by calling them... no need to know how they work
-- You add your own wolf model, looking at outputs of the vegetation model and caribou model
-- Using the model metadata from those other modules
+- facilitate reusability & sharing
+- increased densibility & transparency
+- should be _freely available_
 
-## Deploying for policy and management
+## Interoperability
 
-Need the reusable work flow, and reproducible science ... but with a GUI
+- modular design
+- facilitate integration
 
-- `shine` function is a start
-- we created a demo version of a generic web interface for models ([link](http://predictiveecology.org/2016/11/17/Putting_science_in_the_hands_of_policy_makers.html))
-- A non-scientist can ask questions of a system of modules without knowing which modules are necessary
+## Continuous workflow
 
-## Caching
+<img src="../images/workflow1.png" align="middle" width="650" margin="0 auto" />
 
-- For the above to work for, say, a national question, it can't run the model on the fly
-- Could have massive data requirements, long simulation times, even on supercomputers
-- Caching allows for near instant results from very complex systems
+<img src="../images/workflow2.png" align="middle" width="650" margin="0 auto" />
 
-```{r caching for data2decisions}
-?Cache
-```
+## Automatic testing
 
-[wolf model shows a caching use case](https://htmlpreview.github.io/?https://github.com/PredictiveEcology/wolfAlps/blob/0c6b1fb1a3d6ee0e6a86260f8c405b659a6e1c5d/wolfAlps.html)
+- R package infrastructure is tested daily by CRAN
+- `SpaDES` family of packages tested everytime code committed
+
+**but what about SpaDES modules?**
+
+- unit tests (currently need to be run manually)
+
+## The 'PERFICT' approach
+
+**P**redictive **E**cology that is
+
+- **R**eusable,
+- **F**reely available,
+- **I**nteroperable,
+- use a **C**ontinuous workflow,
+- **T**ested automatically.
+
+Substantial immediate and long-term benefits, at the [minor] cost of (re)learning and modifying current workflows
 
 ## Data-to-decisions
 
-- This is the current vision for `SpaDES`
-- We are looking for people who are interested in being part of this adventure
+> What is `SpaDES`?
+    
+    a. an R package (or family of packages);
+    b. a modelling philosophy;
+    c. an implementation of PERFICT;
+    d. all of the above.
+
+<br />
 
 <div class="centered" style="color:#0000FF">
 *Bringing the best science, data, models into the hands of policy makers in real time, on their phones*
 </div>
 
-## TODO: PERFICT
+# Best practices
 
-lorem ipsum ...
+## Working with spatial data and simulations
 
-## TODO: version control
-
-lorem ipsum ...
+<http://www.alexchubaty.com/r-talks/spatial-data-best-practices/spatial-data-best-practices.html#/4>

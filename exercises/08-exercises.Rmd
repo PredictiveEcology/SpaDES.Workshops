@@ -29,7 +29,7 @@ library(SpaDES.shiny)
 
     ```{r shine}
     ## hint: the lcc simulation was created in exercise 07-module-integration
-    shine(lcc)
+    shine(lcc05)
     ```
 
 # Sharing your module and data with others

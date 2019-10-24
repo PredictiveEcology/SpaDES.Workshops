@@ -11,8 +11,6 @@ output:
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
-<!-- TODO: reduce overlap between this and the 'loops to events' vignette -->
-
 ## Loops: what are they and why use them?
 
 - fundamental programming units (most languages have them)
