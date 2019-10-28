@@ -82,7 +82,7 @@ Substantial immediate and long-term benefits, at the [minor] cost of (re)learnin
 
 > What is `SpaDES`?
     
-    a. an R package (or family of packages);
+    a. an R package (or family of packages) for sequencing model events;
     b. a modelling philosophy;
     c. an implementation of PERFICT;
     d. all of the above.
