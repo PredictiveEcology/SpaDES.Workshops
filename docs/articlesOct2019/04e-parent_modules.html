@@ -44,10 +44,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../articles/index.html">2020-Jan</a>
-</li>
-<li>
-  <a href="../articlesOct2019/index.html">2019-Fall</a>
+  <a href="../articles/index.html">2019-Fall</a>
 </li>
 <li>
   <a href="../articlesSept2018/index.html">2018-Fall</a>
@@ -116,14 +113,14 @@
 <h2 class="hasAnchor">
 <a href="#lcc2005" class="anchor"></a>LCC2005</h2>
 <p>(<a href="http://htmlpreview.github.io/?https://github.com/PredictiveEcology/SpaDES-modules/blob/master/modules/LCC2005/LCC2005.html">Return to LCC2005 model</a>)</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(igraph)
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(SpaDES)
-
-workDirectory &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/basename.html">dirname</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span>()), <span class="st">"Lcc2005"</span>)
-moduleDir &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(workDirectory, <span class="st">"modules"</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">checkPath</span>(., <span class="dt">create =</span> <span class="ot">TRUE</span>)
-<span class="kw">downloadModule</span>(<span class="st">"LCC2005"</span>, moduleDir)
-<span class="kw">openModules</span>(<span class="st">"LCC2005"</span>, moduleDir)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(igraph)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(SpaDES)</span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a>workDirectory &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/basename.html">dirname</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span>()), <span class="st">"Lcc2005"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5"></a>moduleDir &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(workDirectory, <span class="st">"modules"</span>) <span class="op">%&gt;%</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="st">  </span><span class="kw">checkPath</span>(., <span class="dt">create =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="kw">downloadModule</span>(<span class="st">"LCC2005"</span>, moduleDir)</span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="kw">openModules</span>(<span class="st">"LCC2005"</span>, moduleDir)</span></code></pre></div>
 <div id="examine-this-module" class="section level3">
 <h3 class="hasAnchor">
 <a href="#examine-this-module" class="anchor"></a>Examine this module</h3>
@@ -151,7 +148,7 @@ moduleDir &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.i
 <div id="module-relationships" class="section level2">
 <h2 class="hasAnchor">
 <a href="#module-relationships" class="anchor"></a>Module relationships</h2>
-<p><img src="../docs/articles/04e-parent_modules_files/figure-html/relationship-diagram-1.png" width="480"></p>
+<p><img src="04e-parent_modules_files/figure-html/relationship-diagram-1.png" width="480"></p>
 </div>
 <div id="module-directory-structure" class="section level2">
 <h2 class="hasAnchor">
@@ -168,37 +165,37 @@ moduleDir &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.i
 <div id="running-a-parent-module" class="section level2">
 <h2 class="hasAnchor">
 <a href="#running-a-parent-module" class="anchor"></a>Running a parent module</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># setup simulation</span>
-outputDir &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(workDirectory, <span class="st">"simOutputs"</span>)
-cacheDir &lt;-<span class="st"> </span><span class="kw">checkPath</span>(<span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(outputDir, <span class="st">"cache"</span>), <span class="dt">create =</span> <span class="ot">TRUE</span>)
-times &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">start =</span> <span class="fl">2005.0</span>, <span class="dt">end =</span> <span class="fl">2020.0</span>, <span class="dt">timeunit =</span> <span class="st">"year"</span>)
-parameters &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-  <span class="dt">.globals =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">burnStats =</span> <span class="st">"fireStats"</span>),
-  <span class="dt">fireSpreadLcc =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">drought =</span> <span class="fl">1.2</span>),
-  <span class="dt">caribouMovementLcc =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">N =</span> <span class="fl">1e3</span>, <span class="dt">startTime =</span> times<span class="op">$</span>start <span class="op">+</span><span class="st"> </span><span class="dv">1</span>, 
-                            <span class="dt">glmInitialTime =</span> <span class="ot">NA_real_</span>)
-)
-modules &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"LCC2005"</span>)
-paths &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-  <span class="dt">cachePath =</span> cacheDir,
-  <span class="dt">modulePath =</span> moduleDir,
-  <span class="dt">inputPath =</span> moduleDir,
-  <span class="dt">outputPath =</span> outputDir
-)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># setup simulation</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>outputDir &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(workDirectory, <span class="st">"simOutputs"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3"></a>cacheDir &lt;-<span class="st"> </span><span class="kw">checkPath</span>(<span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(outputDir, <span class="st">"cache"</span>), <span class="dt">create =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb3-4"><a href="#cb3-4"></a>times &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">start =</span> <span class="fl">2005.0</span>, <span class="dt">end =</span> <span class="fl">2020.0</span>, <span class="dt">timeunit =</span> <span class="st">"year"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5"></a>parameters &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="dt">.globals =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">burnStats =</span> <span class="st">"fireStats"</span>),</span>
+<span id="cb3-7"><a href="#cb3-7"></a>  <span class="dt">fireSpreadLcc =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">drought =</span> <span class="fl">1.2</span>),</span>
+<span id="cb3-8"><a href="#cb3-8"></a>  <span class="dt">caribouMovementLcc =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">N =</span> <span class="fl">1e3</span>, <span class="dt">startTime =</span> times<span class="op">$</span>start <span class="op">+</span><span class="st"> </span><span class="dv">1</span>, </span>
+<span id="cb3-9"><a href="#cb3-9"></a>                            <span class="dt">glmInitialTime =</span> <span class="ot">NA_real_</span>)</span>
+<span id="cb3-10"><a href="#cb3-10"></a>)</span>
+<span id="cb3-11"><a href="#cb3-11"></a>modules &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"LCC2005"</span>)</span>
+<span id="cb3-12"><a href="#cb3-12"></a>paths &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
+<span id="cb3-13"><a href="#cb3-13"></a>  <span class="dt">cachePath =</span> cacheDir,</span>
+<span id="cb3-14"><a href="#cb3-14"></a>  <span class="dt">modulePath =</span> moduleDir,</span>
+<span id="cb3-15"><a href="#cb3-15"></a>  <span class="dt">inputPath =</span> moduleDir,</span>
+<span id="cb3-16"><a href="#cb3-16"></a>  <span class="dt">outputPath =</span> outputDir</span>
+<span id="cb3-17"><a href="#cb3-17"></a>)</span></code></pre></div>
 </div>
 <div id="visual-tools" class="section level2">
 <h2 class="hasAnchor">
 <a href="#visual-tools" class="anchor"></a>Visual tools</h2>
 <p>There are a few tools that can help visualize the relationships between modules:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># This next step will download data if they do not yet exist locally</span>
-lcc &lt;-<span class="st"> </span><span class="kw">simInit</span>(<span class="dt">times =</span> times, <span class="dt">params =</span> parameters,
-               <span class="dt">modules =</span> modules, <span class="dt">paths =</span> paths)
-
-<span class="kw">objectDiagram</span>(lcc)
-<span class="kw">moduleDiagram</span>(lcc)
-<span class="kw">eventDiagram</span>(lcc)
-
-lcc &lt;-<span class="st"> </span><span class="kw">spades</span>(lcc)  ## compare the diagrams after running sim</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># This next step will download data if they do not yet exist locally</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>lcc &lt;-<span class="st"> </span><span class="kw">simInit</span>(<span class="dt">times =</span> times, <span class="dt">params =</span> parameters,</span>
+<span id="cb4-3"><a href="#cb4-3"></a>               <span class="dt">modules =</span> modules, <span class="dt">paths =</span> paths)</span>
+<span id="cb4-4"><a href="#cb4-4"></a></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="kw">objectDiagram</span>(lcc)</span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="kw">moduleDiagram</span>(lcc)</span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="kw">eventDiagram</span>(lcc)</span>
+<span id="cb4-8"><a href="#cb4-8"></a></span>
+<span id="cb4-9"><a href="#cb4-9"></a>lcc &lt;-<span class="st"> </span><span class="kw">spades</span>(lcc)  <span class="co">## compare the diagrams after running sim</span></span></code></pre></div>
 <div id="what-dowould-these-do" class="section level3">
 <h3 class="hasAnchor">
 <a href="#what-dowould-these-do" class="anchor"></a>What do/would these do?</h3>
@@ -212,12 +209,10 @@ lcc &lt;-<span class="st"> </span><span class="kw">spades</span>(lcc)  ## compar
 <h2 class="hasAnchor">
 <a href="#creating-a-new-parent-module" class="anchor"></a>Creating a new parent module</h2>
 <p>The <code>newModule</code> function creates a module template for you to edit to suit your needs:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">newModule</span>(<span class="st">'moduleName'</span>, <span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="st">'path/to/my/module/directory'</span>),
-          <span class="dt">type =</span> <span class="st">'parent'</span>, <span class="dt">children =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'child1'</span>, <span class="st">'child2'</span>))</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">newModule</span>(<span class="st">'moduleName'</span>, <span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="st">'path/to/my/module/directory'</span>),</span>
+<span id="cb5-2"><a href="#cb5-2"></a>          <span class="dt">type =</span> <span class="st">'parent'</span>, <span class="dt">children =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'child1'</span>, <span class="st">'child2'</span>))</span></code></pre></div>
 <p>Alternatively, use the RStudio addin which is simply a GUI wrapper for this function (select ‘parent’ type):</p>
-<div class="figure">
-<img src="images/screenshot-new-module-addin.png">
-</div>
+<p><img src="images/screenshot-new-module-addin.png"></p>
 </div>
 <div id="parent-modules" class="section level2">
 <h2 class="hasAnchor">
@@ -227,7 +222,7 @@ lcc &lt;-<span class="st"> </span><span class="kw">spades</span>(lcc)  ## compar
 <a href="#a-hypothetical-example" class="anchor"></a>A hypothetical example</h3>
 <p>The new <strong>CFS-FD</strong> model (Forest Dynamics Model)</p>
 <ul>
-<li>Has carbon, caribou, vegetation change, harvesting, climate, fire, insects</li>
+<li><p>Has carbon, caribou, vegetation change, harvesting, climate, fire, insects</p></li>
 <li>
 <p>But the vegetation module is actually a parent module with 3 modules:</p>
 <ul>
@@ -277,7 +272,7 @@ lcc &lt;-<span class="st"> </span><span class="kw">spades</span>(lcc)  ## compar
 <li>Usually at the top of the module script, but it doesn’t have to be</li>
 <li>In the future, this will likely expand, and gain functionality to allow increased automation</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What are the 15 items?</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># What are the 15 items?</span></span></code></pre></div>
 <ul>
 <li>Explore different options</li>
 </ul>

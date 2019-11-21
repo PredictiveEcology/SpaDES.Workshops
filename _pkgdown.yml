@@ -9,8 +9,10 @@ navbar:
   title: "`SpaDES` Workshops"
   type: inverse
   left:
-    - text: "2019-Fall"
+    - text: "2020-Jan"
       href: articles/index.html
+    - text: "2019-Fall"
+      href: articlesOct2019/index.html
     - text: "2018-Fall"
       href: articlesSept2018/index.html
     - text: "2018-May"
