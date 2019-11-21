@@ -4,14 +4,14 @@
 
 If you are interested in being put on the email list for future courses, please email:
 
+- Frances Stewart (frances.stewart@canada.ca)
 - Eliot McIntire (eliot.mcintire at canada.ca)
-- Alex Chubaty (achubaty at for-cast.ca).
 
-## 22-24 October 2019
+## 29 - 31 January 2020
 
 ### Location & Times
 
-**Great Lakes Forestry Centre, 9am - 4pm each day**
+**Pacific Forestry Centre, 9am - 4pm each day**
 
 We have organized a set of sessions, back to back, starting from the most "general"", and ending with the most "detailed".
 The hope is to attract non-modelers (e.g., managers, scientists, practitioners) to the first session, people who think they might want to see more how models work (e.g., scientists, students, technicians), and those who want to build and use models for research and operational purposes (e.g., scientists, technicians, programmers).
