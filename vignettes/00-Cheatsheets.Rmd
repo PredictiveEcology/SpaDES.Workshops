@@ -20,6 +20,7 @@ Checkout RStudio's repository of useful cheatsheets: <https://github.com/rstudio
 
 - [`data.table`](https://github.com/rstudio/cheatsheets/blob/master/datatable.pdf)
 - [`sf`](https://github.com/rstudio/cheatsheets/blob/master/sf.pdf)
+- [`SpaDES`](https://github.com/PredictiveEcology/SpaDES/blob/master/cheatsheets/SpaDES-cheatsheet.pdf)
 
 ## Version control
 
