@@ -112,7 +112,7 @@
 <a href="#replication" class="anchor"></a>Replication</h2>
 <p>What if we have a stochastic model and need many independent (Monte Carlo) runs?</p>
 <p>The <code>experiment</code> function does this.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?experiment <span class="co"># for details and examples</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">?experiment <span class="co"># for details and examples</span></a></code></pre></div>
 <p>Generally, however, this creates problems because of the computational time required …</p>
 </div>
 <div id="replication-1" class="section level2">
@@ -120,12 +120,12 @@
 <a href="#replication-1" class="anchor"></a>Replication</h2>
 <p>The <code>replicates</code> argument</p>
 <p>It is as easy as <code>replicates = 2</code> to do two replicates:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?experiment <span class="co"># for details</span>
-
-<span class="co"># See Example 5</span>
-<span class="co">#  ... run mySim from top of help file</span>
-sims &lt;-<span class="st"> </span><span class="kw">experiment</span>(mySim, <span class="dt">replicates =</span> <span class="dv">2</span>)
-<span class="kw"><a href="https://rdrr.io/r/base/attr.html">attr</a></span>(sims, <span class="st">"experiment"</span>)<span class="op">$</span>expDesign <span class="co"># shows 2 reps of same expt</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">?experiment <span class="co"># for details</span></a>
+<a class="sourceLine" id="cb3-2" title="2"></a>
+<a class="sourceLine" id="cb3-3" title="3"><span class="co"># See Example 5</span></a>
+<a class="sourceLine" id="cb3-4" title="4"><span class="co">#  ... run mySim from top of help file</span></a>
+<a class="sourceLine" id="cb3-5" title="5">sims &lt;-<span class="st"> </span><span class="kw">experiment</span>(mySim, <span class="dt">replicates =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb3-6" title="6"><span class="kw"><a href="https://rdrr.io/r/base/attr.html">attr</a></span>(sims, <span class="st">"experiment"</span>)<span class="op">$</span>expDesign <span class="co"># shows 2 reps of same expt</span></a></code></pre></div>
 <p>What does it return?</p>
 <p>What is the <code>attr</code>?</p>
 </div>
@@ -155,41 +155,41 @@ sims &lt;-<span class="st"> </span><span class="kw">experiment</span>(mySim, <sp
 </li>
 <li><p>In each case, there are two ways:</p></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## option 1:
-raster<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/raster/man/cluster.html">beginCluster</a></span>() <span class="co"># make a cluster silently in background</span>
-
-## option 2:
-cl &lt;-<span class="st"> </span>parallel<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/parallel/makeCluster.html">makeCluster</a></span>() <span class="co"># need to explicitly pass the</span>
-                              <span class="co"># cluster object into functions</span>
-                              <span class="co"># using cl argument</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co">## option 1:</span></a>
+<a class="sourceLine" id="cb4-2" title="2">raster<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/raster/man/cluster.html">beginCluster</a></span>() <span class="co"># make a cluster silently in background</span></a>
+<a class="sourceLine" id="cb4-3" title="3"></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="co">## option 2:</span></a>
+<a class="sourceLine" id="cb4-5" title="5">cl &lt;-<span class="st"> </span>parallel<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/parallel/makeCluster.html">makeCluster</a></span>() <span class="co"># need to explicitly pass the</span></a>
+<a class="sourceLine" id="cb4-6" title="6">                              <span class="co"># cluster object into functions</span></a>
+<a class="sourceLine" id="cb4-7" title="7">                              <span class="co"># using cl argument</span></a></code></pre></div>
 <p>Try it!</p>
 </div>
 <div id="experiment-varying-parameter-values" class="section level2">
 <h2 class="hasAnchor">
 <a href="#experiment-varying-parameter-values" class="anchor"></a><code>experiment</code>: Varying parameter values</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?experiment
-## see example 1
-experimentParams &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">fireSpread =</span> 
-                           <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">spreadprob =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">0.2</span>, <span class="fl">0.23</span>),
-                                <span class="dt">nFires =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dv">20</span>, <span class="dv">10</span>)),
-                         <span class="dt">caribouMovement =</span> 
-                           <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">N =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dv">100</span>, <span class="dv">1000</span>)))
-sims &lt;-<span class="st"> </span><span class="kw">experiment</span>(mySim, <span class="dt">params =</span> experimentParams)
-<span class="kw"><a href="https://rdrr.io/r/base/attr.html">attr</a></span>(sims, <span class="st">"experiment"</span>)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">?experiment</a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="co">## see example 1</span></a>
+<a class="sourceLine" id="cb5-3" title="3">experimentParams &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">fireSpread =</span> </a>
+<a class="sourceLine" id="cb5-4" title="4">                           <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">spreadprob =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">0.2</span>, <span class="fl">0.23</span>),</a>
+<a class="sourceLine" id="cb5-5" title="5">                                <span class="dt">nFires =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dv">20</span>, <span class="dv">10</span>)),</a>
+<a class="sourceLine" id="cb5-6" title="6">                         <span class="dt">caribouMovement =</span> </a>
+<a class="sourceLine" id="cb5-7" title="7">                           <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">N =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dv">100</span>, <span class="dv">1000</span>)))</a>
+<a class="sourceLine" id="cb5-8" title="8">sims &lt;-<span class="st"> </span><span class="kw">experiment</span>(mySim, <span class="dt">params =</span> experimentParams)</a>
+<a class="sourceLine" id="cb5-9" title="9"><span class="kw"><a href="https://rdrr.io/r/base/attr.html">attr</a></span>(sims, <span class="st">"experiment"</span>)</a></code></pre></div>
 </div>
 <div id="experiment-saving-files" class="section level2">
 <h2 class="hasAnchor">
 <a href="#experiment-saving-files" class="anchor"></a><code>experiment</code>: Saving files</h2>
 <p>Often, a <code>spades</code> call will generate output files. Where do they go when using <code>experiment</code>?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?experiment
-## see example 4
-sims &lt;-<span class="st"> </span><span class="kw">experiment</span>(mySim, 
-                   <span class="dt">params =</span> experimentParams, 
-                   <span class="dt">dirPrefix =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"expt"</span>, <span class="st">"simNum"</span>))
-<span class="kw"><a href="https://rdrr.io/r/base/attr.html">attr</a></span>(sims, <span class="st">"experiment"</span>)<span class="op">$</span>expVals <span class="co"># shows 8 alternative</span>
-               <span class="co">#experiment levels, 24 unique parameter values</span>
-
-<span class="kw"><a href="https://rdrr.io/r/base/list.files.html">dir</a></span>(<span class="kw">outputPath</span>(mySim))</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">?experiment</a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="co">## see example 4</span></a>
+<a class="sourceLine" id="cb6-3" title="3">sims &lt;-<span class="st"> </span><span class="kw">experiment</span>(mySim, </a>
+<a class="sourceLine" id="cb6-4" title="4">                   <span class="dt">params =</span> experimentParams, </a>
+<a class="sourceLine" id="cb6-5" title="5">                   <span class="dt">dirPrefix =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"expt"</span>, <span class="st">"simNum"</span>))</a>
+<a class="sourceLine" id="cb6-6" title="6"><span class="kw"><a href="https://rdrr.io/r/base/attr.html">attr</a></span>(sims, <span class="st">"experiment"</span>)<span class="op">$</span>expVals <span class="co"># shows 8 alternative</span></a>
+<a class="sourceLine" id="cb6-7" title="7">               <span class="co">#experiment levels, 24 unique parameter values</span></a>
+<a class="sourceLine" id="cb6-8" title="8"></a>
+<a class="sourceLine" id="cb6-9" title="9"><span class="kw"><a href="https://rdrr.io/r/base/list.files.html">dir</a></span>(<span class="kw">outputPath</span>(mySim))</a></code></pre></div>
 </div>
 <div id="working-through-other-examples-of-experiment" class="section level2">
 <h2 class="hasAnchor">
@@ -197,7 +197,7 @@ sims &lt;-<span class="st"> </span><span class="kw">experiment</span>(mySim,
 </h2>
 <p>Exercise:</p>
 <p>Pick a few examples and try to understand them. (<strong>NOTE:</strong> they get more complicated as you get towards the bottom.)</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?experiment</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">?experiment</a></code></pre></div>
 </div>
 <div id="running-parallel-simulations" class="section level2">
 <h2 class="hasAnchor">
@@ -227,8 +227,8 @@ sims &lt;-<span class="st"> </span><span class="kw">experiment</span>(mySim,
 <h2 class="hasAnchor">
 <a href="#estimating-unknown-parameters" class="anchor"></a>Estimating unknown parameters</h2>
 <ul>
-<li>Ecological models use equations and functions</li>
-<li>These have parameters</li>
+<li><p>Ecological models use equations and functions</p></li>
+<li><p>These have parameters</p></li>
 <li>
 <p>Parameters can be estimated from:</p>
 <ul>
@@ -247,19 +247,19 @@ sims &lt;-<span class="st"> </span><span class="kw">experiment</span>(mySim,
 <li>So you can use any statistical method that R has</li>
 <li>Mixed models, non-linear models, machine learning, bayesian</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nTrees &lt;-<span class="st"> </span><span class="dv">50</span>
-diamCM &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Lognormal.html">rlnorm</a></span>(nTrees, <span class="dt">meanlog =</span> <span class="dv">2</span>, <span class="dt">sdlog =</span> <span class="fl">0.7</span>)
-height &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(nTrees, <span class="kw"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span>(diamCM)<span class="op">*</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(nTrees))
-glmObj &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(height <span class="op">~</span><span class="st"> </span>diamCM)
-<span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(diamCM, height)
-<span class="kw"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(glmObj)</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">nTrees &lt;-<span class="st"> </span><span class="dv">50</span></a>
+<a class="sourceLine" id="cb8-2" title="2">diamCM &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Lognormal.html">rlnorm</a></span>(nTrees, <span class="dt">meanlog =</span> <span class="dv">2</span>, <span class="dt">sdlog =</span> <span class="fl">0.7</span>)</a>
+<a class="sourceLine" id="cb8-3" title="3">height &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(nTrees, <span class="kw"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span>(diamCM)<span class="op">*</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(nTrees))</a>
+<a class="sourceLine" id="cb8-4" title="4">glmObj &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(height <span class="op">~</span><span class="st"> </span>diamCM)</a>
+<a class="sourceLine" id="cb8-5" title="5"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(diamCM, height)</a>
+<a class="sourceLine" id="cb8-6" title="6"><span class="kw"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(glmObj)</a></code></pre></div>
 </div>
 <div id="predict-method" class="section level2">
 <h2 class="hasAnchor">
 <a href="#predict-method" class="anchor"></a>Predict method</h2>
 <ul>
-<li>These methods often have predict methods associated with them</li>
-<li>So, instead of using “fixed” parameters in simulation models</li>
+<li><p>These methods often have predict methods associated with them</p></li>
+<li><p>So, instead of using “fixed” parameters in simulation models</p></li>
 <li>
 <p>We can use these methods which give more accurate prediction:</p>
 <ul>
@@ -269,17 +269,17 @@ glmObj &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r
 </ul>
 </li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># predict with new data</span>
-predVals &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(glmObj, <span class="dt">newdata =</span> <span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
-  <span class="dt">diamCM =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Lognormal.html">rlnorm</a></span>(nTrees, <span class="dt">meanlog =</span> <span class="dv">2</span>, <span class="dt">sdlog =</span> <span class="fl">0.7</span>)
-))</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="co"># predict with new data</span></a>
+<a class="sourceLine" id="cb9-2" title="2">predVals &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(glmObj, <span class="dt">newdata =</span> <span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(</a>
+<a class="sourceLine" id="cb9-3" title="3">  <span class="dt">diamCM =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Lognormal.html">rlnorm</a></span>(nTrees, <span class="dt">meanlog =</span> <span class="dv">2</span>, <span class="dt">sdlog =</span> <span class="fl">0.7</span>)</a>
+<a class="sourceLine" id="cb9-4" title="4">))</a></code></pre></div>
 </div>
 <div id="using-this-in-simulation-models" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-this-in-simulation-models" class="anchor"></a>Using this in simulation models</h2>
 <ul>
-<li>In R, everything is an object</li>
-<li>The <code>glmObj</code> and <code>predictVals</code> are objects</li>
+<li><p>In R, everything is an object</p></li>
+<li><p>The <code>glmObj</code> and <code>predictVals</code> are objects</p></li>
 <li>
 <p>These have many features that can be used in simulations</p>
 <ul>
@@ -288,8 +288,8 @@ predVals &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io
 <li>random effects terms</li>
 </ul>
 </li>
-<li>For the first 25 years of simulation modeling in ecology, parameters were copied into simulation models and hard coded</li>
-<li>This made it difficult to update the simulation model if there are new data and the regression needs to be re-fit</li>
+<li><p>For the first 25 years of simulation modeling in ecology, parameters were copied into simulation models and hard coded</p></li>
+<li><p>This made it difficult to update the simulation model if there are new data and the regression needs to be re-fit</p></li>
 <li><p>Using <code>SpaDES</code> we can now fit the data and use the parameters all inside the simulation</p></li>
 </ul>
 </div>
@@ -321,10 +321,10 @@ predVals &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io
 <a href="#pom" class="anchor"></a><code>POM</code>
 </h2>
 <p>There are several examples in <code>?POM</code>, which we will go through:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## example 1
-<span class="co"># What is example 1 doing?</span>
-<span class="co"># Run it</span>
-<span class="co"># What does the result mean?</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="co">## example 1</span></a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="co"># What is example 1 doing?</span></a>
+<a class="sourceLine" id="cb10-3" title="3"><span class="co"># Run it</span></a>
+<a class="sourceLine" id="cb10-4" title="4"><span class="co"># What does the result mean?</span></a></code></pre></div>
 </div>
 <div id="more-complicated-pom" class="section level2">
 <h2 class="hasAnchor">
@@ -340,10 +340,10 @@ predVals &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io
 <ul>
 <li>What would be next?</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## example 2
-<span class="co"># What is example 2 doing?</span>
-<span class="co"># Run it</span>
-<span class="co"># What does the result mean?</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="co">## example 2</span></a>
+<a class="sourceLine" id="cb11-2" title="2"><span class="co"># What is example 2 doing?</span></a>
+<a class="sourceLine" id="cb11-3" title="3"><span class="co"># Run it</span></a>
+<a class="sourceLine" id="cb11-4" title="4"><span class="co"># What does the result mean?</span></a></code></pre></div>
 </div>
 <div id="more-complicated-pom---example-3" class="section level2">
 <h2 class="hasAnchor">
@@ -351,10 +351,10 @@ predVals &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io
 <ul>
 <li>What would be next?</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## example 3 
-<span class="co"># What is example 3 doing?</span>
-<span class="co"># Run it</span>
-<span class="co"># What does the result mean?</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="co">## example 3 </span></a>
+<a class="sourceLine" id="cb12-2" title="2"><span class="co"># What is example 3 doing?</span></a>
+<a class="sourceLine" id="cb12-3" title="3"><span class="co"># Run it</span></a>
+<a class="sourceLine" id="cb12-4" title="4"><span class="co"># What does the result mean?</span></a></code></pre></div>
 <hr>
 <p>Often we want to run a simulation with a variety of parameter values as inputs. This is sometimes called a simulation experiment. The <code>experiment</code> function gives us an easy interface to this.</p>
 <p>We will use the <code>establishment</code> module that we created in exercise 4a.</p>
@@ -363,19 +363,19 @@ predVals &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io
 <div id="download-a-module" class="section level1">
 <h1 class="hasAnchor">
 <a href="#download-a-module" class="anchor"></a>Download a module</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(SpaDES)
-module.path &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/basename.html">dirname</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span>()), <span class="st">"modules"</span>)
-<span class="kw">downloadModule</span>(<span class="st">"establishment"</span>, <span class="dt">path =</span> module.path)
-<span class="kw">setPaths</span>(<span class="dt">modulePath =</span> module.path)
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)
-
-modules &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"establishment"</span>)
-
-mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(<span class="dt">modules =</span> modules)
-
-<span class="co"># make sure the plotting device is clear</span>
-<span class="kw">clearPlot</span>()
-<span class="kw">spades</span>(mySim)</code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(SpaDES)</a>
+<a class="sourceLine" id="cb13-2" title="2">module.path &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/basename.html">dirname</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span>()), <span class="st">"modules"</span>)</a>
+<a class="sourceLine" id="cb13-3" title="3"><span class="kw">downloadModule</span>(<span class="st">"establishment"</span>, <span class="dt">path =</span> module.path)</a>
+<a class="sourceLine" id="cb13-4" title="4"><span class="kw">setPaths</span>(<span class="dt">modulePath =</span> module.path)</a>
+<a class="sourceLine" id="cb13-5" title="5"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</a>
+<a class="sourceLine" id="cb13-6" title="6"></a>
+<a class="sourceLine" id="cb13-7" title="7">modules &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"establishment"</span>)</a>
+<a class="sourceLine" id="cb13-8" title="8"></a>
+<a class="sourceLine" id="cb13-9" title="9">mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(<span class="dt">modules =</span> modules)</a>
+<a class="sourceLine" id="cb13-10" title="10"></a>
+<a class="sourceLine" id="cb13-11" title="11"><span class="co"># make sure the plotting device is clear</span></a>
+<a class="sourceLine" id="cb13-12" title="12"><span class="kw">clearPlot</span>()</a>
+<a class="sourceLine" id="cb13-13" title="13"><span class="kw">spades</span>(mySim)</a></code></pre></div>
 </div>
 <div id="create-an-experiment" class="section level1">
 <h1 class="hasAnchor">
