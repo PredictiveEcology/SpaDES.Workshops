@@ -20,7 +20,7 @@ The hope is to attract non-modelers (e.g., managers, scientists, practitioners) 
 
 - **Part 2: Getting started with `SpaDES` in R** - 4.5 hours – **day 1 - mid morning through to end of day** - This is intended to dive a little bit into the code, learn how to create relatively simple modules and establish links between modules. ***See below for instructions***
 
-- **Part 3:  - days 2 and 3 - 9am to end of day each day** – a much deeper dive into SpaDES modules. We will cover various topics including reproducible 'data-to-decisions' workfrows, working with spatial data, caching, and simulation optimization.  ***See below for instructions***
+- **Part 3:  - days 2 and 3 - 9am to end of day each day** – a much deeper dive into SpaDES modules. We will cover various topics including reproducible 'data-to-decisions' workflows, working with spatial data, caching, and simulation optimization.  ***See below for instructions***
 
 ### [Installing SpaDES](articles/index.html)
 
@@ -35,7 +35,7 @@ You should install the development version from GitHub following these instructi
 If there are problems, read the error messages and try to deal with the error message.
 The most common one is that some package dependency is missing, usually due to some system dependency not being available. 
 
-If problems persist, try narrowing down the problem and reinstalling using the following:
+If problems persist, try narrowing down the problem and re-installing using the following:
 
 ```
 ## Restart your R session so it is clear
