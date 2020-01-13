@@ -10,4 +10,5 @@ devtools::load_all(".")
 options('reproducible.cachePath' = "cache")
 build_site(new_process = FALSE)
 replaceRemoteLinksInArticles(replacementList)
+replaceRemoteLinksMultiline(replacementStarts, replacementEnds)
 ```

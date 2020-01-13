@@ -10,6 +10,47 @@ replacementList <- list(
   "02b-SpaDES4Dummies.html" = "https://htmlpreview.github.io/?https://github.com/CeresBarros/SpaDES4Dummies/blob/master/SpaDES4Dummies.html"
 )
 
+replacementStarts <- list(
+  "a href=\"../articles/index.html" =
+    "  <a href=\"../articles/index.html\">2020-Jan</a>
+</li>
+  <li>
+  <a href=\"../articlesOct2019/index.html\">2019-Fall</a>
+  </li>
+  <li>
+  <a href=\"../articlesSept2018/index.html\">2018-Fall</a>
+  </li>
+  <li>
+  <a href=\"../articlesMay2018/index.html\">2018-May</a>
+  </li>
+  <li>
+  <a href=\"../articlesFeb2018/index.html\">2018-Feb</a>
+  </li>
+  <li>
+  <a href=\"http://rpubs.com/PredictiveEcology/SpaDES-Intro-Course-Outline\">Prior to 2018</a>",
+
+  "<div class=\"navbar-header\">" =
+  "    <div class=\"navbar-header\">
+      <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\">
+  <span class=\"sr-only\">Toggle navigation</span>
+    <span class=\"icon-bar\"></span>
+    <span class=\"icon-bar\"></span>
+    <span class=\"icon-bar\"></span>
+    </button>
+    <span class=\"navbar-brand\">
+    <a class=\"navbar-link\" href=\"../index.html\">SpaDES.Workshops</a>
+    <span class=\"version label label-default\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"Released version\">0.1.0</span>
+    </span>
+    </div>
+
+    <div id=\"navbar\" class=\"navbar-collapse collapse\">
+    <ul class=\"nav navbar-nav\">"
+)
+
+replacementEnds <- list(
+  "SpaDES-Intro-Course-Outline" = "",
+  "<ul class=\"nav navbar-nav\">" = ""
+)
 #library(pkgdown)
 #library(reproducible)
 #unlockBinding("build_articles_index", env = as.environment("package:pkgdown"))
@@ -29,12 +70,39 @@ replaceRemoteLinksInArticles <- function(replacements) {
       for (indexHTML in dir(file.path("docs", f), pattern = ".html", full.names = TRUE)) {
         #browser(expr = "Released package" == nam && grepl("articlesMay2018", f) && grepl("WhatIs", indexHTML))
         cc <- readLines(indexHTML)
-        if (is.null(replacements[[nam]])) {
-          cc1 <- grep(nam, cc, invert = TRUE, value = TRUE)
-        } else {
+        if (!is.null(replacements[[nam]])) {
+        #   cc1 <- grep(nam, cc, invert = TRUE, value = TRUE)
+        # } else {
           cc1 <- gsub(cc, pattern = nam, replacement = replacements[[nam]])
+          writeLines(cc1, indexHTML)
         }
-        writeLines(cc1, indexHTML)
+        indexHTML
+      }
+    })
+  })
+}
+
+replaceRemoteLinksMultiline <- function(replacementsStarts, replacementsEnds) {
+  filesToUpdate <- c("", "articles", "articlesFeb2018", "articlesMay2018", "articlesSept2018", "articlesOct2019")
+  lapply(filesToUpdate, function(f) {
+    lapply(seq_along(names(replacementsStarts)), function(namIndex) {
+      nam <- names(replacementsStarts)[namIndex]
+      namEnd <- names(replacementsEnds)[namIndex]
+      for (indexHTML in dir(file.path("docs", f), pattern = ".html", full.names = TRUE)) {
+        #browser(expr = "Released package" == nam && grepl("articlesMay2018", f) && grepl("WhatIs", indexHTML))
+        cc <- readLines(indexHTML)
+        # browser(expr = grepl("index\\.html", indexHTML))
+        if (!is.null(replacementStarts[[nam]])) {
+          if (any(grepl(cc, pattern = nam)) && any(grepl(cc, pattern = namEnd))) {
+            init <- grep(nam, cc, invert = FALSE, value = FALSE)
+            end <- grep(namEnd, cc, invert = FALSE, value = FALSE)
+            cc1 <- c(cc[seq_len(init - 1)],
+                     strsplit(replacementStarts[[nam]], split = "\n")[[1]],
+                     cc[end + seq_len(length(cc) - end)])#, file = indexHTML, append = FALSE)
+            writeLines(cc1, indexHTML)
+          }
+
+        }
         indexHTML
       }
     })
