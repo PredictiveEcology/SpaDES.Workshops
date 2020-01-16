@@ -1,18 +1,20 @@
 url: http://spades-workshops.predictiveecology.org/
 
-
-
 template:
   params:
     bootswatch: flatly
     ganalytics: UA-58633549-3
 
 navbar:
-  title: "SpaDES Workshops"
+  title: "`SpaDES` Workshops"
   type: inverse
   left:
-    - text: "2018-Fall"
+    - text: "2020-Jan"
       href: articles/index.html
+    - text: "2019-Fall"
+      href: articlesOct2019/index.html
+    - text: "2018-Fall"
+      href: articlesSept2018/index.html
     - text: "2018-May"
       href: articlesMay2018/index.html
     - text: "2018-Feb"
@@ -26,48 +28,55 @@ navbar:
 articles:
   - title: "Introducing a modular data platform"
     desc: >
-      Why SpaDES, what it is for, and how does it help us? Plus: importing modules and running fairly simple simulations from pre-made modules
+      Why `SpaDES`, what it is for, and how does it help us?
+      Plus: importing modules and running fairly simple simulations from pre-made modules.
     contents:
-    - GoogleDrive
-    - WhatIsSpades
+    - 01a-WhatIsSpades
 
-  - title: "Getting started with SpaDES in R"
+  - title: "Getting started with `SpaDES` in R"
     desc: >
       How to start from the beginning, making simple modules, making modules interact
     contents:
-    - MyFirstModule
-    - SpaDES4Dummies
-    - Convert-R-code-to-SpaDES-module
+    - 04a-MyFirstModule
+    - 02b-SpaDES4Dummies
+    - 02c-Convert_R_code_to_SpaDES_module
 
   - title: "Using existing modules -- Developer's Workshop"
     desc: >
-      If you are given a module, how do we get it, understand it, run it, test it, incorporate it into our own modules
+      If you are given a module, how do we get it, understand it, run it, test it,
+      incorporate it into our own modules.
     contents:
-    - Existing-modules
+    - 03a-Existing_modules
+    - 03b-integrating_modules
+    - 03c-SpaDESInAction
 
   - title: "Developing a new continuously available science -- Developer's Workshop"
     desc: >
-      Often decision support appears a long way from raw data collection, statistical model fitting, simulation modeling, optimization
+      Often decision support appears a long way from raw data collection, statistical model fitting,
+      simulation modeling, optimization.
     contents:
-      - Continuous-Workflow
+      - 09a-Continuous_Workflow
 
-  - title: "Reference -- Developer's topics for reference"
+  - title: "Module development -- Developer's Workshop"
     desc: >
-      Advanced topics that can be helpful while going through the modules
+      Advanced topics that can be helpful while going through the modules.
     contents:
-    - The-simList
-    - Module-details
-    - Module-Using-parent-modules-to-integrate
-    - Sharing-Modules
-    - Simulation-Experiments-Replication
-    - R-Developing-powerful-skills
-    - R-Profiling-code
+    - 04-Modules_Thinking_in_a_modular_way
+    - 04a-MyFirstModule
+    - 04b-Module_details
+    - 04c-The_simList
+    - 04d-Building_a_module
+    - 04e-parent_modules
+    - 08-Sharing_Modules
+    - 05-Simulation_Experiments_Replication
+    - 06a-R_Developing_powerful_skills
+    - 06b-R_Profiling_code
 
-  - title: "Reference -- Links to SpaDES wiki pages and vignettes"
+  - title: "Reference -- Links to `SpaDES` wiki pages, vignettes, and other cheatsheets"
     desc: >
-      These are key to working with SpaDES, they are on the wiki or in vignettes
+      These are key to effectively working with `SpaDES`, they are on the wiki or in vignettes.
     contents:
-    - Debugging
-    - Caching
-    - Plotting
-
+    - 00-Cheatsheets
+    - 09b-Plotting
+    - 09c-Caching
+    - 09d-Debugging
