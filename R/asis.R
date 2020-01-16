@@ -90,6 +90,7 @@ replaceRemoteLinksMultiline <- function(replacementsStarts, replacementsEnds) {
   filesToUpdate <- c("", "articles", "articlesFeb2018", "articlesMay2018", "articlesSept2018", "articlesOct2019")
   lapply(filesToUpdate, function(f) {
     lapply(seq_along(names(replacementsStarts)), function(namIndex) {
+
       nam <- names(replacementsStarts)[namIndex]
       namEnd <- names(replacementsEnds)[namIndex]
       for (indexHTML in dir(file.path("docs", f), pattern = ".html", full.names = TRUE)) {
