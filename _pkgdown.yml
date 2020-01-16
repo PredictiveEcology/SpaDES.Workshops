@@ -88,3 +88,16 @@ articles:
     - 12b-caribouPopulationGrowthModule
     - 00-Cheatsheets
 
+  - title: "Exercises"
+    desc: >
+      In this section you can find several exercises to get you started with SpaDES.
+    contents:
+    - exercises/01-exercises.html
+    - exercises/02-exercises.html
+    - exercises/03-exercises.html
+    - exercises/04-exercises.html
+    - exercises/04a-exercises.html
+    - exercises/05a-exercises.html
+    - exercises/06-exercises.html
+    - exercises/07-exercises.html
+    - exercises/08-exercises.html

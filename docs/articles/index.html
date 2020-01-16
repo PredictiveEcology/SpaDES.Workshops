@@ -15,12 +15,10 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
-
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
@@ -41,11 +39,10 @@
 
 
 
-
 <meta property="og:title" content="Articles" />
+
 <meta property="og:image" content="http://spades-workshops.predictiveecology.org/logo.png" />
 <meta name="twitter:card" content="summary" />
-
 
 
 
@@ -111,6 +108,7 @@
   <a href="http://rpubs.com/PredictiveEcology/SpaDES-Intro-Course-Outline">Prior to 2018</a>
 </li>
       </ul>
+      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://spades.predictiveecology.org/">
@@ -135,67 +133,138 @@
     </div>
 
     <div class="section ">
-      <h3>Introducing a modular data platform</h3>
-      <p class="section-desc"><p>Why <code>SpaDES</code>, what it is for, and how does it help us? Plus: importing modules and running fairly simple simulations from pre-made modules.</p></p>
+      <h3>Day 1 - Introducing a modular data platform</h3>
+      <p class="section-desc"><p>Why <code>SpaDES</code>, what it is for, and how does it help us?</p></p>
 
       <ul>
         <li><a href="01a-WhatIsSpades.html">What is `SpaDES`?</a></li>
       </ul>
     </div>
     <div class="section ">
-      <h3>Getting started with `SpaDES` in R</h3>
-      <p class="section-desc"><p>How to start from the beginning, making simple modules, making modules interact</p></p>
+      <h3>Day 1 - SpaDES at Work</h3>
+      <p class="section-desc"><p>Here we present some of the projects that used SpaDES and its tools</p></p>
 
       <ul>
-        <li><a href="04a-MyFirstModule.html">My first `SpaDES` module - from `R` to `SpaDES`</a></li>
-        <li><a href="https://htmlpreview.github.io/?https://github.com/CeresBarros/SpaDES4Dummies/blob/master/SpaDES4Dummies.html">SpaDES4Dummies - Building new modules, and connecting them</a></li>
-        <li><a href="02c-Convert_R_code_to_SpaDES_module.html">Converting R code to a `SpaDES` module - seed establishment</a></li>
+        <li><a href="10a-LandWeb.html">LandWeb</a></li>
+        <li><a href="10c-Harvesting.html">Harvesting</a></li>
       </ul>
     </div>
     <div class="section ">
-      <h3>Using existing modules -- Developer's Workshop</h3>
-      <p class="section-desc"><p>If you are given a module, how do we get it, understand it, run it, test it, incorporate it into our own modules.</p></p>
+      <h3>Day 1 - SpaDES in Action: a forest succession, a wildfire models, and a caribou models -- putting it all together</h3>
+      <p class="section-desc"><p>Here we present two models that we use for forest succession (<code>LandR</code>) and wildfire (<code>SCFM</code>). This is an example of module integration using SpaDES</p></p>
 
       <ul>
-        <li><a href="03a-Existing_modules.html">Modules -- Downloading and using existing modules</a></li>
-        <li><a href="03b-integrating_modules.html">Integrating different disciplines? With SpaDES is possible!</a></li>
         <li><a href="https://htmlpreview.github.io/?https://github.com/tati-micheletti/SpaDESinAction/blob/master/runSimulation.html">SpaDES in Action</a></li>
       </ul>
     </div>
     <div class="section ">
-      <h3>Developing a new continuously available science -- Developer's Workshop</h3>
-      <p class="section-desc"><p>Often decision support appears a long way from raw data collection, statistical model fitting, simulation modeling, optimization.</p></p>
+      <h3>Day 2 - Basic concepts to get you started: using SpaDES in Action for examples</h3>
+      <p class="section-desc"><p>Now we will use the SpaDESinAction example to understand how SpaDES works. These are the topics we will cover: 1. Module’s and global scripts 2. Libraries and options 3. Setting Paths 4. Project structure 5. Time 6. Parameters 7. Objects 8. Modules 9. SimInit and the simList 10. <code>spades()</code> 11. Events* (this will be addressed after break with exercises) 12. Checking your outputs</p></p>
 
       <ul>
-        <li><a href="09a-Continuous_Workflow.html">The 'data-to-decisions' workflow</a></li>
+        <li><a href="https://htmlpreview.github.io/?https://github.com/tati-micheletti/SpaDESinAction/blob/master/runSimulation.html">SpaDES in Action</a></li>
       </ul>
     </div>
     <div class="section ">
-      <h3>Module development -- Developer's Workshop</h3>
-      <p class="section-desc"><p>Advanced topics that can be helpful while going through the modules.</p></p>
+      <h3>Day 2 - Hands on: From R to SpaDES</h3>
+      <p class="section-desc"><p>In this section we will present examples of how to bring your R static and dynamic scripts into SpaDES</p></p>
 
       <ul>
+        <li><a href="00-Cheatsheets.html">Cheatsheets</a></li>
+        <li><a href="01a-WhatIsSpades.html">What is `SpaDES`?</a></li>
+        <li><a href="https://htmlpreview.github.io/?https://github.com/CeresBarros/SpaDES4Dummies/blob/master/SpaDES4Dummies.html">SpaDES4Dummies - Building new modules, and connecting them</a></li>
+        <li><a href="02c-Convert_R_code_to_SpaDES_module.html">Converting R code to a `SpaDES` module - seed establishment</a></li>
+        <li><a href="03a-Existing_modules.html">Modules -- Downloading and using existing modules</a></li>
+        <li><a href="03b-integrating_modules.html">Integrating different disciplines? With SpaDES is possible!</a></li>
+        <li><a href="https://htmlpreview.github.io/?https://github.com/tati-micheletti/SpaDESinAction/blob/master/runSimulation.html">SpaDES in Action</a></li>
         <li><a href="04-Modules_Thinking_in_a_modular_way.html">Modules -- Thinking in a modular way</a></li>
         <li><a href="04a-MyFirstModule.html">My first `SpaDES` module - from `R` to `SpaDES`</a></li>
         <li><a href="04b-Module_details.html">Modules -- The nitty gritty details</a></li>
         <li><a href="04c-The_simList.html">simList -- What is in it?</a></li>
         <li><a href="04d-Building_a_module.html">Exercises: Building `SpaDES` modules</a></li>
         <li><a href="04e-parent_modules.html">Modules -- Integrating among modules</a></li>
-        <li><a href="08-Sharing_Modules.html">Sharing modules and data</a></li>
         <li><a href="05-Simulation_Experiments_Replication.html">Simulation experiments and replication</a></li>
         <li><a href="06a-R_Developing_powerful_skills.html">R -- developing powerful skills</a></li>
         <li><a href="06b-R_Profiling_code.html">R -- Profiling code</a></li>
-      </ul>
-    </div>
-    <div class="section ">
-      <h3>Reference -- Links to `SpaDES` wiki pages, vignettes, and other cheatsheets</h3>
-      <p class="section-desc"><p>These are key to effectively working with <code>SpaDES</code>, they are on the wiki or in vignettes.</p></p>
-
-      <ul>
-        <li><a href="00-Cheatsheets.html">Cheatsheets</a></li>
+        <li><a href="08-Sharing_Modules.html">Sharing modules and data</a></li>
+        <li><a href="09a-Continuous_Workflow.html">The 'data-to-decisions' workflow</a></li>
         <li><a href="09b-Plotting.html">Plotting</a></li>
         <li><a href="09c-Caching.html">Caching</a></li>
         <li><a href="09d-Debugging.html">Debugging</a></li>
+        <li><a href="10a-LandWeb.html">LandWeb</a></li>
+        <li><a href="10a-NWT.html">The Northwest Territories Project</a></li>
+        <li><a href="10c-Harvesting.html">Harvesting</a></li>
+      </ul>
+    </div>
+    <div class="section ">
+      <h3>Day 2 - Is it taking too long? Is it not working? The miracles of caching and debugging</h3>
+      <p class="section-desc"><p>In this section we will explain how to use a caching mechanism in SpaDES and how to debug your code when something errors</p></p>
+
+      <ul>
+        <li><a href="09c-Caching.html">Caching</a></li>
+        <li><a href="09d-Debugging.html">Debugging</a></li>
+      </ul>
+    </div>
+    <div class="section ">
+      <h3>Day 3 - My first project in SpaDES</h3>
+      <p class="section-desc"><p>In this section we will give the support you need to start building your own SpaDES module or project.</p></p>
+
+      <ul>
+        <li><a href="00-Cheatsheets.html">Cheatsheets</a></li>
+        <li><a href="01a-WhatIsSpades.html">What is `SpaDES`?</a></li>
+        <li><a href="https://htmlpreview.github.io/?https://github.com/CeresBarros/SpaDES4Dummies/blob/master/SpaDES4Dummies.html">SpaDES4Dummies - Building new modules, and connecting them</a></li>
+        <li><a href="02c-Convert_R_code_to_SpaDES_module.html">Converting R code to a `SpaDES` module - seed establishment</a></li>
+        <li><a href="03a-Existing_modules.html">Modules -- Downloading and using existing modules</a></li>
+        <li><a href="03b-integrating_modules.html">Integrating different disciplines? With SpaDES is possible!</a></li>
+        <li><a href="https://htmlpreview.github.io/?https://github.com/tati-micheletti/SpaDESinAction/blob/master/runSimulation.html">SpaDES in Action</a></li>
+        <li><a href="04-Modules_Thinking_in_a_modular_way.html">Modules -- Thinking in a modular way</a></li>
+        <li><a href="04a-MyFirstModule.html">My first `SpaDES` module - from `R` to `SpaDES`</a></li>
+        <li><a href="04b-Module_details.html">Modules -- The nitty gritty details</a></li>
+        <li><a href="04c-The_simList.html">simList -- What is in it?</a></li>
+        <li><a href="04d-Building_a_module.html">Exercises: Building `SpaDES` modules</a></li>
+        <li><a href="04e-parent_modules.html">Modules -- Integrating among modules</a></li>
+        <li><a href="05-Simulation_Experiments_Replication.html">Simulation experiments and replication</a></li>
+        <li><a href="06a-R_Developing_powerful_skills.html">R -- developing powerful skills</a></li>
+        <li><a href="06b-R_Profiling_code.html">R -- Profiling code</a></li>
+        <li><a href="08-Sharing_Modules.html">Sharing modules and data</a></li>
+        <li><a href="09a-Continuous_Workflow.html">The 'data-to-decisions' workflow</a></li>
+        <li><a href="09b-Plotting.html">Plotting</a></li>
+        <li><a href="09c-Caching.html">Caching</a></li>
+        <li><a href="09d-Debugging.html">Debugging</a></li>
+        <li><a href="10a-LandWeb.html">LandWeb</a></li>
+        <li><a href="10a-NWT.html">The Northwest Territories Project</a></li>
+        <li><a href="10c-Harvesting.html">Harvesting</a></li>
+      </ul>
+    </div>
+    <div class="section ">
+      <h3>Exercises</h3>
+      <p class="section-desc"><p>In this section you can find several exercises to get you started with SpaDES.</p></p>
+
+      <ul>
+        <li><a href="00-Cheatsheets.html">Cheatsheets</a></li>
+        <li><a href="01a-WhatIsSpades.html">What is `SpaDES`?</a></li>
+        <li><a href="https://htmlpreview.github.io/?https://github.com/CeresBarros/SpaDES4Dummies/blob/master/SpaDES4Dummies.html">SpaDES4Dummies - Building new modules, and connecting them</a></li>
+        <li><a href="02c-Convert_R_code_to_SpaDES_module.html">Converting R code to a `SpaDES` module - seed establishment</a></li>
+        <li><a href="03a-Existing_modules.html">Modules -- Downloading and using existing modules</a></li>
+        <li><a href="03b-integrating_modules.html">Integrating different disciplines? With SpaDES is possible!</a></li>
+        <li><a href="https://htmlpreview.github.io/?https://github.com/tati-micheletti/SpaDESinAction/blob/master/runSimulation.html">SpaDES in Action</a></li>
+        <li><a href="04-Modules_Thinking_in_a_modular_way.html">Modules -- Thinking in a modular way</a></li>
+        <li><a href="04a-MyFirstModule.html">My first `SpaDES` module - from `R` to `SpaDES`</a></li>
+        <li><a href="04b-Module_details.html">Modules -- The nitty gritty details</a></li>
+        <li><a href="04c-The_simList.html">simList -- What is in it?</a></li>
+        <li><a href="04d-Building_a_module.html">Exercises: Building `SpaDES` modules</a></li>
+        <li><a href="04e-parent_modules.html">Modules -- Integrating among modules</a></li>
+        <li><a href="05-Simulation_Experiments_Replication.html">Simulation experiments and replication</a></li>
+        <li><a href="06a-R_Developing_powerful_skills.html">R -- developing powerful skills</a></li>
+        <li><a href="06b-R_Profiling_code.html">R -- Profiling code</a></li>
+        <li><a href="08-Sharing_Modules.html">Sharing modules and data</a></li>
+        <li><a href="09a-Continuous_Workflow.html">The 'data-to-decisions' workflow</a></li>
+        <li><a href="09b-Plotting.html">Plotting</a></li>
+        <li><a href="09c-Caching.html">Caching</a></li>
+        <li><a href="09d-Debugging.html">Debugging</a></li>
+        <li><a href="10a-LandWeb.html">LandWeb</a></li>
+        <li><a href="10a-NWT.html">The Northwest Territories Project</a></li>
+        <li><a href="10c-Harvesting.html">Harvesting</a></li>
       </ul>
     </div>
   </div>

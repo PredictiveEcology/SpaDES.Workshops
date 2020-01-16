@@ -23,6 +23,9 @@ articles:
   09b-Plotting: 09b-Plotting.html
   09c-Caching: 09c-Caching.html
   09d-Debugging: 09d-Debugging.html
+  10a-LandWeb: 10a-LandWeb.html
+  10a-NWT: 10a-NWT.html
+  10c-Harvesting: 10c-Harvesting.html
 urls:
   reference: http://spades-workshops.predictiveecology.org//reference
   article: http://spades-workshops.predictiveecology.org//articles
