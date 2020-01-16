@@ -10,6 +10,10 @@ replacementList <- list(
   "02b-SpaDES4Dummies.html" = "https://htmlpreview.github.io/?https://github.com/CeresBarros/SpaDES4Dummies/blob/master/SpaDES4Dummies.html"
 )
 
+#' @details
+#' This is a named list where name is the first line of the multi-line grep
+#' The final line is indicated by the second named list \code{replacementEnds}.
+#' The content of \code{replacementStarts} represents a multi-line replacement.
 replacementStarts <- list(
   "a href=\"../articles/index.html" =
     "  <a href=\"../articles/index.html\">2020-Jan</a>
