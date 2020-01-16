@@ -26,57 +26,122 @@ navbar:
       href: https://spades.predictiveecology.org/
 
 articles:
-  - title: "Introducing a modular data platform"
+  - title: "Day 1 - Introducing a modular data platform"
     desc: >
       Why `SpaDES`, what it is for, and how does it help us?
-      Plus: importing modules and running fairly simple simulations from pre-made modules.
     contents:
     - 01a-WhatIsSpades
 
-  - title: "Getting started with `SpaDES` in R"
+  - title: "Day 1 - SpaDES at Work"
     desc: >
-      How to start from the beginning, making simple modules, making modules interact
+      Here we present some of the projects that used SpaDES and its tools
     contents:
-    - 04a-MyFirstModule
-    - 02b-SpaDES4Dummies
-    - 02c-Convert_R_code_to_SpaDES_module
+    - 10a-LandWeb
+    - 10b-NWT
+    - 10c-Harvesting
 
-  - title: "Using existing modules -- Developer's Workshop"
+  - title: "Day 1 - SpaDES in Action: a forest succession, a wildfire models, and a caribou models -- putting it all together"
     desc: >
-      If you are given a module, how do we get it, understand it, run it, test it,
-      incorporate it into our own modules.
+      Here we present two models that we use for forest succession (`LandR`) and wildfire (`SCFM`).
+      This is an example of module integration using SpaDES
     contents:
-    - 03a-Existing_modules
-    - 03b-integrating_modules
+    - 03c-SpaDESInAction
+        # --> Go deeper into LandR
+        # --> Go back and go deeper into SCFM
+        # --> Go back and go deeper into caribou
+        # Live action: Rstudio Show how them running integrated in a small area
+
+  - title: "Day 2 - Basic concepts to get you started: using SpaDES in Action for examples"
+    desc: >
+      Now we will use the SpaDESinAction example to understand how SpaDES works. These are the topics we will cover:
+      1. Module's and global scripts
+      2. Libraries and options
+      3. Setting Paths
+      4. Project structure
+      5. Time
+      6. Parameters
+      7. Objects
+      8. Modules
+      9. SimInit and the simList
+      10. `spades()`
+      11. Events* (this will be addressed after break with exercises)
+      12. Checking your outputs
+    contents:
     - 03c-SpaDESInAction
 
-  - title: "Developing a new continuously available science -- Developer's Workshop"
+  - title: "Day 2 - Hands on: From R to SpaDES"
     desc: >
-      Often decision support appears a long way from raw data collection, statistical model fitting,
-      simulation modeling, optimization.
+      In this section we will present examples of how to bring your R static and dynamic scripts into SpaDES
     contents:
-      - 09a-Continuous_Workflow
-
-  - title: "Module development -- Developer's Workshop"
-    desc: >
-      Advanced topics that can be helpful while going through the modules.
-    contents:
-    - 04-Modules_Thinking_in_a_modular_way
+    - SpaDES4Dummies
     - 04a-MyFirstModule
-    - 04b-Module_details
-    - 04c-The_simList
-    - 04d-Building_a_module
-    - 04e-parent_modules
-    - 08-Sharing_Modules
-    - 05-Simulation_Experiments_Replication
-    - 06a-R_Developing_powerful_skills
-    - 06b-R_Profiling_code
+    - 02c-Convert_R_code_to_SpaDES_module
 
-  - title: "Reference -- Links to `SpaDES` wiki pages, vignettes, and other cheatsheets"
+  - title: "Day 2 - Is it taking too long? Is it not working? The miracles of caching and debugging"
     desc: >
-      These are key to effectively working with `SpaDES`, they are on the wiki or in vignettes.
+      In this section we will explain how to use a caching  mechanism in SpaDES and how to debug your code when something errors
     contents:
-    - 00-Cheatsheets
-    - 09b-Plotting
     - 09c-Caching
     - 09d-Debugging
+
+  - title: "Day 3 - My first project in SpaDES"
+    desc: >
+      In this section we will give the support you need to start building your own SpaDES module or project.
+    contents:
+    - 12a-CommunityMetricsModule
+    - 12b-caribouPopulationGrowthModule
+    - 00-Cheatsheets
+
+  - title: "Exercises"
+    desc: >
+      In this section you can find several exercises to get you started with SpaDES.
+    contents:
+    - exercises/01-exercises.html
+    - exercises/02-exercises.html
+    - exercises/03-exercises.html
+    - exercises/04-exercises.html
+    - exercises/04a-exercises.html
+    - exercises/05a-exercises.html
+    - exercises/06-exercises.html
+    - exercises/07-exercises.html
+    - exercises/08-exercises.html
+
+#  - title: "Using existing modules -- Developer's Workshop"
+#    desc: >
+#      If you are given a module, how do we get it, understand it, run it, test it,
+#      incorporate it into our own modules.
+#    contents:
+#    - 03a-Existing_modules
+#    - 03b-integrating_modules
+#    - 03c-SpaDESInAction
+
+#  - title: "Developing a new continuously available science -- Developer's Workshop"
+#    desc: >
+#      Often decision support appears a long way from raw data collection, statistical model fitting,
+#      simulation modeling, optimization.
+#    contents:
+#      - 09a-Continuous_Workflow
+
+#  - title: "Module development -- Developer's Workshop"
+#    desc: >
+#      Advanced topics that can be helpful while going through the modules.
+#    contents:
+#    - 04-Modules_Thinking_in_a_modular_way
+#    - 04a-MyFirstModule
+#    - 04b-Module_details
+#    - 04c-The_simList
+#    - 04d-Building_a_module
+#    - 04e-parent_modules
+#    - 08-Sharing_Modules
+#    - 05-Simulation_Experiments_Replication
+#    - 06a-R_Developing_powerful_skills
+#    - 06b-R_Profiling_code
+
+#  - title: "Reference -- Links to `SpaDES` wiki pages, vignettes, and other cheatsheets"
+#    desc: >
+#      These are key to effectively working with `SpaDES`, they are on the wiki or in vignettes.
+#    contents:
+#    - 00-Cheatsheets
+#    - 09b-Plotting
+#    - 09c-Caching
+#    - 09d-Debugging
