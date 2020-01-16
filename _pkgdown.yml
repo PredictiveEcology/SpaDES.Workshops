@@ -46,10 +46,6 @@ articles:
       This is an example of module integration using SpaDES
     contents:
     - 03c-SpaDESInAction
-        # --> Go deeper into LandR
-        # --> Go back and go deeper into SCFM
-        # --> Go back and go deeper into caribou
-        # Live action: Rstudio Show how them running integrated in a small area
 
   - title: "Day 2 - Basic concepts to get you started: using SpaDES in Action for examples"
     desc: >
@@ -92,56 +88,3 @@ articles:
     - 12b-caribouPopulationGrowthModule
     - 00-Cheatsheets
 
-  - title: "Exercises"
-    desc: >
-      In this section you can find several exercises to get you started with SpaDES.
-    contents:
-    - exercises/01-exercises.html
-    - exercises/02-exercises.html
-    - exercises/03-exercises.html
-    - exercises/04-exercises.html
-    - exercises/04a-exercises.html
-    - exercises/05a-exercises.html
-    - exercises/06-exercises.html
-    - exercises/07-exercises.html
-    - exercises/08-exercises.html
-
-#  - title: "Using existing modules -- Developer's Workshop"
-#    desc: >
-#      If you are given a module, how do we get it, understand it, run it, test it,
-#      incorporate it into our own modules.
-#    contents:
-#    - 03a-Existing_modules
-#    - 03b-integrating_modules
-#    - 03c-SpaDESInAction
-
-#  - title: "Developing a new continuously available science -- Developer's Workshop"
-#    desc: >
-#      Often decision support appears a long way from raw data collection, statistical model fitting,
-#      simulation modeling, optimization.
-#    contents:
-#      - 09a-Continuous_Workflow
-
-#  - title: "Module development -- Developer's Workshop"
-#    desc: >
-#      Advanced topics that can be helpful while going through the modules.
-#    contents:
-#    - 04-Modules_Thinking_in_a_modular_way
-#    - 04a-MyFirstModule
-#    - 04b-Module_details
-#    - 04c-The_simList
-#    - 04d-Building_a_module
-#    - 04e-parent_modules
-#    - 08-Sharing_Modules
-#    - 05-Simulation_Experiments_Replication
-#    - 06a-R_Developing_powerful_skills
-#    - 06b-R_Profiling_code
-
-#  - title: "Reference -- Links to `SpaDES` wiki pages, vignettes, and other cheatsheets"
-#    desc: >
-#      These are key to effectively working with `SpaDES`, they are on the wiki or in vignettes.
-#    contents:
-#    - 00-Cheatsheets
-#    - 09b-Plotting
-#    - 09c-Caching
-#    - 09d-Debugging
