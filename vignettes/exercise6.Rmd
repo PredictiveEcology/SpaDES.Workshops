@@ -1,6 +1,6 @@
 ---
-title       : "SpaDES Exercises"
-author      : "Tati Micheletti"
+title       : "SpaDES Exercise 6: Getting the Most Out of R"
+author      : "SpaDES Core Team"
 date        : "2019 October 10"
 output:
   html_document:

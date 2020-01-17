@@ -1,6 +1,6 @@
 ---
-title       : "SpaDES Exercises"
-author      : "Tati Micheletti"
+title       : "SpaDES Exercise 8: Sharing Modules and Data"
+author      : "SpaDES Core Team"
 date        : "2019 October 10"
 output:
   html_document:
