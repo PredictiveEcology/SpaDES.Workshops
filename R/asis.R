@@ -7,7 +7,8 @@ replacementList <- list(
   "06b-Plotting.html" = "http://quickplot.predictiveecology.org/articles/iii-plotting.html",
   "Released package" = NULL,
   "03c-SpaDESInAction.html" = "https://htmlpreview.github.io/?https://github.com/tati-micheletti/SpaDESinAction/blob/master/runSimulation.html",
-  "02b-SpaDES4Dummies.html" = "https://htmlpreview.github.io/?https://github.com/CeresBarros/SpaDES4Dummies/blob/master/SpaDES4Dummies.html"
+  "02b-SpaDES4Dummies.html" = "https://htmlpreview.github.io/?https://github.com/CeresBarros/SpaDES4Dummies/blob/master/SpaDES4Dummies.html",
+  "<h1>Articles</h1>" = "<h1>Content</h1>"
 )
 
 #' @details
