@@ -17,8 +17,8 @@ replacementList <- list(
   "exercise6" = "https://htmlpreview.github.io/?https://github.com/PredictiveEcology/SpaDES.Workshops/blob/master/exercises/06-exercises.html",
   "exercise7" = "https://htmlpreview.github.io/?https://github.com/PredictiveEcology/SpaDES.Workshops/blob/master/exercises/07-exercises.html",
   "exercise8" = "https://htmlpreview.github.io/?https://github.com/PredictiveEcology/SpaDES.Workshops/blob/master/exercises/08-exercises.html",
-  "12b-caribouPopulationGrowthModule" = "https://github.com/tati-micheletti/caribouPopGrowthModel/blob/1274a19a2850ae53c89f22c422bb57f151bcda31/caribouPopGrowthModel.Rmd",
-  "12a-CommunityMetricsModule" = "https://github.com/araymund83/comm_metricsNWT/blob/master/comm_metricsNWT.Rmd"
+  "12b-caribouPopulationGrowthModule" = "http://htmlpreview.github.io/?https://github.com/tati-micheletti/caribouPopGrowthModel/blob/master/caribouPopGrowthModel.html",
+  "12a-CommunityMetricsModule" = "https://github.com/araymund83/comm_metricsNWT/blob/master/comm_metricsNWT.Rmd" # Need to redo this one
   "<h1>Articles</h1>" = "<h1>Content</h1>"
 )
 
