@@ -1,5 +1,5 @@
 ---
-title       : "SpaDES in Action"
+title       : "SpaDES Exercises"
 author      : "Tati Micheletti"
 date        : "2019 October 10"
 output:
@@ -16,6 +16,6 @@ knitr::opts_chunk$set(cache = FALSE, echo = TRUE, eval = TRUE)
 ```
 
 <!--
-  this is a dummy file that will be replaced with a link to the SpaDESInAction vignette when site rebuilt
+  this is a dummy file that will be replaced with a link to the specific exercise vignette when site rebuilt
   see `replacementList` defined in `asis.R`
 -->

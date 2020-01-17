@@ -49,18 +49,18 @@ articles:
 
   - title: "Day 2 - Basic concepts to get you started: using SpaDES in Action for examples"
     desc: >
-      Now we will use the SpaDESinAction example to understand how SpaDES works. These are the topics we will cover:
-      1. Module's and global scripts
-      2. Libraries and options
-      3. Setting Paths
-      4. Project structure
-      5. Time
-      6. Parameters
-      7. Objects
-      8. Modules
-      9. SimInit and the simList
-      10. `spades()`
-      11. Events* (this will be addressed after break with exercises)
+      Now we will use the SpaDESinAction example to understand how SpaDES works. These are the topics we will cover:\n
+      1. Module's and global scripts\n
+      2. Libraries and options\n
+      3. Setting Paths\n
+      4. Project structure\n
+      5. Time\n
+      6. Parameters\n
+      7. Objects\n
+      8. Modules\n
+      9. SimInit and the simList\n
+      10. `spades()`\n
+      11. Events* (this will be addressed after break with exercises)\n
       12. Checking your outputs
     contents:
     - 03c-SpaDESInAction
@@ -69,7 +69,7 @@ articles:
     desc: >
       In this section we will present examples of how to bring your R static and dynamic scripts into SpaDES
     contents:
-    - SpaDES4Dummies
+    - 02b-SpaDES4Dummies
     - 04a-MyFirstModule
     - 02c-Convert_R_code_to_SpaDES_module
 
@@ -92,12 +92,13 @@ articles:
     desc: >
       In this section you can find several exercises to get you started with SpaDES.
     contents:
-    - exercises/01-exercises.html
-    - exercises/02-exercises.html
-    - exercises/03-exercises.html
-    - exercises/04-exercises.html
-    - exercises/04a-exercises.html
-    - exercises/05a-exercises.html
-    - exercises/06-exercises.html
-    - exercises/07-exercises.html
-    - exercises/08-exercises.html
+    - exercise1
+    - exercise2
+    - exercise3
+    - exercise4
+    - exercise4a
+    - exercise5a
+    - exercise6
+    - exercise7
+    - exercise8
+

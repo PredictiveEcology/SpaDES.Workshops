@@ -24,8 +24,19 @@ articles:
   09c-Caching: 09c-Caching.html
   09d-Debugging: 09d-Debugging.html
   10a-LandWeb: 10a-LandWeb.html
-  10a-NWT: 10a-NWT.html
+  10b-NWT: 10b-NWT.html
   10c-Harvesting: 10c-Harvesting.html
+  12a-CommunityMetricsModule: 12a-CommunityMetricsModule.html
+  12b-caribouPopulationGrowthModule: 12b-caribouPopulationGrowthModule.html
+  exercise1: exercise1.html
+  exercise2: exercise2.html
+  exercise3: exercise3.html
+  exercise4: exercise4.html
+  exercise4a: exercise4a.html
+  exercise5a: exercise5a.html
+  exercise6: exercise6.html
+  exercise7: exercise7.html
+  exercise8: exercise8.html
 urls:
   reference: http://spades-workshops.predictiveecology.org//reference
   article: http://spades-workshops.predictiveecology.org//articles

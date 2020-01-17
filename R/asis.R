@@ -7,7 +7,18 @@ replacementList <- list(
   "06b-Plotting.html" = "http://quickplot.predictiveecology.org/articles/iii-plotting.html",
   "Released package" = NULL,
   "03c-SpaDESInAction.html" = "https://htmlpreview.github.io/?https://github.com/tati-micheletti/SpaDESinAction/blob/master/runSimulation.html",
-  "02b-SpaDES4Dummies.html" = "https://htmlpreview.github.io/?https://github.com/CeresBarros/SpaDES4Dummies/blob/master/SpaDES4Dummies.html"
+  "02b-SpaDES4Dummies.html" = "https://htmlpreview.github.io/?https://github.com/CeresBarros/SpaDES4Dummies/blob/master/SpaDES4Dummies.html",
+  "exercise1" = "https://htmlpreview.github.io/?https://github.com/PredictiveEcology/SpaDES.Workshops/blob/master/exercises/01-exercises.html",
+  "exercise2" = "https://htmlpreview.github.io/?https://github.com/PredictiveEcology/SpaDES.Workshops/blob/master/exercises/02-exercises.html",
+  "exercise3" = "https://htmlpreview.github.io/?https://github.com/PredictiveEcology/SpaDES.Workshops/blob/master/exercises/03-exercises.html",
+  "exercise4" = "https://htmlpreview.github.io/?https://github.com/PredictiveEcology/SpaDES.Workshops/blob/master/exercises/04-exercises.html",
+  "exercise4a" = "https://htmlpreview.github.io/?https://github.com/PredictiveEcology/SpaDES.Workshops/blob/master/exercises/04a-exercises.html",
+  "exercise5a" = "https://htmlpreview.github.io/?https://github.com/PredictiveEcology/SpaDES.Workshops/blob/master/exercises/05a-exercises.html",
+  "exercise6" = "https://htmlpreview.github.io/?https://github.com/PredictiveEcology/SpaDES.Workshops/blob/master/exercises/06-exercises.html",
+  "exercise7" = "https://htmlpreview.github.io/?https://github.com/PredictiveEcology/SpaDES.Workshops/blob/master/exercises/07-exercises.html",
+  "exercise8" = "https://htmlpreview.github.io/?https://github.com/PredictiveEcology/SpaDES.Workshops/blob/master/exercises/08-exercises.html",
+  "12b-caribouPopulationGrowthModule" = "https://github.com/tati-micheletti/caribouPopGrowthModel/blob/1274a19a2850ae53c89f22c422bb57f151bcda31/caribouPopGrowthModel.Rmd",
+  "12a-CommunityMetricsModule" = "https://github.com/araymund83/comm_metricsNWT/blob/master/comm_metricsNWT.Rmd"
 )
 
 #' @details
