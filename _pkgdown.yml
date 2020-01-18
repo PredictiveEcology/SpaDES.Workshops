@@ -49,7 +49,7 @@ articles:
 
   - title: "Day 2 - Basic concepts to get you started: using SpaDES in Action for examples"
     desc: >
-      Now we will use the SpaDESinAction example to understand how SpaDES works. These are the topics we will cover:\n
+      "Now we will use the SpaDESinAction example to understand how SpaDES works. These are the topics we will cover:\n
       1. Module's and global scripts\n
       2. Libraries and options\n
       3. Setting Paths\n
@@ -61,7 +61,7 @@ articles:
       9. SimInit and the simList\n
       10. `spades()`\n
       11. Events* (this will be addressed after break with exercises)\n
-      12. Checking your outputs
+      12. Checking your outputs"
     contents:
     - 03c-SpaDESInAction
 
