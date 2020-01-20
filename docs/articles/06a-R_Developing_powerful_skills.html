@@ -86,7 +86,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="06a-R_Developing_powerful_skills_files/header-attrs-2.0.6/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>R – developing powerful skills</h1>
@@ -133,14 +133,14 @@
 <h2 class="hasAnchor">
 <a href="#vectorization" class="anchor"></a>“Vectorization”</h2>
 <p>This is at the core of making R fast. If you don’t do this, then it is probably not useful to use R as a simulation engine.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Instead of </span>
-a &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/vector.html">vector</a></span>()
-<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>) {
-  a[i] &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dv">1</span>)
-}
-
-<span class="co"># use vectorized version, which is built into the functions</span>
-a &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dv">1000</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Instead of </span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>a &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/vector.html">vector</a></span>()</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>) {</span>
+<span id="cb1-4"><a href="#cb1-4"></a>  a[i] &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dv">1</span>)</span>
+<span id="cb1-5"><a href="#cb1-5"></a>}</span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co"># use vectorized version, which is built into the functions</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>a &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dv">1000</span>)</span></code></pre></div>
 </div>
 <div id="vectors-and-matrices" class="section level2">
 <h2 class="hasAnchor">
@@ -169,8 +169,7 @@ a &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stat
 <h2 class="hasAnchor">
 <a href="#key-packages-for-spatial-simulation" class="anchor"></a>Key packages for spatial simulation</h2>
 <ul>
-<li>
-<code>base</code> package – everything matrix or vector is ‘fast’</li>
+<li><p><code>base</code> package – everything matrix or vector is ‘fast’</p></li>
 <li>
 <p><code>raster</code> - for spatially referenced matrices</p>
 <ul>
@@ -224,14 +223,14 @@ a &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stat
 <ul>
 <li>These are all potentially useful for building spatio-temporal models</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?<span class="st">`</span><span class="dt">spades-package</span><span class="st">`</span> <span class="co"># section 2 shows many functions</span>
-
-<span class="co"># e.g.,</span>
-?spread
-?move
-?cir
-?adj
-?distanceFromEachPoint</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>?<span class="st">`</span><span class="dt">spades-package</span><span class="st">`</span> <span class="co"># section 2 shows many functions</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># e.g.,</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>?spread</span>
+<span id="cb2-5"><a href="#cb2-5"></a>?move</span>
+<span id="cb2-6"><a href="#cb2-6"></a>?cir</span>
+<span id="cb2-7"><a href="#cb2-7"></a>?adj</span>
+<span id="cb2-8"><a href="#cb2-8"></a>?distanceFromEachPoint</span></code></pre></div>
 </div>
 <div id="working-with-spatial-data" class="section level2">
 <h2 class="hasAnchor">
@@ -262,7 +261,7 @@ a &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stat
 <a href="#sp" class="anchor"></a><code>sp</code>
 </h2>
 <ul>
-<li>Quite an old and mature package</li>
+<li><p>Quite an old and mature package</p></li>
 <li>
 <p>Tutorials</p>
 <ul>
@@ -292,7 +291,7 @@ a &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stat
 <em>WOW that’s fast!</em>
 </div>
 <p><br></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">'data.table'</span>)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">'data.table'</span>)</span></code></pre></div>
 <p>(at least for large tables!)</p>
 </div>
 <div id="data-table-tutorials" class="section level2">
@@ -320,7 +319,7 @@ a &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stat
 <ul>
 <li>There is a key helper function:</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?rasterizeReduced</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>?rasterizeReduced</span></code></pre></div>
 <p>What does this do?</p>
 </div>
 <div id="the-rcpp-package" class="section level2">
@@ -331,7 +330,7 @@ a &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stat
 <em>WOW! Just wow.</em>
 </div>
 <p><br></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">'Rcpp'</span>)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">'Rcpp'</span>)</span></code></pre></div>
 <ul>
 <li>Essentially see <a href="http://dirk.eddelbuettel.com/code/rcpp.html">Dirk Eddelbuettel’s book, Seamless R and C++</a>
 </li>
