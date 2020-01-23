@@ -50,20 +50,18 @@ articles:
   - title: "Day 2 - Basic concepts to get you started: using SpaDES in Action for examples"
     desc: |
       Now we will use the SpaDESinAction example to understand how SpaDES works. These are the topics we will cover:
-      1. Module's and global scripts
+      1. Global script
       2. Libraries and options
-      3. Setting Paths
-      4. Project structure
+      3. Project structure
+      4. Setting Paths
       5. Time
-      6. Parameters
-      7. Objects
-      8. Modules
-      9. SimInit and the simList
-      10. `spades()`
-      11. Events* (this will be addressed after break with exercises)
-      12. Checking your outputs"
+      6. Modules
+      7. Parameters
+      8. Objects
+      9. SimInit, the simList and the `spades()` call
+      10. Checking your outputs
     contents:
-    - 03c-SpaDESInAction
+    - runMe.html
 
   - title: "Day 2 - Hands on: From R to SpaDES"
     desc: >

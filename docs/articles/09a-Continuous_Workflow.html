@@ -86,7 +86,7 @@
 
       
 
-      </header><script src="09a-Continuous_Workflow_files/header-attrs-2.0.6/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>The ‘data-to-decisions’ workflow</h1>
@@ -124,14 +124,14 @@
 <h2 class="hasAnchor">
 <a href="#why-a-discrete-event-simulator-is-necessary" class="anchor"></a>Why a Discrete Event Simulator is necessary?</h2>
 <ul>
-<li><p>There is much fanfare about using Rmarkdown as a tool for reproducibility (<em>i.e</em>, Rmarkdown = “code, output, narrative”)</p></li>
+<li>There is much fanfare about using Rmarkdown as a tool for reproducibility (<em>i.e</em>, Rmarkdown = “code, output, narrative”)</li>
 <li>
 <p>But this allows <em>exact</em> reproducibility</p>
 <ul>
 <li><strong>Everything will be run exactly as before</strong></li>
 </ul>
 </li>
-<li><p>What happens if the goal is to run it again, but with slight changes to the input data?</p></li>
+<li>What happens if the goal is to run it again, but with slight changes to the input data?</li>
 <li><p>The Rmarkdown script approach, which is very linear, can deal with this to a certain extent, but it will be clunky.</p></li>
 </ul>
 </div>
@@ -166,7 +166,7 @@
 <li>Could have massive data requirements, long simulation times, even on supercomputers</li>
 <li>Caching allows for near instant results from very complex systems</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>?Cache</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?Cache</code></pre></div>
 <ul>
 <li><a href="https://cran.r-project.org/web/packages/SpaDES/vignettes/iii-cache.html">Caching vignette</a></li>
 <li><a href="https://htmlpreview.github.io/?https://github.com/PredictiveEcology/wolfAlps/blob/master/wolfAlps.html">wolf model shows a caching use case</a></li>
@@ -209,11 +209,11 @@
 <a href="#cache-a-whole-module" class="anchor"></a>Cache a whole module</h4>
 <p>Pass <code>.useCache = TRUE</code> as a parameter to the module, during the <code>simInit</code></p>
 <p>Some modules are inherently non-random, such as GIS modules, or parameter fitting statistical modules. We expect these to be identical results each time, so we can safely cache the entire module.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>parameters =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
-<span id="cb2-2"><a href="#cb2-2"></a>  <span class="dt">FireModule =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">.useCache =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb2-3"><a href="#cb2-3"></a>)</span>
-<span id="cb2-4"><a href="#cb2-4"></a>mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(..., <span class="dt">params =</span> parameters)</span>
-<span id="cb2-5"><a href="#cb2-5"></a>mySimOut &lt;-<span class="st"> </span><span class="kw">spades</span>(mySim)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">parameters =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+  <span class="dt">FireModule =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">.useCache =</span> <span class="ot">TRUE</span>)
+)
+mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(..., <span class="dt">params =</span> parameters)
+mySimOut &lt;-<span class="st"> </span><span class="kw">spades</span>(mySim)</code></pre></div>
 <p>The messaging should indicate the caching is happening on every event in that module.</p>
 <p><strong><em>Note: This option REQUIRES that the metadata in inputs and outputs be exactly correct, i.e., all <code>inputObjects</code> and <code>outputObjects</code> must be correctly identified and listed in the <code>defineModule</code> metadata</em></strong></p>
 <p><strong><em>If the module is cached, and there are errors when it is run, it almost is guaranteed to be a problem with the <code>inputObjects</code> and <code>outputObjects</code> incorrectly specified.</em></strong></p>
