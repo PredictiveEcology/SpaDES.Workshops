@@ -86,7 +86,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="04a-MyFirstModule_files/header-attrs-2.0.6/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>My first <code>SpaDES</code> module - from <code>R</code> to <code>SpaDES</code>
@@ -108,20 +108,23 @@
 <ul>
 <li>fundamental programming units (most languages have them)</li>
 <li>used to repeat a set of instructions, without “duplicating” code</li>
-<li>often used in ecology to iterate something over “time”</li>
+<li>often used in ecology to iterate something over “time”
+<ul>
 <li>usually, each ‘time-step’ depends on the previous one. Note in the examples below, how we start an <code>age</code> object at 1, and increment it at each step of <code>time</code>, or <code>t</code>. In both cases <code>time</code> and <code>t</code> are the loop <em>counters</em>, but only in the second case is the counter being effectively “used” inside the loop.</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Simple case:
-age &lt;-<span class="st"> </span><span class="dv">1</span>
-<span class="cf">for</span> (time <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) {
-  age &lt;-<span class="st"> </span>age <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
-}</code></pre></div>
+</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">## Simple case:</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>age &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="cf">for</span> (time <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) {</span>
+<span id="cb1-4"><a href="#cb1-4"></a>  age &lt;-<span class="st"> </span>age <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>}</span></code></pre></div>
 <p>Let’s tear it apart and understand each individual part:</p>
 <ul>
 <li>Setting up (sometimes required), <strong>initializing</strong>
 </li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">age &lt;-<span class="st"> </span><span class="dv">1</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>age &lt;-<span class="st"> </span><span class="dv">1</span></span></code></pre></div>
 <ul>
 <li>deciding on <strong>bounds</strong> and <strong>intermediates</strong> or “step”
 <ul>
@@ -130,21 +133,24 @@ age &lt;-<span class="st"> </span><span class="dv">1</span>
 </ul>
 </li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (time <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="cf">for</span> (time <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span></code></pre></div>
 <ul>
 <li>
 <strong>content</strong> (what is this loop going to do?)</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">age &lt;-<span class="st">  </span>age <span class="op">+</span><span class="st"> </span><span class="dv">1</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>age &lt;-<span class="st">  </span>age <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span></code></pre></div>
 <p>In both cases, we have to: - <strong>initialise</strong> a storage vector - define time <strong>boundaries</strong> - define the <strong>step</strong>, or incremental unit (in this case implicit) - define the <strong>content</strong> of the for-loop that is going to be iterated</p>
 </div>
 <div id="from-loops-to-events" class="section level2">
 <h2 class="hasAnchor">
 <a href="#from-loops-to-events" class="anchor"></a>From loops to events</h2>
 <ul>
-<li>In R, we try to avoid loops because:</li>
+<li>In R, we try to avoid loops because:
+<ul>
 <li>they are slow</li>
 <li>they make code harder to share amongst users</li>
+</ul>
+</li>
 <li>It’s easy to think about “events” in ecology</li>
 </ul>
 <p><img src="images/MyFirstModule/Plant_phenology.png" align="middle" width="400" margin="0 auto"></p>
@@ -153,42 +159,42 @@ age &lt;-<span class="st"> </span><span class="dv">1</span>
 <h3 class="hasAnchor">
 <a href="#loops-in-r" class="anchor"></a>Loops in <code>R</code>
 </h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## initializing
-age &lt;-<span class="st"> </span><span class="dv">1</span>
-
-## boundaries
-times =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">start =</span> <span class="dv">1</span>, <span class="dt">end =</span> <span class="dv">10</span>) 
-
-## event definition (content), define what the event will do
-aging &lt;-<span class="st"> </span>age <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
-
-## event execution and scheduling - note the step definition
-events &lt;-<span class="st"> </span>{
-  <span class="kw">doEvent</span>(<span class="st">"aging"</span>)
-  <span class="kw">scheduleEvent</span>(<span class="st">"aging"</span>, <span class="dt">when =</span> now <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)
-}</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">## initializing</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>age &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="co">## boundaries</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>times =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">start =</span> <span class="dv">1</span>, <span class="dt">end =</span> <span class="dv">10</span>) </span>
+<span id="cb5-6"><a href="#cb5-6"></a></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="co">## event definition (content), define what the event will do</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>aging &lt;-<span class="st"> </span>age <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="co">## event execution and scheduling - note the step definition</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a>events &lt;-<span class="st"> </span>{</span>
+<span id="cb5-12"><a href="#cb5-12"></a>  <span class="kw">doEvent</span>(<span class="st">"aging"</span>)</span>
+<span id="cb5-13"><a href="#cb5-13"></a>  <span class="kw">scheduleEvent</span>(<span class="st">"aging"</span>, <span class="dt">when =</span> now <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</span>
+<span id="cb5-14"><a href="#cb5-14"></a>}</span></code></pre></div>
 <p>As you can see, event execution and scheduling in SpaDES have the same fundamental components of a for-loop: <strong>initialize</strong>, <strong>bounds</strong>, <strong>step</strong>, <strong>content</strong></p>
 </div>
 <div id="loops-aka-events-in-spades" class="section level3">
 <h3 class="hasAnchor">
 <a href="#loops-aka-events-in-spades" class="anchor"></a>Loops (AKA events) in <code>SpaDES</code>
 </h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## initialisation
-age &lt;-<span class="st"> </span><span class="dv">1</span>                              
-
-## boundaries
-times =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">start =</span> <span class="dv">1</span>, <span class="dt">end =</span> <span class="dv">10</span>) 
-
-## event definition (content)
-aging &lt;-<span class="st"> </span><span class="cf">function</span>(age) {
-  age &lt;-<span class="st"> </span>age <span class="op">+</span><span class="st"> </span><span class="dv">1</span>                
-}
-
-## event execution and scheduling
-events &lt;-<span class="st"> </span>{
-  <span class="kw">doEvent</span>(<span class="st">"aging"</span>)
-  <span class="kw">scheduleEvent</span>(<span class="st">"aging"</span>, <span class="dt">when =</span> now <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)
-}</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">## initialisation</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>age &lt;-<span class="st"> </span><span class="dv">1</span>                              </span>
+<span id="cb6-3"><a href="#cb6-3"></a></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co">## boundaries</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>times =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">start =</span> <span class="dv">1</span>, <span class="dt">end =</span> <span class="dv">10</span>) </span>
+<span id="cb6-6"><a href="#cb6-6"></a></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="co">## event definition (content)</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a>aging &lt;-<span class="st"> </span><span class="cf">function</span>(age) {</span>
+<span id="cb6-9"><a href="#cb6-9"></a>  age &lt;-<span class="st"> </span>age <span class="op">+</span><span class="st"> </span><span class="dv">1</span>                </span>
+<span id="cb6-10"><a href="#cb6-10"></a>}</span>
+<span id="cb6-11"><a href="#cb6-11"></a></span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="co">## event execution and scheduling</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a>events &lt;-<span class="st"> </span>{</span>
+<span id="cb6-14"><a href="#cb6-14"></a>  <span class="kw">doEvent</span>(<span class="st">"aging"</span>)</span>
+<span id="cb6-15"><a href="#cb6-15"></a>  <span class="kw">scheduleEvent</span>(<span class="st">"aging"</span>, <span class="dt">when =</span> now <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</span>
+<span id="cb6-16"><a href="#cb6-16"></a>}</span></code></pre></div>
 <ul>
 <li>This creates a queue – a list of events that need to occur</li>
 </ul>
@@ -199,19 +205,19 @@ events &lt;-<span class="st"> </span>{
 <li>what is happening now</li>
 <li>What are the next thing(s) in the queue</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#     eventTime moduleName  eventType</span>
-<span class="co">#  1:         0       loop       init</span>
-<span class="co">#  2:         0       loop addOneYear</span>
-<span class="co">#  3:         1       loop addOneYear</span>
-<span class="co">#  4:         2       loop addOneYear</span>
-<span class="co">#  5:         3       loop addOneYear</span>
-<span class="co">#  6:         4       loop addOneYear</span>
-<span class="co">#  7:         5       loop addOneYear</span>
-<span class="co">#  8:         6       loop addOneYear</span>
-<span class="co">#  9:         7       loop addOneYear</span>
-<span class="co"># 10:         8       loop addOneYear</span>
-<span class="co"># 11:         9       loop addOneYear</span>
-<span class="co"># 12:        10       loop addOneYear </span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">#     eventTime moduleName  eventType</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="co">#  1:         0       loop       init</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="co">#  2:         0       loop addOneYear</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="co">#  3:         1       loop addOneYear</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="co">#  4:         2       loop addOneYear</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="co">#  5:         3       loop addOneYear</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="co">#  6:         4       loop addOneYear</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="co">#  7:         5       loop addOneYear</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="co">#  8:         6       loop addOneYear</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="co">#  9:         7       loop addOneYear</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="co"># 10:         8       loop addOneYear</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a><span class="co"># 11:         9       loop addOneYear</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a><span class="co"># 12:        10       loop addOneYear </span></span></code></pre></div>
 </div>
 <div id="why-contain-the-iterated-code-in-a-function" class="section level4">
 <h4 class="hasAnchor">
@@ -236,20 +242,20 @@ events &lt;-<span class="st"> </span>{
 <li>Define the directories</li>
 <li>Create a new module in the module path</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(SpaDES)
-
-## set/create directories
-<span class="kw">setPaths</span>()    ## default temporary directories
-
-<span class="kw">setPaths</span>(<span class="dt">cachePath =</span> <span class="st">"~/SpaDES_myModule/cache"</span>, 
-         <span class="dt">inputPath =</span> <span class="st">"~/SpaDES_myModule/inputs"</span>, 
-         <span class="dt">modulePath =</span> <span class="st">"~/SpaDES_myModule/modules"</span>, 
-         <span class="dt">outputPath =</span> <span class="st">"~/SpaDES_myModule/outputs"</span>)
-
-## get paths
-<span class="kw">getPaths</span>()
-
-<span class="kw">newModule</span>(<span class="st">"loop"</span>, <span class="dt">path =</span> <span class="kw">getPaths</span>()<span class="op">$</span>modulePath)</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(SpaDES)</span>
+<span id="cb8-2"><a href="#cb8-2"></a></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="co">## set/create directories</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="kw">setPaths</span>()    <span class="co">## default temporary directories</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a></span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="kw">setPaths</span>(<span class="dt">cachePath =</span> <span class="st">"~/SpaDES_myModule/cache"</span>, </span>
+<span id="cb8-7"><a href="#cb8-7"></a>         <span class="dt">inputPath =</span> <span class="st">"~/SpaDES_myModule/inputs"</span>, </span>
+<span id="cb8-8"><a href="#cb8-8"></a>         <span class="dt">modulePath =</span> <span class="st">"~/SpaDES_myModule/modules"</span>, </span>
+<span id="cb8-9"><a href="#cb8-9"></a>         <span class="dt">outputPath =</span> <span class="st">"~/SpaDES_myModule/outputs"</span>)</span>
+<span id="cb8-10"><a href="#cb8-10"></a></span>
+<span id="cb8-11"><a href="#cb8-11"></a><span class="co">## get paths</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a><span class="kw">getPaths</span>()</span>
+<span id="cb8-13"><a href="#cb8-13"></a></span>
+<span id="cb8-14"><a href="#cb8-14"></a><span class="kw">newModule</span>(<span class="st">"loop"</span>, <span class="dt">path =</span> <span class="kw">getPaths</span>()<span class="op">$</span>modulePath)</span></code></pre></div>
 <ul>
 <li>Two template scripts were created: an <em>.R</em> (will contain module code) and <em>.Rmd</em> (will contain module documentation and examples)</li>
 <li>Folders for data, R code and test code were also created, along with citation, license and README files</li>
@@ -287,86 +293,85 @@ events &lt;-<span class="st"> </span>{
 <code>init</code> is <strong>mandatory</strong> - <strong>/!\</strong> never EVER remove it, or change its name <strong>/!\</strong>
 </li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">doEvent.loop =<span class="st"> </span><span class="cf">function</span>(sim, eventTime, eventType) {
-  <span class="cf">switch</span>(
-    eventType,
-    <span class="dt">init =</span> {
-      ## event content
-      sim<span class="op">$</span>age &lt;-<span class="st"> </span><span class="dv">1</span>
-
-      ## schedule event
-      sim &lt;-<span class="st"> </span><span class="kw">scheduleEvent</span>(sim, <span class="kw"><a href="https://rdrr.io/r/stats/start.html">start</a></span>(sim), <span class="st">"loop"</span>, <span class="st">"addOneYear"</span>)
-    },
-    
-    <span class="dt">addOneYear =</span> {
-      ## event content:
-      sim<span class="op">$</span>age &lt;-<span class="st"> </span>sim<span class="op">$</span>age <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
-
-      ## schedule event
-      sim &lt;-<span class="st"> </span><span class="kw">scheduleEvent</span>(sim, <span class="kw"><a href="https://rdrr.io/r/stats/time.html">time</a></span>(sim) <span class="op">+</span><span class="st"> </span><span class="kw">P</span>(sim)<span class="op">$</span>Step, <span class="st">"loop"</span>, <span class="st">"addOneYear"</span>)
-      
-    },
-    <span class="kw"><a href="https://rdrr.io/r/base/warning.html">warning</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"Undefined event type: '"</span>, <span class="kw">current</span>(sim)[<span class="dv">1</span>, <span class="st">"eventType"</span>, <span class="dt">with =</span> <span class="ot">FALSE</span>],
-                  <span class="st">"' in module '"</span>, <span class="kw">current</span>(sim)[<span class="dv">1</span>, <span class="st">"moduleName"</span>, <span class="dt">with =</span> <span class="ot">FALSE</span>], <span class="st">"'"</span>, <span class="dt">sep =</span> <span class="st">""</span>))
-  )
-  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/invisible.html">invisible</a></span>(sim))
-}</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>doEvent.loop =<span class="st"> </span><span class="cf">function</span>(sim, eventTime, eventType) {</span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="cf">switch</span>(</span>
+<span id="cb9-3"><a href="#cb9-3"></a>    eventType,</span>
+<span id="cb9-4"><a href="#cb9-4"></a>    <span class="dt">init =</span> {</span>
+<span id="cb9-5"><a href="#cb9-5"></a>      <span class="co">## event content</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>      sim<span class="op">$</span>age &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a></span>
+<span id="cb9-8"><a href="#cb9-8"></a>      <span class="co">## schedule event</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a>      sim &lt;-<span class="st"> </span><span class="kw">scheduleEvent</span>(sim, <span class="kw"><a href="https://rdrr.io/r/stats/start.html">start</a></span>(sim), <span class="st">"loop"</span>, <span class="st">"addOneYear"</span>)</span>
+<span id="cb9-10"><a href="#cb9-10"></a>    },</span>
+<span id="cb9-11"><a href="#cb9-11"></a>    </span>
+<span id="cb9-12"><a href="#cb9-12"></a>    <span class="dt">addOneYear =</span> {</span>
+<span id="cb9-13"><a href="#cb9-13"></a>      <span class="co">## event content:</span></span>
+<span id="cb9-14"><a href="#cb9-14"></a>      sim<span class="op">$</span>age &lt;-<span class="st"> </span>sim<span class="op">$</span>age <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb9-15"><a href="#cb9-15"></a></span>
+<span id="cb9-16"><a href="#cb9-16"></a>      <span class="co">## schedule event</span></span>
+<span id="cb9-17"><a href="#cb9-17"></a>      sim &lt;-<span class="st"> </span><span class="kw">scheduleEvent</span>(sim, <span class="kw"><a href="https://rdrr.io/r/stats/time.html">time</a></span>(sim) <span class="op">+</span><span class="st"> </span><span class="kw">P</span>(sim)<span class="op">$</span>Step, <span class="st">"loop"</span>, <span class="st">"addOneYear"</span>)</span>
+<span id="cb9-18"><a href="#cb9-18"></a>      </span>
+<span id="cb9-19"><a href="#cb9-19"></a>    },</span>
+<span id="cb9-20"><a href="#cb9-20"></a>    <span class="kw"><a href="https://rdrr.io/r/base/warning.html">warning</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"Undefined event type: '"</span>, <span class="kw">current</span>(sim)[<span class="dv">1</span>, <span class="st">"eventType"</span>, <span class="dt">with =</span> <span class="ot">FALSE</span>],</span>
+<span id="cb9-21"><a href="#cb9-21"></a>                  <span class="st">"' in module '"</span>, <span class="kw">current</span>(sim)[<span class="dv">1</span>, <span class="st">"moduleName"</span>, <span class="dt">with =</span> <span class="ot">FALSE</span>], <span class="st">"'"</span>, <span class="dt">sep =</span> <span class="st">""</span>))</span>
+<span id="cb9-22"><a href="#cb9-22"></a>  )</span>
+<span id="cb9-23"><a href="#cb9-23"></a>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/invisible.html">invisible</a></span>(sim))</span>
+<span id="cb9-24"><a href="#cb9-24"></a>}</span></code></pre></div>
 <p>Can you see where <strong>initialize</strong>, <strong>bounds</strong>, <strong>step</strong>, <strong>content</strong> are?</p>
 <ol start="3" style="list-style-type: decimal">
 <li>Define parameters</li>
 </ol>
 <ul>
-<li>In SpaDES, parameters can be “global” (of type <code>.&lt;param_name.</code>) or module specific</li>
-<li>Parameters do not participate in the flow of information/data between modules</li>
-<li>Parameters can be changed by the user at the higher level (i.e. without changing the module code in the <em>.R</em> script)</li>
+<li><p>In SpaDES, parameters can be “global” (of type <code>.&lt;param_name.</code>) or module specific</p></li>
+<li><p>Parameters do not participate in the flow of information/data between modules</p></li>
+<li><p>Parameters can be changed by the user at the higher level (i.e. without changing the module code in the <em>.R</em> script)</p></li>
 <li><p>What do you think can be a parameter in our case?</p></li>
-<li>Parameters are defined in <code>definedModule</code>, using the <code>defineParameter</code> function</li>
-<li>This part of the module is the metadata, containing important information about the module</li>
-<li>It also indicates to other modules what to expect as its inputs and outputs</li>
+<li><p>Parameters are defined in <code>definedModule</code>, using the <code>defineParameter</code> function</p></li>
+<li><p>This part of the module is the metadata, containing important information about the module</p></li>
+<li><p>It also indicates to other modules what to expect as its inputs and outputs</p></li>
 <li><p>Time boundaries do not need to be defined as parameters - they have their own special objects</p></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">defineModule</span>(sim, <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-  <span class="dt">name =</span> <span class="st">"loop"</span>,
-  <span class="dt">description =</span> <span class="ot">NA</span>, <span class="co">#"insert module description here",</span>
-  <span class="dt">keywords =</span> <span class="ot">NA</span>, <span class="co"># c("insert key words here"),</span>
-  <span class="dt">authors =</span> <span class="kw"><a href="https://rdrr.io/r/utils/person.html">person</a></span>(<span class="st">"First"</span>, <span class="st">"Last"</span>, <span class="dt">email =</span> <span class="st">"first.last@example.com"</span>, <span class="dt">role =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"aut"</span>, <span class="st">"cre"</span>)),
-  <span class="dt">childModules =</span> <span class="kw"><a href="https://rdrr.io/r/base/character.html">character</a></span>(<span class="dv">0</span>),
-  <span class="dt">version =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">SpaDES.core =</span> <span class="st">"0.2.2.9006"</span>, <span class="dt">loop =</span> <span class="st">"0.0.1"</span>),
-  <span class="dt">spatialExtent =</span> raster<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/raster/man/extent.html">extent</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="ot">NA_real_</span>, <span class="dv">4</span>)),
-  <span class="dt">timeframe =</span> <span class="kw"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXlt</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="ot">NA</span>, <span class="ot">NA</span>)),
-  <span class="dt">timeunit =</span> <span class="st">"year"</span>,
-  <span class="dt">citation =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"citation.bib"</span>),
-  <span class="dt">documentation =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"README.txt"</span>, <span class="st">"loop.Rmd"</span>),
-  <span class="dt">reqdPkgs =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(),
-  <span class="dt">parameters =</span> <span class="kw"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(
-    <span class="co">#defineParameter("paramName", "paramClass", value, min, max, "parameter description"),</span>
-    <span class="kw">defineParameter</span>(<span class="st">".plotInitialTime"</span>, <span class="st">"numeric"</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="st">"This describes the simulation time at which the first plot event should occur"</span>),
-    <span class="kw">defineParameter</span>(<span class="st">".plotInterval"</span>, <span class="st">"numeric"</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="st">"This describes the simulation time interval between plot events"</span>),
-    <span class="kw">defineParameter</span>(<span class="st">".saveInitialTime"</span>, <span class="st">"numeric"</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="st">"This describes the simulation time at which the first save event should occur"</span>),
-    <span class="kw">defineParameter</span>(<span class="st">".saveInterval"</span>, <span class="st">"numeric"</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="st">"This describes the simulation time interval between save events"</span>),
-    <span class="kw">defineParameter</span>(<span class="st">".useCache"</span>, <span class="st">"logical"</span>, <span class="ot">FALSE</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="st">"Should this entire module be run with caching activated? This is generally intended for data-type modules, where stochasticity and time are not relevant"</span>)
-  )
-))</code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">defineModule</span>(sim, <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="dt">name =</span> <span class="st">"loop"</span>,</span>
+<span id="cb10-3"><a href="#cb10-3"></a>  <span class="dt">description =</span> <span class="ot">NA</span>, <span class="co">#"insert module description here",</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>  <span class="dt">keywords =</span> <span class="ot">NA</span>, <span class="co"># c("insert key words here"),</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>  <span class="dt">authors =</span> <span class="kw"><a href="https://rdrr.io/r/utils/person.html">person</a></span>(<span class="st">"First"</span>, <span class="st">"Last"</span>, <span class="dt">email =</span> <span class="st">"first.last@example.com"</span>, <span class="dt">role =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"aut"</span>, <span class="st">"cre"</span>)),</span>
+<span id="cb10-6"><a href="#cb10-6"></a>  <span class="dt">childModules =</span> <span class="kw"><a href="https://rdrr.io/r/base/character.html">character</a></span>(<span class="dv">0</span>),</span>
+<span id="cb10-7"><a href="#cb10-7"></a>  <span class="dt">version =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">SpaDES.core =</span> <span class="st">"0.2.2.9006"</span>, <span class="dt">loop =</span> <span class="st">"0.0.1"</span>),</span>
+<span id="cb10-8"><a href="#cb10-8"></a>  <span class="dt">spatialExtent =</span> raster<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/raster/man/extent.html">extent</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="ot">NA_real_</span>, <span class="dv">4</span>)),</span>
+<span id="cb10-9"><a href="#cb10-9"></a>  <span class="dt">timeframe =</span> <span class="kw"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXlt</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="ot">NA</span>, <span class="ot">NA</span>)),</span>
+<span id="cb10-10"><a href="#cb10-10"></a>  <span class="dt">timeunit =</span> <span class="st">"year"</span>,</span>
+<span id="cb10-11"><a href="#cb10-11"></a>  <span class="dt">citation =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"citation.bib"</span>),</span>
+<span id="cb10-12"><a href="#cb10-12"></a>  <span class="dt">documentation =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"README.txt"</span>, <span class="st">"loop.Rmd"</span>),</span>
+<span id="cb10-13"><a href="#cb10-13"></a>  <span class="dt">reqdPkgs =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(),</span>
+<span id="cb10-14"><a href="#cb10-14"></a>  <span class="dt">parameters =</span> <span class="kw"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(</span>
+<span id="cb10-15"><a href="#cb10-15"></a>    <span class="co">#defineParameter("paramName", "paramClass", value, min, max, "parameter description"),</span></span>
+<span id="cb10-16"><a href="#cb10-16"></a>    <span class="kw">defineParameter</span>(<span class="st">".plotInitialTime"</span>, <span class="st">"numeric"</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="st">"This describes the simulation time at which the first plot event should occur"</span>),</span>
+<span id="cb10-17"><a href="#cb10-17"></a>    <span class="kw">defineParameter</span>(<span class="st">".plotInterval"</span>, <span class="st">"numeric"</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="st">"This describes the simulation time interval between plot events"</span>),</span>
+<span id="cb10-18"><a href="#cb10-18"></a>    <span class="kw">defineParameter</span>(<span class="st">".saveInitialTime"</span>, <span class="st">"numeric"</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="st">"This describes the simulation time at which the first save event should occur"</span>),</span>
+<span id="cb10-19"><a href="#cb10-19"></a>    <span class="kw">defineParameter</span>(<span class="st">".saveInterval"</span>, <span class="st">"numeric"</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="st">"This describes the simulation time interval between save events"</span>),</span>
+<span id="cb10-20"><a href="#cb10-20"></a>    <span class="kw">defineParameter</span>(<span class="st">".useCache"</span>, <span class="st">"logical"</span>, <span class="ot">FALSE</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="st">"Should this entire module be run with caching activated? This is generally intended for data-type modules, where stochasticity and time are not relevant"</span>)</span>
+<span id="cb10-21"><a href="#cb10-21"></a>  )</span>
+<span id="cb10-22"><a href="#cb10-22"></a>))</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>Define inputs/outputs</li>
 </ol>
 <ul>
-<li>Inputs and outputs, unlike parameters, are objects that establish links between modules, and between the user and modules</li>
-<li>They are <strong>always</strong> contained in the <code>simList</code> object</li>
-<li>A good way of thinking about what input and output <em>objects</em> are is: <code>sim$outputs &lt;- sim$inputs</code>
-</li>
+<li><p>Inputs and outputs, unlike parameters, are objects that establish links between modules, and between the user and modules</p></li>
+<li><p>They are <strong>always</strong> contained in the <code>simList</code> object</p></li>
+<li><p>A good way of thinking about what input and output <em>objects</em> are is: <code>sim$outputs &lt;- sim$inputs</code></p></li>
 <li><p>do we have any inputs? What about outputs?</p></li>
 <li><p>Input and output objects are also defined in <code>defineModule</code> using the <code>expectsInput</code> and <code>createsOutput</code> functions</p></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> inputObjects =<span class="st"> </span><span class="kw">bind_rows</span>(
-    <span class="co">#expectsInput("objectName", "objectClass", "input object description", sourceURL, ...),</span>
-    <span class="kw">expectsInput</span>(<span class="dt">objectName =</span> <span class="ot">NA</span>, <span class="dt">objectClass =</span> <span class="ot">NA</span>, <span class="dt">desc =</span> <span class="ot">NA</span>, <span class="dt">sourceURL =</span> <span class="ot">NA</span>)
- )
-    
-  outputObjects =<span class="st"> </span><span class="kw">bind_rows</span>(
-    <span class="co">#createsOutput("objectName", "objectClass", "output object description", ...),</span>
-    <span class="kw">createsOutput</span>(<span class="dt">objectName =</span> <span class="ot">NA</span>, <span class="dt">objectClass =</span> <span class="ot">NA</span>, <span class="dt">desc =</span> <span class="ot">NA</span>)
-  )</code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a> inputObjects =<span class="st"> </span><span class="kw">bind_rows</span>(</span>
+<span id="cb11-2"><a href="#cb11-2"></a>    <span class="co">#expectsInput("objectName", "objectClass", "input object description", sourceURL, ...),</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>    <span class="kw">expectsInput</span>(<span class="dt">objectName =</span> <span class="ot">NA</span>, <span class="dt">objectClass =</span> <span class="ot">NA</span>, <span class="dt">desc =</span> <span class="ot">NA</span>, <span class="dt">sourceURL =</span> <span class="ot">NA</span>)</span>
+<span id="cb11-4"><a href="#cb11-4"></a> )</span>
+<span id="cb11-5"><a href="#cb11-5"></a>    </span>
+<span id="cb11-6"><a href="#cb11-6"></a>  outputObjects =<span class="st"> </span><span class="kw">bind_rows</span>(</span>
+<span id="cb11-7"><a href="#cb11-7"></a>    <span class="co">#createsOutput("objectName", "objectClass", "output object description", ...),</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a>    <span class="kw">createsOutput</span>(<span class="dt">objectName =</span> <span class="ot">NA</span>, <span class="dt">objectClass =</span> <span class="ot">NA</span>, <span class="dt">desc =</span> <span class="ot">NA</span>)</span>
+<span id="cb11-9"><a href="#cb11-9"></a>  )</span></code></pre></div>
 <ol start="5" style="list-style-type: decimal">
 <li>Complete metadata, and define the parameter, expectedInputs and createdOutputs</li>
 </ol>
@@ -380,62 +385,62 @@ events &lt;-<span class="st"> </span>{
 </li>
 <li>When you are done, don’t forget to save the <em>loop.R</em> file!</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">defineModule</span>(sim, <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-  <span class="dt">name =</span> <span class="st">"loop"</span>,
-  <span class="dt">description =</span> <span class="st">"For-loop in SpaDES"</span>,
-  <span class="dt">keywords =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"loops"</span>, <span class="st">"age"</span>, <span class="st">"simple"</span>),
-  <span class="dt">authors =</span> <span class="kw"><a href="https://rdrr.io/r/utils/person.html">person</a></span>(<span class="st">"John"</span>, <span class="st">"Doe"</span>, <span class="dt">email =</span> <span class="st">"john.doe@example.com"</span>, <span class="dt">role =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"aut"</span>, <span class="st">"cre"</span>)),
-  <span class="dt">childModules =</span> <span class="kw"><a href="https://rdrr.io/r/base/character.html">character</a></span>(<span class="dv">0</span>),
-  <span class="dt">version =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">SpaDES.core =</span> <span class="st">"0.1.1.9005"</span>, <span class="dt">loop =</span> <span class="st">"0.0.1"</span>),
-  <span class="dt">spatialExtent =</span> raster<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/raster/man/extent.html">extent</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="ot">NA_real_</span>, <span class="dv">4</span>)),
-  <span class="dt">timeframe =</span> <span class="kw"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXlt</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="ot">NA</span>, <span class="ot">NA</span>)),
-  <span class="dt">timeunit =</span> <span class="st">"year"</span>,
-  <span class="dt">citation =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"citation.bib"</span>),
-  <span class="dt">documentation =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"README.txt"</span>, <span class="st">"loop.Rmd"</span>),
-  <span class="dt">reqdPkgs =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(),
-  <span class="dt">parameters =</span> <span class="kw"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(
-    <span class="kw">defineParameter</span>(<span class="dt">name =</span> <span class="st">"Step"</span>, <span class="dt">class =</span> <span class="st">"numeric"</span>, <span class="dt">default =</span> <span class="dv">1</span>, <span class="dt">min =</span> <span class="ot">NA</span>, <span class="dt">max =</span> <span class="ot">NA</span>, <span class="dt">desc =</span> <span class="st">"Time step"</span>)
-  ),
-  <span class="dt">inputObjects =</span> <span class="kw">bind_rows</span>(
-    <span class="co">#expectsInput("objectName", "objectClass", "input object description", sourceURL, ...),</span>
-    <span class="kw">expectsInput</span>(<span class="dt">objectName =</span> <span class="ot">NA</span>, <span class="dt">objectClass =</span> <span class="ot">NA</span>, <span class="dt">desc =</span> <span class="ot">NA</span>, <span class="dt">sourceURL =</span> <span class="ot">NA</span>)
-  ),
-  <span class="dt">outputObjects =</span> <span class="kw">bind_rows</span>(
-    <span class="co">#createsOutput("objectName", "objectClass", "output object description", ...),</span>
-    <span class="kw">createsOutput</span>(<span class="dt">objectName =</span> <span class="st">"age"</span>, <span class="dt">objectClass =</span> <span class="st">"integer"</span>, <span class="dt">desc =</span> <span class="st">"Age vector"</span>)
-  )
-))</code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">defineModule</span>(sim, <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
+<span id="cb12-2"><a href="#cb12-2"></a>  <span class="dt">name =</span> <span class="st">"loop"</span>,</span>
+<span id="cb12-3"><a href="#cb12-3"></a>  <span class="dt">description =</span> <span class="st">"For-loop in SpaDES"</span>,</span>
+<span id="cb12-4"><a href="#cb12-4"></a>  <span class="dt">keywords =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"loops"</span>, <span class="st">"age"</span>, <span class="st">"simple"</span>),</span>
+<span id="cb12-5"><a href="#cb12-5"></a>  <span class="dt">authors =</span> <span class="kw"><a href="https://rdrr.io/r/utils/person.html">person</a></span>(<span class="st">"John"</span>, <span class="st">"Doe"</span>, <span class="dt">email =</span> <span class="st">"john.doe@example.com"</span>, <span class="dt">role =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"aut"</span>, <span class="st">"cre"</span>)),</span>
+<span id="cb12-6"><a href="#cb12-6"></a>  <span class="dt">childModules =</span> <span class="kw"><a href="https://rdrr.io/r/base/character.html">character</a></span>(<span class="dv">0</span>),</span>
+<span id="cb12-7"><a href="#cb12-7"></a>  <span class="dt">version =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">SpaDES.core =</span> <span class="st">"0.1.1.9005"</span>, <span class="dt">loop =</span> <span class="st">"0.0.1"</span>),</span>
+<span id="cb12-8"><a href="#cb12-8"></a>  <span class="dt">spatialExtent =</span> raster<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/raster/man/extent.html">extent</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="ot">NA_real_</span>, <span class="dv">4</span>)),</span>
+<span id="cb12-9"><a href="#cb12-9"></a>  <span class="dt">timeframe =</span> <span class="kw"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXlt</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="ot">NA</span>, <span class="ot">NA</span>)),</span>
+<span id="cb12-10"><a href="#cb12-10"></a>  <span class="dt">timeunit =</span> <span class="st">"year"</span>,</span>
+<span id="cb12-11"><a href="#cb12-11"></a>  <span class="dt">citation =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"citation.bib"</span>),</span>
+<span id="cb12-12"><a href="#cb12-12"></a>  <span class="dt">documentation =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"README.txt"</span>, <span class="st">"loop.Rmd"</span>),</span>
+<span id="cb12-13"><a href="#cb12-13"></a>  <span class="dt">reqdPkgs =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(),</span>
+<span id="cb12-14"><a href="#cb12-14"></a>  <span class="dt">parameters =</span> <span class="kw"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(</span>
+<span id="cb12-15"><a href="#cb12-15"></a>    <span class="kw">defineParameter</span>(<span class="dt">name =</span> <span class="st">"Step"</span>, <span class="dt">class =</span> <span class="st">"numeric"</span>, <span class="dt">default =</span> <span class="dv">1</span>, <span class="dt">min =</span> <span class="ot">NA</span>, <span class="dt">max =</span> <span class="ot">NA</span>, <span class="dt">desc =</span> <span class="st">"Time step"</span>)</span>
+<span id="cb12-16"><a href="#cb12-16"></a>  ),</span>
+<span id="cb12-17"><a href="#cb12-17"></a>  <span class="dt">inputObjects =</span> <span class="kw">bind_rows</span>(</span>
+<span id="cb12-18"><a href="#cb12-18"></a>    <span class="co">#expectsInput("objectName", "objectClass", "input object description", sourceURL, ...),</span></span>
+<span id="cb12-19"><a href="#cb12-19"></a>    <span class="kw">expectsInput</span>(<span class="dt">objectName =</span> <span class="ot">NA</span>, <span class="dt">objectClass =</span> <span class="ot">NA</span>, <span class="dt">desc =</span> <span class="ot">NA</span>, <span class="dt">sourceURL =</span> <span class="ot">NA</span>)</span>
+<span id="cb12-20"><a href="#cb12-20"></a>  ),</span>
+<span id="cb12-21"><a href="#cb12-21"></a>  <span class="dt">outputObjects =</span> <span class="kw">bind_rows</span>(</span>
+<span id="cb12-22"><a href="#cb12-22"></a>    <span class="co">#createsOutput("objectName", "objectClass", "output object description", ...),</span></span>
+<span id="cb12-23"><a href="#cb12-23"></a>    <span class="kw">createsOutput</span>(<span class="dt">objectName =</span> <span class="st">"age"</span>, <span class="dt">objectClass =</span> <span class="st">"integer"</span>, <span class="dt">desc =</span> <span class="st">"Age vector"</span>)</span>
+<span id="cb12-24"><a href="#cb12-24"></a>  )</span>
+<span id="cb12-25"><a href="#cb12-25"></a>))</span></code></pre></div>
 </div>
 <div id="exercise-1-3--run-simulations-check-the-event-queue-and-module-diagrams" class="section level3">
 <h3 class="hasAnchor">
 <a href="#exercise-1-3--run-simulations-check-the-event-queue-and-module-diagrams" class="anchor"></a>Exercise 1.3. Run simulations, check the event queue and module diagrams</h3>
 <p>Now let’s give our <em>loop.Rmd</em> an example - let’s set up the “simulation” run. 1. Check the event queue before and after running <code>spades</code> 2. Produce module diagrams before running <code>spades</code> 3. Run the “simulation” 4. Compare with outputs produced by the “normal” loop</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Simulation setup
-paths &lt;-<span class="st"> </span><span class="kw">getPaths</span>()
-modules &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"loop"</span>)
-times &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">start =</span> <span class="dv">1</span>, <span class="dt">end =</span> <span class="dv">10</span>)
-parameters &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">loop =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">Step =</span> 1L))   
-
-## SpaDES Events
-mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(<span class="dt">paths =</span> paths, <span class="dt">modules =</span> modules, 
-                 <span class="dt">times =</span> times, <span class="dt">params =</span> parameters)   ## remove the "L" from Step and see what happens
-<span class="kw">events</span>(mySim)   ## shows scheduled events
-
-mySimOut &lt;-<span class="st"> </span><span class="kw">spades</span>(mySim, <span class="dt">debug =</span> <span class="ot">TRUE</span>)   ## execute events
-<span class="kw">events</span>(mySimOut)      ##
-<span class="kw">completed</span>(mySimOut)   ## shows completed events
-
-mySimOut<span class="op">$</span>age
-
-## Loop version
-age &lt;-<span class="st"> </span><span class="dv">1</span>
-<span class="cf">for</span> (time <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) {
-  age &lt;-<span class="st"> </span>age <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
-}
-
-## Compare outputs
-mySimOut<span class="op">$</span>age
-age</code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co">## Simulation setup</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>paths &lt;-<span class="st"> </span><span class="kw">getPaths</span>()</span>
+<span id="cb13-3"><a href="#cb13-3"></a>modules &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"loop"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4"></a>times &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">start =</span> <span class="dv">1</span>, <span class="dt">end =</span> <span class="dv">10</span>)</span>
+<span id="cb13-5"><a href="#cb13-5"></a>parameters &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">loop =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">Step =</span> 1L))   </span>
+<span id="cb13-6"><a href="#cb13-6"></a></span>
+<span id="cb13-7"><a href="#cb13-7"></a><span class="co">## SpaDES Events</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a>mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(<span class="dt">paths =</span> paths, <span class="dt">modules =</span> modules, </span>
+<span id="cb13-9"><a href="#cb13-9"></a>                 <span class="dt">times =</span> times, <span class="dt">params =</span> parameters)   <span class="co">## remove the "L" from Step and see what happens</span></span>
+<span id="cb13-10"><a href="#cb13-10"></a><span class="kw">events</span>(mySim)   <span class="co">## shows scheduled events</span></span>
+<span id="cb13-11"><a href="#cb13-11"></a></span>
+<span id="cb13-12"><a href="#cb13-12"></a>mySimOut &lt;-<span class="st"> </span><span class="kw">spades</span>(mySim, <span class="dt">debug =</span> <span class="ot">TRUE</span>)   <span class="co">## execute events</span></span>
+<span id="cb13-13"><a href="#cb13-13"></a><span class="kw">events</span>(mySimOut)      <span class="co">##</span></span>
+<span id="cb13-14"><a href="#cb13-14"></a><span class="kw">completed</span>(mySimOut)   <span class="co">## shows completed events</span></span>
+<span id="cb13-15"><a href="#cb13-15"></a></span>
+<span id="cb13-16"><a href="#cb13-16"></a>mySimOut<span class="op">$</span>age</span>
+<span id="cb13-17"><a href="#cb13-17"></a></span>
+<span id="cb13-18"><a href="#cb13-18"></a><span class="co">## Loop version</span></span>
+<span id="cb13-19"><a href="#cb13-19"></a>age &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb13-20"><a href="#cb13-20"></a><span class="cf">for</span> (time <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) {</span>
+<span id="cb13-21"><a href="#cb13-21"></a>  age &lt;-<span class="st"> </span>age <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb13-22"><a href="#cb13-22"></a>}</span>
+<span id="cb13-23"><a href="#cb13-23"></a></span>
+<span id="cb13-24"><a href="#cb13-24"></a><span class="co">## Compare outputs</span></span>
+<span id="cb13-25"><a href="#cb13-25"></a>mySimOut<span class="op">$</span>age</span>
+<span id="cb13-26"><a href="#cb13-26"></a>age</span></code></pre></div>
 <p>Note that mySimOut is a <em>pointer</em> to the updated/changed <code>mySim</code> not a true new <code>simList</code> object</p>
 </div>
 <div id="exercise-1-4--make-it-even-more-spadesy" class="section level3">
@@ -445,47 +450,47 @@ age</code></pre></div>
 <ol style="list-style-type: decimal">
 <li>Make separate functions to be used in the <code>init</code> and the <code>addOneYear</code> events.</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### Initialisation function
-loopInit &lt;-<span class="st"> </span><span class="cf">function</span>(sim) {
-  sim<span class="op">$</span>age &lt;-<span class="st"> </span><span class="dv">1</span>
-  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/invisible.html">invisible</a></span>(sim))
-}
-
-### Aging event function
-aging &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">age =</span> sim<span class="op">$</span>age) {
-  age &lt;-<span class="st"> </span>age <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
-  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span>(age)
-}</code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co">### Initialisation function</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>loopInit &lt;-<span class="st"> </span><span class="cf">function</span>(sim) {</span>
+<span id="cb14-3"><a href="#cb14-3"></a>  sim<span class="op">$</span>age &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/invisible.html">invisible</a></span>(sim))</span>
+<span id="cb14-5"><a href="#cb14-5"></a>}</span>
+<span id="cb14-6"><a href="#cb14-6"></a></span>
+<span id="cb14-7"><a href="#cb14-7"></a><span class="co">### Aging event function</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a>aging &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">age =</span> sim<span class="op">$</span>age) {</span>
+<span id="cb14-9"><a href="#cb14-9"></a>  age &lt;-<span class="st"> </span>age <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb14-10"><a href="#cb14-10"></a>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span>(age)</span>
+<span id="cb14-11"><a href="#cb14-11"></a>}</span></code></pre></div>
 <p>NOTE: We present above two different ways of specifying a function. One always passed the <code>sim</code> object to the function and return the <code>sim</code> oject modified. The second returns the results of a function to the <code>sim</code> object as a new object “in” it.</p>
 <ol start="2" style="list-style-type: decimal">
 <li>Now you’ll need to adapt the code inside <code>doEvent.loop</code> so that the appropriate functions are called inside their respective events</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">doEvent.loop =<span class="st"> </span><span class="cf">function</span>(sim, eventTime, eventType) {
-  <span class="cf">switch</span>(
-    eventType,
-    <span class="dt">init =</span> {
-      ## event content
-      <span class="co"># sim$age &lt;- 1</span>
-      ## OR
-      sim &lt;-<span class="st"> </span><span class="kw">loopInit</span>(sim)
-
-      ## schedule event
-      sim &lt;-<span class="st"> </span><span class="kw">scheduleEvent</span>(sim, <span class="kw"><a href="https://rdrr.io/r/stats/start.html">start</a></span>(sim), <span class="st">"loop"</span>, <span class="st">"addOneYear"</span>)
-    },
-    <span class="dt">addOneYear =</span> {
-      ## event content:
-      <span class="co"># sim$age &lt;- sim$age + 1</span>
-      ## OR:
-      sim<span class="op">$</span>age &lt;-<span class="st"> </span><span class="kw">aging</span>(<span class="dt">age =</span> sim<span class="op">$</span>age)
-
-      ## schedule event
-      sim &lt;-<span class="st"> </span><span class="kw">scheduleEvent</span>(sim, <span class="kw"><a href="https://rdrr.io/r/stats/time.html">time</a></span>(sim) <span class="op">+</span><span class="st"> </span><span class="kw">P</span>(sim)<span class="op">$</span>Step, <span class="st">"loop"</span>, <span class="st">"addOneYear"</span>)
-    },
-    <span class="kw"><a href="https://rdrr.io/r/base/warning.html">warning</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"Undefined event type: '"</span>, <span class="kw">current</span>(sim)[<span class="dv">1</span>, <span class="st">"eventType"</span>, <span class="dt">with =</span> <span class="ot">FALSE</span>],
-                  <span class="st">"' in module '"</span>, <span class="kw">current</span>(sim)[<span class="dv">1</span>, <span class="st">"moduleName"</span>, <span class="dt">with =</span> <span class="ot">FALSE</span>], <span class="st">"'"</span>, <span class="dt">sep =</span> <span class="st">""</span>))
-  )
-  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/invisible.html">invisible</a></span>(sim))
-}</code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>doEvent.loop =<span class="st"> </span><span class="cf">function</span>(sim, eventTime, eventType) {</span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="cf">switch</span>(</span>
+<span id="cb15-3"><a href="#cb15-3"></a>    eventType,</span>
+<span id="cb15-4"><a href="#cb15-4"></a>    <span class="dt">init =</span> {</span>
+<span id="cb15-5"><a href="#cb15-5"></a>      <span class="co">## event content</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a>      <span class="co"># sim$age &lt;- 1</span></span>
+<span id="cb15-7"><a href="#cb15-7"></a>      <span class="co">## OR</span></span>
+<span id="cb15-8"><a href="#cb15-8"></a>      sim &lt;-<span class="st"> </span><span class="kw">loopInit</span>(sim)</span>
+<span id="cb15-9"><a href="#cb15-9"></a></span>
+<span id="cb15-10"><a href="#cb15-10"></a>      <span class="co">## schedule event</span></span>
+<span id="cb15-11"><a href="#cb15-11"></a>      sim &lt;-<span class="st"> </span><span class="kw">scheduleEvent</span>(sim, <span class="kw"><a href="https://rdrr.io/r/stats/start.html">start</a></span>(sim), <span class="st">"loop"</span>, <span class="st">"addOneYear"</span>)</span>
+<span id="cb15-12"><a href="#cb15-12"></a>    },</span>
+<span id="cb15-13"><a href="#cb15-13"></a>    <span class="dt">addOneYear =</span> {</span>
+<span id="cb15-14"><a href="#cb15-14"></a>      <span class="co">## event content:</span></span>
+<span id="cb15-15"><a href="#cb15-15"></a>      <span class="co"># sim$age &lt;- sim$age + 1</span></span>
+<span id="cb15-16"><a href="#cb15-16"></a>      <span class="co">## OR:</span></span>
+<span id="cb15-17"><a href="#cb15-17"></a>      sim<span class="op">$</span>age &lt;-<span class="st"> </span><span class="kw">aging</span>(<span class="dt">age =</span> sim<span class="op">$</span>age)</span>
+<span id="cb15-18"><a href="#cb15-18"></a></span>
+<span id="cb15-19"><a href="#cb15-19"></a>      <span class="co">## schedule event</span></span>
+<span id="cb15-20"><a href="#cb15-20"></a>      sim &lt;-<span class="st"> </span><span class="kw">scheduleEvent</span>(sim, <span class="kw"><a href="https://rdrr.io/r/stats/time.html">time</a></span>(sim) <span class="op">+</span><span class="st"> </span><span class="kw">P</span>(sim)<span class="op">$</span>Step, <span class="st">"loop"</span>, <span class="st">"addOneYear"</span>)</span>
+<span id="cb15-21"><a href="#cb15-21"></a>    },</span>
+<span id="cb15-22"><a href="#cb15-22"></a>    <span class="kw"><a href="https://rdrr.io/r/base/warning.html">warning</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"Undefined event type: '"</span>, <span class="kw">current</span>(sim)[<span class="dv">1</span>, <span class="st">"eventType"</span>, <span class="dt">with =</span> <span class="ot">FALSE</span>],</span>
+<span id="cb15-23"><a href="#cb15-23"></a>                  <span class="st">"' in module '"</span>, <span class="kw">current</span>(sim)[<span class="dv">1</span>, <span class="st">"moduleName"</span>, <span class="dt">with =</span> <span class="ot">FALSE</span>], <span class="st">"'"</span>, <span class="dt">sep =</span> <span class="st">""</span>))</span>
+<span id="cb15-24"><a href="#cb15-24"></a>  )</span>
+<span id="cb15-25"><a href="#cb15-25"></a>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/invisible.html">invisible</a></span>(sim))</span>
+<span id="cb15-26"><a href="#cb15-26"></a>}</span></code></pre></div>
 </div>
 </div>
   </div>

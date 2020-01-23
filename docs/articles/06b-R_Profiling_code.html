@@ -86,7 +86,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="06b-R_Profiling_code_files/header-attrs-2.0.6/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>R – Profiling code</h1>
@@ -105,9 +105,9 @@
 <h2 class="hasAnchor">
 <a href="#profiling-and-benchmarking-1" class="anchor"></a>Profiling and Benchmarking (1)</h2>
 <ul>
-<li>In general, the usual claim is to worry about ‘execution speed later’</li>
-<li>This is not 100% true with R</li>
-<li>If you use vectorization (no or few loops), and these packages listed here, then you will have a good start</li>
+<li><p>In general, the usual claim is to worry about ‘execution speed later’</p></li>
+<li><p>This is not 100% true with R</p></li>
+<li><p>If you use vectorization (no or few loops), and these packages listed here, then you will have a good start</p></li>
 <li>
 <p>AFTER that, then you can use several great tools:</p>
 <ul>
@@ -122,19 +122,19 @@
 <div id="profiling-and-benchmarking-2" class="section level2">
 <h2 class="hasAnchor">
 <a href="#profiling-and-benchmarking-2" class="anchor"></a>Profiling and Benchmarking (2)</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">microbenchmark<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html">microbenchmark</a></span>(
-  <span class="dt">loop =</span> {
-    a &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/vector.html">vector</a></span>()
-    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>) a[i] &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dv">1</span>)
-  },
-  <span class="dt">vectorized =</span> {
-    a &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dv">1000</span>)
-  }
-)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>microbenchmark<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html">microbenchmark</a></span>(</span>
+<span id="cb1-2"><a href="#cb1-2"></a>  <span class="dt">loop =</span> {</span>
+<span id="cb1-3"><a href="#cb1-3"></a>    a &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/vector.html">vector</a></span>()</span>
+<span id="cb1-4"><a href="#cb1-4"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>) a[i] &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dv">1</span>)</span>
+<span id="cb1-5"><a href="#cb1-5"></a>  },</span>
+<span id="cb1-6"><a href="#cb1-6"></a>  <span class="dt">vectorized =</span> {</span>
+<span id="cb1-7"><a href="#cb1-7"></a>    a &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dv">1000</span>)</span>
+<span id="cb1-8"><a href="#cb1-8"></a>  }</span>
+<span id="cb1-9"><a href="#cb1-9"></a>)</span></code></pre></div>
 <pre><code>## Unit: microseconds
-##        expr      min       lq       mean   median       uq       max neval
-##        loop 2870.088 3250.032 6282.18604 4946.784 7957.942 22529.223   100
-##  vectorized   27.944   29.146   32.27084   30.648   32.151   109.071   100</code></pre>
+##        expr      min        lq       mean   median       uq       max neval
+##        loop 3769.842 3926.1320 5361.90657 4114.694 5340.639 23169.056   100
+##  vectorized   31.543   33.2845   36.24924   35.001   37.776    84.571   100</code></pre>
 </div>
 <div id="profiling-and-benchmarking-3" class="section level2">
 <h2 class="hasAnchor">
@@ -144,21 +144,21 @@
 <li><p>alternatively, we wrap any block of code with <code>profvis</code></p></li>
 <li><p>This can be a <code>spades()</code> call, so it will show you the entire model:</p></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">profvis<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/profvis/man/profvis.html">profvis</a></span>({a &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dv">10000000</span>)})</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>profvis<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/profvis/man/profvis.html">profvis</a></span>({a &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dv">10000000</span>)})</span></code></pre></div>
 </div>
 <div id="profiling-the-spades-call" class="section level2">
 <h2 class="hasAnchor">
 <a href="#profiling-the-spades-call" class="anchor"></a>Profiling the <code>spades</code> call</h2>
 <p>Try it:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(
-   <span class="dt">times =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">start =</span> <span class="fl">0.0</span>, <span class="dt">end =</span> <span class="fl">2.0</span>, <span class="dt">timeunit =</span> <span class="st">"year"</span>),
-   <span class="dt">params =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-     <span class="dt">.globals =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">stackName =</span> <span class="st">"landscape"</span>, <span class="dt">burnStats =</span> <span class="st">"nPixelsBurned"</span>)
-   ),
-   <span class="dt">modules =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"randomLandscapes"</span>, <span class="st">"fireSpread"</span>, <span class="st">"caribouMovement"</span>),
-   <span class="dt">paths =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">modulePath =</span> <span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"sampleModules"</span>, <span class="dt">package =</span> <span class="st">"SpaDES"</span>))
-)
-profvis<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/profvis/man/profvis.html">profvis</a></span>({<span class="kw">spades</span>(mySim)})</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(</span>
+<span id="cb4-2"><a href="#cb4-2"></a>   <span class="dt">times =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">start =</span> <span class="fl">0.0</span>, <span class="dt">end =</span> <span class="fl">2.0</span>, <span class="dt">timeunit =</span> <span class="st">"year"</span>),</span>
+<span id="cb4-3"><a href="#cb4-3"></a>   <span class="dt">params =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
+<span id="cb4-4"><a href="#cb4-4"></a>     <span class="dt">.globals =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">stackName =</span> <span class="st">"landscape"</span>, <span class="dt">burnStats =</span> <span class="st">"nPixelsBurned"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5"></a>   ),</span>
+<span id="cb4-6"><a href="#cb4-6"></a>   <span class="dt">modules =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"randomLandscapes"</span>, <span class="st">"fireSpread"</span>, <span class="st">"caribouMovement"</span>),</span>
+<span id="cb4-7"><a href="#cb4-7"></a>   <span class="dt">paths =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">modulePath =</span> <span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"sampleModules"</span>, <span class="dt">package =</span> <span class="st">"SpaDES"</span>))</span>
+<span id="cb4-8"><a href="#cb4-8"></a>)</span>
+<span id="cb4-9"><a href="#cb4-9"></a>profvis<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/profvis/man/profvis.html">profvis</a></span>({<span class="kw">spades</span>(mySim)})</span></code></pre></div>
 </div>
 <div id="when-to-profile" class="section level2">
 <h2 class="hasAnchor">

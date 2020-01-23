@@ -11,7 +11,7 @@ If you are interested in being put on the email list for future courses, please 
 
 ### Location & Times
 
-**Pacific Forestry Centre, 9am - 4pm each day**
+**Pacific Forestry Centre (Main conference room on ground floor), 9am - 4pm each day**
 
 We have organized a set of sessions, back to back, starting from the most "general"", and ending with the most "detailed".
 The hope is to attract non-modelers (e.g., managers, scientists, practitioners) to the first session, people who think they might want to see more how models work (e.g., scientists, students, technicians), and those who want to build and use models for research and operational purposes (e.g., scientists, technicians, programmers).
