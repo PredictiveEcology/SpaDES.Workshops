@@ -6,7 +6,7 @@ replacementList <- list(
   "Past Workshops" = "Prior to 2019",
   "06b-Plotting.html" = "http://quickplot.predictiveecology.org/articles/iii-plotting.html",
   "Released package" = NULL,
-  "03c-SpaDESInAction.html" = "./SpaDESinAction2/runMe.html",
+  "03c-SpaDESInAction.html" = "/SpaDESinAction2/runMe.html",
   "02b-SpaDES4Dummies.html" = "https://htmlpreview.github.io/?https://github.com/CeresBarros/SpaDES4Dummies/blob/master/SpaDES4Dummies.html",
   "exercise1" = "https://htmlpreview.github.io/?https://github.com/PredictiveEcology/SpaDES.Workshops/blob/master/exercises/01-exercises.html",
   "exercise2" = "https://htmlpreview.github.io/?https://github.com/PredictiveEcology/SpaDES.Workshops/blob/master/exercises/02-exercises.html",
