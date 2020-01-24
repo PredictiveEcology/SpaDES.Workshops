@@ -1,3 +1,6 @@
 [submodule "scfmModules"]
 	path = scfmModules
 	url = https://github.com/tati-micheletti/scfmModules.git
+[submodule "SpaDESinAction2"]
+	path = SpaDESinAction2
+	url = git@github.com:tati-micheletti/SpaDESinAction2.git
