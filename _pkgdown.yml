@@ -61,7 +61,7 @@ articles:
       9. SimInit, the simList and the `spades()` call
       10. Checking your outputs
     contents:
-    - runMe.html
+    - 03c-SpaDESInAction
 
   - title: "Day 2 - Hands on: From R to SpaDES"
     desc: >
