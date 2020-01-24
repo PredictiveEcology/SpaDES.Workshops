@@ -1,13 +1,13 @@
 ---
-title       : "SpaDES in Action"
-author      : "Tati Micheletti"
-date        : "2019 October 10"
-editor_options: 
+title: "SpaDES in Action"
+author: "Tati Micheletti"
+date: "2019 October 10"
+editor_options:
   chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+knitr::opts_chunk$set(cache = TRUE, echo = TRUE, eval = FALSE)
 ```
 
 ## [`SpaDESinAction`: a forest succession, a wildfire models, and a caribou models](../SpaDESinAction2/runMe.html)
