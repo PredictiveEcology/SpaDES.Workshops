@@ -90,7 +90,7 @@ articles:
     desc: >
       In this section you can find several exercises to get you started with SpaDES.
     contents:
-    - exercise1
+    - 01-exercises
     - exercise2
     - exercise3
     - exercise4
