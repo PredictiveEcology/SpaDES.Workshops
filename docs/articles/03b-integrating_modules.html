@@ -86,7 +86,7 @@
 
       
 
-      </header><script src="03b-integrating_modules_files/header-attrs-2.0.6/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Integrating different disciplines? With SpaDES is possible!</h1>
@@ -109,96 +109,96 @@
 3. Harvesting<br>
 4. Birds<br>
 5. Caribou</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Load libraries  </span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(SpaDES.core)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="co">#library(magrittr)</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="co">#library(raster)</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a></span>
-<span id="cb1-6"><a href="#cb1-6"></a>main.dir &lt;-<span class="st">  "~/integratedExample"</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="co">## We'll create the necessary directories in a temporary location - feel free to change this if you wish to.</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="kw"><a href="http://spades-core.predictiveecology.org//reference/setPaths.html">setPaths</a></span>(<span class="dt">cachePath =</span> <span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(main.dir,<span class="st">'cache'</span>),</span>
-<span id="cb1-10"><a href="#cb1-10"></a>         <span class="dt">inputPath =</span> <span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(main.dir, <span class="st">'inputs'</span>),</span>
-<span id="cb1-11"><a href="#cb1-11"></a>         <span class="dt">modulePath =</span> <span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(main.dir, <span class="st">'modules'</span>),</span>
-<span id="cb1-12"><a href="#cb1-12"></a>         <span class="dt">outputPath =</span> <span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(main.dir, <span class="st">'outputs'</span>))</span>
-<span id="cb1-13"><a href="#cb1-13"></a></span>
-<span id="cb1-14"><a href="#cb1-14"></a><span class="kw"><a href="http://spades-core.predictiveecology.org//reference/downloadModule.html">downloadModule</a></span>(<span class="dt">name =</span> <span class="st">"integratedSask"</span>,</span>
-<span id="cb1-15"><a href="#cb1-15"></a>               <span class="dt">path =</span> <span class="kw"><a href="http://spades-core.predictiveecology.org//reference/setPaths.html">getPaths</a></span>()<span class="op">$</span>modulePath, </span>
-<span id="cb1-16"><a href="#cb1-16"></a>               <span class="dt">repo =</span> <span class="st">"PredictiveEcology/scfmModules"</span>,</span>
-<span id="cb1-17"><a href="#cb1-17"></a>               <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb1-18"><a href="#cb1-18"></a></span>
-<span id="cb1-19"><a href="#cb1-19"></a>times &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">start =</span> <span class="dv">0</span>, <span class="dt">end =</span> <span class="dv">15</span>)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load libraries  </span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(SpaDES.core)
+<span class="co">#library(magrittr)</span>
+<span class="co">#library(raster)</span>
+
+main.dir &lt;-<span class="st">  "~/integratedExample"</span>
+
+## We'll create the necessary directories in a temporary location - feel free to change this if you wish to.
+<span class="kw">setPaths</span>(<span class="dt">cachePath =</span> <span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(main.dir,<span class="st">'cache'</span>),
+         <span class="dt">inputPath =</span> <span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(main.dir, <span class="st">'inputs'</span>),
+         <span class="dt">modulePath =</span> <span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(main.dir, <span class="st">'modules'</span>),
+         <span class="dt">outputPath =</span> <span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(main.dir, <span class="st">'outputs'</span>))
+
+<span class="kw">downloadModule</span>(<span class="dt">name =</span> <span class="st">"integratedSask"</span>,
+               <span class="dt">path =</span> <span class="kw">getPaths</span>()<span class="op">$</span>modulePath, 
+               <span class="dt">repo =</span> <span class="st">"PredictiveEcology/scfmModules"</span>,
+               <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)
+
+times &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">start =</span> <span class="dv">0</span>, <span class="dt">end =</span> <span class="dv">15</span>)</code></pre></div>
 <p>Steve Cumming, a fire specialist has a nice set of forest succession and a fire simulation models for a region in Saskatchewan. We will run his set of modules:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>parameters &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
-<span id="cb2-2"><a href="#cb2-2"></a>  <span class="dt">stateVars =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">persistTimes =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">20</span>, <span class="dv">10</span>, <span class="dv">10</span>)),</span>
-<span id="cb2-3"><a href="#cb2-3"></a>  <span class="dt">ageModule  =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">initialAge =</span> <span class="dv">25</span>,</span>
-<span id="cb2-4"><a href="#cb2-4"></a>  <span class="dt">.plotInitialTime =</span> <span class="dv">0</span>),</span>
-<span id="cb2-5"><a href="#cb2-5"></a>  <span class="dt">scfmSpread =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">.plotInitialTime =</span> <span class="dv">0</span>,</span>
-<span id="cb2-6"><a href="#cb2-6"></a>  <span class="dt">pOverRide =</span> <span class="fl">0.28</span>)</span>
-<span id="cb2-7"><a href="#cb2-7"></a>  )</span>
-<span id="cb2-8"><a href="#cb2-8"></a></span>
-<span id="cb2-9"><a href="#cb2-9"></a>objects &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">scfmPars =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">pSpread =</span> <span class="fl">0.225</span>,</span>
-<span id="cb2-10"><a href="#cb2-10"></a>                                <span class="dt">p0 =</span> <span class="fl">0.115</span>,</span>
-<span id="cb2-11"><a href="#cb2-11"></a>                                <span class="dt">naiveP0 =</span> <span class="fl">0.15</span>, </span>
-<span id="cb2-12"><a href="#cb2-12"></a>                                <span class="dt">pIgnition =</span> <span class="fl">0.04</span>, <span class="co">#0.00004, #0.0000112,</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a>                                <span class="dt">maxBurnCells =</span> <span class="ot">NA</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a>                                ),</span>
-<span id="cb2-15"><a href="#cb2-15"></a>                <span class="dt">numTypes =</span> <span class="dv">8</span>,</span>
-<span id="cb2-16"><a href="#cb2-16"></a>                <span class="dt">landscapeAttr =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">cellSize =</span> <span class="fl">6.25</span>),</span>
-<span id="cb2-17"><a href="#cb2-17"></a>                <span class="dt">nNbrs =</span> <span class="dv">8</span>,</span>
-<span id="cb2-18"><a href="#cb2-18"></a>                <span class="dt">url.vegMap =</span> <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"ftp://ftp.ccrs.nrcan.gc.ca/ad/NLCCLandCover/"</span>,</span>
-<span id="cb2-19"><a href="#cb2-19"></a>                                    <span class="st">"LandcoverCanada2005_250m/LandCoverOfCanada2005_V1_4.zip"</span>),</span>
-<span id="cb2-20"><a href="#cb2-20"></a>                <span class="dt">url.studyArea =</span> <span class="st">"http://sis.agr.gc.ca/cansis/nsdb/ecostrat/district/ecodistrict_shp.zip"</span>,</span>
-<span id="cb2-21"><a href="#cb2-21"></a>                <span class="dt">areaInHa =</span> pi,</span>
-<span id="cb2-22"><a href="#cb2-22"></a>                <span class="dt">polyMatrix =</span> <span class="kw"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="op">-</span><span class="fl">113.552320</span>, <span class="fl">55.442529</span>), <span class="dt">ncol =</span> <span class="dv">2</span>),</span>
-<span id="cb2-23"><a href="#cb2-23"></a>                <span class="dt">areaSize =</span> <span class="dv">50000</span></span>
-<span id="cb2-24"><a href="#cb2-24"></a>              )</span>
-<span id="cb2-25"><a href="#cb2-25"></a></span>
-<span id="cb2-26"><a href="#cb2-26"></a><span class="co"># List the modules to use</span></span>
-<span id="cb2-27"><a href="#cb2-27"></a>modulesFire &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"scfmCrop"</span>, <span class="st">"scfmLandcoverInit"</span>, <span class="co"># Downloading and cropping rasters </span></span>
-<span id="cb2-28"><a href="#cb2-28"></a>                <span class="st">"scfmRegime"</span>, <span class="st">"scfmDisturbanceDriver"</span>, <span class="st">"scfmIgnition"</span>, <span class="st">"scfmEscape"</span>, <span class="st">"scfmSpread"</span>, <span class="co"># Fire module </span></span>
-<span id="cb2-29"><a href="#cb2-29"></a>                <span class="st">"ageModule"</span>, <span class="co"># Tree aging </span></span>
-<span id="cb2-30"><a href="#cb2-30"></a>                <span class="st">"mapBurns"</span>) <span class="co"># What burns (considers age)</span></span>
-<span id="cb2-31"><a href="#cb2-31"></a></span>
-<span id="cb2-32"><a href="#cb2-32"></a>mySim &lt;-<span class="st"> </span><span class="kw"><a href="http://spades-core.predictiveecology.org//reference/simInit.html">simInit</a></span>(<span class="dt">times =</span> times, <span class="dt">params =</span> parameters, <span class="dt">modules =</span> modulesFire, <span class="dt">objects =</span> objects, <span class="dt">paths =</span> <span class="kw"><a href="http://spades-core.predictiveecology.org//reference/setPaths.html">getPaths</a></span>(), <span class="dt">loadOrder =</span> <span class="kw"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span>(modulesFire))</span>
-<span id="cb2-33"><a href="#cb2-33"></a></span>
-<span id="cb2-34"><a href="#cb2-34"></a><span class="co"># SIMULATION</span></span>
-<span id="cb2-35"><a href="#cb2-35"></a>mySimOut &lt;-<span class="st"> </span><span class="kw"><a href="http://spades-core.predictiveecology.org//reference/robustDigest.html">Cache</a></span>(spades, mySim, <span class="dt">debug =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">parameters &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+  <span class="dt">stateVars =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">persistTimes =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">20</span>, <span class="dv">10</span>, <span class="dv">10</span>)),
+  <span class="dt">ageModule  =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">initialAge =</span> <span class="dv">25</span>,
+  <span class="dt">.plotInitialTime =</span> <span class="dv">0</span>),
+  <span class="dt">scfmSpread =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">.plotInitialTime =</span> <span class="dv">0</span>,
+  <span class="dt">pOverRide =</span> <span class="fl">0.28</span>)
+  )
+
+objects &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">scfmPars =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">pSpread =</span> <span class="fl">0.225</span>,
+                                <span class="dt">p0 =</span> <span class="fl">0.115</span>,
+                                <span class="dt">naiveP0 =</span> <span class="fl">0.15</span>, 
+                                <span class="dt">pIgnition =</span> <span class="fl">0.04</span>, <span class="co">#0.00004, #0.0000112,</span>
+                                <span class="dt">maxBurnCells =</span> <span class="ot">NA</span>
+                                ),
+                <span class="dt">numTypes =</span> <span class="dv">8</span>,
+                <span class="dt">landscapeAttr =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">cellSize =</span> <span class="fl">6.25</span>),
+                <span class="dt">nNbrs =</span> <span class="dv">8</span>,
+                <span class="dt">url.vegMap =</span> <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"ftp://ftp.ccrs.nrcan.gc.ca/ad/NLCCLandCover/"</span>,
+                                    <span class="st">"LandcoverCanada2005_250m/LandCoverOfCanada2005_V1_4.zip"</span>),
+                <span class="dt">url.studyArea =</span> <span class="st">"http://sis.agr.gc.ca/cansis/nsdb/ecostrat/district/ecodistrict_shp.zip"</span>,
+                <span class="dt">areaInHa =</span> pi,
+                <span class="dt">polyMatrix =</span> <span class="kw"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="op">-</span><span class="fl">113.552320</span>, <span class="fl">55.442529</span>), <span class="dt">ncol =</span> <span class="dv">2</span>),
+                <span class="dt">areaSize =</span> <span class="dv">50000</span>
+              )
+
+<span class="co"># List the modules to use</span>
+modulesFire &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"scfmCrop"</span>, <span class="st">"scfmLandcoverInit"</span>, <span class="co"># Downloading and cropping rasters </span>
+                <span class="st">"scfmRegime"</span>, <span class="st">"scfmDisturbanceDriver"</span>, <span class="st">"scfmIgnition"</span>, <span class="st">"scfmEscape"</span>, <span class="st">"scfmSpread"</span>, <span class="co"># Fire module </span>
+                <span class="st">"ageModule"</span>, <span class="co"># Tree aging </span>
+                <span class="st">"mapBurns"</span>) <span class="co"># What burns (considers age)</span>
+
+mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(<span class="dt">times =</span> times, <span class="dt">params =</span> parameters, <span class="dt">modules =</span> modulesFire, <span class="dt">objects =</span> objects, <span class="dt">paths =</span> <span class="kw">getPaths</span>(), <span class="dt">loadOrder =</span> <span class="kw"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span>(modulesFire))
+
+<span class="co"># SIMULATION</span>
+mySimOut &lt;-<span class="st"> </span><span class="kw">Cache</span>(spades, mySim, <span class="dt">debug =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p>John, who has a forestry company wants to understand the forest dynamics to plan how he will harvest in the same region.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>parameters &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="dt">stateVars =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">persistTimes =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">20</span>, <span class="dv">10</span>, <span class="dv">10</span>)),</span>
-<span id="cb3-3"><a href="#cb3-3"></a>  <span class="dt">ageModule  =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">initialAge =</span> <span class="dv">25</span>,</span>
-<span id="cb3-4"><a href="#cb3-4"></a>  <span class="dt">.plotInitialTime =</span> <span class="dv">0</span>),</span>
-<span id="cb3-5"><a href="#cb3-5"></a>  <span class="dt">scfmSpread =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">.plotInitialTime =</span> <span class="dv">0</span>,</span>
-<span id="cb3-6"><a href="#cb3-6"></a>  <span class="dt">pOverRide =</span> <span class="fl">0.28</span>)</span>
-<span id="cb3-7"><a href="#cb3-7"></a>)</span>
-<span id="cb3-8"><a href="#cb3-8"></a></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="co"># List the modules to use</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a>modulesHarvest &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"scfmCrop"</span>, <span class="st">"scfmLandcoverInit"</span>, </span>
-<span id="cb3-11"><a href="#cb3-11"></a>                       <span class="st">"loadYieldTables"</span>, <span class="st">"Hanzlik"</span>, <span class="st">"strataMapFromVegMap"</span>, <span class="st">"scfmHarvest"</span>, <span class="st">"stateVars"</span>) </span>
-<span id="cb3-12"><a href="#cb3-12"></a></span>
-<span id="cb3-13"><a href="#cb3-13"></a>mySim2 &lt;-<span class="st"> </span><span class="kw"><a href="http://spades-core.predictiveecology.org//reference/simInit.html">simInit</a></span>(<span class="dt">times =</span> times,</span>
-<span id="cb3-14"><a href="#cb3-14"></a>                  <span class="dt">params =</span> parameters,</span>
-<span id="cb3-15"><a href="#cb3-15"></a>                  <span class="dt">modules =</span> modulesHarvest,</span>
-<span id="cb3-16"><a href="#cb3-16"></a>                  <span class="dt">objects =</span> objects,</span>
-<span id="cb3-17"><a href="#cb3-17"></a>                  <span class="dt">paths =</span> <span class="kw"><a href="http://spades-core.predictiveecology.org//reference/setPaths.html">getPaths</a></span>(),</span>
-<span id="cb3-18"><a href="#cb3-18"></a>                  <span class="dt">loadOrder =</span> <span class="kw"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span>(modulesHarvest))</span>
-<span id="cb3-19"><a href="#cb3-19"></a></span>
-<span id="cb3-20"><a href="#cb3-20"></a><span class="co"># SIMULATION</span></span>
-<span id="cb3-21"><a href="#cb3-21"></a>mySimOut2 &lt;-<span class="st"> </span><span class="kw"><a href="http://spades-core.predictiveecology.org//reference/robustDigest.html">Cache</a></span>(spades, mySim2)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">parameters &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+  <span class="dt">stateVars =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">persistTimes =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">20</span>, <span class="dv">10</span>, <span class="dv">10</span>)),
+  <span class="dt">ageModule  =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">initialAge =</span> <span class="dv">25</span>,
+  <span class="dt">.plotInitialTime =</span> <span class="dv">0</span>),
+  <span class="dt">scfmSpread =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">.plotInitialTime =</span> <span class="dv">0</span>,
+  <span class="dt">pOverRide =</span> <span class="fl">0.28</span>)
+)
+
+<span class="co"># List the modules to use</span>
+modulesHarvest &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"scfmCrop"</span>, <span class="st">"scfmLandcoverInit"</span>, 
+                       <span class="st">"loadYieldTables"</span>, <span class="st">"Hanzlik"</span>, <span class="st">"strataMapFromVegMap"</span>, <span class="st">"scfmHarvest"</span>, <span class="st">"stateVars"</span>) 
+
+mySim2 &lt;-<span class="st"> </span><span class="kw">simInit</span>(<span class="dt">times =</span> times,
+                  <span class="dt">params =</span> parameters,
+                  <span class="dt">modules =</span> modulesHarvest,
+                  <span class="dt">objects =</span> objects,
+                  <span class="dt">paths =</span> <span class="kw">getPaths</span>(),
+                  <span class="dt">loadOrder =</span> <span class="kw"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span>(modulesHarvest))
+
+<span class="co"># SIMULATION</span>
+mySimOut2 &lt;-<span class="st"> </span><span class="kw">Cache</span>(spades, mySim2)</code></pre></div>
 <p>Tati, in the mean time, has been working with the boreal birds and developed a bird model to predict how probable it is to find two bird species based on forest cover in the same region. Eliot, on the other hand, has been working with the Caribou group and developed a model for its population that focuses mainly in the availability of high quality habitat also in this region in Saskatchewan.</p>
 <p>With <code>SpaDES</code>, we can relatively easily write all these models as SpaDES modules and integrate all in one analysis.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>modules &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(modulesFire, modulesHarvest, <span class="st">"birdsAlberta"</span>, <span class="st">"caribouAlberta"</span>))</span>
-<span id="cb4-2"><a href="#cb4-2"></a></span>
-<span id="cb4-3"><a href="#cb4-3"></a>mySim3 &lt;-<span class="st"> </span><span class="kw"><a href="http://spades-core.predictiveecology.org//reference/simInit.html">simInit</a></span>(<span class="dt">times =</span> times,</span>
-<span id="cb4-4"><a href="#cb4-4"></a>                  <span class="dt">params =</span> parameters,</span>
-<span id="cb4-5"><a href="#cb4-5"></a>                  <span class="dt">modules =</span> modules,</span>
-<span id="cb4-6"><a href="#cb4-6"></a>                  <span class="dt">objects =</span> objects,</span>
-<span id="cb4-7"><a href="#cb4-7"></a>                  <span class="dt">paths =</span> <span class="kw"><a href="http://spades-core.predictiveecology.org//reference/setPaths.html">getPaths</a></span>(),</span>
-<span id="cb4-8"><a href="#cb4-8"></a>                  <span class="dt">loadOrder =</span> <span class="kw"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span>(modules))</span>
-<span id="cb4-9"><a href="#cb4-9"></a></span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="co"># SIMULATION</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a>mySimOut3 &lt;-<span class="st"> </span><span class="kw"><a href="http://spades-core.predictiveecology.org//reference/robustDigest.html">Cache</a></span>(spades, mySim3, <span class="dt">debug =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">modules &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(modulesFire, modulesHarvest, <span class="st">"birdsAlberta"</span>, <span class="st">"caribouAlberta"</span>))
+
+mySim3 &lt;-<span class="st"> </span><span class="kw">simInit</span>(<span class="dt">times =</span> times,
+                  <span class="dt">params =</span> parameters,
+                  <span class="dt">modules =</span> modules,
+                  <span class="dt">objects =</span> objects,
+                  <span class="dt">paths =</span> <span class="kw">getPaths</span>(),
+                  <span class="dt">loadOrder =</span> <span class="kw"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span>(modules))
+
+<span class="co"># SIMULATION</span>
+mySimOut3 &lt;-<span class="st"> </span><span class="kw">Cache</span>(spades, mySim3, <span class="dt">debug =</span> <span class="ot">TRUE</span>)</code></pre></div>
 </div>
   </div>
 

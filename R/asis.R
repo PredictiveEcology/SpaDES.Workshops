@@ -6,7 +6,6 @@ replacementList <- list(
   "Past Workshops" = "Prior to 2019",
   "06b-Plotting.html" = "http://quickplot.predictiveecology.org/articles/iii-plotting.html",
   "Released package" = NULL,
-  "03c-SpaDESInAction.html" = "https://htmlpreview.github.io/?https://github.com/tati-micheletti/SpaDESinAction/blob/master/runSimulation.html",
   "02b-SpaDES4Dummies.html" = "https://htmlpreview.github.io/?https://github.com/CeresBarros/SpaDES4Dummies/blob/master/SpaDES4Dummies.html",
   "exercise1" = "https://htmlpreview.github.io/?https://github.com/PredictiveEcology/SpaDES.Workshops/blob/master/exercises/01-exercises.html",
   "exercise2" = "https://htmlpreview.github.io/?https://github.com/PredictiveEcology/SpaDES.Workshops/blob/master/exercises/02-exercises.html",
@@ -18,7 +17,7 @@ replacementList <- list(
   "exercise7" = "https://htmlpreview.github.io/?https://github.com/PredictiveEcology/SpaDES.Workshops/blob/master/exercises/07-exercises.html",
   "exercise8" = "https://htmlpreview.github.io/?https://github.com/PredictiveEcology/SpaDES.Workshops/blob/master/exercises/08-exercises.html",
   "12b-caribouPopulationGrowthModule" = "http://htmlpreview.github.io/?https://github.com/tati-micheletti/caribouPopGrowthModel/blob/master/caribouPopGrowthModel.html",
-  "12a-CommunityMetricsModule" = "https://github.com/araymund83/comm_metricsNWT/blob/master/comm_metricsNWT.Rmd",
+  "12a-CommunityMetricsModule" = "http://htmlpreview.github.io/?https://github.com/tati-michelett/comm_metricsNWT/blob/master/comm_metricsNWT.html",
   "<h1>Articles</h1>" = "<h1>Content</h1>"
 )
 
