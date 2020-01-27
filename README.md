@@ -43,10 +43,12 @@ If problems persist, try narrowing down the problem and re-installing using the 
 
 ## Make sure your existing packages are updated, and correct for the version of R
 ## Get latest versions of key SpaDES packages from CRAN
-dependencies <- tools::package_dependencies("SpaDES", recursive = TRUE)
+dependencies <- tools::package_dependencies(c("devtools", "SpaDES"), recursive = TRUE)
 
 ## Update any versions of these dependencies that are already on your machine
-update.packages(oldPkgs = unlist(dependencies), ask = FALSE, checkBuilt = TRUE, type = "binary") 
+type = if (.Platform$OS.type == "windows") "binary" else "source"
+update.packages(oldPkgs = unique(unlist(dependencies)), 
+          ask = FALSE, checkBuilt = TRUE, type = "binary") 
 
 ## Install any dependencies that are missing -- 
 ##   install.packages is not getting correct dependencies
@@ -60,13 +62,12 @@ install.packages("SpaDES", dependencies = FALSE)
 ## For the workshop, there are a key enhancements that are not in the CRAN version
 ## Restart your R session so it is clear
 # Ctrl-shift-F10 if you are in Rstudio #
-reproducible::Require("devtools") # installs (if needed) and loads
+install.packages("devtools", dependencies = FALSE) # installs (if needed) and loads
 
 
 ## Restart your R session again so it is clear
 ## Ctrl-shift-F10 if you are in Rstudio #
 Sys.setenv("R_REMOTES_NO_ERRORS_FROM_WARNINGS"="true")
-type = if (.Platform$OS.type == "windows") "binary" else "source"
 install_github("PredictiveEcology/quickPlot@development", , 
                upgrade = "never", dependencies = TRUE, type = type)
 install_github("PredictiveEcology/reproducible@Workshop", 
@@ -90,7 +91,7 @@ install_github("PredictiveEcology/LandR@Workshop", upgrade = "never",
 
 # Alex's Miscellaneous Code
 install_github("achubaty/amc@development", upgrade = "never", dependencies = TRUE, 
-               type = if (.Platform$OS.type == "windows") "binary" else "source")
+               type = type)
 ```
 
 ### Workshop materials
