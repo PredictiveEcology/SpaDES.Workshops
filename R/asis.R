@@ -7,7 +7,7 @@ replacementList <- list(
   "06b-Plotting.html" = "http://quickplot.predictiveecology.org/articles/iii-plotting.html",
   "Released package" = NULL,
   "02b-SpaDES4Dummies.html" = "https://htmlpreview.github.io/?https://github.com/CeresBarros/SpaDES4Dummies/blob/master/SpaDES4Dummies.html",
-  "exercise(.*)\\.html" = "exercises/0(\\1)exercises.html",
+  "exercise(.{1,2})\\.html" = "../exercises/0\\1-exercises.html",
   "12b-caribouPopulationGrowthModule" = "http://htmlpreview.github.io/?https://github.com/tati-micheletti/caribouPopGrowthModel/blob/master/caribouPopGrowthModel.html",
   "12a-CommunityMetricsModule" = "http://htmlpreview.github.io/?https://github.com/tati-michelett/comm_metricsNWT/blob/master/comm_metricsNWT.html",
   "<h1>Articles</h1>" = "<h1>Content</h1>"
@@ -74,7 +74,7 @@ replaceRemoteLinksInArticles <- function(replacements) {
   filesToUpdate <- c("", "articles", "articlesFeb2018", "articlesMay2018", "articlesSept2018", "articlesOct2019")
   lapply(filesToUpdate, function(f) {
     lapply(names(replacements), function(nam) {
-      browser()
+      # browser(expr = grepl("exercise", nam))
       for (indexHTML in dir(file.path("docs", f), pattern = ".html", full.names = TRUE)) {
         #browser(expr = "Released package" == nam && grepl("articlesMay2018", f) && grepl("WhatIs", indexHTML))
         cc <- readLines(indexHTML)
