@@ -38,19 +38,19 @@
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">SpaDES.Workshops</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
-      </span>
+  <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    </button>
+    <span class="navbar-brand">
+    <a class="navbar-link" href="../index.html">SpaDES.Workshops</a>
+    <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+    </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
+    <ul class="nav navbar-nav">
 <li>
   <a href="articles/index.html">2020-Jan</a>
 </li>
@@ -130,29 +130,51 @@
 dependencies &lt;- tools::package_dependencies("SpaDES", recursive = TRUE)
 
 ## Update any versions of these dependencies that are already on your machine
-update.packages(oldPkgs = unlist(dependencies), ask = FALSE, checkBuilt = TRUE) 
+update.packages(oldPkgs = unlist(dependencies), ask = FALSE, checkBuilt = TRUE, type = "binary") 
 
 ## Install any dependencies that are missing -- 
 ##   install.packages is not getting correct dependencies
 missingPkgs &lt;- dependencies$SpaDES[!(dependencies$SpaDES %in% rownames(installed.packages()))]
 if (length(missingPkgs))
-  install.packages(missingPkgs, dependencies = FALSE)
+  install.packages(missingPkgs, dependencies = FALSE, type = "binary")
 
 ## Install all SpaDES packages 
 install.packages("SpaDES", dependencies = FALSE)
 
-## For the workshop, there are a few minor fixes and enhancements that are not in the CRAN version
+## For the workshop, there are a key enhancements that are not in the CRAN version
 ## Restart your R session so it is clear
 # Ctrl-shift-F10 if you are in Rstudio #
 reproducible::Require("devtools") # installs (if needed) and loads
-devtools::install_github("PredictiveEcology/SpaDES.core", ref = "development")</code></pre>
-</div>
-<div id="installing-additional-packages" class="section level3">
-<h3 class="hasAnchor">
-<a href="#installing-additional-packages" class="anchor"></a>Installing additional packages</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install_github</span>(<span class="st">"achubaty/amc@development"</span>)
-<span class="kw">install_github</span>(<span class="st">"PredictiveEcology/LandR@development"</span>)
-<span class="kw">install_github</span>(<span class="st">"PredictiveEcology/pemisc@development"</span>)</code></pre></div>
+
+
+## Restart your R session again so it is clear
+## Ctrl-shift-F10 if you are in Rstudio #
+Sys.setenv("R_REMOTES_NO_ERRORS_FROM_WARNINGS"="true")
+type = if (.Platform$OS.type == "windows") "binary" else "source"
+install_github("PredictiveEcology/quickPlot@development", , 
+               upgrade = "never", dependencies = TRUE, type = type)
+install_github("PredictiveEcology/reproducible@Workshop", 
+               upgrade = "never", dependencies = TRUE, type = type)
+install_github("PredictiveEcology/SpaDES.core@Workshop", 
+               upgrade = "never", dependencies = TRUE, type = type)
+install_github("PredictiveEcology/SpaDES.tools@Workshop", 
+               upgrade = "never", dependencies = TRUE, type = type)
+install_github("PredictiveEcology/SpaDES.experiment@Workshop", 
+               upgrade = "never", dependencies = TRUE, type = type)
+
+                          
+# Predictive Ecology Miscellaneous
+install_github("PredictiveEcology/pemisc@Workshop", upgrade = "never", 
+               dependencies = TRUE, type = type)
+
+# Vegetation Dynamics
+install_github("PredictiveEcology/LandR@Workshop", upgrade = "never", 
+               dependencies = TRUE, type = type)
+
+
+# Alex's Miscellaneous Code
+install_github("achubaty/amc@development", upgrade = "never", dependencies = TRUE, 
+               type = if (.Platform$OS.type == "windows") "binary" else "source")</code></pre>
 </div>
 <div id="workshop-materials" class="section level3">
 <h3 class="hasAnchor">
