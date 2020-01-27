@@ -13,14 +13,23 @@ If you are interested in being put on the email list for future courses, please 
 
 **Pacific Forestry Centre (Main conference room on ground floor), 9am - 4pm each day**
 
-We have organized a set of sessions, back to back, starting from the most "general"", and ending with the most "detailed".
+We have organized a set of sessions, back to back, starting from the most "general", and ending with the most "detailed".
 The hope is to attract non-modelers (e.g., managers, scientists, practitioners) to the first session, people who think they might want to see more how models work (e.g., scientists, students, technicians), and those who want to build and use models for research and operational purposes (e.g., scientists, technicians, programmers).
 
-- **Part 1: Introducing a modular simulation platform for non-programmers** - 1.5 hours – **day 1 - 9 am - break** - This is a high level intro for scientists, managers, policy makers, decision makers, coupled with high-level exercises in `SpaDES` that will take you through how to run pre-made `SpaDES` modules, run modules from other people, and change model parameters.
+### Workshop outline
+**Day 1: Introduction to `SpaDES` - Sections 1-3** 
+* **Sections 1-2 - 9am - lunch break** - 3 hours – This is a high level intro for scientists, managers, policy makers, decision makers, coupled with examples of ongoing projects in `SpaDES` that will showcase the utility of the framework.
 
-- **Part 2: Getting started with `SpaDES` in R** - 4.5 hours – **day 1 - mid morning through to end of day** - This is intended to dive a little bit into the code, learn how to create relatively simple modules and establish links between modules. ***See below for instructions***
+* **Section 3 - 1pm - 4pm** - 3 hours – This section will take you through high-level examples of how to run pre-made `SpaDES` modules, run modules from other people, and change model parameters.
 
-- **Part 3:  - days 2 and 3 - 9am to end of day each day** – a much deeper dive into SpaDES modules. We will cover various topics including reproducible 'data-to-decisions' workflows, working with spatial data, caching, and simulation optimization.  ***See below for instructions***
+**Day 2: Learning `SpaDES` - Sections 4-6** 
+* **Section 4 - 9am - break** - 1.5 hours – we will take you through basic `SpaDES` concepts, while using the previous day's examples to get you started with understanding the packages and framework.
+* **Sectios 5-6 - remainder of the day** - 4.5 hours – This is intended to dive a little bit into the code, learn how to create relatively simple modules and establish links between modules. WE will also touch upon essential aspects of programming with `SpaDES`, such as caching and debugging.
+
+This is a high level intro for scientists, managers, policy makers, decision makers, coupled with examples of ongoing projects in `SpaDES` that will showcase the utility of the framework.
+
+**Day 3: My first project in `SpaDES` - Section 7** 
+* **Section 7 - 9am - 4pm** - 6 hours – during this section you'll be given free time to create your own project from scratch, or adapt an existing project and create new modules. 
 
 ### [Installing SpaDES](articles/index.html)
 
