@@ -1,0 +1,111 @@
+---
+title       : "Dynamic modelling in SpaDES - a simple example"
+author      : "Ceres Barros"
+date        : "January 26, 2020"
+output: 
+  html_document: 
+    number_sections: yes
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, echo = TRUE, eval = FALSE)
+```
+
+# Dynamic modelling in SpaDES - a simple example
+
+## A Lotka-Volterra-type model
+
+Lotka-Volterra predator-prey models are simple models that simulate the population dynamics of a prey and a predator, relying on quite a few assumptions. In this case we assume that:
+* in the absence of predators, the prey population density follows a logistic growth equation, that depends on its intrinsic growth rate, *r*, and the environment's carrying capacity *K*.
+* in the presence of predators, the number of prey consumed is a function of the hunting/consumption efficiency if the predator, *beta*, and the number of predators.
+* the predator population density is solely dependent on the availability of prey, the predator's ability to convert prey into energy (predation efficiency), *delta*, and the intrinsic death rate of the predators in the absence of prey, *gamma*.
+
+Th code bellow simulates these dynamics in a *for-loop* in the following steps:
+
+1. Load necessary libraries;
+2. Define parameters entering the model;
+3. Loop the model a number of times and save the results in two vectors;
+4. Plot the results.
+
+You'll notice that the model is extremely sensitive to parameter values - this is a well-know feature of the Lotka-Volterra model. The ones bellow will ensure an oscillating equilibrium between prey and predator populations.
+
+```{r lotka-volterradynamics things}
+## load libraries
+library(ggplot2)
+library(data.table)
+
+## define parameter values
+r <- 0.1
+K <- 100
+beta <- 0.02
+delta <- 0.5
+gamma <- 0.1
+time <- 100
+
+## make 2 storage vectors for prey and predator densities
+prey <- pred <- rep(NA, time)  
+
+## set the inital population values
+prey[1] <- 10
+pred[1] <- 2
+
+## The model in a loop - note that we need to start from the second time step
+for(i in 2:time) {
+  ## prey growth
+  prey[i] <- prey[i-1]*exp(r*(1 - prey[i-1]/K))
+  if (prey[i] < 0) prey[i] <- 0
+            
+  ## predation
+  preyConsumed <- beta*prey[i-1]*pred[i-1]
+  prey[i] <- prey[i] - preyConsumed
+  
+  ## predator growth    
+  pred[i] <- pred[i-1] + delta*preyConsumed - gamma*pred[i-1]
+  if (pred[i] < 0) pred[i] <- 0
+}
+
+## plot results:
+plotData <- data.table(prey = prey, pred = pred, time = 1:time)
+plotPrey <- ggplot(plotData) +
+  geom_line(aes(x = time, y = prey), col = "blue", size = 1)
+plotPred <- ggplot(plotData) +
+  geom_line(aes(x = time, y = pred), col = "red", size = 1)
+
+Plot(plotPrey, plotPred)
+```
+
+## Convert this to a SpaDES module
+
+Now to the *actual* exercise. Try to convert this model into a 2-module SpaDES project/model. 
+Here are a few tips:
+
+1. Use `newModule()` (twice) to create the blank templates for your predator and prey population modules.
+2. Open the `.R` files that show up in the module folders.
+3. Fill in metadata:
+
+  - Indicate libraries that are needed
+  - Indicate parameters and provide their defaults
+  - Indicate objects that are expected as an inputs, and objects that 
+  are created as outputs
+
+4. Fill in `.inputObjects` section to create the needed inputs.
+5. Put all the code that creates the `distFromSource` and `establish` in the "init" event.
+6. Put Plot stuff in `plot` event.
+
+## Build a controller for this module.
+
+7. Open the `.Rmd` file that we will use.
+8. Run one line at a time, confirming that it will run your model. You will likely need to update the module path so it knows where to find the module on your computer.
+
+# Advanced -- Add space
+Try to make these modules spatially explicit if you have extra time. Hints:
+1. You can use raster layers, instead of vectors, to save/track `preyPop` and `predPop` and use raster-based operations to calculate how many prey and consumed in each pixel.
+2. You can use `data.tables` to speed up the computations, where each line corresponds to a pixel in a template raster and the columns are `preyPop`, `predPop` and `consumedPrey`. Remaining paratemers can be in a separate `data.table`, or simply left as numeric vectors. Then, for plotting, you can create and replace values in rasters to show spatial variation in predator and prey densities.
+
+# One possible solution:
+[For prey module](https://github.com/PredictiveEcology/SpaDES-modules/blob/master/modules/prey/prey.R)
+[For predator module](https://github.com/PredictiveEcology/SpaDES-modules/blob/master/modules/predator/predator.R)
+
+This solution follows the a-spatial option.
