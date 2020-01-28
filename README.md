@@ -103,6 +103,10 @@ install_github("PredictiveEcology/LandR@Workshop", upgrade = "never",
 # Alex's Miscellaneous Code
 install_github("achubaty/amc@development", upgrade = "never", dependencies = TRUE, 
                type = type)
+
+# Other 'useful functions'               
+install_github("tati-micheletti/usefun@master", upgrade = "never", dependencies = TRUE,
+               type = type)
 ```
 
 It can happen that if you try downloading from `GitHub` many times, you exceed the API rate limit:

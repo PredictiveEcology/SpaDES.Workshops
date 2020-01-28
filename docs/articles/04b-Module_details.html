@@ -13,8 +13,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Modules -- The nitty gritty details">
 <meta property="og:description" content="">
@@ -116,7 +116,7 @@
 <div id="categorized-overview-of-the-spades-package" class="section level3">
 <h3 class="hasAnchor">
 <a href="#categorized-overview-of-the-spades-package" class="anchor"></a>Categorized overview of the <code>SpaDES</code> package</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>?SpaDES</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">?SpaDES</a></code></pre></div>
 <ol style="list-style-type: decimal">
 <li>Spatial discrete event simulation (<code>SpaDES</code>)</li>
 <li>Module functions</li>
@@ -132,9 +132,9 @@
 <div id="directory-structure" class="section level3">
 <h3 class="hasAnchor">
 <a href="#directory-structure" class="anchor"></a>Directory structure</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>module.path &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/basename.html">dirname</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span>()), <span class="st">"modules"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">downloadModule</span>(<span class="st">'wolfAlps'</span>, module.path, <span class="dt">data =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="kw"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(module.path, <span class="st">'wolfAlps'</span>), <span class="dt">all.files =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">module.path &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/basename.html">dirname</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span>()), <span class="st">"modules"</span>)</a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="kw">downloadModule</span>(<span class="st">'wolfAlps'</span>, module.path, <span class="dt">data =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(module.path, <span class="st">'wolfAlps'</span>), <span class="dt">all.files =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>/moduleRepository
   |_ moduleName/
       |_ R/                     # contains additional .R (helper) files
@@ -149,17 +149,17 @@
       |_ moduleName_x.y.z.zip   # zip archive of previous versions</code></pre>
 <p><strong>Advanced:</strong> not included (yet) in the main module repo are examples of modules that include unit tests and code coverage.</p>
 <p>These are <em>encouraged</em> and can be built using:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># when creating a new module</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="kw">newModule</span>(..., <span class="dt">unitTests =</span> <span class="ot">TRUE</span>) <span class="co"># default</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="co"># or after-the-fact with</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="kw">newModuleTests</span>(...)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># when creating a new module</span></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="kw">newModule</span>(..., <span class="dt">unitTests =</span> <span class="ot">TRUE</span>) <span class="co"># default</span></a>
+<a class="sourceLine" id="cb4-3" title="3"></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="co"># or after-the-fact with</span></a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="kw">newModuleTests</span>(...)</a></code></pre></div>
 </div>
 <div id="code-file-structure" class="section level3">
 <h3 class="hasAnchor">
 <a href="#code-file-structure" class="anchor"></a>Code file structure</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>samplePath &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">'sampleModules'</span>, <span class="dt">package =</span> <span class="st">'SpaDES'</span>)</span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="kw">openModules</span>(<span class="st">'randomLandscapes'</span>, samplePath)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">samplePath &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">'sampleModules'</span>, <span class="dt">package =</span> <span class="st">'SpaDES'</span>)</a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="kw">openModules</span>(<span class="st">'randomLandscapes'</span>, samplePath)</a></code></pre></div>
 <p>A module code file (<code>.R</code>) consists of the following key sections:</p>
 <ol style="list-style-type: decimal">
 <li><p>module metatadata (<code>defineModule</code> block)</p></li>
@@ -173,7 +173,7 @@
 <h2 class="hasAnchor">
 <a href="#new-module-template" class="anchor"></a>New module template</h2>
 <p>The <code>newModule</code> function creates a module template for you to edit to suit your needs:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">newModule</span>(<span class="st">'moduleName'</span>, <span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="st">'path/to/my/module/directory'</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">newModule</span>(<span class="st">'moduleName'</span>, <span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="st">'path/to/my/module/directory'</span>))</a></code></pre></div>
 <p>Alternatively, use the RStudio addin which is simply a GUI wrapper for this function:</p>
 <p><img src="images/screenshot-new-module-addin.png"></p>
 </div>
@@ -182,8 +182,8 @@
 <a href="#module-metadata" class="anchor"></a>Module metadata</h2>
 <p>Each module requires a collection of metadata describing the module, its dependencies, and linking to documentation, etc.</p>
 <p>These metatadata are defined in the <code>defineModule</code> code block at the start of the file, and are intended to be both human and machine readable.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">## see section 'Required metadata elements'</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>?defineModule</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co">## see section 'Required metadata elements'</span></a>
+<a class="sourceLine" id="cb7-2" title="2">?defineModule</a></code></pre></div>
 <div id="module-parameters" class="section level3">
 <h3 class="hasAnchor">
 <a href="#module-parameters" class="anchor"></a>Module parameters</h3>
@@ -264,31 +264,31 @@
 <pre><code>- much faster than base graphics, ggplot, etc.
 - modular plotting (automatic multipanel layouts)</code></pre>
 <p><strong>WARNING:</strong> The built-in RStudio plotting device is heinously slow!</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="cf">if</span> (<span class="kw"><a href="https://rdrr.io/r/base/options.html">getOption</a></span>(<span class="st">'device'</span>) <span class="op">==</span><span class="st"> 'RStudioGD'</span>) <span class="kw">dev.useRSGD</span>(<span class="ot">FALSE</span>)</span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="kw">dev</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="cf">if</span> (<span class="kw"><a href="https://rdrr.io/r/base/options.html">getOption</a></span>(<span class="st">'device'</span>) <span class="op">==</span><span class="st"> 'RStudioGD'</span>) <span class="kw">dev.useRSGD</span>(<span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="kw">dev</span>()</a></code></pre></div>
 </div>
 <div id="plotting" class="section level2">
 <h2 class="hasAnchor">
 <a href="#plotting" class="anchor"></a><code>Plot</code>ting</h2>
 <p>See the <a href="http://spades.predictiveecology.org/vignettes/iii-plotting.html">plotting vignette</a> and <code>?Plot</code> for more detailed examples.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">Plot</span>(...)</span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="kw">clearPlot</span>()</span>
-<span id="cb10-3"><a href="#cb10-3"></a></span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="kw">Plot</span>(..., <span class="dt">new =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="kw">Plot</span>(..., <span class="dt">addTo =</span> objectName) <span class="co">## adds to existing plot</span></span>
-<span id="cb10-6"><a href="#cb10-6"></a></span>
-<span id="cb10-7"><a href="#cb10-7"></a><span class="kw">rePlot</span>() <span class="co">## useful after plot device is resized</span></span>
-<span id="cb10-8"><a href="#cb10-8"></a></span>
-<span id="cb10-9"><a href="#cb10-9"></a><span class="co">## see also</span></span>
-<span id="cb10-10"><a href="#cb10-10"></a><span class="kw"><a href="https://rdrr.io/r/grDevices/colors.html">colors</a></span>(...) <span class="co">## get and set raster colors</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">Plot</span>(...)</a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="kw">clearPlot</span>()</a>
+<a class="sourceLine" id="cb10-3" title="3"></a>
+<a class="sourceLine" id="cb10-4" title="4"><span class="kw">Plot</span>(..., <span class="dt">new =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb10-5" title="5"><span class="kw">Plot</span>(..., <span class="dt">addTo =</span> objectName) <span class="co">## adds to existing plot</span></a>
+<a class="sourceLine" id="cb10-6" title="6"></a>
+<a class="sourceLine" id="cb10-7" title="7"><span class="kw">rePlot</span>() <span class="co">## useful after plot device is resized</span></a>
+<a class="sourceLine" id="cb10-8" title="8"></a>
+<a class="sourceLine" id="cb10-9" title="9"><span class="co">## see also</span></a>
+<a class="sourceLine" id="cb10-10" title="10"><span class="kw"><a href="https://rdrr.io/r/grDevices/colors.html">colors</a></span>(...) <span class="co">## get and set raster colors</span></a></code></pre></div>
 </div>
 <div id="event-level-plotting" class="section level2">
 <h2 class="hasAnchor">
 <a href="#event-level-plotting" class="anchor"></a>Event-level plotting</h2>
 <p>Module-specific plot parameters can be used to control plotting for your event: <code>.plotInitialTime</code> and <code>.plotInterval</code>.</p>
 <p><em>E.g.</em>, schedule a recurring plot event within a module:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>nextPlot &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/time.html">time</a></span>(mySim) <span class="op">+</span><span class="st"> </span>SpaDES<span class="op">::</span><span class="kw">p</span>(mySim)<span class="op">$</span>.plotInterval</span>
-<span id="cb11-2"><a href="#cb11-2"></a>mySim &lt;-<span class="st"> </span><span class="kw">scheduleEvent</span>(mySim, nextPlot, <span class="st">"moduleName"</span>, <span class="st">"plot"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">nextPlot &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/time.html">time</a></span>(mySim) <span class="op">+</span><span class="st"> </span>SpaDES<span class="op">::</span><span class="kw">p</span>(mySim)<span class="op">$</span>.plotInterval</a>
+<a class="sourceLine" id="cb11-2" title="2">mySim &lt;-<span class="st"> </span><span class="kw">scheduleEvent</span>(mySim, nextPlot, <span class="st">"moduleName"</span>, <span class="st">"plot"</span>)</a></code></pre></div>
 </div>
 <div id="interacting-with-plots" class="section level2">
 <h2 class="hasAnchor">
@@ -312,8 +312,8 @@
 </li>
 </ul>
 <p><em>E.g.</em>, schedule a recurring save event within a module:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>nextSave &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/time.html">time</a></span>(mySim) <span class="op">+</span><span class="st"> </span>SpaDES<span class="op">::</span><span class="kw">p</span>(mySim)<span class="op">$</span>.saveInterval</span>
-<span id="cb12-2"><a href="#cb12-2"></a>sim &lt;-<span class="st"> </span><span class="kw">scheduleEvent</span>(mySim, nextSave, <span class="st">"moduleName"</span>, <span class="st">"save"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">nextSave &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/time.html">time</a></span>(mySim) <span class="op">+</span><span class="st"> </span>SpaDES<span class="op">::</span><span class="kw">p</span>(mySim)<span class="op">$</span>.saveInterval</a>
+<a class="sourceLine" id="cb12-2" title="2">sim &lt;-<span class="st"> </span><span class="kw">scheduleEvent</span>(mySim, nextSave, <span class="st">"moduleName"</span>, <span class="st">"save"</span>)</a></code></pre></div>
 </div>
 <div id="loading" class="section level2">
 <h2 class="hasAnchor">
@@ -326,11 +326,11 @@
 <h2 class="hasAnchor">
 <a href="#checkpointing" class="anchor"></a>Checkpointing</h2>
 <p>Checkpointing is build into <code>SpaDES</code> automatically and can be turned on at the <em>simulation</em> level (not the module level).</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>parameters &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
-<span id="cb13-2"><a href="#cb13-2"></a>  <span class="dt">.checkpoint =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">interval =</span> <span class="dv">10</span>, <span class="dt">file =</span> <span class="st">"chkpnt.RData"</span>)</span>
-<span id="cb13-3"><a href="#cb13-3"></a>)</span>
-<span id="cb13-4"><a href="#cb13-4"></a></span>
-<span id="cb13-5"><a href="#cb13-5"></a>mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(..., <span class="dt">params =</span> parameters)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">parameters &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
+<a class="sourceLine" id="cb13-2" title="2">  <span class="dt">.checkpoint =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">interval =</span> <span class="dv">10</span>, <span class="dt">file =</span> <span class="st">"chkpnt.RData"</span>)</a>
+<a class="sourceLine" id="cb13-3" title="3">)</a>
+<a class="sourceLine" id="cb13-4" title="4"></a>
+<a class="sourceLine" id="cb13-5" title="5">mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(..., <span class="dt">params =</span> parameters)</a></code></pre></div>
 <p>See <a href="http://spades.predictiveecology.org/vignettes/ii-modules.html#checkpoint-module">vignette</a> for more details.</p>
 <p><strong>NOTE</strong> don’t checkpoint <em>too</em> often, or your simulation will slow down too much (disk writes are slow).</p>
 </div>
@@ -467,7 +467,7 @@ test <code>downloadModule</code> and <code>downloadData</code> from a temp dir t
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
 
         <div id="tocnav">
       <h2 class="hasAnchor">
@@ -508,7 +508,7 @@ test <code>downloadModule</code> and <code>downloadData</code> from a temp dir t
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
 
       </footer>
