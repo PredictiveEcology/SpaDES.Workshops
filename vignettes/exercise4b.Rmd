@@ -1,0 +1,21 @@
+---
+title       : "SpaDES Exercise 4b: SpaDES4Dummies - Building new modules, and connecting them"
+author      : "SpaDES Core Team"
+date        : "2020 January 27"
+output:
+  html_document:
+  number_sections: yes
+toc: true
+toc_float: true
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = FALSE, echo = TRUE, eval = TRUE)
+```
+
+<!--
+  this is a dummy file that will be replaced with a link to the specific exercise vignette when site rebuilt
+  see `replacementList` defined in `asis.R`
+-->
