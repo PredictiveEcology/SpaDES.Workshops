@@ -9,7 +9,7 @@ replacementList <- list(
   "02b-SpaDES4Dummies.html" = "https://htmlpreview.github.io/?https://github.com/CeresBarros/SpaDES4Dummies/blob/master/SpaDES4Dummies.html",
   "03c-SpaDESInAction.html" = "../SpaDESinAction2/runMe.html",
   "exercise4b.html" = "https://htmlpreview.github.io/?https://github.com/CeresBarros/SpaDES4Dummies/blob/master/SpaDES4Dummies.html",
-  "exercise4c.html" = "docs/articles/02a-dynamicModellingPreyPred.html",
+  "exercise4c.html" = "02a-dynamicModellingPreyPred.html",
   "exercise(.{1,2})\\.html" = "../exercises/0\\1-exercises.html",
   "12b-caribouPopulationGrowthModule" = "http://htmlpreview.github.io/?https://github.com/tati-micheletti/caribouPopGrowthModel/blob/master/caribouPopGrowthModel.html",
   "12a-CommunityMetricsModule" = "http://htmlpreview.github.io/?https://github.com/tati-michelett/comm_metricsNWT/blob/master/comm_metricsNWT.html",
