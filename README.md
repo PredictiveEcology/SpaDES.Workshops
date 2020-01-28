@@ -31,7 +31,7 @@ This is a high level intro for scientists, managers, policy makers, decision mak
 **Day 3: My first project in `SpaDES` - Section 7** 
 * **Section 7 - 9am - 4pm** - 6 hours – during this section you'll be given free time to create your own project from scratch, or adapt an existing project and create new modules. 
 
-### [Installing SpaDES](articles/index.html)
+### Installing SpaDES
 
 **PLEASE NOTE -- R must be installed as an administrator because we are using developer tools**
 
