@@ -74,8 +74,10 @@ replaceRemoteLinksInArticles <- function(replacements,
                                          filesToUpdate = c("", "articles", "articlesFeb2018", "articlesMay2018", "articlesSept2018", "articlesOct2019")) {
   # filesToUpdate <- c("", "articles", "articlesFeb2018", "articlesMay2018", "articlesSept2018", "articlesOct2019")
   lapply(filesToUpdate, function(f) {
+    replacementIndex <- 0
     lapply(names(replacements), function(nam) {
-      message("Replacement ", grep(nam, names(replacements)), " of ", length(replacements), ": ", nam)
+      replacementIndex <<- replacementIndex + 1
+      message("Replacement ", replacementIndex, " of ", length(replacements), ": ", nam)
       # browser(expr = grepl("exercise", nam))
       for (indexHTML in dir(file.path("docs", f), pattern = ".html", full.names = TRUE)) {
         message("  File: ", indexHTML)
@@ -102,13 +104,14 @@ replaceRemoteLinksMultiline <- function(replacementsStarts, replacementsEnds,
 
       nam <- names(replacementsStarts)[namIndex]
       namEnd <- names(replacementsEnds)[namIndex]
-      message("Replacement ", grep(nam, names(replacementsStarts)), " of ", length(replacementsStarts), ": ", nam)
+      message("Replacement ", namIndex, " of ", length(replacementsStarts), ": ", nam)
       for (indexHTML in dir(file.path("docs", f), pattern = ".html", full.names = TRUE)) {
         #browser(expr = "Released package" == nam && grepl("articlesMay2018", f) && grepl("WhatIs", indexHTML))
         cc <- readLines(indexHTML)
         # browser(expr = grepl("index\\.html", indexHTML))
         if (!is.null(replacementStarts[[nam]])) {
           if (any(grepl(cc, pattern = nam)) && any(grepl(cc, pattern = namEnd))) {
+            message("  File: ", indexHTML)
             init <- grep(nam, cc, invert = FALSE, value = FALSE)
             end <- grep(namEnd, cc, invert = FALSE, value = FALSE)
             cc1 <- c(cc[seq_len(init - 1)],
