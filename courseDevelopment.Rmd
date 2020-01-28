@@ -7,6 +7,7 @@ editor_options:
 ```{r}
 library(pkgdown)
 devtools::load_all(".")
+source("R/asis.R")
 options('reproducible.cachePath' = "cache")
 build_site(new_process = FALSE)
 lapply(dir("docs/exercises", full.names = TRUE, pattern = "\\.Rmd$"), function(file)
