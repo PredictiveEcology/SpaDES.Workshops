@@ -79,7 +79,7 @@ install.packages("devtools", dependencies = FALSE) # installs (if needed) and lo
 Sys.setenv("R_REMOTES_NO_ERRORS_FROM_WARNINGS"="true")
 library(devtools)
 type <- if (.Platform$OS.type == "windows") "binary" else "source"
-install_github("PredictiveEcology/quickPlot@development", , 
+install_github("PredictiveEcology/quickPlot@development", 
                upgrade = "never", dependencies = TRUE, type = type)
 install_github("PredictiveEcology/reproducible@Workshop", 
                upgrade = "never", dependencies = TRUE, type = type)
