@@ -104,10 +104,27 @@ install_github("PredictiveEcology/LandR@Workshop", upgrade = "never",
 install_github("achubaty/amc@development", upgrade = "never", dependencies = TRUE, 
                type = type)
 
+# Tati's Miscellaneous Code
+install_github("tati-micheletti/usefun", 
+               upgrade = "never", dependencies = TRUE, type = type)
+
 # Other 'useful functions'               
 install_github("tati-micheletti/usefun@master", upgrade = "never", dependencies = TRUE,
                type = type)
 ```
+
+It can happen that if you try downloading from `GitHub` many times, you exceed the API rate limit:
+```
+install_github('PredictiveEcology/SpaDES')
+Downloading GitHub repo PredictiveEcology/SpaDES@master
+Error: HTTP error 403.
+  API rate limit exceeded for ###.###.##.###. 
+  (...)
+```
+The error should provide the solution to fixing this problem, but if for some reason you don't find these instructions here they are:
+- Use `usethis::browse_github_pat()` to create a GitHub token
+- Use `usethis::edit_r_environ()` and add the environment variable with `GITHUB_PAT = 'your_github_token`.
+Restart R (so that the GITHUB_PAT is read) and try to reinstall: `devtools::install_github(...)`
 
 ### Workshop materials
 

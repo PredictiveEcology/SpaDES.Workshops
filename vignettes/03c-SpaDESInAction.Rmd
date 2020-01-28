@@ -10,5 +10,5 @@ editor_options:
 knitr::opts_chunk$set(cache = TRUE, echo = TRUE, eval = FALSE)
 ```
 
-## [`SpaDESinAction`: a forest succession, a wildfire models, and a caribou models](../SpaDESinAction2/runMe.html)
+## [`SpaDESinAction`: a forest succession, a wildfire models, and a caribou model](../SpaDESinAction2/runMe.html)
 
