@@ -104,10 +104,6 @@ install_github("PredictiveEcology/LandR@Workshop", upgrade = "never",
 install_github("achubaty/amc@development", upgrade = "never", dependencies = TRUE, 
                type = type)
 
-# Tati's Miscellaneous Code
-install_github("tati-micheletti/usefun", 
-               upgrade = "never", dependencies = TRUE, type = type)
-
 # Other 'useful functions'               
 install_github("tati-micheletti/usefun@master", upgrade = "never", dependencies = TRUE,
                type = type)
