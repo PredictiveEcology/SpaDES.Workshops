@@ -1,6 +1,6 @@
-pandoc: 2.7.2
-pkgdown: 1.4.1
-pkgdown_sha: ~
+pandoc: '2.8'
+pkgdown: 1.4.1.9000
+pkgdown_sha: 134033d9d744c548c6fbe297bc0fbd1a2f498e83
 articles:
   00-Cheatsheets: 00-Cheatsheets.html
   01a-WhatIsSpades: 01a-WhatIsSpades.html
@@ -10,7 +10,6 @@ articles:
   02c-Convert_R_code_to_SpaDES_module: 02c-Convert_R_code_to_SpaDES_module.html
   03a-Existing_modules: 03a-Existing_modules.html
   03b-integrating_modules: 03b-integrating_modules.html
-  03c-SpaDESInAction: 03c-SpaDESInAction.html
   04-Modules_Thinking_in_a_modular_way: 04-Modules_Thinking_in_a_modular_way.html
   04a-MyFirstModule: 04a-MyFirstModule.html
   04b-Module_details: 04b-Module_details.html
