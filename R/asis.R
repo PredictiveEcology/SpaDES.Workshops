@@ -70,12 +70,16 @@ replacementEnds <- list(
 #' Lorem ipsum ...
 #'
 #' @export
-replaceRemoteLinksInArticles <- function(replacements) {
-  filesToUpdate <- c("", "articles", "articlesFeb2018", "articlesMay2018", "articlesSept2018", "articlesOct2019")
+replaceRemoteLinksInArticles <- function(replacements,
+                                         filesToUpdate = c("", "articles", "articlesFeb2018", "articlesMay2018", "articlesSept2018", "articlesOct2019")) {
+  # filesToUpdate <- c("", "articles", "articlesFeb2018", "articlesMay2018", "articlesSept2018", "articlesOct2019")
   lapply(filesToUpdate, function(f) {
     lapply(names(replacements), function(nam) {
+      message("Replacement ", grep(nam, names(replacements)), " of ", length(replacements), ": ", nam)
       # browser(expr = grepl("exercise", nam))
       for (indexHTML in dir(file.path("docs", f), pattern = ".html", full.names = TRUE)) {
+        message("  File: ", indexHTML)
+
         #browser(expr = "Released package" == nam && grepl("articlesMay2018", f) && grepl("WhatIs", indexHTML))
         cc <- readLines(indexHTML)
         if (!is.null(replacements[[nam]])) {
@@ -90,13 +94,15 @@ replaceRemoteLinksInArticles <- function(replacements) {
   })
 }
 
-replaceRemoteLinksMultiline <- function(replacementsStarts, replacementsEnds) {
-  filesToUpdate <- c("", "articles", "articlesFeb2018", "articlesMay2018", "articlesSept2018", "articlesOct2019")
+replaceRemoteLinksMultiline <- function(replacementsStarts, replacementsEnds,
+                                        filesToUpdate = c("", "articles", "articlesFeb2018", "articlesMay2018", "articlesSept2018", "articlesOct2019")
+                                        ) {
   lapply(filesToUpdate, function(f) {
     lapply(seq_along(names(replacementsStarts)), function(namIndex) {
 
       nam <- names(replacementsStarts)[namIndex]
       namEnd <- names(replacementsEnds)[namIndex]
+      message("Replacement ", grep(nam, names(replacementsStarts)), " of ", length(replacementsStarts), ": ", nam)
       for (indexHTML in dir(file.path("docs", f), pattern = ".html", full.names = TRUE)) {
         #browser(expr = "Released package" == nam && grepl("articlesMay2018", f) && grepl("WhatIs", indexHTML))
         cc <- readLines(indexHTML)

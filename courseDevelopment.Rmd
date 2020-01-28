@@ -12,6 +12,6 @@ options('reproducible.cachePath' = "cache")
 build_site(new_process = FALSE)
 lapply(dir("docs/exercises", full.names = TRUE, pattern = "\\.Rmd$"), function(file)
   rmarkdown::render(file, rmarkdown::html_document(toc = TRUE)))
-replaceRemoteLinksInArticles(replacementList)
-replaceRemoteLinksMultiline(replacementStarts, replacementEnds)
+replaceRemoteLinksInArticles(replacementList, c("", "articles"))
+replaceRemoteLinksMultiline(replacementStarts, replacementEnds, filesToUpdate = c("", "articles"))
 ```
