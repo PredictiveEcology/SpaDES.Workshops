@@ -1,9 +1,11 @@
-pandoc: 1.19.2.1
-pkgdown: 1.4.1
-pkgdown_sha: ~
+pandoc: '2.8'
+pkgdown: 1.4.1.9000
+pkgdown_sha: 134033d9d744c548c6fbe297bc0fbd1a2f498e83
 articles:
   00-Cheatsheets: 00-Cheatsheets.html
   01a-WhatIsSpades: 01a-WhatIsSpades.html
+  01a-WhatIsSpades_Jan2020: 01a-WhatIsSpades_Jan2020.html
+  02a-dynamicModellingPreyPred: 02a-dynamicModellingPreyPred.html
   02b-SpaDES4Dummies: 02b-SpaDES4Dummies.html
   02c-Convert_R_code_to_SpaDES_module: 02c-Convert_R_code_to_SpaDES_module.html
   03a-Existing_modules: 03a-Existing_modules.html
