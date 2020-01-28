@@ -57,13 +57,13 @@ dependencies <- tools::package_dependencies(c("devtools", "SpaDES"), recursive =
 ## Update any versions of these dependencies that are already on your machine
 type <- if (.Platform$OS.type == "windows") "binary" else "source"
 update.packages(oldPkgs = unique(unlist(dependencies)), 
-          ask = FALSE, checkBuilt = TRUE, type = "binary") 
+          ask = FALSE, checkBuilt = TRUE, type = type) 
 
 ## Install any dependencies that are missing -- 
 ##   install.packages is not getting correct dependencies
 missingPkgs <- dependencies$SpaDES[!(dependencies$SpaDES %in% rownames(installed.packages()))]
 if (length(missingPkgs))
-  install.packages(missingPkgs, dependencies = FALSE, type = "binary")
+  install.packages(missingPkgs, dependencies = FALSE, type = type)
 
 ## Install all SpaDES packages 
 install.packages("SpaDES", dependencies = FALSE)
