@@ -55,7 +55,7 @@ If problems persist, try narrowing down the problem and re-installing using the 
 dependencies <- tools::package_dependencies(c("devtools", "SpaDES"), recursive = TRUE)
 
 ## Update any versions of these dependencies that are already on your machine
-type = if (.Platform$OS.type == "windows") "binary" else "source"
+type <- if (.Platform$OS.type == "windows") "binary" else "source"
 update.packages(oldPkgs = unique(unlist(dependencies)), 
           ask = FALSE, checkBuilt = TRUE, type = "binary") 
 
@@ -78,6 +78,7 @@ install.packages("devtools", dependencies = FALSE) # installs (if needed) and lo
 ## Ctrl-shift-F10 if you are in Rstudio #
 Sys.setenv("R_REMOTES_NO_ERRORS_FROM_WARNINGS"="true")
 library(devtools)
+type <- if (.Platform$OS.type == "windows") "binary" else "source"
 install_github("PredictiveEcology/quickPlot@development", , 
                upgrade = "never", dependencies = TRUE, type = type)
 install_github("PredictiveEcology/reproducible@Workshop", 
