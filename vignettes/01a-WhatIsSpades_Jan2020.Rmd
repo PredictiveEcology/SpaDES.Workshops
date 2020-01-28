@@ -2,6 +2,8 @@
 title:  "What is `SpaDES`?"
 author: "Ceres Barros, Eliot McIntire, Tati Micheletti, Alex Chubaty"
 date:   "January 2020"
+resource_files:
+  - images/Day01/models_everywhere.png
 output: 
   html_document:
     toc : TRUE
