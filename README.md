@@ -71,12 +71,12 @@ install.packages("SpaDES", dependencies = FALSE)
 ## For the workshop, there are a key enhancements that are not in the CRAN version
 ## Restart your R session so it is clear
 # Ctrl-shift-F10 if you are in Rstudio #
-install.packages("devtools", dependencies = FALSE) # installs (if needed) and loads
+install.packages("devtools", dependencies = FALSE) # installs the latest version
 
 
 ## Restart your R session again so it is clear
 ## Ctrl-shift-F10 if you are in Rstudio #
-Sys.setenv("R_REMOTES_NO_ERRORS_FROM_WARNINGS"="true")
+Sys.setenv("R_REMOTES_NO_ERRORS_FROM_WARNINGS"="true") # sometimes, some irrelevant warnings occur
 library(devtools)
 type <- if (.Platform$OS.type == "windows") "binary" else "source"
 install_github("PredictiveEcology/quickPlot@development", 
