@@ -1,5 +1,5 @@
 ---
-title       : "Caribou Population Growth Module: bringing a statistical model's coefficients to a forescastable world"
+title       : "Caribou Population Growth Module: bringing a statistical model to the forescasting world"
 author      : "Tati Micheletti"
 date        : "2019 October 10"
 output:
