@@ -10,5 +10,7 @@ editor_options:
 knitr::opts_chunk$set(cache = TRUE, echo = TRUE, eval = FALSE)
 ```
 
-# SpaDES Example: [SpaDESinAction](../SpaDESinAction2/runMe.html)
+# SpaDES Example: [SpaDESinAction](https://htmlpreview.github.io/?https://github.com/tati-micheletti/SpaDESinAction2/blob/master/runMe.html)
+
+Download the SpaDESinAction files: https://drive.google.com/open?id=1KT5DXT3OxrSO8Q0Z6FGuVf6fS3YAkCkO
 
