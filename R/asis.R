@@ -12,8 +12,9 @@ replacementList <- list(
   "exercise4c.html" = "02a-dynamicModellingPreyPred.html",
   "exercise(.{1,2})\\.html" = "../exercises/0\\1-exercises.html",
   "12b-caribouPopulationGrowthModule" = "http://htmlpreview.github.io/?https://github.com/tati-micheletti/caribouPopGrowthModel/blob/master/caribouPopGrowthModel.html",
-  "12a-CommunityMetricsModule" = "http://htmlpreview.github.io/?https://github.com/tati-michelett/comm_metricsNWT/blob/master/comm_metricsNWT.html",
-  "<h1>Articles</h1>" = "<h1>Content</h1>"
+  "12a-CommunityMetricsModule" = "http://htmlpreview.github.io/?https://github.com/tati-micheletti/comm_metricsNWT/blob/master/comm_metricsNWT.html",
+  "<h1>Articles</h1>" = "<h1>Content</h1>",
+  "10b-NWT" = "https://drive.google.com/open?id=1Xyl8afgWRLYWNL6X0CAgfSYeEuaZdeL2"
 )
 
 #' @details

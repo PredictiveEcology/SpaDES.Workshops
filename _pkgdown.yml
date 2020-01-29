@@ -47,7 +47,7 @@ articles:
     - 03c-SpaDESInAction
 
   - title: "Day 2 - Section 4: Basic concepts to get you started"
-    desc: >
+    desc: |
       Now we will use the SpaDESinAction example to understand how SpaDES works. These are the topics we will cover:
       1. Global script
       2. Libraries and options
