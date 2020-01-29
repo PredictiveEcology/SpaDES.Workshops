@@ -26,7 +26,7 @@ navbar:
       href: https://spades.predictiveecology.org/
 
 articles:
-  - title: "THE CONTENT OF THIS PAGE IS RAPIDLY CHANGING UNTIL TUESDAY JAN 26 -- Day 1 - Section 1: What is SpaDES?"
+  - title: "Day 1 - Section 1: What is SpaDES?"
     desc: >
       A high-level introduction to the SpaDES framework and its usefulness
     contents:
@@ -82,9 +82,9 @@ articles:
     desc: >
       In this section we will give the support you need to start building your own SpaDES module or project.
     contents:
+    - 00-Cheatsheets
     - 12a-CommunityMetricsModule
     - 12b-caribouPopulationGrowthModule
-    - 00-Cheatsheets
 
   - title: "Exercises"
     desc: >
