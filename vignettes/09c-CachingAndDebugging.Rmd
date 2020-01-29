@@ -1,0 +1,250 @@
+---
+title       : "Caching and debugging"
+author      : "Ceres Barros"
+date        : "January 2020"
+output: 
+  html_document: 
+    number_sections: yes
+    toc: true
+    toc_float: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = FALSE, echo = TRUE, eval = TRUE)
+```
+
+# Some basic Caching lessons
+
+Caching is the ability to save some sort of output from an operation, and then retrieve these outputs when the operation is repeated in the *same way* - meaning the inputs of this operation and the actual tasks it performs are unchanged.
+
+Caching becomes fundamental when we can expect to re-run operations several times, particularly if they they a while to compute each time. Some examples of these operations are:
+- downloading data
+- (spatial) data processing/munging
+- fitting statistical models to large datasets, or that are complex in nature
+- running simulations with no stochasticity
+
+`SpaDES` (via the `reproducible` package) offers a number of functions that make caching these operations a lot easier for non-programmers. Two fundamental ones are `Cache` and `prepInputs`.
+
+```{r LCC2005_1, eval = FALSE}
+library(reproducible)
+library(sp)
+library(raster)
+
+# Create a "study area"
+coords <- structure(c(-122.98, -116.1, -99.2, -106, -122.98, 59.9, 65.73, 63.58, 54.79, 59.9),
+                    .Dim = c(5L, 2L))
+Sr1 <- Polygon(coords)
+Srs1 <- Polygons(list(Sr1), "s1")
+StudyArea <- SpatialPolygons(list(Srs1), 1L)
+crs(StudyArea) <- "+init=epsg:4326 +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"
+
+## from ?prepInputs
+dPath <- file.path(tempdir(), "LCC")
+lcc2005Filename <- file.path(dPath, "LCC2005_V1_4a.tif")
+url <- file.path("ftp://ftp.ccrs.nrcan.gc.ca/ad/NLCCLandCover",
+                 "LandcoverCanada2005_250m/LandCoverOfCanada2005_V1_4.zip")
+LCC2005 <- prepInputs(url = url,
+                      destinationPath = asPath(dPath),
+                      useSAcrs = TRUE,  ## a reproducible::postProcess argument
+                      studyArea = StudyArea)
+```
+
+Now do it again. Notice any difference?
+```{r LCC2005_2, eval = FALSE}
+LCC2005 <- prepInputs(url = url,
+                      destinationPath = asPath(dPath),
+                      useSAcrs = TRUE,  ## a reproducible::postProcess argument
+                      overwrite = TRUE, ## a reproducible::postProcess argument
+                      studyArea = StudyArea)
+```
+
+Now try wrapping the previous operation in `Cache` call, and run it twice. Notice differences in speed.
+```{r LCC2005_2, eval = FALSE}
+LCC2005 <- Cache(prepInputs,
+                 url = url,
+                 destinationPath = asPath(dPath),
+                 useSAcrs = TRUE,
+                 overwrite = TRUE,
+                 studyArea = StudyArea)
+```
+
+The previous code is great but we don't have as much control as we'd like on where `Cache` is storing cached objects. To do that, we can explicitly provide a cache folder and add tags to the object so that we can find it more easily if we ever need to "clean it".
+```{r LCC2005_2, eval = FALSE}
+cPath <- file.path(tempdir(), "cache")
+## run this twice
+LCC2005 <- Cache(prepInputs,
+                 url = url,
+                 destinationPath = asPath(dPath),
+                 useSAcrs = TRUE,  
+                 overwrite = TRUE, 
+                 studyArea = StudyArea,
+                 cacheRepo = cPath,
+                 userTags = "LCC2005")
+
+showCache(x = cPath, userTags = "LCC2005")
+reproducible::clearCache(x = cPath, userTags = "LCC2005")
+
+## notice how Cache needs to re-do things
+LCC2005 <- Cache(prepInputs,
+                 url = url,
+                 destinationPath = asPath(dPath),
+                 useSAcrs = TRUE,  
+                 overwrite = TRUE, 
+                 studyArea = StudyArea,
+                 cacheRepo = cPath,
+                 userTags = "LCC2005")
+```
+
+We can also force `Cache` to redo operations and re-cache, or simply to ignore caching altogether. See more options for `Cache(useCache)` in `?Cache`
+```{r LCC2005_3, eval = FALSE}
+LCC2005 <- Cache(prepInputs,
+                 url = url,
+                 destinationPath = asPath(dPath),
+                 useSAcrs = TRUE,
+                 overwrite = TRUE,
+                 studyArea = StudyArea,
+                 cacheRepo = cPath,
+                 userTags = "LCC2005",
+                 useCache = "overwrite")
+
+LCC2005 <- Cache(prepInputs,
+                 url = url,
+                 destinationPath = asPath(dPath),
+                 useSAcrs = TRUE,
+                 overwrite = TRUE,
+                 studyArea = StudyArea,
+                 cacheRepo = cPath,
+                 userTags = "LCC2005",
+                 useCache = FALSE)
+```
+
+Learn more about [caching](http://spades.predictiveecology.org/articles/iii-cache.html)
+
+# Some basic Debugging lessons
+
+Now that you have a flavour of caching, we're going to explore debugging a bit and put our new "caching skills" in practice in a SpaDES modelling context.
+
+We're going to run the `caribouRSF` module by itself.
+
+```{r caribouRun, eval = FALSE}
+library("reproducible")
+library(SpaDES)
+library(LandR)
+library(raster)
+library(data.table)
+
+options(
+  "spades.recoveryMode" = 2,
+  "spades.lowMemory" = TRUE,
+  "LandR.assertions" = FALSE,
+  "LandR.verbose" = 1,
+  "reproducible.useMemoise" = TRUE, # Brings cached stuff to memory during the second run
+  "reproducible.useNewDigestAlgorithm" = TRUE,  # use the new less strict hashing algo
+  "reproducible.useCache" = TRUE,
+  "pemisc.useParallel" = FALSE
+)
+
+inputDirectory <- checkPath(file.path(getwd(), "inputs"), create = TRUE)
+outputDirectory <- checkPath(file.path(getwd(), "outputs"), create = TRUE)
+modulesDirectory <- checkPath(file.path(getwd(), "modules"), create = TRUE)
+cacheDirectory <- checkPath(file.path(getwd(), "cache"), create = TRUE)
+
+setPaths(cachePath = cacheDirectory,
+         modulePath = c(modulesDirectory, 
+                        file.path(modulesDirectory, "scfm/modules")),
+         inputPath = inputDirectory,
+         outputPath = outputDirectory)
+
+times <- list(start = 0, end = 10)
+
+successionTimestep <- 1L
+parameters <- list(
+  caribouRSF = list(
+    "decidousSp" = c("Betu_Pap", "Popu_Tre", "Popu_Bal"),
+    "predictionInterval" = 20,
+  )
+)
+# load studyArea
+studyArea <- readRDS(file.path(getPaths()$inputPath, "studyArea.rds"))
+
+objects <- list(
+  "studyArea" = studyArea
+)
+
+caribou <- simInitAndSpades(times = times,
+                            objects = objects,
+                            params = parameters,
+                            modules = as.list("caribouRSF"),
+                            paths = getPaths(),
+                            debug = 1)
+```
+
+Oops, something doens't seem to be right! We start by looking carefully at the printed output, then we use `traceback` to help us locate the problem.
+In this case, it seems to be a particular line of *caribouRSF.R*
+
+```{r goingIn, eval=FALSE}
+traceback()
+# 11: stop("This module does not work without data. Please provide the necessary layers") at caribouRSF.R#154
+# 10: get(moduleCall, envir = fnEnv)(sim, cur[["eventTime"]], cur[["eventType"]])
+# 9: eval(fnCallAsExpr)
+# 8: eval(fnCallAsExpr)
+# (...)
+
+file.edit("modules/caribouRSF/caribouRSF.R")  ## got to caribouRSF.R#154
+```
+
+1. Insert a `browser()` before the line with the `stop()`. Save and re-rerun.
++ Check `?browser`, while you're at it ;)
+2. What is `P(sim)$.useDummyData`? Where does its value come from?
+3. Which data objects are missing? Why?
+
+```{r goingIn, eval = FALSE}
+# Browse[1]> P(sim)$.useDummyData
+# [1] TRUE
+
+# Browse[1]> mod$pixelGroupMap
+# NULL
+
+# Browse[1]> mod$cohortData
+# NULL
+```
+
+We are going to supply these objects - note that the dynamic part will not be simulated.
+
+4. Check the `.inputObjects` function and the metadata for inputs.
++ Can you see a pattern in how `prepInputs` gets data from online sources? Try to do the same for `pixelGroupMap`and `cohortData`
++ How are sources for objects given? Try adding sources the following sources:
+- for `pixelGroupMap`: "https://drive.google.com/open?id=1IUEuH55su8X7JCWt8LXy_hTAQz0cfCmU"
+- for `cohortData`: [https://drive.google.com/open?id=1R_wGGvzUI0gGZ5NOs2KmT2KrmXaTm4NS]
+
+```{r goingIn, include=FALSE, eval = FALSE}
+## add sourceURL to pixelGroupMap and cohortData
+expectsInput(objectName = "pixelGroupMap", objectClass = "RasterLayer",
+             desc = paste0("Map of groups of pixels that share the same info from cohortData (sp, age, biomass, etc).",
+                           "Here is mainly used to determine old and recent burns based on tree age,",
+                           " and if deciduous by species"),
+             sourceURL = "https://drive.google.com/open?id=1IUEuH55su8X7JCWt8LXy_hTAQz0cfCmU")
+expectsInput(objectName = "cohortData", objectClass = "data.table",
+             desc = paste0("data.table with information by pixel group of sp, age, biomass, etc"),
+             sourceURL = "https://drive.google.com/open?id=1R_wGGvzUI0gGZ5NOs2KmT2KrmXaTm4NS")
+
+## add defaults for these objects in .inputObjects, so that the module can get them if they are not supplied
+if (!suppliedElsewhere("pixelGroupMap", sim = sim, where = "sim")) {
+  sim$pixelGroupMap <- Cache(prepInputs, targetFile = "pixelGroupMapCaribouEg.rds",
+                             fun = "readRDS",
+                             url = extractURL("pixelGroupMap"), studyArea = sim$studyArea,
+                             destinationPath = dataPath(sim), filename2 = NULL,
+                             rasterToMatch = sim$rasterToMatch)
+}
+
+if (!suppliedElsewhere("cohortData", sim = sim, where = "sim")) {
+  sim$cohortData <- Cache(prepInputs, targetFile = "cohortDataCaribouEg.rds",
+                          fun = "readRDS",
+                          url = extractURL("cohortData"),
+                          destinationPath = dataPath(sim))
+}
+```
+
+Learn about [debugging in SpaDES](https://github.com/PredictiveEcology/SpaDES/wiki/Debugging) and [with RStudio](https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-RStudio)
