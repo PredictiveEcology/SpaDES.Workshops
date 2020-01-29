@@ -1,0 +1,9 @@
+# Ignore
+.csv
+.log
+.Rapp.history
+.RData
+.Rhistory
+.Rproj.user/
+.Rproj.user
+.tif

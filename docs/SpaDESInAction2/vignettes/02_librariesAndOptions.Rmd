@@ -1,0 +1,52 @@
+---
+title: "Loading libraries and setting options"
+author: "Tati Micheletti"
+date: "21 January 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+```
+
+#### A. Libraries  
+
+The first step to run the simulations is to install all libraries options for it. For that, we can  use the function `Require` from the `reproducible` package. It installs packages that are not installed, and loads the installed package.
+
+```{r libraries}
+library("reproducible")
+Require("usefun")
+Require("SpaDES")
+Require("LandR")
+Require("pemisc")
+Require("raster")
+Require("data.table")
+```
+
+#### B. Options
+
+The second step to run the simulations is to define some options for it:
+`spades.recoveryMode`: One of the coolest latest features of SpaDES. Did your simulation stop in the middle because of a simple error. Avoid self-facepalming by setting how many events you want SpaDES to "save" before the current event and just restart from this point after fixing for errors (using `mySimulation <- restartSpades()`). No more waiting 3.5 hours for all the simulation to re-run because you forgot a `,`! 
+`spades.lowMemory`: Useful when the computer you are working on is not loaded with RAM.
+`LandR.assertions`: Turns on and off assertions. Might capture edge cases, but might also stop at false negatives.
+`LandR.verbose`: Prints out all messages from the `LandR` package. Useful to understand what is happening.
+`reproducible.useMemoise`:  Brings cached stuff to memory during the second run. Useful if you have enough memory RAM and not too much patience to wait for the simulation to re-run.
+`reproducible.useNewDigestAlgorithm`: use the new less strict hashing algo.
+`reproducible.useCache`: Do you want to wait over and over again for the same mechanistic process? Just cache it!
+`pemisc.useParallel`: Do you have more than one core and enough memory? You can set this option to `TRUE` and take advantage of parallel processing.
+
+```{r options}
+options(
+  "spades.recoveryMode" = 2,
+  "spades.lowMemory" = TRUE,
+  "LandR.assertions" = FALSE,
+  "LandR.verbose" = 1,
+  "reproducible.useMemoise" = TRUE,
+  "reproducible.useNewDigestAlgorithm" = TRUE,
+  "reproducible.useCache" = TRUE,
+  "pemisc.useParallel" = FALSE
+)
+```
+
+`SpaDES` has a lot more options that can be set. The sky is the limit to try them out!
+

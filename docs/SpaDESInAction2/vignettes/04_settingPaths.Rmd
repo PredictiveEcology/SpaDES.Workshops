@@ -1,0 +1,28 @@
+---
+title: 'Setting paths: where everything starts'
+author: "Tati Micheletti"
+date: "21 January 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+```
+
+It is time to set the paths for our folders, including the `modules` folder. Here we use the functions `checkPath()` from the package `reproducible` to create paths if these don't exist, and assign (`<-`) to an R object these paths.  
+
+The function `setPaths()` from the `SpaDES.core` package sets the paths, which can be retrived at any time with the function `getPaths()` Note that we need to pass both folders that have modules (orginal module's folder AND the module's folder inside `scfm`'s directory)
+
+```{r settingPaths}
+inputDirectory <- checkPath(file.path(getwd(), "inputs"), create = TRUE)
+outputDirectory <- checkPath(file.path(getwd(), "outputs"), create = TRUE)
+modulesDirectory <- checkPath(file.path(getwd(), "modules"), create = TRUE)
+cacheDirectory <- checkPath(file.path(getwd(), "cache"), create = TRUE)
+
+setPaths(cachePath = cacheDirectory,
+         modulePath = c(modulesDirectory, 
+                        file.path(modulesDirectory, "scfm/modules")),
+         inputPath = inputDirectory,
+         outputPath = outputDirectory)
+
+```

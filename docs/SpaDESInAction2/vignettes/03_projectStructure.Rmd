@@ -1,0 +1,13 @@
+---
+title: "SpaDES Project Structure Overview"
+author: "Tati Micheletti"
+date: "21 January 2020"
+output: html_document
+---
+
+The usual project and module structure we use in our workflow is as follow:  
+
+![Project structure showing where the inputs, cache, outputs and module's folders are located.](figures/3-projectStructure.PNG)  
+
+You will note that all modules are located in the `modules` folder, but `scfm` is actually a directory with its won `modules` folder. We will come back to this when we discuss the next point. 
+

@@ -1,0 +1,9 @@
+---
+title: "Global Script: one script to rule them all"
+author: "Tati Micheletti"
+date: "21 January 2020"
+output: html_document
+---
+
+The `global` script (or `runMe`) is the file we generally call `global`. This file generates and controls all aspectes of an integrated simulation of different modules: loads libraries and sets options, sets paths, defines the simulation times, defines the simulation parameters, creates necessary objects for the simulation, defines which modules should be used and in which order, runs the initialization (i.e. `simInit()`) and the simulation (i.e. `spades()`) functions and finally, and checks outputs.
+

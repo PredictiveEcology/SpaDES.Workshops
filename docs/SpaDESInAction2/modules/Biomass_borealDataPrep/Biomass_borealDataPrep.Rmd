@@ -1,0 +1,203 @@
+---
+title: "Biomass_borealDataPrep"
+author: "Yong Luo, Eliot McIntire, Ceres Barros"
+date: "24 September 2019"
+output:
+  pdf_document: default
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+```
+
+# Overview
+
+This module converts open datasets that are available for all of Canada's forests, into the input requirements for LandR Biomass, a forest landscape succession model derived from the Landis-II Biomass Succession Model. 
+This has been partially tested for some parts of the Western Boreal Forest. 
+
+Specifically, it takes the stand biomass, stand age, ecozone, ecoprovince, and ecoregion maps of Canada, as well as species specific biomass maps of Canada (defaulting to the kNN biomass maps) and derives Land-R Biomass parameter estimates from these data. Species traits are taken from those used by Dominic Cyr for LANDIS-II simulations.
+
+Keeping data preparation outside of the LandR Biomass_core module maintains the modularity of the LandR modules.
+
+# Functioning
+
+The module defaults to using kNN species cover maps and a study area in Alberta.
+After downloading all the necessary data (see above), the module proceeds to prepare the necessary objects and parameters for the simulation. These are:
+* cohortData - a `data.table` contaning cohort-level information per pixelGroup (a group of pixels with identical species composition, ecoregion, age structure and biomass)
+* pixelGroupMap - a map of the study area with pixelGroup IDs
+* speciesEcoregion - a table of species parameters by ecoregion
+* sufficientLight - a table of light requirements corresponding to each shade tolerance trait value 1:5) and each shading amount in a pixel (1:5).  
+* ecoregion - a table with ecoregions coded as "active" or "inactive
+* biomassMap - a map stand biomasses used to initialise the simulation
+* ecoregionMap - a map of ecoregion IDs - note that ecoregions are a combination of land cover class and ecodistrict.
+* minRelativeB - a parameter defining the cut points to classify stand shadeness
+
+Depending on the objects, some are parametrised using empirical models, others using expert knowledge (sufficientLight)
+
+## Filling data gaps
+
+* mismatches between stand age, stand biomass and species cover are dealt with by trusting species cover first. If cover > 0 and age == 0, age is empirically estimated using a LMEM :
+age ~ B * speciesCode + (1 | initialEcoregionCode) + cover
+If cover and age == 0 and biomass > 0, biomass is set to 0.
+* species longevities are taken from published numbers from closest regions and adjusted using expert opinion
+* the user can choose to deal with certain land cover classes, like urban tissue and recent burns, as a data gap. In this case, the module replaces these classes with the closest forest type, geographically.
+ 
+
+## Parametrisation
+**Species parameters**
+1. establishment probabilites - species establishment probabilities by ecoregion are empirically estimated using species cover data (converted to presence/absence) and a GLMEM defined as:
+prob. presence ~ species + (1|ecoregion)
+2. maxB and maxANPP - maxB is also estimated empirically, using stand age, stand biomass per species, per ecoregion data and a LMEM defined as:
+B ~ logAge * speciesCode + cover * speciesCode + (logAge + cover + speciesCode | ecoregionGroup)
+The model is then used to predict expected B when cover = 100 and logAge = log(longevity) for a given species in a given ecoregion.
+maxANPP is defined as maxB/30 following LANDIS-II.
+3. growth and mortality curve shapes are, at the moment, taken from LANDIS-II parameters. This is changing soon (see "in development" section below)
+
+All empirically estimated parameters can be estiamted using data from a larger study area (`studyAreaLarge`) than the one used to run the simulation (`studyArea`), if the user provides such a polygon.
+
+## In development
+**Changes to species parameters**
+1.	We run ~41,000,000 hypothetical species with full factorial combinations of longevity, ratio of maxANPP to maxBiomass, growthcurve, mortalityshape
+2.	We take the closest permanent and temporary sample plots in or near the study area and find the hypothetical species in previous step that most closely matches the growth dynamics in the PSPs. This gives us the growthcurve, mortalityshape, and ratio of maximum biomass to maximum ANPP for each species in our study area
+3.	We introduce a new parameter, actualMaxBiomass, as the maxB parameter obtained empirically cannot be easily reached in the simulation, depending on the combination of growthcurve, mortalityshape, and longevity. The actualMaxBiomass is then obtained by multiplying the empirically estiamted maxB by the ratio between the maxBiomass parameter used for the simulations in poitn 1 and the maximum simulated biomass actually achivied in the simulations (of point 1).  We use this actualMaxBiomass so that the resulting non-linear growth curves will hit the the empirically estimated maxB. 
+3.	Species-specific maxANPP is estimated by multiplying the empirically estimated maxB (spatial) above and the ratio of the simulated maxANPP parameter (point 1) to the maximum simulated biomass (point 1) at the species level.
+
+# Install packages, if necessary
+
+```{r package_installation, eval = TRUE}
+if (packageVersion("SpaDES") < "2.0.0") 
+  install.packages("SpaDES") # prepInputs with alsoExtract argument
+
+# The most recent version of reproducible package is necessary -- check if reproducible is at least 0.2.0.9002 on your system. 
+if (packageVersion("reproducible") < "0.2.1") 
+  devtools::install_github("PredictiveEcology/reproducible@development", dependencies = FALSE) # uses version of prepInputs that is still in development branch only
+if (packageVersion("SpaDES.core") < "0.2.0") 
+  devtools::install_github("PredictiveEcology/SpaDES.core@development", dependencies = FALSE) # uses extractURL that is still in development branch only
+```
+
+# Load libraries
+
+```{r load-libraries}
+library(magrittr) # for %>% pipe
+library(SpaDES)
+```
+
+# Set up paths
+```{r module_usage}
+moduleName <- "Biomass_borealDataPrep"
+spadesModulesDirectory <- ".." # where the module will be located -- this is correct, if this module
+                               # is an Rstudio project, i.e., one up from the project
+
+inputPath <- file.path(dirname(spadesModulesDirectory), "inputs") %>% checkPath(create = TRUE)
+outputPath <- file.path(dirname(spadesModulesDirectory), "outputs") 
+cachePath = file.path(outputPath, "cache")
+         
+setPaths(cachePath = cachePath,
+         modulePath = spadesModulesDirectory,
+         inputPath = inputPath,
+         outputPath = outputPath)
+paths <- getPaths()
+```
+
+
+# Choose a study area
+
+```{r get-study-area}
+library(raster)
+# modulePath <- Cache(readline, paste0("Where is the module path? (e.g., ~/module, with no quotes).\n",
+#                                      "Press Enter to accept the path in getPaths()$modulePath: "),
+#                     cacheRepo = cachePath)
+# setPaths(cachePath = cachePath, modulePath = modulePath)
+
+## do you want to hand-draw a map or use defaults?
+# - note that large areas will take longer to compute
+handDrawMap <- TRUE
+
+if (handDrawMap) {
+  dev()
+  clearPlot()
+  canadaMap <- Cache(getData, 'GADM', country = 'CAN', level = 1, path = Paths$inputPath,
+                     cacheRepo = getPaths()$cachePath, quick = FALSE)
+  Plot(canadaMap, speedup = 5, visualSqueeze = 0.9) # 5 seemed optimal
+  
+  ## hand-drawn study area
+  if (!exists("studyAreaLarge")) {
+    message("Since there is no object called 'studyAreaLarge', please draw a study area with 10 points")
+    severalrandompoints <- Cache(clickCoordinates, 10)
+    # if(startsWith(attr(severalrandompoints, "tags"), "cache")) message("Taking studyAreaLarge from Cache")
+    studyAreaLarge <- SpatialPolygons(list(Polygons(list(Polygon(severalrandompoints$coords)), ID = 1)),
+                                          proj4string = crs(canadaMap))
+  }
+  Plot(studyAreaLarge, addTo = "canadaMap", col = "red")
+}
+
+times <- list(start = 0, end = 10)
+modules <- list("Biomass_borealDataPrep")
+objects <- if (handDrawMap) list("studyAreaLarge" = studyAreaLarge,
+                                 "studyArea" = studyAreaLarge) else list()
+
+mySim <- simInit(times = times, #params = parameters, 
+                 modules = modules, #, "Biomass_core"),
+                 objects = objects, paths = getPaths())
+```
+
+# Run `spades`
+
+This module is about data preparation, so there is no stochastic elements.
+The `spades` call will only cause one event to occur (the `init` event)
+
+```{r run-spades}
+simOut <- spades(mySim, debug = TRUE)
+
+```
+
+# Visualize
+
+The `Plot` function will visualize all known .quickPlot type objects, which includes `Raster*` and `SpatialPolygons*` objects.
+After running this module, these are the outputs, which would likely be used as inputs to `Biomass_core`.
+
+```{r visualize}
+dev()
+clearPlot()
+
+Plot(simOut)
+```
+
+# Downloads
+
+During the `simInit` call, if the user does not provide alternatives for the expected inputs, the module will download 3 large `.tar` files (~2 GB each) and 1 `.zip` file (~45 MB) from the internet.
+
+# Inputs
+
+This module has several input requirements. 
+One is a study area, which should be provided as a SpatialPolygonsDataFrame, and named `studyAreaLarge`.
+This should be inside the boundaries of the boreal forest of Canada. 
+When first running the code in this `.Rmd` file, you will be prompted to draw a polygon if none is provided as an input.
+
+## Creates Inputs
+
+Most of the inputs will be created automatically, if they are not provided by the user. 
+The automatic creation will work in the boreal forest of Canada.
+These are zip files and tar files that are available from various Natural Resources Canada web pages. 
+Also, this module gets its Species Traits table from [dcyr/LANDIS-II_IA_generalUseFiles](https://github.com/dcyr/LANDIS-II_IA_generalUseFiles).
+
+# Outputs
+
+This will show the outputs of this module, which can be used directly as the inputs for Biomass_core:
+
+```{r}
+# List all objects
+ls(simOut)
+
+# Examine a few tables a visuals
+simOut$speciesTable
+Plot(simOut$biomassMap)
+simOut$studyAreaLarge <- spTransform(simOut$studyAreaLarge, crs(simOut$biomassMap))
+Plot(simOut$studyAreaLarge, addTo = "simOut$biomassMap")
+```
+
+# References
+
+<!-- automatically generated; see https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html -->

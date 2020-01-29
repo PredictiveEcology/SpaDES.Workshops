@@ -1,0 +1,30 @@
+---
+title: 'Parameters: the fine control of your simulations'
+author: "Tati Micheletti"
+date: "21 January 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+```
+
+You need to supply any parameter values you would like to change from the default. These values should be a `list()` of the name of the module that contains these.  
+
+Take the caribouRSF example. This is the relevant section of the `caribouRSF.R` module:
+
+```
+(...)
+parameters = rbind(
+(...)
+defineParameter("predictionInterval", "numeric", 10, NA, NA, "Time between predictions"),
+(...)
+)
+```
+
+If you want to modify how often a caribou model should be run (by default happening every 10 years), you can pass inside the parameters list the following: 
+```
+caribouRSF = list(.plotInterval = 5)
+``` 
+This would override the interval of prediction to every 20 years. You can find all parameters that can be changed in the metadata of each module, together with a default value and the description of what that parameter does. As parameters are a list, if you pass lists of modules that are not in the simulation call, these will be ignored and will not interfere with your simulation. This is handy to reduce the number of codes of line and potential errors if you want to do different calls of different modules, but always keep the same parameters.   
+
