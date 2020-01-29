@@ -10,9 +10,5 @@ editor_options:
 knitr::opts_chunk$set(cache = TRUE, echo = TRUE, eval = FALSE)
 ```
 
-<!--
-  this is a dummy file that will be replaced with a link to the SpaDES4Dummies vignette when site rebuilt
-  see `replacementList` defined in `asis.R`
--->
-
+# SpaDES Example: [SpaDESinAction](../SpaDESinAction2/runMe.html)
 
