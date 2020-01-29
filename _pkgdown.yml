@@ -36,9 +36,8 @@ articles:
     desc: >
       Here we present some of the projects that used SpaDES and its tools
     contents:
-    - 10a-LandWeb
     - 10b-NWT
-    - 10c-Harvesting
+    - 10a-LandWeb
 
   - title: "Day 1 - Section 3: SpaDES in Action: a forest succession, a wildfire models, and a caribou models -- putting it all together"
     desc: >

@@ -1,5 +1,5 @@
 ---
-title: "LandWeb"
+title: "Cumulative Effects, Harvesting, LandWeb"
 author: "Eliot McIntire"
 date: "January 16, 2020"
 output:
@@ -15,6 +15,4 @@ editor_options:
 knitr::opts_chunk$set(cache = FALSE, echo = TRUE, eval = TRUE)
 ```
 
-<!--
-  this is a dummy file that will be developed by Eliot
--->
+# [Powerpoint presentation](https://drive.google.com/open?id=1wmTpHikrffLi_VfFC6XW_5amUNMaPHlE)
