@@ -20,11 +20,12 @@ articles:
   05-Simulation_Experiments_Replication: 05-Simulation_Experiments_Replication.html
   06a-R_Developing_powerful_skills: 06a-R_Developing_powerful_skills.html
   06b-R_Profiling_code: 06b-R_Profiling_code.html
+  06c-Caching: 06c-Caching.html
+  06d-Debugging: 06d-Debugging.html
   08-Sharing_Modules: 08-Sharing_Modules.html
   09a-Continuous_Workflow: 09a-Continuous_Workflow.html
   09b-Plotting: 09b-Plotting.html
-  09c-Caching: 09c-Caching.html
-  09d-Debugging: 09d-Debugging.html
+  09c-CachingAndDebugging: 09c-CachingAndDebugging.html
   10a-LandWeb: 10a-LandWeb.html
   10b-NWT: 10b-NWT.html
   10c-Harvesting: 10c-Harvesting.html
