@@ -61,7 +61,7 @@ LCC2005 <- prepInputs(url = url,
 ```
 
 Now try wrapping the previous operation in `Cache` call, and run it twice. Notice differences in speed.
-```{r LCC2005_2, eval = FALSE}
+```{r LCC2005_3, eval = FALSE}
 LCC2005 <- Cache(prepInputs,
                  url = url,
                  destinationPath = asPath(dPath),
@@ -71,7 +71,7 @@ LCC2005 <- Cache(prepInputs,
 ```
 
 The previous code is great but we don't have as much control as we'd like on where `Cache` is storing cached objects. To do that, we can explicitly provide a cache folder and add tags to the object so that we can find it more easily if we ever need to "clean it".
-```{r LCC2005_2, eval = FALSE}
+```{r LCC2005_4, eval = FALSE}
 cPath <- file.path(tempdir(), "cache")
 ## run this twice
 LCC2005 <- Cache(prepInputs,
@@ -98,7 +98,7 @@ LCC2005 <- Cache(prepInputs,
 ```
 
 We can also force `Cache` to redo operations and re-cache, or simply to ignore caching altogether. See more options for `Cache(useCache)` in `?Cache`
-```{r LCC2005_3, eval = FALSE}
+```{r LCC2005_5, eval = FALSE}
 LCC2005 <- Cache(prepInputs,
                  url = url,
                  destinationPath = asPath(dPath),
@@ -200,7 +200,7 @@ file.edit("modules/caribouRSF/caribouRSF.R")  ## got to caribouRSF.R#154
 2. What is `P(sim)$.useDummyData`? Where does its value come from?
 3. Which data objects are missing? Why?
 
-```{r goingIn, eval = FALSE}
+```{r goingIn_2, eval = FALSE}
 # Browse[1]> P(sim)$.useDummyData
 # [1] TRUE
 
@@ -219,7 +219,7 @@ We are going to supply these objects - note that the dynamic part will not be si
 - for `pixelGroupMap`: "https://drive.google.com/open?id=1IUEuH55su8X7JCWt8LXy_hTAQz0cfCmU"
 - for `cohortData`: [https://drive.google.com/open?id=1R_wGGvzUI0gGZ5NOs2KmT2KrmXaTm4NS]
 
-```{r goingIn, include=FALSE, eval = FALSE}
+```{r goingIn_3, include=FALSE, eval = FALSE}
 ## add sourceURL to pixelGroupMap and cohortData
 expectsInput(objectName = "pixelGroupMap", objectClass = "RasterLayer",
              desc = paste0("Map of groups of pixels that share the same info from cohortData (sp, age, biomass, etc).",
