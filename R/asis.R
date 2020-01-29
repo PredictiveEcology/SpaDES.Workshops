@@ -1,7 +1,7 @@
 replacementList <- list(
   "[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9] Workshop" = "2019-10-10",
   "Articles <small>version&nbsp;0.1.0</small>" = "Content",
-  "06c-Caching.html" = "https://cran.r-project.org/web/packages/SpaDES/vignettes/iii-cache.html",
+  "06c-Caching.html" = "http://spades.predictiveecology.org/articles/iii-cache.html",
   "06d-Debugging.html" = "https://github.com/PredictiveEcology/SpaDES/wiki/Debugging",
   "Past Workshops" = "Prior to 2019",
   "06b-Plotting.html" = "http://quickplot.predictiveecology.org/articles/iii-plotting.html",
