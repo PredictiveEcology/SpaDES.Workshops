@@ -76,6 +76,8 @@ articles:
       In this section we will explain how to use a caching  mechanism in SpaDES and how to debug your code when something errors
     contents:
     - 09c-CachingAndDebugging
+    - 06c-Caching
+    - 06d-Debugging
 
   - title: "Day 3 - Section 7: My first project in SpaDES"
     desc: >
