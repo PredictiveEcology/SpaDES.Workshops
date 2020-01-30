@@ -120,6 +120,51 @@ LCC2005 <- Cache(prepInputs,
                  useCache = FALSE)
 ```
 
+Try to change the study area now. Hints:
+* check out `?SpaDES.tools::randomPolygon`
+  + try these coordinates: -114.5522 W 50.73892 N and 1 ha
+* check out `?SpaDES.tools::randomStudyArea`
+  + try with an area 1 ha
+  + how would you guarantee you get *the same* area *everytime*?
+* what happens when you run `Cache(prepInputs(...))` with the new study area(s)?
+ 
+```{r LCC2005_6, eval = FALSE, include = FALSE}
+library(SpaDES.tools)
+StudyArea2 <- randomPolygon(x = matrix(c(-114.5522, 50.73892), nrow = 1, ncol = 2,
+                                      byrow = TRUE), area = 100^2)
+StudyArea3 <- randomStudyArea(seed = 1234, size = 100^2)
+
+LCC2005 <- Cache(prepInputs,
+                 url = url,
+                 destinationPath = asPath(dPath),
+                 useSAcrs = TRUE,
+                 overwrite = TRUE,
+                 studyArea = StudyArea2,
+                 cacheRepo = cPath,
+                 userTags = "LCC2005",
+                 useCache = FALSE)
+```
+
+What if my study area is a raster?
+Assuming you don't have raster at hand, try using a raster from the `SpaDESInAction` example ("inputs/LCC2005_V1_4a_BCR6_NWT.tif").
+
+```{r LCC2005_7, eval = FALSE, include = FALSE}
+templateRaster <- raster("docs/SpaDESInAction2/inputs/LCC2005_V1_4a_BCR6_NWT.tif")
+
+LCC2005 <- Cache(prepInputs,
+                 url = url,
+                 destinationPath = asPath(dPath),
+                 # useSAcrs = TRUE,
+                 mask
+                 overwrite = TRUE, 
+                 rasterToMatch = templateRaster,
+                 maskWithRTM = TRUE,
+                 cacheRepo = cPath,
+                 userTags = "LCC2005",
+                 useCache = FALSE)
+```
+
+
 Learn more about [caching](http://spades.predictiveecology.org/articles/iii-cache.html)
 
 # Some basic Debugging lessons
