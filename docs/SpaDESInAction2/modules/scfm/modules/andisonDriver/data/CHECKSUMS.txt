@@ -1,2 +1,0 @@
-"file" "checksum" "filesize" "algorithm"
-"FiresN1000MinFiresSize2NoLakes.csv" "f00e3cf0d9cc8741" "281189" "xxhash64"
