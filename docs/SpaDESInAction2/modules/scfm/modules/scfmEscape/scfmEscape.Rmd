@@ -1,0 +1,87 @@
+---
+title: "scfmEscape"
+author: "Module Author"
+date: "17 December 2015"
+output: pdf_document
+---
+
+# Overview
+
+Provide an overview of what the module does / how to use the module.
+
+Module documentation should be written so that others can use your module.
+This is a template for module documentation, and should be changed to reflect your module.
+
+## RMarkdown
+
+RMarkdown syntax allows R code, outputs, and figures to be rendered in the documentation.
+
+For help writing in RMarkdown, see http://rmarkdown.rstudio.com/.
+
+# Usage
+
+```{r module_usage}
+library(SpaDES)
+
+inputDir <- file.path(tempdir(), "inputs") %>% checkPath(create = TRUE)
+outputDir <- file.path(tempdir(), "outputs")
+times <- list(start = 0, end = 10)
+parameters <- list(
+  .globals = list(burnStats = "nPixelsBurned"),
+  .progress = list(type = "text", interval = 1),
+  cropReprojectLccAge = list(useCache = TRUE),
+  forestSuccessionBeacons = list(
+    returnInterval = 1, startTime = times$start,
+    .plotInitialTime = times$start, .plotInterval = 1),
+  forestAge = list(
+    returnInterval = 1, startTime = times$start+0.5,
+    .plotInitialTime = times$start, .plotInterval = 1),
+  fireSpreadLcc = list(
+    nFires = 3, its = 1e6, drought = 1.2, persistprob = 0, returnInterval = 1,
+    startTime = times$start+1, .plotInitialTime = times$start, .plotInterval = 1),
+  caribouMovementLcc = list(
+    N = 1e3, moveInterval = 1, startTime = times$start+1, torus = TRUE,
+    glmInitialTime = NA_real_, .plotInitialTime = times$start, .plotInterval = 1)
+)
+modules <- list("scfmEscape")
+  objects <- list()
+  paths <- list(
+    cachePath = file.path(outputDir, "cache"),
+    modulePath = file.path(".."),
+    inputPath = inputDir,
+    outputPath = outputDir
+)
+
+mySim <- simInit(times = times, params = parameters, modules = modules,
+                 objects = objects, paths = paths)
+
+spades(mySim)
+```
+
+# Events
+
+Describe what happens for each event type.
+
+## Plotting
+
+Write what is plotted.
+
+## Saving
+
+Write what is saved.
+
+# Data dependencies
+
+## Input data
+
+How to obtain input data, and a description of the data required by the module.
+
+## Output data
+
+Description of the module outputs.
+
+# Links to other modules
+
+Describe any anticipated linkages to other modules.
+
+

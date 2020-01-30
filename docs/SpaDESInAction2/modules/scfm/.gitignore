@@ -1,0 +1,11 @@
+.DS_Store
+.httr-oauth
+.Rapp.history
+.RData
+.Rhistory
+*.Rproj
+.Rproj.user/
+.Rproj.user
+cache/
+outputs/
+scfm_IansGlobal.R

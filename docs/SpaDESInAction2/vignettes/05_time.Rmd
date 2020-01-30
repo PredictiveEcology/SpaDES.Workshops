@@ -1,0 +1,20 @@
+---
+title: 'Time: bringing all to the same scale'
+author: "Tati Micheletti"
+date: "21 January 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+We need to define the start and end of the simulation. It is important to pass it as a `list`. By default, a simulation uses the finest time scale of all modules, unless it is specified in the `timesunits` of the initialization function as:  
+
+`simInit(times = list(start = 0, end = 10, timeunits = "months"`  
+
+In this case, the default is overridden manually. We will discuss the initialization done by `simInit()` in section `9. SimInit and the simList`. For now, we will leave it for SpaDES to determine the time scale.
+
+```{r time}
+times <- list(start = 0, end = 20)
+```

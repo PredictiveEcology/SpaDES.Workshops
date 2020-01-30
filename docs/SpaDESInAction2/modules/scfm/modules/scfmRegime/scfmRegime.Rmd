@@ -1,0 +1,67 @@
+---
+title: "scfmRegime"
+author: "Module Author"
+date: "03 August 2015"
+output: pdf_document
+---
+
+Module documentation should be written so that others can use your module.
+This is a template for module documentation, and should be changed.
+
+Parameter _empiricalMaxSizeFactor_ is used to derive max from mean fire size when the statistical estimator fails; 
+
+Hi Steve,
+
+I did a bit more digging. I mixed the numbers up. The 1.3 value was calculated from the hexagons (10,000km^2, n=484), and the 1.2 value from the ecoregions (n=62). 
+## Plotting
+
+Write what is plotted.
+
+## Saving
+
+Write what is saved.
+
+## Input data
+
+## Output data
+
+## Anticipated linkages to other modules
+
+## Other Markdown help
+For help writing in RMarkdown, see http://rmarkdown.rstudio.com/. We have also included
+The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
+
+output:
+rmarkdown::html_vignette:
+css: mystyles.css
+
+## Figures
+
+The figure sizes have been customised so that you can easily put two images side-by-side.
+
+```{r, fig.show='hold'}
+plot(1:10)
+plot(10:1)
+```
+
+You can enable figure captions by `fig_caption: yes` in YAML:
+
+output:
+rmarkdown::html_vignette:
+fig_caption: yes
+
+Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
+
+## More Examples
+
+You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
+
+```{r, echo=FALSE, results='asis'}
+knitr::kable(head(mtcars, 10))
+```
+
+Also a quote using `>`:
+
+> "He who gives up [code] safety for [code] speed deserves neither."
+([via](https://twitter.com/hadleywickham/status/504368538874703872))
+

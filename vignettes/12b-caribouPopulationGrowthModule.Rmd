@@ -1,5 +1,5 @@
 ---
-title       : "12b-caribouPopulationGrowthModule"
+title       : "Caribou Population Growth Module: bringing a statistical model to the forescasting world"
 author      : "Tati Micheletti"
 date        : "2019 October 10"
 output:
@@ -15,7 +15,4 @@ editor_options:
 knitr::opts_chunk$set(cache = FALSE, echo = TRUE, eval = TRUE)
 ```
 
-<!--
-  this is a dummy file that will be replaced with a link to the 12b-caribouPopulationGrowthModule vignette when site rebuilt
-  see `replacementList` defined in `asis.R`
--->
+# SpaDES Module: [Caribou population growth](http://htmlpreview.github.io/?https://github.com/tati-micheletti/caribouPopGrowthModel/blob/master/caribouPopGrowthModel.html)

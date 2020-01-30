@@ -15,6 +15,4 @@ editor_options:
 knitr::opts_chunk$set(cache = FALSE, echo = TRUE, eval = TRUE)
 ```
 
-<!--
-  this is a dummy file that will be be worked on by Tati
--->
+# [Powerpoint presentation](https://drive.google.com/open?id=1Xyl8afgWRLYWNL6X0CAgfSYeEuaZdeL2)

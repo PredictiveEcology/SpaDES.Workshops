@@ -1,0 +1,92 @@
+---
+title: "Biomass_regeneration"
+author: ""
+date: "20 October 2019"
+output: pdf_document
+---
+
+# Overview
+
+Biomass_regeneration is a SpaDES module that simulates post-disturbance regeneration mechanisms for Biomass_core.
+As such, this module is mostly based on the post-disturbance regeneration mechanisms present in LANDIS-II Biomass Succession v3.2.1 extension (see [LANDIS-II Biomass Succession v3.2 User Guide](https://github.com/LANDIS-II-Foundation/Extension-Biomass-Succession/blob/master/docs/LANDIS-II%20Biomass%20Succession%20v3.2%20User%20Guide.docx) and [Scheller and Mladenoff (2004)](https://pdfs.semanticscholar.org/4d38/d0be6b292eccd444af399775d37a757d1967.pdf).
+At the moment, the Biomass_regeneration module only simulates post-fire disturbance effects on forest species, by simulating post-fire mortality and activating serotiny or resprouting mechanisms for each species, depending on their traits (i.e. ability to resprout and/or germinate from seeds, serotiny, following fire).
+Post-fire mortality behaves in a stand-replacing fashion, i.e. should a pixel be within a fire perimeter (determined by a fire raster) all cohorts see their biomasses set to 0.
+
+As for post-fire regeneration, the module first evaluates whether any species present prior to fire are serotinous.
+If so, these species will germinate depending on light conditions and their shade tolerance, and depending on their (seed) establishment probability (i.e. germination success) in that pixel.
+The module then evaluates if any species present before fire are capable of resprouting. If so the model growth these species depending, again, on light conditions and their shade tolerance, and on their resprouting probability (i.e. resprouting success).
+For any given species in any given pixel, only serotiny or resprouting can occur.
+Hence, species that are capable of both will only resprout if serotiny was not activated.
+
+In LANDIS-II, resprouting could never occur in a given pixel if serotiny was activated for one or more species.
+According to the manual:
+
+> If serotiny (only possible immediately following a fire) is triggered for one or more species, then neither resprouting nor seeding will occur.
+> Serotiny is given precedence over resprouting as it typically has a higher threshold for success than resprouting.
+> This slightly favors serotinous species when mixed with species able to resprout following a fire.
+
+([LANDIS-II Biomass Succession v3.2 User Guide](https://github.com/LANDIS-II-Foundation/Extension-Biomass-Succession/blob/master/docs/LANDIS-II%20Biomass%20Succession%20v3.2%20User%20Guide.docx))
+
+This is no longer the case in Biomass_regeneration, where both serotinity and resprouting can occur in the same pixel, although not for the same species.
+We feel that this is more realistic ecologically, as resprouters will typically regenerate faster  after a fire, often shading serotinous species and creating interesting successional feedbacks (e.g. light-loving serotinous species having to "wait" for canopy gaps to germinate).
+
+## General flow of Biomass_regeneration processes - fire disturbances only
+
+1. Removal of biomass in disturbed, i.e. burnt, pixels
+2. Activation of serotiny for serotinous species present before the fire
+3. Activation of resprouting for resprouter species present before the fire and for which serotiny was not activated
+4. Establishment/growth of species for which serotiny or resprouting were activated
+
+# Usage
+
+```{r module_usage}
+library(SpaDES)
+
+setPaths()
+getPaths() # shows where the 4 relevant paths are
+
+times <- list(start = 0, end = 10)
+
+parameters <- list(
+  #.progress = list(type = "text", interval = 1), # for a progress bar
+  ## If there are further modules, each can have its own set of parameters:
+  #module1 = list(param1 = value1, param2 = value2),
+  #module2 = list(param1 = value1, param2 = value2)
+)
+modules <- list("Biomass_regeneration")
+objects <- list()
+inputs <- list()
+outputs <- list()
+
+mySim <- simInit(times = times, params = parameters, modules = modules,
+                 objects = objects)
+
+mySimOut <- spades(mySim)
+```
+
+# Events
+
+Describe what happens for each event type.
+
+## Plotting
+
+Write what is plotted.
+
+## Saving
+
+Write what is saved.
+
+# Data dependencies
+
+## Input data
+
+How to obtain input data, and a description of the data required by the module.
+If `sourceURL` is specified, `downloadData("Biomass_regeneration", "path/to/modules/dir")` may be sufficient.
+
+## Output data
+
+Description of the module outputs.
+
+# Links to other modules
+
+Describe any anticipated linkages to other modules.

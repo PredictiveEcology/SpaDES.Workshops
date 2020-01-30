@@ -1,0 +1,77 @@
+---
+title: 'Checking outputs: the answer might be 42!'
+author: "Tati Micheletti"
+date: "21 January 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+```
+
+### Inspect the `simList` object
+
+Use the simList accessor functions to determine the following:
+
+1. the modules included in the simulation and their package dependencies;
+2. the global parameter values used;
+3. the module-specific parameter values used;
+4. the simulation start and end times;
+5. the timeunits used by the modules in the simulation;
+6. the scheduled and completed event queues;
+7. the objects (functions, data, etc.) used in the simulation;
+8. the file paths used for simulation inputs and outputs.
+
+```{r inspect-simList}
+# list modules used in the simulation
+modules(mySim)
+
+# list module dependencies and packages used
+depends(mySim)
+packages(mySim)
+
+# list global and module-specific param values
+globals(mySim)
+params(mySim)
+P(mySim)       ## bonus: how do params() and P() differ?
+
+# list start and end times
+times(mySim)
+start(mySim)
+end(mySim)
+
+# get the simulation and module timeunits
+timeunit(mySim)
+timeunits(mySim)
+
+# get the scheduled and completed event queues
+events(mySim)
+completed(mySim)
+
+# list the objects (functions, data, etc.) stored in the simList
+objects(mySim)
+
+# list the file paths used in the simulation
+paths(mySim)
+inputPath(mySim)
+outputPath(mySim)
+```
+
+### Run the simulation
+
+```{r run-sim}
+dev()
+mySimOut <- Copy(mySim) ## make a deep copy of the simList
+mySimOut <- spades(mySimOut)
+```
+
+### Compare the simList before and after
+
+```{r compare-sims}
+times(mySim)
+times(mySimOut)
+
+objects(mySim)
+objects(mySimOut)
+```
+

@@ -1,0 +1,17 @@
+.Rapp.history
+.RData
+.Rhistory
+.Rproj.user
+*.Rproj
+
+## module cache files
+cache/
+
+## OAuth tokens
+.httr-oauth
+.httr-oauth-SUSPENDED
+
+## misc OS files
+Thumbs.db
+
+ ## !! Module data should be gitignored in the respective module's data dir !! 

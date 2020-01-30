@@ -124,9 +124,9 @@
 <h2 class="hasAnchor">
 <a href="#how-spades-works-simlists" class="anchor"></a>How <code>SpaDES</code> works: simLists</h2>
 <p>We can examine the <code>simList</code> object structure in the usual R fashion by printing (<code>show</code>ing) it, or by using <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">emptySim &lt;-<span class="st"> </span><span class="kw">simInit</span>()</a>
-<a class="sourceLine" id="cb1-2" title="2">emptySim  <span class="co"># same as show(emptySim)</span></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(emptySim)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">emptySim &lt;-<span class="st"> </span><span class="kw">simInit</span>()
+emptySim  <span class="co"># same as show(emptySim)</span>
+<span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(emptySim)</code></pre></div>
 <p><strong>NOTE:</strong> <code>simList</code>s are S4 objects, so we can use <code>getSlots()</code> and <code>slotNames()</code> to examine the object.</p>
 <p>See also <code>?'.simList-class'</code></p>
 </div>
@@ -134,14 +134,13 @@
 <h2 class="hasAnchor">
 <a href="#accessing-the-parts-of-a-simlists" class="anchor"></a>Accessing the parts of a simLists</h2>
 <div class="columns-2">
-
 <pre><code>## Setting:
 ##   options(
-##     rasterTmpDir = 'C:/Users/emcintir.L-VIC-A023744/AppData/Local/Temp/RtmpCEbuIK/raster'
-##     reproducible.cachePath = 'C:/Users/emcintir.L-VIC-A023744/AppData/Local/Temp/RtmpCEbuIK/reproducible/cache'
-##     spades.inputPath = 'C:/Users/emcintir.L-VIC-A023744/AppData/Local/Temp/RtmpktnjfC/SpaDES/inputs'
-##     spades.outputPath = 'C:/Users/emcintir.L-VIC-A023744/AppData/Local/Temp/RtmpktnjfC/SpaDES/outputs'
-##     spades.modulePath = 'C:/Users/emcintir.L-VIC-A023744/AppData/Local/Temp/RtmpktnjfC/SpaDES/modules'
+##     rasterTmpDir = 'C:/Users/Tati/Documents/GitHub/tmp/RtmpQrXdeL/raster'
+##     reproducible.cachePath = 'C:/Users/Tati/Documents/GitHub/tmp/RtmpQrXdeL/reproducible/cache'
+##     spades.inputPath = 'C:/Users/Tati/Documents/GitHub/tmp/RtmpiExlFU/SpaDES/inputs'
+##     spades.outputPath = 'C:/Users/Tati/Documents/GitHub/tmp/RtmpiExlFU/SpaDES/outputs'
+##     spades.modulePath = 'C:/Users/Tati/Documents/GitHub/tmp/RtmpiExlFU/SpaDES/modules'
 ##   )</code></pre>
 <table class="table">
 <thead><tr>
@@ -327,7 +326,7 @@ modulePath()
 <div id="initiliaze-an-empty-simlist-object" class="section level3">
 <h3 class="hasAnchor">
 <a href="#initiliaze-an-empty-simlist-object" class="anchor"></a>Initiliaze an empty <code>simList</code> object</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">emptySim &lt;-<span class="st"> </span><span class="kw">simInit</span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">emptySim &lt;-<span class="st"> </span><span class="kw">simInit</span>()</code></pre></div>
 </div>
 <div id="inspect-the-empty-simlist-object" class="section level3">
 <h3 class="hasAnchor">
@@ -336,51 +335,51 @@ modulePath()
 <li>What are the names of each of the slots in the simList?</li>
 <li>What do each of these slots contain? Hint: see <code>?'.simList-class'</code>.</li>
 </ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(emptySim)</a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="kw">slotNames</span>(emptySim)</a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="kw">getSlots</span>(<span class="st">'simList'</span>)</a>
-<a class="sourceLine" id="cb4-4" title="4">?<span class="st">'.simList-class'</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(emptySim)
+<span class="kw">slotNames</span>(emptySim)
+<span class="kw">getSlots</span>(<span class="st">'simList'</span>)
+?<span class="st">'.simList-class'</span></code></pre></div>
 </div>
 <div id="initialize-a-simulation-using-sample-modules" class="section level3">
 <h3 class="hasAnchor">
 <a href="#initialize-a-simulation-using-sample-modules" class="anchor"></a>Initialize a simulation using sample modules</h3>
 <p>This code is based on the <code>SpaDES</code> package <a href="https://github.com/PredictiveEcology/SpaDES/blob/master/demo/spades-simulation.R">demo</a>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">42</span>)</a>
-<a class="sourceLine" id="cb5-2" title="2"></a>
-<a class="sourceLine" id="cb5-3" title="3">filelist &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(</a>
-<a class="sourceLine" id="cb5-4" title="4">  <span class="dt">files =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.files.html">dir</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"maps"</span>, <span class="dt">package =</span> <span class="st">"SpaDES"</span>),</a>
-<a class="sourceLine" id="cb5-5" title="5">              <span class="dt">full.names =</span> <span class="ot">TRUE</span>, <span class="dt">pattern =</span> <span class="st">"tif"</span>),</a>
-<a class="sourceLine" id="cb5-6" title="6">  <span class="dt">functions =</span> <span class="st">"rasterToMemory"</span>,</a>
-<a class="sourceLine" id="cb5-7" title="7">  <span class="dt">packages =</span> <span class="st">"SpaDES"</span>,</a>
-<a class="sourceLine" id="cb5-8" title="8">  <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb5-9" title="9">)</a>
-<a class="sourceLine" id="cb5-10" title="10"></a>
-<a class="sourceLine" id="cb5-11" title="11"><span class="co"># create the simList object 'mySim'</span></a>
-<a class="sourceLine" id="cb5-12" title="12">mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(</a>
-<a class="sourceLine" id="cb5-13" title="13">  <span class="dt">times =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">start =</span> <span class="fl">0.0</span>, <span class="dt">end =</span> <span class="fl">100.00</span>),</a>
-<a class="sourceLine" id="cb5-14" title="14">  <span class="dt">params =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
-<a class="sourceLine" id="cb5-15" title="15">    <span class="dt">.progress =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">type =</span> <span class="ot">NA</span>, <span class="dt">interval =</span> <span class="ot">NA</span>),</a>
-<a class="sourceLine" id="cb5-16" title="16">    <span class="dt">.globals =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">burnStats =</span> <span class="st">"nPixelsBurned"</span>),</a>
-<a class="sourceLine" id="cb5-17" title="17">    <span class="dt">randomLandscapes =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
-<a class="sourceLine" id="cb5-18" title="18">      <span class="dt">nx =</span> <span class="fl">1e2</span>, <span class="dt">ny =</span> <span class="fl">1e2</span>, <span class="dt">.saveObjects =</span> <span class="st">"landscape"</span>,</a>
-<a class="sourceLine" id="cb5-19" title="19">      <span class="dt">.plotInitialTime =</span> <span class="ot">NA</span>, <span class="dt">.plotInterval =</span> <span class="ot">NA</span>, <span class="dt">inRAM =</span> <span class="ot">TRUE</span></a>
-<a class="sourceLine" id="cb5-20" title="20">    ),</a>
-<a class="sourceLine" id="cb5-21" title="21">    <span class="dt">caribouMovement =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
-<a class="sourceLine" id="cb5-22" title="22">      <span class="dt">N =</span> <span class="fl">1e2</span>, <span class="dt">.saveObjects =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"caribou"</span>),</a>
-<a class="sourceLine" id="cb5-23" title="23">      <span class="dt">.plotInitialTime =</span> <span class="dv">1</span>, <span class="dt">.plotInterval =</span> <span class="dv">1</span>, <span class="dt">moveInterval =</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb5-24" title="24">    ),</a>
-<a class="sourceLine" id="cb5-25" title="25">    <span class="dt">fireSpread =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
-<a class="sourceLine" id="cb5-26" title="26">      <span class="dt">nFires =</span> <span class="fl">1e1</span>, <span class="dt">spreadprob =</span> <span class="fl">0.235</span>, <span class="dt">persistprob =</span> <span class="dv">0</span>, <span class="dt">its =</span> <span class="fl">1e6</span>,</a>
-<a class="sourceLine" id="cb5-27" title="27">      <span class="dt">returnInterval =</span> <span class="dv">10</span>, <span class="dt">startTime =</span> <span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb5-28" title="28">      <span class="dt">.plotInitialTime =</span> <span class="dv">0</span>, <span class="dt">.plotInterval =</span> <span class="dv">10</span></a>
-<a class="sourceLine" id="cb5-29" title="29">    )</a>
-<a class="sourceLine" id="cb5-30" title="30">  ),</a>
-<a class="sourceLine" id="cb5-31" title="31">  <span class="dt">modules =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"randomLandscapes"</span>, <span class="st">"fireSpread"</span>, <span class="st">"caribouMovement"</span>),</a>
-<a class="sourceLine" id="cb5-32" title="32">  <span class="dt">inputs =</span> filelist,</a>
-<a class="sourceLine" id="cb5-33" title="33">  <span class="dt">paths =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">modulePath =</span> <span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"sampleModules"</span>, <span class="dt">package =</span> <span class="st">"SpaDES"</span>))</a>
-<a class="sourceLine" id="cb5-34" title="34">)</a>
-<a class="sourceLine" id="cb5-35" title="35"></a>
-<a class="sourceLine" id="cb5-36" title="36">mySim<span class="op">$</span>landscape &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/utils/stack.html">stack</a></span>(mySim<span class="op">$</span>DEM, mySim<span class="op">$</span>forestAge, mySim<span class="op">$</span>habitatQuality, mySim<span class="op">$</span>percentPine)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">42</span>)
+
+filelist &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
+  <span class="dt">files =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.files.html">dir</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"maps"</span>, <span class="dt">package =</span> <span class="st">"SpaDES"</span>),
+              <span class="dt">full.names =</span> <span class="ot">TRUE</span>, <span class="dt">pattern =</span> <span class="st">"tif"</span>),
+  <span class="dt">functions =</span> <span class="st">"rasterToMemory"</span>,
+  <span class="dt">packages =</span> <span class="st">"SpaDES"</span>,
+  <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>
+)
+
+<span class="co"># create the simList object 'mySim'</span>
+mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(
+  <span class="dt">times =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">start =</span> <span class="fl">0.0</span>, <span class="dt">end =</span> <span class="fl">100.00</span>),
+  <span class="dt">params =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+    <span class="dt">.progress =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">type =</span> <span class="ot">NA</span>, <span class="dt">interval =</span> <span class="ot">NA</span>),
+    <span class="dt">.globals =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">burnStats =</span> <span class="st">"nPixelsBurned"</span>),
+    <span class="dt">randomLandscapes =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+      <span class="dt">nx =</span> <span class="fl">1e2</span>, <span class="dt">ny =</span> <span class="fl">1e2</span>, <span class="dt">.saveObjects =</span> <span class="st">"landscape"</span>,
+      <span class="dt">.plotInitialTime =</span> <span class="ot">NA</span>, <span class="dt">.plotInterval =</span> <span class="ot">NA</span>, <span class="dt">inRAM =</span> <span class="ot">TRUE</span>
+    ),
+    <span class="dt">caribouMovement =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+      <span class="dt">N =</span> <span class="fl">1e2</span>, <span class="dt">.saveObjects =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"caribou"</span>),
+      <span class="dt">.plotInitialTime =</span> <span class="dv">1</span>, <span class="dt">.plotInterval =</span> <span class="dv">1</span>, <span class="dt">moveInterval =</span> <span class="dv">1</span>
+    ),
+    <span class="dt">fireSpread =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+      <span class="dt">nFires =</span> <span class="fl">1e1</span>, <span class="dt">spreadprob =</span> <span class="fl">0.235</span>, <span class="dt">persistprob =</span> <span class="dv">0</span>, <span class="dt">its =</span> <span class="fl">1e6</span>,
+      <span class="dt">returnInterval =</span> <span class="dv">10</span>, <span class="dt">startTime =</span> <span class="dv">0</span>,
+      <span class="dt">.plotInitialTime =</span> <span class="dv">0</span>, <span class="dt">.plotInterval =</span> <span class="dv">10</span>
+    )
+  ),
+  <span class="dt">modules =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"randomLandscapes"</span>, <span class="st">"fireSpread"</span>, <span class="st">"caribouMovement"</span>),
+  <span class="dt">inputs =</span> filelist,
+  <span class="dt">paths =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">modulePath =</span> <span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"sampleModules"</span>, <span class="dt">package =</span> <span class="st">"SpaDES"</span>))
+)
+
+mySim<span class="op">$</span>landscape &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/utils/stack.html">stack</a></span>(mySim<span class="op">$</span>DEM, mySim<span class="op">$</span>forestAge, mySim<span class="op">$</span>habitatQuality, mySim<span class="op">$</span>percentPine)</code></pre></div>
 </div>
 <div id="inspect-the-new-simlist-object" class="section level3">
 <h3 class="hasAnchor">
@@ -396,54 +395,54 @@ modulePath()
 <li>the objects (functions, data, etc.) used in the simulation;</li>
 <li>the file paths used for simulation inputs and outputs.</li>
 </ol>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># list modules used in the simulation</span></a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="kw">modules</span>(mySim)</a>
-<a class="sourceLine" id="cb6-3" title="3"></a>
-<a class="sourceLine" id="cb6-4" title="4"><span class="co"># list module dependencies and packages used</span></a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="kw">depends</span>(mySim)</a>
-<a class="sourceLine" id="cb6-6" title="6"><span class="kw">packages</span>(mySim)</a>
-<a class="sourceLine" id="cb6-7" title="7"></a>
-<a class="sourceLine" id="cb6-8" title="8"><span class="co"># list global and module-specific param values</span></a>
-<a class="sourceLine" id="cb6-9" title="9"><span class="kw">globals</span>(mySim)</a>
-<a class="sourceLine" id="cb6-10" title="10"><span class="kw">params</span>(mySim)</a>
-<a class="sourceLine" id="cb6-11" title="11"><span class="kw">P</span>(mySim)       <span class="co">## bonus: how do params() and P() differ?</span></a>
-<a class="sourceLine" id="cb6-12" title="12"></a>
-<a class="sourceLine" id="cb6-13" title="13"><span class="co"># list start and end times</span></a>
-<a class="sourceLine" id="cb6-14" title="14"><span class="kw">times</span>(mySim)</a>
-<a class="sourceLine" id="cb6-15" title="15"><span class="kw"><a href="https://rdrr.io/r/stats/start.html">start</a></span>(mySim)</a>
-<a class="sourceLine" id="cb6-16" title="16"><span class="kw"><a href="https://rdrr.io/r/stats/start.html">end</a></span>(mySim)</a>
-<a class="sourceLine" id="cb6-17" title="17"></a>
-<a class="sourceLine" id="cb6-18" title="18"><span class="co"># get the simulation and module timeunits</span></a>
-<a class="sourceLine" id="cb6-19" title="19"><span class="kw">timeunit</span>(mySim)</a>
-<a class="sourceLine" id="cb6-20" title="20"><span class="kw">timeunits</span>(mySim)</a>
-<a class="sourceLine" id="cb6-21" title="21"></a>
-<a class="sourceLine" id="cb6-22" title="22"><span class="co"># get the scheduled and completed event queues</span></a>
-<a class="sourceLine" id="cb6-23" title="23"><span class="kw">events</span>(mySim)</a>
-<a class="sourceLine" id="cb6-24" title="24"><span class="kw">completed</span>(mySim)</a>
-<a class="sourceLine" id="cb6-25" title="25"></a>
-<a class="sourceLine" id="cb6-26" title="26"><span class="co"># list the objects (functions, data, etc.) stored in the simList</span></a>
-<a class="sourceLine" id="cb6-27" title="27"><span class="kw"><a href="https://rdrr.io/r/base/ls.html">objects</a></span>(mySim)</a>
-<a class="sourceLine" id="cb6-28" title="28"></a>
-<a class="sourceLine" id="cb6-29" title="29"><span class="co"># list the file paths used in the simulation</span></a>
-<a class="sourceLine" id="cb6-30" title="30"><span class="kw">paths</span>(mySim)</a>
-<a class="sourceLine" id="cb6-31" title="31"><span class="kw">inputPath</span>(mySim)</a>
-<a class="sourceLine" id="cb6-32" title="32"><span class="kw">outputPath</span>(mySim)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># list modules used in the simulation</span>
+<span class="kw">modules</span>(mySim)
+
+<span class="co"># list module dependencies and packages used</span>
+<span class="kw">depends</span>(mySim)
+<span class="kw">packages</span>(mySim)
+
+<span class="co"># list global and module-specific param values</span>
+<span class="kw">globals</span>(mySim)
+<span class="kw">params</span>(mySim)
+<span class="kw">P</span>(mySim)       ## bonus: how do params() and P() differ?
+
+<span class="co"># list start and end times</span>
+<span class="kw">times</span>(mySim)
+<span class="kw"><a href="https://rdrr.io/r/stats/start.html">start</a></span>(mySim)
+<span class="kw"><a href="https://rdrr.io/r/stats/start.html">end</a></span>(mySim)
+
+<span class="co"># get the simulation and module timeunits</span>
+<span class="kw">timeunit</span>(mySim)
+<span class="kw">timeunits</span>(mySim)
+
+<span class="co"># get the scheduled and completed event queues</span>
+<span class="kw">events</span>(mySim)
+<span class="kw">completed</span>(mySim)
+
+<span class="co"># list the objects (functions, data, etc.) stored in the simList</span>
+<span class="kw"><a href="https://rdrr.io/r/base/ls.html">objects</a></span>(mySim)
+
+<span class="co"># list the file paths used in the simulation</span>
+<span class="kw">paths</span>(mySim)
+<span class="kw">inputPath</span>(mySim)
+<span class="kw">outputPath</span>(mySim)</code></pre></div>
 </div>
 <div id="run-the-simulation" class="section level3">
 <h3 class="hasAnchor">
 <a href="#run-the-simulation" class="anchor"></a>Run the simulation</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">dev</span>()</a>
-<a class="sourceLine" id="cb7-2" title="2">mySimOut &lt;-<span class="st"> </span><span class="kw">Copy</span>(mySim) <span class="co">## make a deep copy of the simList</span></a>
-<a class="sourceLine" id="cb7-3" title="3">mySimOut &lt;-<span class="st"> </span><span class="kw">spades</span>(mySimOut)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dev</span>()
+mySimOut &lt;-<span class="st"> </span><span class="kw">Copy</span>(mySim) ## make a deep copy of the simList
+mySimOut &lt;-<span class="st"> </span><span class="kw">spades</span>(mySimOut)</code></pre></div>
 </div>
 <div id="compare-the-simlist-before-and-after" class="section level3">
 <h3 class="hasAnchor">
 <a href="#compare-the-simlist-before-and-after" class="anchor"></a>Compare the simList before and after</h3>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">times</span>(mySim)</a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="kw">times</span>(mySimOut)</a>
-<a class="sourceLine" id="cb8-3" title="3"></a>
-<a class="sourceLine" id="cb8-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/ls.html">objects</a></span>(mySim)</a>
-<a class="sourceLine" id="cb8-5" title="5"><span class="kw"><a href="https://rdrr.io/r/base/ls.html">objects</a></span>(mySimOut)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">times</span>(mySim)
+<span class="kw">times</span>(mySimOut)
+
+<span class="kw"><a href="https://rdrr.io/r/base/ls.html">objects</a></span>(mySim)
+<span class="kw"><a href="https://rdrr.io/r/base/ls.html">objects</a></span>(mySimOut)</code></pre></div>
 </div>
 </div>
   </div>
