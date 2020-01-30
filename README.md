@@ -133,3 +133,7 @@ For a direct link to the workshops, click on the top navigation bar or go [here]
 ## Resources:
 
 [SpaDES wiki pages](https://github.com/PredictiveEcology/SpaDES/wiki)
+
+## User group:
+https://groups.google.com/forum/#!forum/spades-users
+
