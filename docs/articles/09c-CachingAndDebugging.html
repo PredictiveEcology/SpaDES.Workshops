@@ -107,84 +107,72 @@
 <p>Caching is the ability to save some sort of output from an operation, and then retrieve these outputs when the operation is repeated in the <em>same way</em> - meaning the inputs of this operation and the actual tasks it performs are unchanged.</p>
 <p>Caching becomes fundamental when we can expect to re-run operations several times, particularly if they they a while to compute each time. Some examples of these operations are: - downloading data - (spatial) data processing/munging - fitting statistical models to large datasets, or that are complex in nature - running simulations with no stochasticity</p>
 <p><code>SpaDES</code> (via the <code>reproducible</code> package) offers a number of functions that make caching these operations a lot easier for non-programmers. Two fundamental ones are <code>Cache</code> and <code>prepInputs</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(reproducible)
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(sp)
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(raster)
-
-<span class="co"># Create a "study area"</span>
-coords &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/structure.html">structure</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="op">-</span><span class="fl">122.98</span>, <span class="op">-</span><span class="fl">116.1</span>, <span class="op">-</span><span class="fl">99.2</span>, <span class="op">-</span><span class="dv">106</span>, <span class="op">-</span><span class="fl">122.98</span>, <span class="fl">59.9</span>, <span class="fl">65.73</span>, <span class="fl">63.58</span>, <span class="fl">54.79</span>, <span class="fl">59.9</span>),
-                    <span class="dt">.Dim =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(5L, 2L))
-Sr1 &lt;-<span class="st"> </span><span class="kw">Polygon</span>(coords)
-Srs1 &lt;-<span class="st"> </span><span class="kw">Polygons</span>(<span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(Sr1), <span class="st">"s1"</span>)
-StudyArea &lt;-<span class="st"> </span><span class="kw">SpatialPolygons</span>(<span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(Srs1), 1L)
-<span class="kw">crs</span>(StudyArea) &lt;-<span class="st"> "+init=epsg:4326 +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"</span>
-
-## from ?prepInputs
-dPath &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span>(), <span class="st">"LCC"</span>)
-lcc2005Filename &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(dPath, <span class="st">"LCC2005_V1_4a.tif"</span>)
-url &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="st">"ftp://ftp.ccrs.nrcan.gc.ca/ad/NLCCLandCover"</span>,
-                 <span class="st">"LandcoverCanada2005_250m/LandCoverOfCanada2005_V1_4.zip"</span>)
-LCC2005 &lt;-<span class="st"> </span><span class="kw">prepInputs</span>(<span class="dt">url =</span> url,
-                      <span class="dt">destinationPath =</span> <span class="kw">asPath</span>(dPath),
-                      <span class="dt">useSAcrs =</span> <span class="ot">TRUE</span>,  ## a reproducible::postProcess argument
-                      <span class="dt">studyArea =</span> StudyArea)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(reproducible)</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(sp)</a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(raster)</a>
+<a class="sourceLine" id="cb1-4" title="4"></a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="co">## from ?prepInputs</span></a>
+<a class="sourceLine" id="cb1-6" title="6">dPath &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span>(), <span class="st">"LCC"</span>)</a>
+<a class="sourceLine" id="cb1-7" title="7">url &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="st">"ftp://ftp.ccrs.nrcan.gc.ca/ad/NLCCLandCover"</span>,</a>
+<a class="sourceLine" id="cb1-8" title="8">                 <span class="st">"LandcoverCanada2005_250m/LandCoverOfCanada2005_V1_4.zip"</span>)</a>
+<a class="sourceLine" id="cb1-9" title="9">landCover &lt;-<span class="st"> </span><span class="kw">prepInputs</span>(<span class="dt">url =</span> url,</a>
+<a class="sourceLine" id="cb1-10" title="10">                        <span class="dt">destinationPath =</span> <span class="kw">asPath</span>(dPath))</a></code></pre></div>
 <p>Now do it again. Notice any difference?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">LCC2005 &lt;-<span class="st"> </span><span class="kw">prepInputs</span>(<span class="dt">url =</span> url,
-                      <span class="dt">destinationPath =</span> <span class="kw">asPath</span>(dPath),
-                      <span class="dt">useSAcrs =</span> <span class="ot">TRUE</span>,  ## a reproducible::postProcess argument
-                      <span class="dt">overwrite =</span> <span class="ot">TRUE</span>, ## a reproducible::postProcess argument
-                      <span class="dt">studyArea =</span> StudyArea)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">landCover &lt;-<span class="st"> </span><span class="kw">prepInputs</span>(<span class="dt">url =</span> url,</a>
+<a class="sourceLine" id="cb2-2" title="2">                        <span class="dt">destinationPath =</span> <span class="kw">asPath</span>(dPath))</a></code></pre></div>
 <p>Now try wrapping the previous operation in <code>Cache</code> call, and run it twice. Notice differences in speed.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">LCC2005 &lt;-<span class="st"> </span><span class="kw">Cache</span>(prepInputs,
-                 <span class="dt">url =</span> url,
-                 <span class="dt">destinationPath =</span> <span class="kw">asPath</span>(dPath),
-                 <span class="dt">useSAcrs =</span> <span class="ot">TRUE</span>,
-                 <span class="dt">overwrite =</span> <span class="ot">TRUE</span>,
-                 <span class="dt">studyArea =</span> StudyArea)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">landCover &lt;-<span class="st"> </span><span class="kw">Cache</span>(prepInputs,</a>
+<a class="sourceLine" id="cb3-2" title="2">                   <span class="dt">url =</span> url,</a>
+<a class="sourceLine" id="cb3-3" title="3">                   <span class="dt">destinationPath =</span> <span class="kw">asPath</span>(dPath))</a></code></pre></div>
 <p>The previous code is great but we don’t have as much control as we’d like on where <code>Cache</code> is storing cached objects. To do that, we can explicitly provide a cache folder and add tags to the object so that we can find it more easily if we ever need to “clean it”.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cPath &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span>(), <span class="st">"cache"</span>)
-## run this twice
-LCC2005 &lt;-<span class="st"> </span><span class="kw">Cache</span>(prepInputs,
-                 <span class="dt">url =</span> url,
-                 <span class="dt">destinationPath =</span> <span class="kw">asPath</span>(dPath),
-                 <span class="dt">useSAcrs =</span> <span class="ot">TRUE</span>,  
-                 <span class="dt">overwrite =</span> <span class="ot">TRUE</span>, 
-                 <span class="dt">studyArea =</span> StudyArea,
-                 <span class="dt">cacheRepo =</span> cPath,
-                 <span class="dt">userTags =</span> <span class="st">"LCC2005"</span>)
-
-<span class="kw">showCache</span>(<span class="dt">x =</span> cPath, <span class="dt">userTags =</span> <span class="st">"LCC2005"</span>)
-reproducible<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/reproducible/man/viewCache.html">clearCache</a></span>(<span class="dt">x =</span> cPath, <span class="dt">userTags =</span> <span class="st">"LCC2005"</span>)
-
-## notice how Cache needs to re-do things
-LCC2005 &lt;-<span class="st"> </span><span class="kw">Cache</span>(prepInputs,
-                 <span class="dt">url =</span> url,
-                 <span class="dt">destinationPath =</span> <span class="kw">asPath</span>(dPath),
-                 <span class="dt">useSAcrs =</span> <span class="ot">TRUE</span>,  
-                 <span class="dt">overwrite =</span> <span class="ot">TRUE</span>, 
-                 <span class="dt">studyArea =</span> StudyArea,
-                 <span class="dt">cacheRepo =</span> cPath,
-                 <span class="dt">userTags =</span> <span class="st">"LCC2005"</span>)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">cPath &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span>(), <span class="st">"cache"</span>)</a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="co">## run this twice</span></a>
+<a class="sourceLine" id="cb4-3" title="3">landCover &lt;-<span class="st"> </span><span class="kw">Cache</span>(prepInputs,</a>
+<a class="sourceLine" id="cb4-4" title="4">                   <span class="dt">url =</span> url,</a>
+<a class="sourceLine" id="cb4-5" title="5">                   <span class="dt">destinationPath =</span> <span class="kw">asPath</span>(dPath),</a>
+<a class="sourceLine" id="cb4-6" title="6">                   <span class="dt">cacheRepo =</span> cPath,</a>
+<a class="sourceLine" id="cb4-7" title="7">                   <span class="dt">userTags =</span> <span class="st">"landCover"</span>)</a>
+<a class="sourceLine" id="cb4-8" title="8"></a>
+<a class="sourceLine" id="cb4-9" title="9"><span class="kw">showCache</span>(<span class="dt">x =</span> cPath, <span class="dt">userTags =</span> <span class="st">"landCover"</span>)</a>
+<a class="sourceLine" id="cb4-10" title="10">reproducible<span class="op">::</span><span class="kw"><a href="http://reproducible.predictiveecology.org/reference/viewCache.html">clearCache</a></span>(<span class="dt">x =</span> cPath, <span class="dt">userTags =</span> <span class="st">"landCover"</span>)</a>
+<a class="sourceLine" id="cb4-11" title="11"></a>
+<a class="sourceLine" id="cb4-12" title="12"><span class="co">## notice how Cache needs to re-do things</span></a>
+<a class="sourceLine" id="cb4-13" title="13">landCover &lt;-<span class="st"> </span><span class="kw">Cache</span>(prepInputs,</a>
+<a class="sourceLine" id="cb4-14" title="14">                   <span class="dt">url =</span> url,</a>
+<a class="sourceLine" id="cb4-15" title="15">                   <span class="dt">destinationPath =</span> <span class="kw">asPath</span>(dPath),</a>
+<a class="sourceLine" id="cb4-16" title="16">                   <span class="dt">userTags =</span> <span class="st">"landCover"</span>)</a></code></pre></div>
 <p>We can also force <code>Cache</code> to redo operations and re-cache, or simply to ignore caching altogether. See more options for <code>Cache(useCache)</code> in <code>?Cache</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">LCC2005 &lt;-<span class="st"> </span><span class="kw">Cache</span>(prepInputs,
-                 <span class="dt">url =</span> url,
-                 <span class="dt">destinationPath =</span> <span class="kw">asPath</span>(dPath),
-                 <span class="dt">useSAcrs =</span> <span class="ot">TRUE</span>,
-                 <span class="dt">overwrite =</span> <span class="ot">TRUE</span>,
-                 <span class="dt">studyArea =</span> StudyArea,
-                 <span class="dt">cacheRepo =</span> cPath,
-                 <span class="dt">userTags =</span> <span class="st">"LCC2005"</span>,
-                 <span class="dt">useCache =</span> <span class="st">"overwrite"</span>)
-
-LCC2005 &lt;-<span class="st"> </span><span class="kw">Cache</span>(prepInputs,
-                 <span class="dt">url =</span> url,
-                 <span class="dt">destinationPath =</span> <span class="kw">asPath</span>(dPath),
-                 <span class="dt">useSAcrs =</span> <span class="ot">TRUE</span>,
-                 <span class="dt">overwrite =</span> <span class="ot">TRUE</span>,
-                 <span class="dt">studyArea =</span> StudyArea,
-                 <span class="dt">cacheRepo =</span> cPath,
-                 <span class="dt">userTags =</span> <span class="st">"LCC2005"</span>,
-                 <span class="dt">useCache =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">landCover &lt;-<span class="st"> </span><span class="kw">Cache</span>(prepInputs,</a>
+<a class="sourceLine" id="cb5-2" title="2">                   <span class="dt">url =</span> url,</a>
+<a class="sourceLine" id="cb5-3" title="3">                   <span class="dt">destinationPath =</span> <span class="kw">asPath</span>(dPath),</a>
+<a class="sourceLine" id="cb5-4" title="4">                   <span class="dt">cacheRepo =</span> cPath,</a>
+<a class="sourceLine" id="cb5-5" title="5">                   <span class="dt">userTags =</span> <span class="st">"landCover"</span>,</a>
+<a class="sourceLine" id="cb5-6" title="6">                   <span class="dt">useCache =</span> <span class="st">"overwrite"</span>)</a>
+<a class="sourceLine" id="cb5-7" title="7"></a>
+<a class="sourceLine" id="cb5-8" title="8">landCover &lt;-<span class="st"> </span><span class="kw">Cache</span>(prepInputs,</a>
+<a class="sourceLine" id="cb5-9" title="9">                   <span class="dt">url =</span> url,</a>
+<a class="sourceLine" id="cb5-10" title="10">                   <span class="dt">destinationPath =</span> <span class="kw">asPath</span>(dPath),</a>
+<a class="sourceLine" id="cb5-11" title="11">                   <span class="dt">cacheRepo =</span> cPath,</a>
+<a class="sourceLine" id="cb5-12" title="12">                   <span class="dt">userTags =</span> <span class="st">"landCover"</span>,</a>
+<a class="sourceLine" id="cb5-13" title="13">                   <span class="dt">useCache =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p>Try to provide a study area now. Hints:</p>
+<ul>
+<li>check out <code><a href="http://reproducible.predictiveecology.org/reference/prepInputs.html">?reproducible::prepInputs</a></code> and <code><a href="http://reproducible.predictiveecology.org/reference/postProcess.html">?reproducible::postProcess</a></code>
+</li>
+<li>check out <code><a href="https://spades-tools.predictiveecology.org/reference/randomStudyArea.html">?SpaDES.tools::randomStudyArea</a></code>
+<ul>
+<li>try with an area 1 ha</li>
+</ul>
+</li>
+<li>what happens when you run <code>Cache(prepInputs(...))</code> with the new study area(s)?</li>
+</ul>
+<p>What if my study area is a raster? Assuming you don’t have raster at hand, try using a raster from the <code>SpaDESInAction</code> example (“inputs/rasterToMatch.rds”).</p>
+<p>What if I have both? In some cases your study area may be defined by a polygon, but you may have a raster that will dictate the e.g. projection and resolution of the output (remember, polygons have no resolution).</p>
+<p>Now imagine someone told you there is a more up to date Land Cover map for Canada. And they told you where to look to get to the <code>.zip</code> file - <a href="https://open.canada.ca/data/en/dataset/c688b87f-e85f-4842-b0e1-a8f79ebf1133">the Canadian Gov. open data portal</a></p>
+<ul>
+<li>Try right-click on “Access” for the TIF file and replace the “old” URL</li>
+<li>Had an error, the messages are helpful!</li>
+</ul>
 <p>Learn more about <a href="http://spades.predictiveecology.org/articles/iii-cache.html">caching</a></p>
 </div>
 <div id="some-basic-debugging-lessons" class="section level1">
@@ -192,65 +180,67 @@ LCC2005 &lt;-<span class="st"> </span><span class="kw">Cache</span>(prepInputs,
 <a href="#some-basic-debugging-lessons" class="anchor"></a>Some basic Debugging lessons</h1>
 <p>Now that you have a flavour of caching, we’re going to explore debugging a bit and put our new “caching skills” in practice in a SpaDES modelling context.</p>
 <p>We’re going to run the <code>caribouRSF</code> module by itself.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"reproducible"</span>)
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(SpaDES)
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(LandR)
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(raster)
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(data.table)
-
-<span class="kw"><a href="https://rdrr.io/r/base/options.html">options</a></span>(
-  <span class="st">"spades.recoveryMode"</span> =<span class="st"> </span><span class="dv">2</span>,
-  <span class="st">"spades.lowMemory"</span> =<span class="st"> </span><span class="ot">TRUE</span>,
-  <span class="st">"LandR.assertions"</span> =<span class="st"> </span><span class="ot">FALSE</span>,
-  <span class="st">"LandR.verbose"</span> =<span class="st"> </span><span class="dv">1</span>,
-  <span class="st">"reproducible.useMemoise"</span> =<span class="st"> </span><span class="ot">TRUE</span>, <span class="co"># Brings cached stuff to memory during the second run</span>
-  <span class="st">"reproducible.useNewDigestAlgorithm"</span> =<span class="st"> </span><span class="ot">TRUE</span>,  <span class="co"># use the new less strict hashing algo</span>
-  <span class="st">"reproducible.useCache"</span> =<span class="st"> </span><span class="ot">TRUE</span>,
-  <span class="st">"pemisc.useParallel"</span> =<span class="st"> </span><span class="ot">FALSE</span>
-)
-
-inputDirectory &lt;-<span class="st"> </span><span class="kw">checkPath</span>(<span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span>(), <span class="st">"inputs"</span>), <span class="dt">create =</span> <span class="ot">TRUE</span>)
-outputDirectory &lt;-<span class="st"> </span><span class="kw">checkPath</span>(<span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span>(), <span class="st">"outputs"</span>), <span class="dt">create =</span> <span class="ot">TRUE</span>)
-modulesDirectory &lt;-<span class="st"> </span><span class="kw">checkPath</span>(<span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span>(), <span class="st">"modules"</span>), <span class="dt">create =</span> <span class="ot">TRUE</span>)
-cacheDirectory &lt;-<span class="st"> </span><span class="kw">checkPath</span>(<span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span>(), <span class="st">"cache"</span>), <span class="dt">create =</span> <span class="ot">TRUE</span>)
-
-<span class="kw">setPaths</span>(<span class="dt">cachePath =</span> cacheDirectory,
-         <span class="dt">modulePath =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(modulesDirectory, 
-                        <span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(modulesDirectory, <span class="st">"scfm/modules"</span>)),
-         <span class="dt">inputPath =</span> inputDirectory,
-         <span class="dt">outputPath =</span> outputDirectory)
-
-times &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">start =</span> <span class="dv">0</span>, <span class="dt">end =</span> <span class="dv">10</span>)
-
-successionTimestep &lt;-<span class="st"> </span>1L
-parameters &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-  <span class="dt">caribouRSF =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-    <span class="st">"decidousSp"</span> =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Betu_Pap"</span>, <span class="st">"Popu_Tre"</span>, <span class="st">"Popu_Bal"</span>),
-    <span class="st">"predictionInterval"</span> =<span class="st"> </span><span class="dv">20</span>,
-  )
-)
-<span class="co"># load studyArea</span>
-studyArea &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="kw">getPaths</span>()<span class="op">$</span>inputPath, <span class="st">"studyArea.rds"</span>))
-
-objects &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-  <span class="st">"studyArea"</span> =<span class="st"> </span>studyArea
-)
-
-caribou &lt;-<span class="st"> </span><span class="kw">simInitAndSpades</span>(<span class="dt">times =</span> times,
-                            <span class="dt">objects =</span> objects,
-                            <span class="dt">params =</span> parameters,
-                            <span class="dt">modules =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">as.list</a></span>(<span class="st">"caribouRSF"</span>),
-                            <span class="dt">paths =</span> <span class="kw">getPaths</span>(),
-                            <span class="dt">debug =</span> <span class="dv">1</span>)</code></pre></div>
-<p>Oops, something doens’t seem to be right! We start by looking carefully at the printed output, then we use <code>traceback</code> to help us locate the problem. In this case, it seems to be a particular line of <em>caribouRSF.R</em></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/traceback.html">traceback</a></span>()
-<span class="co"># 11: stop("This module does not work without data. Please provide the necessary layers") at caribouRSF.R#154</span>
-<span class="co"># 10: get(moduleCall, envir = fnEnv)(sim, cur[["eventTime"]], cur[["eventType"]])</span>
-<span class="co"># 9: eval(fnCallAsExpr)</span>
-<span class="co"># 8: eval(fnCallAsExpr)</span>
-<span class="co"># (...)</span>
-
-<span class="kw"><a href="https://rdrr.io/r/utils/file.edit.html">file.edit</a></span>(<span class="st">"modules/caribouRSF/caribouRSF.R"</span>)  ## got to caribouRSF.R#154</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co">## Restart your R session if not running from a "clean" environment</span></a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"reproducible"</span>)</a>
+<a class="sourceLine" id="cb6-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(SpaDES)</a>
+<a class="sourceLine" id="cb6-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(LandR)</a>
+<a class="sourceLine" id="cb6-5" title="5"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(raster)</a>
+<a class="sourceLine" id="cb6-6" title="6"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(data.table)</a>
+<a class="sourceLine" id="cb6-7" title="7"></a>
+<a class="sourceLine" id="cb6-8" title="8"><span class="kw"><a href="https://rdrr.io/r/base/options.html">options</a></span>(</a>
+<a class="sourceLine" id="cb6-9" title="9">  <span class="st">"spades.recoveryMode"</span> =<span class="st"> </span><span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb6-10" title="10">  <span class="st">"spades.lowMemory"</span> =<span class="st"> </span><span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb6-11" title="11">  <span class="st">"LandR.assertions"</span> =<span class="st"> </span><span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb6-12" title="12">  <span class="st">"LandR.verbose"</span> =<span class="st"> </span><span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb6-13" title="13">  <span class="st">"reproducible.useMemoise"</span> =<span class="st"> </span><span class="ot">TRUE</span>, <span class="co"># Brings cached stuff to memory during the second run</span></a>
+<a class="sourceLine" id="cb6-14" title="14">  <span class="st">"reproducible.useNewDigestAlgorithm"</span> =<span class="st"> </span><span class="ot">TRUE</span>,  <span class="co"># use the new less strict hashing algo</span></a>
+<a class="sourceLine" id="cb6-15" title="15">  <span class="st">"reproducible.useCache"</span> =<span class="st"> </span><span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb6-16" title="16">  <span class="st">"pemisc.useParallel"</span> =<span class="st"> </span><span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb6-17" title="17">)</a>
+<a class="sourceLine" id="cb6-18" title="18"></a>
+<a class="sourceLine" id="cb6-19" title="19"><span class="co">## assuming you're in the SpaDESInAction2 project folder</span></a>
+<a class="sourceLine" id="cb6-20" title="20">inputDirectory &lt;-<span class="st"> </span><span class="kw">checkPath</span>(<span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span>(), <span class="st">"inputs"</span>), <span class="dt">create =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb6-21" title="21">outputDirectory &lt;-<span class="st"> </span><span class="kw">checkPath</span>(<span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span>(), <span class="st">"outputs"</span>), <span class="dt">create =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb6-22" title="22">modulesDirectory &lt;-<span class="st"> </span><span class="kw">checkPath</span>(<span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span>(), <span class="st">"modules"</span>), <span class="dt">create =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb6-23" title="23">cacheDirectory &lt;-<span class="st"> </span><span class="kw">checkPath</span>(<span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span>(), <span class="st">"cache"</span>), <span class="dt">create =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb6-24" title="24"></a>
+<a class="sourceLine" id="cb6-25" title="25"><span class="kw">setPaths</span>(<span class="dt">cachePath =</span> cacheDirectory,</a>
+<a class="sourceLine" id="cb6-26" title="26">         <span class="dt">modulePath =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(modulesDirectory, </a>
+<a class="sourceLine" id="cb6-27" title="27">                        <span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(modulesDirectory, <span class="st">"scfm/modules"</span>)),</a>
+<a class="sourceLine" id="cb6-28" title="28">         <span class="dt">inputPath =</span> inputDirectory,</a>
+<a class="sourceLine" id="cb6-29" title="29">         <span class="dt">outputPath =</span> outputDirectory)</a>
+<a class="sourceLine" id="cb6-30" title="30"></a>
+<a class="sourceLine" id="cb6-31" title="31">times &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">start =</span> <span class="dv">0</span>, <span class="dt">end =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb6-32" title="32"></a>
+<a class="sourceLine" id="cb6-33" title="33">successionTimestep &lt;-<span class="st"> </span>1L</a>
+<a class="sourceLine" id="cb6-34" title="34">parameters &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
+<a class="sourceLine" id="cb6-35" title="35">  <span class="dt">caribouRSF =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
+<a class="sourceLine" id="cb6-36" title="36">    <span class="st">"decidousSp"</span> =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Betu_Pap"</span>, <span class="st">"Popu_Tre"</span>, <span class="st">"Popu_Bal"</span>),</a>
+<a class="sourceLine" id="cb6-37" title="37">    <span class="st">"predictionInterval"</span> =<span class="st"> </span><span class="dv">20</span></a>
+<a class="sourceLine" id="cb6-38" title="38">  )</a>
+<a class="sourceLine" id="cb6-39" title="39">)</a>
+<a class="sourceLine" id="cb6-40" title="40"><span class="co"># load studyArea</span></a>
+<a class="sourceLine" id="cb6-41" title="41">studyArea &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="kw">getPaths</span>()<span class="op">$</span>inputPath, <span class="st">"studyArea.rds"</span>))</a>
+<a class="sourceLine" id="cb6-42" title="42"></a>
+<a class="sourceLine" id="cb6-43" title="43">objects &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
+<a class="sourceLine" id="cb6-44" title="44">  <span class="st">"studyArea"</span> =<span class="st"> </span>studyArea</a>
+<a class="sourceLine" id="cb6-45" title="45">)</a>
+<a class="sourceLine" id="cb6-46" title="46"></a>
+<a class="sourceLine" id="cb6-47" title="47">caribou &lt;-<span class="st"> </span><span class="kw">simInitAndSpades</span>(<span class="dt">times =</span> times,</a>
+<a class="sourceLine" id="cb6-48" title="48">                            <span class="dt">objects =</span> objects,</a>
+<a class="sourceLine" id="cb6-49" title="49">                            <span class="dt">params =</span> parameters,</a>
+<a class="sourceLine" id="cb6-50" title="50">                            <span class="dt">modules =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">as.list</a></span>(<span class="st">"caribouRSF"</span>),</a>
+<a class="sourceLine" id="cb6-51" title="51">                            <span class="dt">paths =</span> <span class="kw">getPaths</span>(),</a>
+<a class="sourceLine" id="cb6-52" title="52">                            <span class="dt">debug =</span> <span class="dv">1</span>)</a></code></pre></div>
+<p>Oops, something doesn’t seem to be right! We start by looking carefully at the printed output, then we use <code>traceback</code> to help us locate the problem. In this case, it seems to be a particular line of <em>caribouRSF.R</em></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/traceback.html">traceback</a></span>()</a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="co"># 11: stop("This module does not work without data. Please provide the necessary layers") at caribouRSF.R#154</span></a>
+<a class="sourceLine" id="cb7-3" title="3"><span class="co"># 10: get(moduleCall, envir = fnEnv)(sim, cur[["eventTime"]], cur[["eventType"]])</span></a>
+<a class="sourceLine" id="cb7-4" title="4"><span class="co"># 9: eval(fnCallAsExpr)</span></a>
+<a class="sourceLine" id="cb7-5" title="5"><span class="co"># 8: eval(fnCallAsExpr)</span></a>
+<a class="sourceLine" id="cb7-6" title="6"><span class="co"># (...)</span></a>
+<a class="sourceLine" id="cb7-7" title="7"></a>
+<a class="sourceLine" id="cb7-8" title="8"><span class="kw"><a href="https://rdrr.io/r/utils/file.edit.html">file.edit</a></span>(<span class="st">"modules/caribouRSF/caribouRSF.R"</span>)  <span class="co">## got to caribouRSF.R#154</span></a></code></pre></div>
 <ol style="list-style-type: decimal">
 <li>Insert a <code><a href="https://rdrr.io/r/base/browser.html">browser()</a></code> before the line with the <code><a href="https://rdrr.io/r/base/stop.html">stop()</a></code>. Save and re-rerun.</li>
 </ol>
@@ -261,25 +251,79 @@ caribou &lt;-<span class="st"> </span><span class="kw">simInitAndSpades</span>(<
 <li>What is <code>P(sim)$.useDummyData</code>? Where does its value come from?</li>
 <li>Which data objects are missing? Why?</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Browse[1]&gt; P(sim)$.useDummyData</span>
-<span class="co"># [1] TRUE</span>
-
-<span class="co"># Browse[1]&gt; mod$pixelGroupMap</span>
-<span class="co"># NULL</span>
-
-<span class="co"># Browse[1]&gt; mod$cohortData</span>
-<span class="co"># NULL</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="co"># Browse[1]&gt; P(sim)$.useDummyData</span></a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="co"># [1] TRUE</span></a>
+<a class="sourceLine" id="cb8-3" title="3"></a>
+<a class="sourceLine" id="cb8-4" title="4"><span class="co"># Browse[1]&gt; mod$pixelGroupMap</span></a>
+<a class="sourceLine" id="cb8-5" title="5"><span class="co"># NULL</span></a>
+<a class="sourceLine" id="cb8-6" title="6"></a>
+<a class="sourceLine" id="cb8-7" title="7"><span class="co"># Browse[1]&gt; mod$cohortData</span></a>
+<a class="sourceLine" id="cb8-8" title="8"><span class="co"># NULL</span></a></code></pre></div>
 <p>We are going to supply these objects - note that the dynamic part will not be simulated.</p>
 <ol start="4" style="list-style-type: decimal">
 <li>Check the <code>.inputObjects</code> function and the metadata for inputs.</li>
 </ol>
 <ul>
-<li>Can you see a pattern in how <code>prepInputs</code> gets data from online sources? Try to do the same for <code>pixelGroupMap</code>and <code>cohortData</code>
-</li>
-<li>How are sources for objects given? Try adding sources the following sources:</li>
+<li><p>Can you see a pattern in how <code>prepInputs</code> gets data from online sources? Try to do the same for <code>pixelGroupMap</code>and <code>cohortData</code></p></li>
+<li>
+<p>How are sources for objects given? Try adding sources the following sources:</p>
+<ul>
 <li>for <code>pixelGroupMap</code>: “<a href="https://drive.google.com/open?id=1IUEuH55su8X7JCWt8LXy_hTAQz0cfCmU" class="uri">https://drive.google.com/open?id=1IUEuH55su8X7JCWt8LXy_hTAQz0cfCmU</a>”</li>
-<li>for <code>cohortData</code>: [<a href="https://drive.google.com/open?id=1R_wGGvzUI0gGZ5NOs2KmT2KrmXaTm4NS" class="uri">https://drive.google.com/open?id=1R_wGGvzUI0gGZ5NOs2KmT2KrmXaTm4NS</a>]</li>
+<li>for <code>cohortData</code>: “<a href="https://drive.google.com/open?id=1R_wGGvzUI0gGZ5NOs2KmT2KrmXaTm4NS" class="uri">https://drive.google.com/open?id=1R_wGGvzUI0gGZ5NOs2KmT2KrmXaTm4NS</a>”</li>
 </ul>
+</li>
+</ul>
+<p>You can now use <code>restartSpades</code> or simply re-run <code>simInitAndSpades</code></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">caribou &lt;-<span class="st"> </span><span class="kw">restartSpaDES</span>()</a>
+<a class="sourceLine" id="cb9-2" title="2"></a>
+<a class="sourceLine" id="cb9-3" title="3">caribou &lt;-<span class="st"> </span><span class="kw">simInitAndSpades</span>(<span class="dt">times =</span> times,</a>
+<a class="sourceLine" id="cb9-4" title="4">                            <span class="dt">objects =</span> objects,</a>
+<a class="sourceLine" id="cb9-5" title="5">                            <span class="dt">params =</span> parameters,</a>
+<a class="sourceLine" id="cb9-6" title="6">                            <span class="dt">modules =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">as.list</a></span>(<span class="st">"caribouRSF"</span>),</a>
+<a class="sourceLine" id="cb9-7" title="7">                            <span class="dt">paths =</span> <span class="kw">getPaths</span>(),</a>
+<a class="sourceLine" id="cb9-8" title="8">                            <span class="dt">debug =</span> <span class="dv">1</span>)</a></code></pre></div>
+<p>There seem to be no more issues. Maybe we don’t need to print all those debug messages anymore - less verbose - next time we run.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">caribou &lt;-<span class="st"> </span><span class="kw">simInitAndSpades</span>(<span class="dt">times =</span> times,</a>
+<a class="sourceLine" id="cb10-2" title="2">                            <span class="dt">objects =</span> objects,</a>
+<a class="sourceLine" id="cb10-3" title="3">                            <span class="dt">params =</span> parameters,</a>
+<a class="sourceLine" id="cb10-4" title="4">                            <span class="dt">modules =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">as.list</a></span>(<span class="st">"caribouRSF"</span>),</a>
+<a class="sourceLine" id="cb10-5" title="5">                            <span class="dt">paths =</span> <span class="kw">getPaths</span>(),</a>
+<a class="sourceLine" id="cb10-6" title="6">                            <span class="dt">debug =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p>Or maybe, we don’t want to see them printed, but want to keep a log of all messages to check later.</p>
+<ul>
+<li>check the “debug” section of <code>?spades</code>
+</li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">caribou &lt;-<span class="st"> </span><span class="kw">simInitAndSpades</span>(<span class="dt">times =</span> times,</a>
+<a class="sourceLine" id="cb11-2" title="2">                            <span class="dt">objects =</span> objects,</a>
+<a class="sourceLine" id="cb11-3" title="3">                            <span class="dt">params =</span> parameters,</a>
+<a class="sourceLine" id="cb11-4" title="4">                            <span class="dt">modules =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">as.list</a></span>(<span class="st">"caribouRSF"</span>),</a>
+<a class="sourceLine" id="cb11-5" title="5">                            <span class="dt">paths =</span> <span class="kw">getPaths</span>(),</a>
+<a class="sourceLine" id="cb11-6" title="6">                            <span class="dt">debug =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">console =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">level =</span> <span class="dv">40</span>), </a>
+<a class="sourceLine" id="cb11-7" title="7">                                         <span class="dt">file =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">append =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb11-8" title="8">                                                     <span class="dt">file =</span> <span class="st">"logCaribou.txt"</span>,</a>
+<a class="sourceLine" id="cb11-9" title="9">                                                     <span class="dt">level =</span> <span class="dv">0</span>), </a>
+<a class="sourceLine" id="cb11-10" title="10">                                         <span class="dt">debug =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb11-11" title="11">)</a>
+<a class="sourceLine" id="cb11-12" title="12"></a>
+<a class="sourceLine" id="cb11-13" title="13"><span class="co">## notivce how different the file is from what was printed on the console.</span></a>
+<a class="sourceLine" id="cb11-14" title="14"><span class="kw"><a href="https://rdrr.io/r/utils/file.edit.html">file.edit</a></span>(<span class="st">"logCaribou.txt"</span>)</a></code></pre></div>
+<p>What about all that purple text? That’s the module code checking. It’s helpful, but not always accurate - meant to be informative rather than enforced.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/options.html">options</a></span>(<span class="st">"spades.moduleCodeChecks"</span> =<span class="st"> </span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb12-2" title="2">caribou &lt;-<span class="st"> </span><span class="kw">simInitAndSpades</span>(<span class="dt">times =</span> times,</a>
+<a class="sourceLine" id="cb12-3" title="3">                            <span class="dt">objects =</span> objects,</a>
+<a class="sourceLine" id="cb12-4" title="4">                            <span class="dt">params =</span> parameters,</a>
+<a class="sourceLine" id="cb12-5" title="5">                            <span class="dt">modules =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">as.list</a></span>(<span class="st">"caribouRSF"</span>),</a>
+<a class="sourceLine" id="cb12-6" title="6">                            <span class="dt">paths =</span> <span class="kw">getPaths</span>(),</a>
+<a class="sourceLine" id="cb12-7" title="7">                            <span class="dt">debug =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">console =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">level =</span> <span class="dv">40</span>), </a>
+<a class="sourceLine" id="cb12-8" title="8">                                         <span class="dt">file =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">append =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb12-9" title="9">                                                     <span class="dt">file =</span> <span class="st">"logCaribou.txt"</span>,</a>
+<a class="sourceLine" id="cb12-10" title="10">                                                     <span class="dt">level =</span> <span class="dv">0</span>), </a>
+<a class="sourceLine" id="cb12-11" title="11">                                         <span class="dt">debug =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb12-12" title="12">)</a>
+<a class="sourceLine" id="cb12-13" title="13"></a>
+<a class="sourceLine" id="cb12-14" title="14"><span class="co">## notivce how different the file is from what was printed on the console.</span></a>
+<a class="sourceLine" id="cb12-15" title="15"><span class="kw"><a href="https://rdrr.io/r/utils/file.edit.html">file.edit</a></span>(<span class="st">"logCaribou.txt"</span>)</a></code></pre></div>
 <p>Learn about <a href="https://github.com/PredictiveEcology/SpaDES/wiki/Debugging">debugging in SpaDES</a> and <a href="https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-RStudio">with RStudio</a></p>
 </div>
   </div>

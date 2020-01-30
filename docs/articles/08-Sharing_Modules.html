@@ -109,7 +109,7 @@
 <p>This is the default repo in <code>SpaDES</code>.</p>
 <pre><code>- it's public
 - it's easily accessible using `downloadModule()`</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/options.html">getOption</a></span>(<span class="st">'spades.moduleRepo'</span>) ## default url prefix is GitHub.com</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/options.html">getOption</a></span>(<span class="st">'spades.moduleRepo'</span>) <span class="co">## default url prefix is GitHub.com</span></a></code></pre></div>
 <pre><code>## [1] "PredictiveEcology/SpaDES-modules"</code></pre>
 </div>
 <div id="other-spades-module-repositories" class="section level2">
@@ -189,7 +189,7 @@
 <h2 class="hasAnchor">
 <a href="#shine-function" class="anchor"></a><code>shine</code> function</h2>
 <p><code>SpaDES.shiny</code> (on GitHub) has a simple function that takes any simList and makes a web app from it:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?shine</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">?shine</a></code></pre></div>
 <div class="centered">
 Try it!
 </div>
@@ -262,10 +262,10 @@ Try it!
 <h2 class="hasAnchor">
 <a href="#overriding-default-datasets" class="anchor"></a>Overriding default datasets</h2>
 <ul>
-<li>If a <em>user</em> passes an object that a module requires (in ‘defineModule’ metadata)</li>
+<li><p>If a <em>user</em> passes an object that a module requires (in ‘defineModule’ metadata)</p></li>
 <li><p>The default data will not be used</p></li>
-<li>checksums</li>
-<li>externally hosted data</li>
+<li><p>checksums</p></li>
+<li><p>externally hosted data</p></li>
 <li><p>include data with your module code</p></li>
 </ul>
 </div>

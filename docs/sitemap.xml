@@ -16,15 +16,6 @@
     <loc>http://spades-workshops.predictiveecology.org//articles/01a-WhatIsSpades.html</loc>
   </url>
   <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/01a-WhatIsSpades_Jan2020.html</loc>
-  </url>
-  <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/02a-dynamicModellingPreyPred.html</loc>
-  </url>
-  <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/02b-SpaDES4Dummies.html</loc>
-  </url>
-  <url>
     <loc>http://spades-workshops.predictiveecology.org//articles/02c-Convert_R_code_to_SpaDES_module.html</loc>
   </url>
   <url>
@@ -32,9 +23,6 @@
   </url>
   <url>
     <loc>http://spades-workshops.predictiveecology.org//articles/03b-integrating_modules.html</loc>
-  </url>
-  <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/03c-SpaDESInAction.html</loc>
   </url>
   <url>
     <loc>http://spades-workshops.predictiveecology.org//articles/04-Modules_Thinking_in_a_modular_way.html</loc>
@@ -64,12 +52,6 @@
     <loc>http://spades-workshops.predictiveecology.org//articles/06b-R_Profiling_code.html</loc>
   </url>
   <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/06c-Caching.html</loc>
-  </url>
-  <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/06d-Debugging.html</loc>
-  </url>
-  <url>
     <loc>http://spades-workshops.predictiveecology.org//articles/08-Sharing_Modules.html</loc>
   </url>
   <url>
@@ -79,22 +61,7 @@
     <loc>http://spades-workshops.predictiveecology.org//articles/09b-Plotting.html</loc>
   </url>
   <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/09c-CachingAndDebugging.html</loc>
-  </url>
-  <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/10a-LandWeb.html</loc>
-  </url>
-  <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/10b-NWT.html</loc>
-  </url>
-  <url>
     <loc>http://spades-workshops.predictiveecology.org//articles/10c-Harvesting.html</loc>
-  </url>
-  <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/12a-CommunityMetricsModule.html</loc>
-  </url>
-  <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/12b-caribouPopulationGrowthModule.html</loc>
   </url>
   <url>
     <loc>http://spades-workshops.predictiveecology.org//articles/exercise1.html</loc>
@@ -112,12 +79,6 @@
     <loc>http://spades-workshops.predictiveecology.org//articles/exercise4a.html</loc>
   </url>
   <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/exercise4b.html</loc>
-  </url>
-  <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/exercise4c.html</loc>
-  </url>
-  <url>
     <loc>http://spades-workshops.predictiveecology.org//articles/exercise5a.html</loc>
   </url>
   <url>
@@ -128,5 +89,44 @@
   </url>
   <url>
     <loc>http://spades-workshops.predictiveecology.org//articles/exercise8.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/01a-WhatIsSpades_Jan2020.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/02a-dynamicModellingPreyPred.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/02b-SpaDES4Dummies.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/06c-Caching.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/06d-Debugging.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/09c-CachingAndDebugging.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/10a-LandWeb.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/exercise4b.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/exercise4c.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/03c-SpaDESInAction.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/10b-NWT.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/12a-CommunityMetricsModule.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/12b-caribouPopulationGrowthModule.html</loc>
   </url>
 </urlset>

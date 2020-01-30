@@ -116,7 +116,7 @@
 <div id="categorized-overview-of-the-spades-package" class="section level3">
 <h3 class="hasAnchor">
 <a href="#categorized-overview-of-the-spades-package" class="anchor"></a>Categorized overview of the <code>SpaDES</code> package</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?SpaDES</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">?SpaDES</a></code></pre></div>
 <ol style="list-style-type: decimal">
 <li>Spatial discrete event simulation (<code>SpaDES</code>)</li>
 <li>Module functions</li>
@@ -132,9 +132,9 @@
 <div id="directory-structure" class="section level3">
 <h3 class="hasAnchor">
 <a href="#directory-structure" class="anchor"></a>Directory structure</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">module.path &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/basename.html">dirname</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span>()), <span class="st">"modules"</span>)
-<span class="kw">downloadModule</span>(<span class="st">'wolfAlps'</span>, module.path, <span class="dt">data =</span> <span class="ot">TRUE</span>)
-<span class="kw"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(module.path, <span class="st">'wolfAlps'</span>), <span class="dt">all.files =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">module.path &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/basename.html">dirname</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span>()), <span class="st">"modules"</span>)</a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="kw">downloadModule</span>(<span class="st">'wolfAlps'</span>, module.path, <span class="dt">data =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(module.path, <span class="st">'wolfAlps'</span>), <span class="dt">all.files =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>/moduleRepository
   |_ moduleName/
       |_ R/                     # contains additional .R (helper) files
@@ -149,17 +149,17 @@
       |_ moduleName_x.y.z.zip   # zip archive of previous versions</code></pre>
 <p><strong>Advanced:</strong> not included (yet) in the main module repo are examples of modules that include unit tests and code coverage.</p>
 <p>These are <em>encouraged</em> and can be built using:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># when creating a new module</span>
-<span class="kw">newModule</span>(..., <span class="dt">unitTests =</span> <span class="ot">TRUE</span>) <span class="co"># default</span>
-
-<span class="co"># or after-the-fact with</span>
-<span class="kw">newModuleTests</span>(...)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># when creating a new module</span></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="kw">newModule</span>(..., <span class="dt">unitTests =</span> <span class="ot">TRUE</span>) <span class="co"># default</span></a>
+<a class="sourceLine" id="cb4-3" title="3"></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="co"># or after-the-fact with</span></a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="kw">newModuleTests</span>(...)</a></code></pre></div>
 </div>
 <div id="code-file-structure" class="section level3">
 <h3 class="hasAnchor">
 <a href="#code-file-structure" class="anchor"></a>Code file structure</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">samplePath &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">'sampleModules'</span>, <span class="dt">package =</span> <span class="st">'SpaDES'</span>)
-<span class="kw">openModules</span>(<span class="st">'randomLandscapes'</span>, samplePath)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">samplePath &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">'sampleModules'</span>, <span class="dt">package =</span> <span class="st">'SpaDES'</span>)</a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="kw">openModules</span>(<span class="st">'randomLandscapes'</span>, samplePath)</a></code></pre></div>
 <p>A module code file (<code>.R</code>) consists of the following key sections:</p>
 <ol style="list-style-type: decimal">
 <li><p>module metatadata (<code>defineModule</code> block)</p></li>
@@ -173,19 +173,17 @@
 <h2 class="hasAnchor">
 <a href="#new-module-template" class="anchor"></a>New module template</h2>
 <p>The <code>newModule</code> function creates a module template for you to edit to suit your needs:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">newModule</span>(<span class="st">'moduleName'</span>, <span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="st">'path/to/my/module/directory'</span>))</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">newModule</span>(<span class="st">'moduleName'</span>, <span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="st">'path/to/my/module/directory'</span>))</a></code></pre></div>
 <p>Alternatively, use the RStudio addin which is simply a GUI wrapper for this function:</p>
-<div class="figure">
-<img src="images/screenshot-new-module-addin.png">
-</div>
+<p><img src="images/screenshot-new-module-addin.png"></p>
 </div>
 <div id="module-metadata" class="section level2">
 <h2 class="hasAnchor">
 <a href="#module-metadata" class="anchor"></a>Module metadata</h2>
 <p>Each module requires a collection of metadata describing the module, its dependencies, and linking to documentation, etc.</p>
 <p>These metatadata are defined in the <code>defineModule</code> code block at the start of the file, and are intended to be both human and machine readable.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## see section 'Required metadata elements'
-?defineModule</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co">## see section 'Required metadata elements'</span></a>
+<a class="sourceLine" id="cb7-2" title="2">?defineModule</a></code></pre></div>
 <div id="module-parameters" class="section level3">
 <h3 class="hasAnchor">
 <a href="#module-parameters" class="anchor"></a>Module parameters</h3>
@@ -215,7 +213,7 @@
 <h2 class="hasAnchor">
 <a href="#module-events" class="anchor"></a>Module events</h2>
 <ul>
-<li>Each module may contain an arbitrary number of event types.</li>
+<li><p>Each module may contain an arbitrary number of event types.</p></li>
 <li>
 <p>Each event consists of two parts:</p>
 <ol style="list-style-type: decimal">
@@ -241,7 +239,7 @@
 <ul>
 <li><p>How do we provide default data for a module?</p></li>
 <li><p>Once we have defined what the module is looking for (in the <code>inputObjects</code> block of <code>defineModule</code>), we may want to supply a default data set or links to raw data sources online</p></li>
-<li>See <code>?defineModule</code> and <code>?inputs</code> for details.</li>
+<li><p>See <code>?defineModule</code> and <code>?inputs</code> for details.</p></li>
 <li><p>Sequence to fill simList with data, each subsequent one will override the previous:</p></li>
 </ul>
 <ol style="list-style-type: decimal">
@@ -266,31 +264,31 @@
 <pre><code>- much faster than base graphics, ggplot, etc.
 - modular plotting (automatic multipanel layouts)</code></pre>
 <p><strong>WARNING:</strong> The built-in RStudio plotting device is heinously slow!</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="kw"><a href="https://rdrr.io/r/base/options.html">getOption</a></span>(<span class="st">'device'</span>) <span class="op">==</span><span class="st"> 'RStudioGD'</span>) <span class="kw">dev.useRSGD</span>(<span class="ot">FALSE</span>)
-<span class="kw">dev</span>()</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="cf">if</span> (<span class="kw"><a href="https://rdrr.io/r/base/options.html">getOption</a></span>(<span class="st">'device'</span>) <span class="op">==</span><span class="st"> 'RStudioGD'</span>) <span class="kw">dev.useRSGD</span>(<span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="kw">dev</span>()</a></code></pre></div>
 </div>
 <div id="plotting" class="section level2">
 <h2 class="hasAnchor">
 <a href="#plotting" class="anchor"></a><code>Plot</code>ting</h2>
 <p>See the <a href="http://spades.predictiveecology.org/vignettes/iii-plotting.html">plotting vignette</a> and <code>?Plot</code> for more detailed examples.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Plot</span>(...)
-<span class="kw">clearPlot</span>()
-
-<span class="kw">Plot</span>(..., <span class="dt">new =</span> <span class="ot">TRUE</span>)
-<span class="kw">Plot</span>(..., <span class="dt">addTo =</span> objectName) ## adds to existing plot
-
-<span class="kw">rePlot</span>() ## useful after plot device is resized
-
-## see also
-<span class="kw"><a href="https://rdrr.io/r/grDevices/colors.html">colors</a></span>(...) ## get and set raster colors</code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">Plot</span>(...)</a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="kw">clearPlot</span>()</a>
+<a class="sourceLine" id="cb10-3" title="3"></a>
+<a class="sourceLine" id="cb10-4" title="4"><span class="kw">Plot</span>(..., <span class="dt">new =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb10-5" title="5"><span class="kw">Plot</span>(..., <span class="dt">addTo =</span> objectName) <span class="co">## adds to existing plot</span></a>
+<a class="sourceLine" id="cb10-6" title="6"></a>
+<a class="sourceLine" id="cb10-7" title="7"><span class="kw">rePlot</span>() <span class="co">## useful after plot device is resized</span></a>
+<a class="sourceLine" id="cb10-8" title="8"></a>
+<a class="sourceLine" id="cb10-9" title="9"><span class="co">## see also</span></a>
+<a class="sourceLine" id="cb10-10" title="10"><span class="kw"><a href="https://rdrr.io/r/grDevices/colors.html">colors</a></span>(...) <span class="co">## get and set raster colors</span></a></code></pre></div>
 </div>
 <div id="event-level-plotting" class="section level2">
 <h2 class="hasAnchor">
 <a href="#event-level-plotting" class="anchor"></a>Event-level plotting</h2>
 <p>Module-specific plot parameters can be used to control plotting for your event: <code>.plotInitialTime</code> and <code>.plotInterval</code>.</p>
 <p><em>E.g.</em>, schedule a recurring plot event within a module:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nextPlot &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/time.html">time</a></span>(mySim) <span class="op">+</span><span class="st"> </span>SpaDES<span class="op">::</span><span class="kw">p</span>(mySim)<span class="op">$</span>.plotInterval
-mySim &lt;-<span class="st"> </span><span class="kw">scheduleEvent</span>(mySim, nextPlot, <span class="st">"moduleName"</span>, <span class="st">"plot"</span>)</code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">nextPlot &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/time.html">time</a></span>(mySim) <span class="op">+</span><span class="st"> </span>SpaDES<span class="op">::</span><span class="kw">p</span>(mySim)<span class="op">$</span>.plotInterval</a>
+<a class="sourceLine" id="cb11-2" title="2">mySim &lt;-<span class="st"> </span><span class="kw">scheduleEvent</span>(mySim, nextPlot, <span class="st">"moduleName"</span>, <span class="st">"plot"</span>)</a></code></pre></div>
 </div>
 <div id="interacting-with-plots" class="section level2">
 <h2 class="hasAnchor">
@@ -314,8 +312,8 @@ mySim &lt;-<span class="st"> </span><span class="kw">scheduleEvent</span>(mySim,
 </li>
 </ul>
 <p><em>E.g.</em>, schedule a recurring save event within a module:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nextSave &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/time.html">time</a></span>(mySim) <span class="op">+</span><span class="st"> </span>SpaDES<span class="op">::</span><span class="kw">p</span>(mySim)<span class="op">$</span>.saveInterval
-sim &lt;-<span class="st"> </span><span class="kw">scheduleEvent</span>(mySim, nextSave, <span class="st">"moduleName"</span>, <span class="st">"save"</span>)</code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">nextSave &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/time.html">time</a></span>(mySim) <span class="op">+</span><span class="st"> </span>SpaDES<span class="op">::</span><span class="kw">p</span>(mySim)<span class="op">$</span>.saveInterval</a>
+<a class="sourceLine" id="cb12-2" title="2">sim &lt;-<span class="st"> </span><span class="kw">scheduleEvent</span>(mySim, nextSave, <span class="st">"moduleName"</span>, <span class="st">"save"</span>)</a></code></pre></div>
 </div>
 <div id="loading" class="section level2">
 <h2 class="hasAnchor">
@@ -328,11 +326,11 @@ sim &lt;-<span class="st"> </span><span class="kw">scheduleEvent</span>(mySim, n
 <h2 class="hasAnchor">
 <a href="#checkpointing" class="anchor"></a>Checkpointing</h2>
 <p>Checkpointing is build into <code>SpaDES</code> automatically and can be turned on at the <em>simulation</em> level (not the module level).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">parameters &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-  <span class="dt">.checkpoint =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">interval =</span> <span class="dv">10</span>, <span class="dt">file =</span> <span class="st">"chkpnt.RData"</span>)
-)
-
-mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(..., <span class="dt">params =</span> parameters)</code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">parameters &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
+<a class="sourceLine" id="cb13-2" title="2">  <span class="dt">.checkpoint =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">interval =</span> <span class="dv">10</span>, <span class="dt">file =</span> <span class="st">"chkpnt.RData"</span>)</a>
+<a class="sourceLine" id="cb13-3" title="3">)</a>
+<a class="sourceLine" id="cb13-4" title="4"></a>
+<a class="sourceLine" id="cb13-5" title="5">mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(..., <span class="dt">params =</span> parameters)</a></code></pre></div>
 <p>See <a href="http://spades.predictiveecology.org/vignettes/ii-modules.html#checkpoint-module">vignette</a> for more details.</p>
 <p><strong>NOTE</strong> don’t checkpoint <em>too</em> often, or your simulation will slow down too much (disk writes are slow).</p>
 </div>
@@ -365,9 +363,15 @@ mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(..., <span c
 <h3 class="hasAnchor">
 <a href="#metadata" class="anchor"></a>Metadata</h3>
 <ul>
-<li>[ ] are module metadata fully and correctly specified (module description, authorship and citation info, parameters and inputs/outputs, etc.)?</li>
-<li>[ ] citation should specify how to cite the module, or if published, the paper that describes the module.</li>
-<li>[ ] module object dependencies: use <code>moduleDiagram</code> and <code>objectDiagram</code> to confirm how data objects are passed among modules.</li>
+<li>
+<input type="checkbox" disabled>
+are module metadata fully and correctly specified (module description, authorship and citation info, parameters and inputs/outputs, etc.)?</li>
+<li>
+<input type="checkbox" disabled>
+citation should specify how to cite the module, or if published, the paper that describes the module.</li>
+<li>
+<input type="checkbox" disabled>
+module object dependencies: use <code>moduleDiagram</code> and <code>objectDiagram</code> to confirm how data objects are passed among modules.</li>
 </ul>
 </div>
 </div>
@@ -379,12 +383,23 @@ mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(..., <span c
 <h3 class="hasAnchor">
 <a href="#events" class="anchor"></a>Events</h3>
 <ul>
-<li>[ ] are all event types defined in doEvent?</li>
-<li>[ ] use <code>sim$function(sim)</code> to access event functions</li>
-<li>[ ] <code>use sim$object</code> to access simulation data objects</li>
-<li>[ ] use <em>e.g.</em>, <code>sim[[globals(sim)$objectName]]</code> to access variable-named objects</li>
-<li>[ ] use unique function names to reduce the risk of another module overwriting your functions. <em>E.g.</em>, use <code>moduleNameFunction()</code> instead of <code>function()</code>.</li>
-<li>[ ] using <code>sim$function</code> notation is not required for the definition of event functions</li>
+<li>
+<input type="checkbox" disabled>
+are all event types defined in doEvent?</li>
+<li>
+<input type="checkbox" disabled>
+use <code>sim$function(sim)</code> to access event functions</li>
+<li>
+<input type="checkbox" disabled><code>use sim$object</code> to access simulation data objects</li>
+<li>
+<input type="checkbox" disabled>
+use <em>e.g.</em>, <code>sim[[globals(sim)$objectName]]</code> to access variable-named objects</li>
+<li>
+<input type="checkbox" disabled>
+use unique function names to reduce the risk of another module overwriting your functions. <em>E.g.</em>, use <code>moduleNameFunction()</code> instead of <code>function()</code>.</li>
+<li>
+<input type="checkbox" disabled>
+using <code>sim$function</code> notation is not required for the definition of event functions</li>
 </ul>
 </div>
 </div>
@@ -396,9 +411,15 @@ mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(..., <span c
 <h3 class="hasAnchor">
 <a href="#documentation" class="anchor"></a>Documentation</h3>
 <ul>
-<li>[ ] have you provided useful (meaningful) documentation in the module’s <code>.Rmd</code> file and <code>README</code>?</li>
-<li>[ ] have you built (knitted) the <code>.Rmd</code> file to generate a <code>.pdf</code> or <code>.html</code> version?</li>
-<li>[ ] have you specified the terms under which your module code can be reused and/or modified? Add a license!</li>
+<li>
+<input type="checkbox" disabled>
+have you provided useful (meaningful) documentation in the module’s <code>.Rmd</code> file and <code>README</code>?</li>
+<li>
+<input type="checkbox" disabled>
+have you built (knitted) the <code>.Rmd</code> file to generate a <code>.pdf</code> or <code>.html</code> version?</li>
+<li>
+<input type="checkbox" disabled>
+have you specified the terms under which your module code can be reused and/or modified? Add a license!</li>
 </ul>
 </div>
 </div>
@@ -410,11 +431,19 @@ mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(..., <span c
 <h3 class="hasAnchor">
 <a href="#data" class="anchor"></a>Data</h3>
 <ul>
-<li>[ ] verify that data you wish to include with your module are saved in <code>data/</code>
+<li>
+<input type="checkbox" disabled>
+verify that data you wish to include with your module are saved in <code>data/</code>
 </li>
-<li>[ ] verify that external data sources are included in the <code>sourceURL</code> metadata field</li>
-<li>[ ] verify that any additional data preparation/transformation steps used in <code>.inputObjects</code> are correct</li>
-<li>[ ] write <code>CHECKSUMS.txt</code> file for all data using <code>checksums(..., write = TRUE)</code>
+<li>
+<input type="checkbox" disabled>
+verify that external data sources are included in the <code>sourceURL</code> metadata field</li>
+<li>
+<input type="checkbox" disabled>
+verify that any additional data preparation/transformation steps used in <code>.inputObjects</code> are correct</li>
+<li>
+<input type="checkbox" disabled>
+write <code>CHECKSUMS.txt</code> file for all data using <code>checksums(..., write = TRUE)</code>
 </li>
 </ul>
 </div>
@@ -427,8 +456,12 @@ mySim &lt;-<span class="st"> </span><span class="kw">simInit</span>(..., <span c
 <h3 class="hasAnchor">
 <a href="#distributing-your-module" class="anchor"></a>Distributing your module</h3>
 <ul>
-<li>[ ] where will your module code/data be hosted?</li>
-<li>[ ] test <code>downloadModule</code> and <code>downloadData</code> from a temp dir to ensure your module can be downloaded correctly by others</li>
+<li>
+<input type="checkbox" disabled>
+where will your module code/data be hosted?</li>
+<li>
+<input type="checkbox" disabled>
+test <code>downloadModule</code> and <code>downloadData</code> from a temp dir to ensure your module can be downloaded correctly by others</li>
 </ul>
 </div>
 </div>
