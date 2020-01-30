@@ -91,10 +91,11 @@ landCover <- Cache(prepInputs,
 ```
 
 Try to provide a study area now. Hints:
-* check out `?reproducible::prepInputs` and `?reproducible::postProcess`
-* check out `?SpaDES.tools::randomStudyArea`
-+ try with an area 1 ha
-* what happens when you run `Cache(prepInputs(...))` with the new study area(s)?
+
++ check out `?reproducible::prepInputs` and `?reproducible::postProcess`
++ check out `?SpaDES.tools::randomStudyArea`
+  - try with an area 1 ha
++ what happens when you run `Cache(prepInputs(...))` with the new study area(s)?
 
 ```{r landCover_6, include = FALSE}
 library(SpaDES.tools)
@@ -155,8 +156,9 @@ landCover <- Cache(prepInputs,
 ```
 
 Now imagine someone told you there is a more up to date Land Cover map for Canada. And they told you where to look to get to the `.zip` file - [the Canadian Gov. open data portal](https://open.canada.ca/data/en/dataset/c688b87f-e85f-4842-b0e1-a8f79ebf1133)
-* Try right-click on "Access" for the TIF file and replace the "old" URL
-* Had an error, the messages are helpful!
+
++ Try right-click on "Access" for the TIF file and replace the "old" URL
++ Had an error, the messages are helpful!
 
 ```{r landCover_9, include = FALSE}
 url <- "http://ftp.maps.canada.ca/pub/nrcan_rncan/Land-cover_Couverture-du-sol/canada-landcover_canada-couverture-du-sol/CanadaLandcover2010.zip"
@@ -250,7 +252,9 @@ file.edit("modules/caribouRSF/caribouRSF.R")  ## got to caribouRSF.R#154
 ```
 
 1. Insert a `browser()` before the line with the `stop()`. Save and re-rerun.
+
 + Check `?browser`, while you're at it ;)
+
 2. What is `P(sim)$.useDummyData`? Where does its value come from?
 3. Which data objects are missing? Why?
 
@@ -268,10 +272,12 @@ file.edit("modules/caribouRSF/caribouRSF.R")  ## got to caribouRSF.R#154
 We are going to supply these objects - note that the dynamic part will not be simulated.
 
 4. Check the `.inputObjects` function and the metadata for inputs.
+
 + Can you see a pattern in how `prepInputs` gets data from online sources? Try to do the same for `pixelGroupMap`and `cohortData`
 + How are sources for objects given? Try adding sources the following sources:
-- for `pixelGroupMap`: "https://drive.google.com/open?id=1IUEuH55su8X7JCWt8LXy_hTAQz0cfCmU"
-- for `cohortData`: "https://drive.google.com/open?id=1R_wGGvzUI0gGZ5NOs2KmT2KrmXaTm4NS"
+  
+  - for `pixelGroupMap`: "https://drive.google.com/open?id=1IUEuH55su8X7JCWt8LXy_hTAQz0cfCmU"
+  - for `cohortData`: "https://drive.google.com/open?id=1R_wGGvzUI0gGZ5NOs2KmT2KrmXaTm4NS"
 
 ```{r goingIn_3, include=FALSE}
 ## add sourceURL to pixelGroupMap and cohortData
@@ -325,7 +331,9 @@ caribou <- simInitAndSpades(times = times,
 ```
 
 Or maybe, we don't want to see them printed, but want to keep a log of all messages to check later.
-* check the "debug" section of `?spades` 
+
++ check the "debug" section of `?spades` 
+
 ```{r debug2}
 caribou <- simInitAndSpades(times = times,
                             objects = objects,
