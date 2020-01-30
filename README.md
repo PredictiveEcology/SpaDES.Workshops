@@ -24,7 +24,7 @@ The hope is to attract non-modelers (e.g., managers, scientists, practitioners) 
 
 **Day 2: Learning `SpaDES` - Sections 4-6** 
 * **Section 4 - 9am - break** - 1.5 hours – we will take you through basic `SpaDES` concepts, while using the previous day's examples to get you started with understanding the packages and framework.
-* **Sectios 5-6 - remainder of the day** - 4.5 hours – This is intended to dive a little bit into the code, learn how to create relatively simple modules and establish links between modules. WE will also touch upon essential aspects of programming with `SpaDES`, such as caching and debugging.
+* **Sections 5-6 - remainder of the day** - 4.5 hours – This is intended to dive a little bit into the code, learn how to create relatively simple modules and establish links between modules. WE will also touch upon essential aspects of programming with `SpaDES`, such as caching and debugging.
 
 This is a high level intro for scientists, managers, policy makers, decision makers, coupled with examples of ongoing projects in `SpaDES` that will showcase the utility of the framework.
 
@@ -117,9 +117,9 @@ Error: HTTP error 403.
   API rate limit exceeded for ###.###.##.###. 
   (...)
 ```
-The error should provide the solution to fixing this problem, but if for some reason you don't find these instructions here they are:
+The error should provide the solution to fixing this problem, but if for some reason you don't find these instructions, here they are:
 - Use `usethis::browse_github_pat()` to create a GitHub token
-- Use `usethis::edit_r_environ()` and add the environment variable with `GITHUB_PAT = 'your_github_token`.
+- Use `usethis::edit_r_environ()` and add the environment variable with `GITHUB_PAT = 'your_github_token'`.
 Restart R (so that the GITHUB_PAT is read) and try to reinstall: `devtools::install_github(...)`
 
 ### Workshop materials
