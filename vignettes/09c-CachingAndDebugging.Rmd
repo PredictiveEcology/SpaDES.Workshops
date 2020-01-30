@@ -12,7 +12,7 @@ editor_options:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(cache = FALSE, echo = TRUE, eval = TRUE)
+knitr::opts_chunk$set(cache = FALSE, echo = TRUE, eval = FALSE)
 ```
 
 # Some basic Caching lessons
@@ -27,143 +27,150 @@ Caching becomes fundamental when we can expect to re-run operations several time
 
 `SpaDES` (via the `reproducible` package) offers a number of functions that make caching these operations a lot easier for non-programmers. Two fundamental ones are `Cache` and `prepInputs`.
 
-```{r LCC2005_1, eval = FALSE}
+```{r landCover_1}
 library(reproducible)
 library(sp)
 library(raster)
 
-# Create a "study area"
-coords <- structure(c(-122.98, -116.1, -99.2, -106, -122.98, 59.9, 65.73, 63.58, 54.79, 59.9),
-                    .Dim = c(5L, 2L))
-Sr1 <- Polygon(coords)
-Srs1 <- Polygons(list(Sr1), "s1")
-StudyArea <- SpatialPolygons(list(Srs1), 1L)
-crs(StudyArea) <- "+init=epsg:4326 +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"
-
 ## from ?prepInputs
 dPath <- file.path(tempdir(), "LCC")
-lcc2005Filename <- file.path(dPath, "LCC2005_V1_4a.tif")
 url <- file.path("ftp://ftp.ccrs.nrcan.gc.ca/ad/NLCCLandCover",
                  "LandcoverCanada2005_250m/LandCoverOfCanada2005_V1_4.zip")
-LCC2005 <- prepInputs(url = url,
-                      destinationPath = asPath(dPath),
-                      useSAcrs = TRUE,  ## a reproducible::postProcess argument
-                      studyArea = StudyArea)
+landCover <- prepInputs(url = url,
+                        destinationPath = asPath(dPath))
 ```
 
 Now do it again. Notice any difference?
-```{r LCC2005_2, eval = FALSE}
-LCC2005 <- prepInputs(url = url,
-                      destinationPath = asPath(dPath),
-                      useSAcrs = TRUE,  ## a reproducible::postProcess argument
-                      overwrite = TRUE, ## a reproducible::postProcess argument
-                      studyArea = StudyArea)
+```{r landCover_2}
+landCover <- prepInputs(url = url,
+                        destinationPath = asPath(dPath))
 ```
 
 Now try wrapping the previous operation in `Cache` call, and run it twice. Notice differences in speed.
-```{r LCC2005_3, eval = FALSE}
-LCC2005 <- Cache(prepInputs,
-                 url = url,
-                 destinationPath = asPath(dPath),
-                 useSAcrs = TRUE,
-                 overwrite = TRUE,
-                 studyArea = StudyArea)
+```{r landCover_3}
+landCover <- Cache(prepInputs,
+                   url = url,
+                   destinationPath = asPath(dPath))
 ```
 
 The previous code is great but we don't have as much control as we'd like on where `Cache` is storing cached objects. To do that, we can explicitly provide a cache folder and add tags to the object so that we can find it more easily if we ever need to "clean it".
-```{r LCC2005_4, eval = FALSE}
+```{r landCover_4}
 cPath <- file.path(tempdir(), "cache")
 ## run this twice
-LCC2005 <- Cache(prepInputs,
-                 url = url,
-                 destinationPath = asPath(dPath),
-                 useSAcrs = TRUE,  
-                 overwrite = TRUE, 
-                 studyArea = StudyArea,
-                 cacheRepo = cPath,
-                 userTags = "LCC2005")
+landCover <- Cache(prepInputs,
+                   url = url,
+                   destinationPath = asPath(dPath),
+                   cacheRepo = cPath,
+                   userTags = "landCover")
 
-showCache(x = cPath, userTags = "LCC2005")
-reproducible::clearCache(x = cPath, userTags = "LCC2005")
+showCache(x = cPath, userTags = "landCover")
+reproducible::clearCache(x = cPath, userTags = "landCover")
 
 ## notice how Cache needs to re-do things
-LCC2005 <- Cache(prepInputs,
-                 url = url,
-                 destinationPath = asPath(dPath),
-                 useSAcrs = TRUE,  
-                 overwrite = TRUE, 
-                 studyArea = StudyArea,
-                 cacheRepo = cPath,
-                 userTags = "LCC2005")
+landCover <- Cache(prepInputs,
+                   url = url,
+                   destinationPath = asPath(dPath),
+                   userTags = "landCover")
 ```
 
 We can also force `Cache` to redo operations and re-cache, or simply to ignore caching altogether. See more options for `Cache(useCache)` in `?Cache`
-```{r LCC2005_5, eval = FALSE}
-LCC2005 <- Cache(prepInputs,
-                 url = url,
-                 destinationPath = asPath(dPath),
-                 useSAcrs = TRUE,
-                 overwrite = TRUE,
-                 studyArea = StudyArea,
-                 cacheRepo = cPath,
-                 userTags = "LCC2005",
-                 useCache = "overwrite")
+```{r landCover_5}
+landCover <- Cache(prepInputs,
+                   url = url,
+                   destinationPath = asPath(dPath),
+                   cacheRepo = cPath,
+                   userTags = "landCover",
+                   useCache = "overwrite")
 
-LCC2005 <- Cache(prepInputs,
-                 url = url,
-                 destinationPath = asPath(dPath),
-                 useSAcrs = TRUE,
-                 overwrite = TRUE,
-                 studyArea = StudyArea,
-                 cacheRepo = cPath,
-                 userTags = "LCC2005",
-                 useCache = FALSE)
+landCover <- Cache(prepInputs,
+                   url = url,
+                   destinationPath = asPath(dPath),
+                   cacheRepo = cPath,
+                   userTags = "landCover",
+                   useCache = FALSE)
 ```
 
-Try to change the study area now. Hints:
-* check out `?SpaDES.tools::randomPolygon`
-  + try these coordinates: -114.5522 W 50.73892 N and 1 ha
+Try to provide a study area now. Hints:
+* check out `?reproducible::prepInputs` and `?reproducible::postProcess`
 * check out `?SpaDES.tools::randomStudyArea`
-  + try with an area 1 ha
-  + how would you guarantee you get *the same* area *everytime*?
++ try with an area 1 ha
 * what happens when you run `Cache(prepInputs(...))` with the new study area(s)?
- 
-```{r LCC2005_6, eval = FALSE, include = FALSE}
-library(SpaDES.tools)
-StudyArea2 <- randomPolygon(x = matrix(c(-114.5522, 50.73892), nrow = 1, ncol = 2,
-                                      byrow = TRUE), area = 100^2)
-StudyArea3 <- randomStudyArea(seed = 1234, size = 100^2)
 
-LCC2005 <- Cache(prepInputs,
-                 url = url,
-                 destinationPath = asPath(dPath),
-                 useSAcrs = TRUE,
-                 overwrite = TRUE,
-                 studyArea = StudyArea2,
-                 cacheRepo = cPath,
-                 userTags = "LCC2005",
-                 useCache = FALSE)
+```{r landCover_6, include = FALSE}
+library(SpaDES.tools)
+StudyArea <- randomStudyArea(size = 100000^2)
+
+## cheating to visualise beforehand
+if (identical(crs(StudyArea), crs(landCover)))
+  StudyArea <- spTransform(StudyArea, crs = crs(landCover))
+plot(landCover)
+plot(StudyArea, add = TRUE, col = "red")
+
+landCover <- Cache(prepInputs,
+                   url = url,
+                   destinationPath = asPath(dPath),
+                   useSAcrs = TRUE,
+                   overwrite = TRUE,
+                   studyArea = StudyArea,
+                   cacheRepo = cPath,
+                   userTags = "landCover",
+                   useCache = TRUE)
+plot(landCover)
 ```
 
 What if my study area is a raster?
-Assuming you don't have raster at hand, try using a raster from the `SpaDESInAction` example ("inputs/LCC2005_V1_4a_BCR6_NWT.tif").
+Assuming you don't have raster at hand, try using a raster from the `SpaDESInAction` example ("inputs/rasterToMatch.rds").
 
-```{r LCC2005_7, eval = FALSE, include = FALSE}
-templateRaster <- raster("docs/SpaDESInAction2/inputs/LCC2005_V1_4a_BCR6_NWT.tif")
+```{r landCover_7, include = FALSE}
+## assuming you're in the SpaDESInAction2 project folder
+templateRaster <- readRDS(file.path(getwd(), "inputs/rasterToMatch.rds"))
 
-LCC2005 <- Cache(prepInputs,
-                 url = url,
-                 destinationPath = asPath(dPath),
-                 # useSAcrs = TRUE,
-                 mask
-                 overwrite = TRUE, 
-                 rasterToMatch = templateRaster,
-                 maskWithRTM = TRUE,
-                 cacheRepo = cPath,
-                 userTags = "LCC2005",
-                 useCache = FALSE)
+landCover <- Cache(prepInputs,
+                   url = url,
+                   destinationPath = asPath(dPath),
+                   # useSAcrs = TRUE,  ## we don't need this anymore
+                   rasterToMatch = templateRaster, ## a reproducible::postProcess argument
+                   maskWithRTM = TRUE,  ## a reproducible::maskInputs argument 
+                   overwrite = TRUE, 
+                   cacheRepo = cPath,
+                   userTags = "landCover",
+                   useCache = TRUE)
+plot(landCover)
 ```
 
+What if I have both?
+In some cases your study area may be defined by a polygon, but you may have a raster that will dictate the e.g. projection and resolution of the output (remember, polygons have no resolution).
+```{r landCover_8, include = FALSE}
+landCover <- Cache(prepInputs,
+                   url = url,
+                   destinationPath = asPath(dPath),
+                   studyArea = StudyArea,
+                   useSAcrs = FALSE,  ## use the template raster projection
+                   rasterToMatch = templateRaster,
+                   maskWithRTM = FALSE,  ## mask using the study area
+                   overwrite = TRUE, 
+                   cacheRepo = cPath,
+                   userTags = "landCover",
+                   useCache = TRUE)
+```
+
+Now imagine someone told you there is a more up to date Land Cover map for Canada. And they told you where to look to get to the `.zip` file - [the Canadian Gov. open data portal](https://open.canada.ca/data/en/dataset/c688b87f-e85f-4842-b0e1-a8f79ebf1133)
+* Try right-click on "Access" for the TIF file and replace the "old" URL
+* Had an error, the messages are helpful!
+
+```{r landCover_9, include = FALSE}
+url <- "http://ftp.maps.canada.ca/pub/nrcan_rncan/Land-cover_Couverture-du-sol/canada-landcover_canada-couverture-du-sol/CanadaLandcover2010.zip"
+landCover <- Cache(prepInputs,
+                   targetFile = "CAN_LC_2010_CAL.tif",
+                   url = url,
+                   destinationPath = asPath(dPath),
+                   studyArea = StudyArea,
+                   overwrite = TRUE, 
+                   cacheRepo = cPath,
+                   userTags = "landCover",
+                   useCache = TRUE)
+plot(landCover)
+```
 
 Learn more about [caching](http://spades.predictiveecology.org/articles/iii-cache.html)
 
@@ -173,7 +180,8 @@ Now that you have a flavour of caching, we're going to explore debugging a bit a
 
 We're going to run the `caribouRSF` module by itself.
 
-```{r caribouRun, eval = FALSE}
+```{r caribouRun}
+## Restart your R session if not running from a "clean" environment
 library("reproducible")
 library(SpaDES)
 library(LandR)
@@ -191,6 +199,7 @@ options(
   "pemisc.useParallel" = FALSE
 )
 
+## assuming you're in the SpaDESInAction2 project folder
 inputDirectory <- checkPath(file.path(getwd(), "inputs"), create = TRUE)
 outputDirectory <- checkPath(file.path(getwd(), "outputs"), create = TRUE)
 modulesDirectory <- checkPath(file.path(getwd(), "modules"), create = TRUE)
@@ -208,7 +217,7 @@ successionTimestep <- 1L
 parameters <- list(
   caribouRSF = list(
     "decidousSp" = c("Betu_Pap", "Popu_Tre", "Popu_Bal"),
-    "predictionInterval" = 20,
+    "predictionInterval" = 20
   )
 )
 # load studyArea
@@ -226,7 +235,7 @@ caribou <- simInitAndSpades(times = times,
                             debug = 1)
 ```
 
-Oops, something doens't seem to be right! We start by looking carefully at the printed output, then we use `traceback` to help us locate the problem.
+Oops, something doesn't seem to be right! We start by looking carefully at the printed output, then we use `traceback` to help us locate the problem.
 In this case, it seems to be a particular line of *caribouRSF.R*
 
 ```{r goingIn, eval=FALSE}
@@ -245,7 +254,7 @@ file.edit("modules/caribouRSF/caribouRSF.R")  ## got to caribouRSF.R#154
 2. What is `P(sim)$.useDummyData`? Where does its value come from?
 3. Which data objects are missing? Why?
 
-```{r goingIn_2, eval = FALSE}
+```{r goingIn_2}
 # Browse[1]> P(sim)$.useDummyData
 # [1] TRUE
 
@@ -262,9 +271,9 @@ We are going to supply these objects - note that the dynamic part will not be si
 + Can you see a pattern in how `prepInputs` gets data from online sources? Try to do the same for `pixelGroupMap`and `cohortData`
 + How are sources for objects given? Try adding sources the following sources:
 - for `pixelGroupMap`: "https://drive.google.com/open?id=1IUEuH55su8X7JCWt8LXy_hTAQz0cfCmU"
-- for `cohortData`: [https://drive.google.com/open?id=1R_wGGvzUI0gGZ5NOs2KmT2KrmXaTm4NS]
+- for `cohortData`: "https://drive.google.com/open?id=1R_wGGvzUI0gGZ5NOs2KmT2KrmXaTm4NS"
 
-```{r goingIn_3, include=FALSE, eval = FALSE}
+```{r goingIn_3, include=FALSE}
 ## add sourceURL to pixelGroupMap and cohortData
 expectsInput(objectName = "pixelGroupMap", objectClass = "RasterLayer",
              desc = paste0("Map of groups of pixels that share the same info from cohortData (sp, age, biomass, etc).",
@@ -290,6 +299,68 @@ if (!suppliedElsewhere("cohortData", sim = sim, where = "sim")) {
                           url = extractURL("cohortData"),
                           destinationPath = dataPath(sim))
 }
+```
+
+You can now use `restartSpades` or simply re-run `simInitAndSpades`
+```{r restartSpades}
+caribou <- restartSpaDES()
+
+caribou <- simInitAndSpades(times = times,
+                            objects = objects,
+                            params = parameters,
+                            modules = as.list("caribouRSF"),
+                            paths = getPaths(),
+                            debug = 1)
+```
+
+There seem to be no more issues. Maybe we don't need to print all those debug messages anymore - less verbose - next time we run.
+
+```{r debug1}
+caribou <- simInitAndSpades(times = times,
+                            objects = objects,
+                            params = parameters,
+                            modules = as.list("caribouRSF"),
+                            paths = getPaths(),
+                            debug = FALSE)
+```
+
+Or maybe, we don't want to see them printed, but want to keep a log of all messages to check later.
+* check the "debug" section of `?spades` 
+```{r debug2}
+caribou <- simInitAndSpades(times = times,
+                            objects = objects,
+                            params = parameters,
+                            modules = as.list("caribouRSF"),
+                            paths = getPaths(),
+                            debug = list(console = list(level = 40), 
+                                         file = list(append = FALSE,
+                                                     file = "logCaribou.txt",
+                                                     level = 0), 
+                                         debug = TRUE)
+)
+
+## notivce how different the file is from what was printed on the console.
+file.edit("logCaribou.txt")
+```
+
+What about all that purple text?
+That's the module code checking. It's helpful, but not always accurate - meant to be informative rather than enforced.
+```{r debug3}
+options("spades.moduleCodeChecks" = FALSE)
+caribou <- simInitAndSpades(times = times,
+                            objects = objects,
+                            params = parameters,
+                            modules = as.list("caribouRSF"),
+                            paths = getPaths(),
+                            debug = list(console = list(level = 40), 
+                                         file = list(append = FALSE,
+                                                     file = "logCaribou.txt",
+                                                     level = 0), 
+                                         debug = TRUE)
+)
+
+## notivce how different the file is from what was printed on the console.
+file.edit("logCaribou.txt")
 ```
 
 Learn about [debugging in SpaDES](https://github.com/PredictiveEcology/SpaDES/wiki/Debugging) and [with RStudio](https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-RStudio)
