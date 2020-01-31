@@ -242,7 +242,8 @@
 <a class="sourceLine" id="cb7-7" title="7"></a>
 <a class="sourceLine" id="cb7-8" title="8"><span class="kw"><a href="https://rdrr.io/r/utils/file.edit.html">file.edit</a></span>(<span class="st">"modules/caribouRSF/caribouRSF.R"</span>)  <span class="co">## got to caribouRSF.R#154</span></a></code></pre></div>
 <ol style="list-style-type: decimal">
-<li>Insert a <code><a href="https://rdrr.io/r/base/browser.html">browser()</a></code> before the line with the <code><a href="https://rdrr.io/r/base/stop.html">stop()</a></code>. Save and re-rerun.</li>
+<li>Insert a <code><a href="https://rdrr.io/r/base/browser.html">browser()</a></code> before the line with the <code><a href="https://rdrr.io/r/base/stop.html">stop()</a></code>. Save and re-rerun. OR</li>
+<li>Use the <code>debug</code> option in <code>simInitAndSpaDES</code> or <code>spades</code> to go in into “browser mode”</li>
 </ol>
 <ul>
 <li>Check <code><a href="https://rdrr.io/r/base/browser.html">?browser</a></code>, while you’re at it ;)</li>
@@ -258,7 +259,21 @@
 <a class="sourceLine" id="cb8-5" title="5"><span class="co"># NULL</span></a>
 <a class="sourceLine" id="cb8-6" title="6"></a>
 <a class="sourceLine" id="cb8-7" title="7"><span class="co"># Browse[1]&gt; mod$cohortData</span></a>
-<a class="sourceLine" id="cb8-8" title="8"><span class="co"># NULL</span></a></code></pre></div>
+<a class="sourceLine" id="cb8-8" title="8"><span class="co"># NULL</span></a>
+<a class="sourceLine" id="cb8-9" title="9"></a>
+<a class="sourceLine" id="cb8-10" title="10">caribou &lt;-<span class="st"> </span><span class="kw">simInitAndSpades</span>(<span class="dt">times =</span> times,</a>
+<a class="sourceLine" id="cb8-11" title="11">                            <span class="dt">objects =</span> objects,</a>
+<a class="sourceLine" id="cb8-12" title="12">                            <span class="dt">params =</span> parameters,</a>
+<a class="sourceLine" id="cb8-13" title="13">                            <span class="dt">modules =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">as.list</a></span>(<span class="st">"caribouRSF"</span>),</a>
+<a class="sourceLine" id="cb8-14" title="14">                            <span class="dt">paths =</span> <span class="kw">getPaths</span>(),</a>
+<a class="sourceLine" id="cb8-15" title="15">                            <span class="dt">debug =</span> <span class="st">"init"</span>)</a>
+<a class="sourceLine" id="cb8-16" title="16"></a>
+<a class="sourceLine" id="cb8-17" title="17">caribou &lt;-<span class="st"> </span><span class="kw">simInitAndSpades</span>(<span class="dt">times =</span> times,</a>
+<a class="sourceLine" id="cb8-18" title="18">                            <span class="dt">objects =</span> objects,</a>
+<a class="sourceLine" id="cb8-19" title="19">                            <span class="dt">params =</span> parameters,</a>
+<a class="sourceLine" id="cb8-20" title="20">                            <span class="dt">modules =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">as.list</a></span>(<span class="st">"caribouRSF"</span>),</a>
+<a class="sourceLine" id="cb8-21" title="21">                            <span class="dt">paths =</span> <span class="kw">getPaths</span>(),</a>
+<a class="sourceLine" id="cb8-22" title="22">                            <span class="dt">debug =</span> <span class="st">"caribouRSF"</span>)</a></code></pre></div>
 <p>We are going to supply these objects - note that the dynamic part will not be simulated.</p>
 <ol start="4" style="list-style-type: decimal">
 <li>Check the <code>.inputObjects</code> function and the metadata for inputs.</li>
@@ -322,7 +337,7 @@
 <a class="sourceLine" id="cb12-11" title="11">                                         <span class="dt">debug =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb12-12" title="12">)</a>
 <a class="sourceLine" id="cb12-13" title="13"></a>
-<a class="sourceLine" id="cb12-14" title="14"><span class="co">## notivce how different the file is from what was printed on the console.</span></a>
+<a class="sourceLine" id="cb12-14" title="14"><span class="co">## notice how different the file is from what was printed on the console.</span></a>
 <a class="sourceLine" id="cb12-15" title="15"><span class="kw"><a href="https://rdrr.io/r/utils/file.edit.html">file.edit</a></span>(<span class="st">"logCaribou.txt"</span>)</a></code></pre></div>
 <p>Learn about <a href="https://github.com/PredictiveEcology/SpaDES/wiki/Debugging">debugging in SpaDES</a> and <a href="https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-RStudio">with RStudio</a></p>
 </div>

@@ -252,6 +252,8 @@ file.edit("modules/caribouRSF/caribouRSF.R")  ## got to caribouRSF.R#154
 ```
 
 1. Insert a `browser()` before the line with the `stop()`. Save and re-rerun.
+OR
+2. Use the `debug` option in `simInitAndSpaDES` or `spades` to go in into "browser mode"
 
 + Check `?browser`, while you're at it ;)
 
@@ -267,6 +269,21 @@ file.edit("modules/caribouRSF/caribouRSF.R")  ## got to caribouRSF.R#154
 
 # Browse[1]> mod$cohortData
 # NULL
+
+caribou <- simInitAndSpades(times = times,
+                            objects = objects,
+                            params = parameters,
+                            modules = as.list("caribouRSF"),
+                            paths = getPaths(),
+                            debug = "init")
+
+caribou <- simInitAndSpades(times = times,
+                            objects = objects,
+                            params = parameters,
+                            modules = as.list("caribouRSF"),
+                            paths = getPaths(),
+                            debug = "caribouRSF")
+
 ```
 
 We are going to supply these objects - note that the dynamic part will not be simulated.
@@ -367,7 +384,7 @@ caribou <- simInitAndSpades(times = times,
                                          debug = TRUE)
 )
 
-## notivce how different the file is from what was printed on the console.
+## notice how different the file is from what was printed on the console.
 file.edit("logCaribou.txt")
 ```
 
