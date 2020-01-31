@@ -106,9 +106,6 @@
     <loc>http://spades-workshops.predictiveecology.org//articles/06d-Debugging.html</loc>
   </url>
   <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/09c-CachingAndDebugging.html</loc>
-  </url>
-  <url>
     <loc>http://spades-workshops.predictiveecology.org//articles/10a-LandWeb.html</loc>
   </url>
   <url>
@@ -128,5 +125,8 @@
   </url>
   <url>
     <loc>http://spades-workshops.predictiveecology.org//articles/03c-SpaDESInAction.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/09c-CachingAndDebugging.html</loc>
   </url>
 </urlset>

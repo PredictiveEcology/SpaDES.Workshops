@@ -34,7 +34,6 @@ articles:
   02b-SpaDES4Dummies: 02b-SpaDES4Dummies.html
   06c-Caching: 06c-Caching.html
   06d-Debugging: 06d-Debugging.html
-  09c-CachingAndDebugging: 09c-CachingAndDebugging.html
   10a-LandWeb: 10a-LandWeb.html
   exercise4b: exercise4b.html
   exercise4c: exercise4c.html
@@ -42,6 +41,7 @@ articles:
   12a-CommunityMetricsModule: 12a-CommunityMetricsModule.html
   12b-caribouPopulationGrowthModule: 12b-caribouPopulationGrowthModule.html
   03c-SpaDESInAction: 03c-SpaDESInAction.html
+  09c-CachingAndDebugging: 09c-CachingAndDebugging.html
 urls:
   reference: http://spades-workshops.predictiveecology.org//reference
   article: http://spades-workshops.predictiveecology.org//articles
