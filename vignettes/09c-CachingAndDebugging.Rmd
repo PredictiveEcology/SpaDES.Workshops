@@ -97,7 +97,7 @@ Try to provide a study area now. Hints:
   - try with an area 1 ha
 + what happens when you run `Cache(prepInputs(...))` with the new study area(s)?
 
-```{r landCover_6, include = FALSE}
+```{r landCover_6}
 library(SpaDES.tools)
 StudyArea <- randomStudyArea(size = 100000^2)
 
@@ -122,7 +122,7 @@ plot(landCover)
 What if my study area is a raster?
 Assuming you don't have raster at hand, try using a raster from the `SpaDESInAction` example ("inputs/rasterToMatch.rds").
 
-```{r landCover_7, include = FALSE}
+```{r landCover_7}
 ## assuming you're in the SpaDESInAction2 project folder
 templateRaster <- readRDS(file.path(getwd(), "inputs/rasterToMatch.rds"))
 
@@ -141,7 +141,7 @@ plot(landCover)
 
 What if I have both?
 In some cases your study area may be defined by a polygon, but you may have a raster that will dictate the e.g. projection and resolution of the output (remember, polygons have no resolution).
-```{r landCover_8, include = FALSE}
+```{r landCover_8}
 landCover <- Cache(prepInputs,
                    url = url,
                    destinationPath = asPath(dPath),
@@ -160,7 +160,7 @@ Now imagine someone told you there is a more up to date Land Cover map for Canad
 + Try right-click on "Access" for the TIF file and replace the "old" URL
 + Had an error, the messages are helpful!
 
-```{r landCover_9, include = FALSE}
+```{r landCover_9}
 url <- "http://ftp.maps.canada.ca/pub/nrcan_rncan/Land-cover_Couverture-du-sol/canada-landcover_canada-couverture-du-sol/CanadaLandcover2010.zip"
 landCover <- Cache(prepInputs,
                    targetFile = "CAN_LC_2010_CAL.tif",
