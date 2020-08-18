@@ -1,12 +1,16 @@
-pandoc: 2.7.2
-pkgdown: 1.4.1
+pandoc: 2.7.3
+pkgdown: 1.5.1
 pkgdown_sha: ~
 articles:
   00-Cheatsheets: 00-Cheatsheets.html
   01a-WhatIsSpades: 01a-WhatIsSpades.html
+  01a-WhatIsSpades_Jan2020: 01a-WhatIsSpades_Jan2020.html
+  02a-dynamicModellingPreyPred: 02a-dynamicModellingPreyPred.html
+  02b-SpaDES4Dummies: 02b-SpaDES4Dummies.html
   02c-Convert_R_code_to_SpaDES_module: 02c-Convert_R_code_to_SpaDES_module.html
   03a-Existing_modules: 03a-Existing_modules.html
   03b-integrating_modules: 03b-integrating_modules.html
+  03c-SpaDESInAction: 03c-SpaDESInAction.html
   04-Modules_Thinking_in_a_modular_way: 04-Modules_Thinking_in_a_modular_way.html
   04a-MyFirstModule: 04a-MyFirstModule.html
   04b-Module_details: 04b-Module_details.html
@@ -16,32 +20,29 @@ articles:
   05-Simulation_Experiments_Replication: 05-Simulation_Experiments_Replication.html
   06a-R_Developing_powerful_skills: 06a-R_Developing_powerful_skills.html
   06b-R_Profiling_code: 06b-R_Profiling_code.html
+  06c-Caching: 06c-Caching.html
+  06d-Debugging: 06d-Debugging.html
   08-Sharing_Modules: 08-Sharing_Modules.html
   09a-Continuous_Workflow: 09a-Continuous_Workflow.html
   09b-Plotting: 09b-Plotting.html
+  09c-CachingAndDebugging: 09c-CachingAndDebugging.html
+  10a-LandWeb: 10a-LandWeb.html
+  10b-NWT: 10b-NWT.html
   10c-Harvesting: 10c-Harvesting.html
+  12a-CommunityMetricsModule: 12a-CommunityMetricsModule.html
+  12b-caribouPopulationGrowthModule: 12b-caribouPopulationGrowthModule.html
   exercise1: exercise1.html
   exercise2: exercise2.html
   exercise3: exercise3.html
   exercise4: exercise4.html
   exercise4a: exercise4a.html
+  exercise4b: exercise4b.html
+  exercise4c: exercise4c.html
   exercise5a: exercise5a.html
   exercise6: exercise6.html
   exercise7: exercise7.html
   exercise8: exercise8.html
-  01a-WhatIsSpades_Jan2020: 01a-WhatIsSpades_Jan2020.html
-  02a-dynamicModellingPreyPred: 02a-dynamicModellingPreyPred.html
-  02b-SpaDES4Dummies: 02b-SpaDES4Dummies.html
-  06c-Caching: 06c-Caching.html
-  06d-Debugging: 06d-Debugging.html
-  10a-LandWeb: 10a-LandWeb.html
-  exercise4b: exercise4b.html
-  exercise4c: exercise4c.html
-  10b-NWT: 10b-NWT.html
-  12a-CommunityMetricsModule: 12a-CommunityMetricsModule.html
-  12b-caribouPopulationGrowthModule: 12b-caribouPopulationGrowthModule.html
-  03c-SpaDESInAction: 03c-SpaDESInAction.html
-  09c-CachingAndDebugging: 09c-CachingAndDebugging.html
+last_built: 2020-08-18T21:29Z
 urls:
   reference: http://spades-workshops.predictiveecology.org//reference
   article: http://spades-workshops.predictiveecology.org//articles

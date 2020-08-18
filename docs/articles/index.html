@@ -17,23 +17,27 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -44,7 +48,6 @@
 
 <meta property="og:title" content="Articles" />
 <meta property="og:image" content="http://spades-workshops.predictiveecology.org/logo.png" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -72,7 +75,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-article-index">
       <header>
       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -138,26 +141,30 @@
       <h3>Day 1 - Section 1: What is SpaDES?</h3>
       <p class="section-desc"><p>A high-level introduction to the SpaDES framework and its usefulness</p></p>
 
-      <ul>
-        <li><a href="01a-WhatIsSpades_Jan2020.html">What is `SpaDES`?</a></li>
-      </ul>
+      <dl>
+        <dt><a href="01a-WhatIsSpades_Jan2020.html">What is `SpaDES`?</a></dt>
+        <dd></dt>
+      </dl>
     </div>
     <div class="section ">
       <h3>Day 1 - Section 2: Example of SpaDES projects</h3>
       <p class="section-desc"><p>Here we present some of the projects that used SpaDES and its tools</p></p>
 
-      <ul>
-        <li><a href="10b-NWT.html">The Northwest Territories Project</a></li>
-        <li><a href="10a-LandWeb.html">Cumulative Effects, Harvesting, LandWeb</a></li>
-      </ul>
+      <dl>
+        <dt><a href="10b-NWT.html">The Northwest Territories Project</a></dt>
+        <dd></dt>
+        <dt><a href="10a-LandWeb.html">Cumulative Effects, Harvesting, LandWeb</a></dt>
+        <dd></dt>
+      </dl>
     </div>
     <div class="section ">
       <h3>Day 1 - Section 3: SpaDES in Action: a forest succession, a wildfire models, and a caribou models -- putting it all together</h3>
       <p class="section-desc"><p>Here we present two models that we use for forest succession (<code>LandR</code>) and wildfire (<code>SCFM</code>). This is an example of module integration using SpaDES</p></p>
 
-      <ul>
-        <li><a href="03c-SpaDESInAction.html">SpaDES in Action</a></li>
-      </ul>
+      <dl>
+        <dt><a href="03c-SpaDESInAction.html">SpaDES in Action</a></dt>
+        <dd></dt>
+      </dl>
     </div>
     <div class="section ">
       <h3>Day 2 - Section 4: Basic concepts to get you started</h3>
@@ -177,57 +184,78 @@
 </ol>
 </p>
 
-      <ul>
-        <li><a href="03c-SpaDESInAction.html">SpaDES in Action</a></li>
-      </ul>
+      <dl>
+        <dt><a href="03c-SpaDESInAction.html">SpaDES in Action</a></dt>
+        <dd></dt>
+      </dl>
     </div>
     <div class="section ">
       <h3>Day 2 - Section 5: Hands on: From R to SpaDES</h3>
       <p class="section-desc"><p>In this section we will present examples of how to bring both static and dynamic R scripts into SpaDES, by creating modules from scratch and linking them</p></p>
 
-      <ul>
-        <li><a href="https://htmlpreview.github.io/?https://github.com/CeresBarros/SpaDES4Dummies/blob/master/SpaDES4Dummies.html">SpaDES4Dummies - Building new modules, and connecting them</a></li>
-        <li><a href="02c-Convert_R_code_to_SpaDES_module.html">Converting R code to a `SpaDES` module - seed establishment</a></li>
-        <li><a href="02a-dynamicModellingPreyPred.html">Dynamic modelling in SpaDES - a simple example</a></li>
-      </ul>
+      <dl>
+        <dt><a href="https://htmlpreview.github.io/?https://github.com/CeresBarros/SpaDES4Dummies/blob/master/SpaDES4Dummies.html">SpaDES4Dummies - Building new modules, and connecting them</a></dt>
+        <dd></dt>
+        <dt><a href="02c-Convert_R_code_to_SpaDES_module.html">Converting R code to a `SpaDES` module - seed establishment</a></dt>
+        <dd></dt>
+        <dt><a href="02a-dynamicModellingPreyPred.html">Dynamic modelling in SpaDES - a simple example</a></dt>
+        <dd></dt>
+      </dl>
     </div>
     <div class="section ">
       <h3>Day 2 - Section 6: Is it taking too long? Is it not working? The miracles of caching and debugging</h3>
       <p class="section-desc"><p>In this section we will explain how to use a caching mechanism in SpaDES and how to debug your code when something errors</p></p>
 
-      <ul>
-        <li><a href="09c-CachingAndDebugging.html">Caching and debugging</a></li>
-        <li><a href="http://spades.predictiveecology.org/articles/iii-cache.html">Caching</a></li>
-        <li><a href="https://github.com/PredictiveEcology/SpaDES/wiki/Debugging">Debugging</a></li>
-      </ul>
+      <dl>
+        <dt><a href="09c-CachingAndDebugging.html">Caching and debugging</a></dt>
+        <dd></dt>
+        <dt><a href="http://spades.predictiveecology.org/articles/iii-cache.html">Caching</a></dt>
+        <dd></dt>
+        <dt><a href="https://github.com/PredictiveEcology/SpaDES/wiki/Debugging">Debugging</a></dt>
+        <dd></dt>
+      </dl>
     </div>
     <div class="section ">
       <h3>Day 3 - Section 7: My first project in SpaDES</h3>
       <p class="section-desc"><p>In this section we will give the support you need to start building your own SpaDES module or project.</p></p>
 
-      <ul>
-        <li><a href="00-Cheatsheets.html">Cheatsheets</a></li>
-        <li><a href="12a-CommunityMetricsModule.html">Community Metrics Module: building a posthoc module</a></li>
-        <li><a href="12b-caribouPopulationGrowthModule.html">Caribou Population Growth Module: bringing a statistical model to the forescasting world</a></li>
-      </ul>
+      <dl>
+        <dt><a href="00-Cheatsheets.html">Cheatsheets</a></dt>
+        <dd></dt>
+        <dt><a href="12a-CommunityMetricsModule.html">Community Metrics Module: building a posthoc module</a></dt>
+        <dd></dt>
+        <dt><a href="12b-caribouPopulationGrowthModule.html">Caribou Population Growth Module: bringing a statistical model to the forescasting world</a></dt>
+        <dd></dt>
+      </dl>
     </div>
     <div class="section ">
       <h3>Exercises</h3>
       <p class="section-desc"><p>In this section you can find several exercises to get you started with SpaDES.</p></p>
 
-      <ul>
-        <li><a href="../exercises/01-exercises.html">SpaDES Exercise 1: `SpaDES` in Action</a></li>
-        <li><a href="../exercises/02-exercises.html">SpaDES Exercise 2: Thinking the `SpaDES` Way</a></li>
-        <li><a href="../exercises/03-exercises.html">SpaDES Exercise 3: Getting Technical</a></li>
-        <li><a href="../exercises/04-exercises.html">SpaDES Exercise 4:  Building `SpaDES` modules</a></li>
-        <li><a href="../exercises/04a-exercises.html">SpaDES Exercise 4a: Converting R code to a `SpaDES` module</a></li>
-        <li><a href="https://htmlpreview.github.io/?https://github.com/CeresBarros/SpaDES4Dummies/blob/master/SpaDES4Dummies.html">SpaDES Exercise 4b: SpaDES4Dummies - Building new modules, and connecting them</a></li>
-        <li><a href="02a-dynamicModellingPreyPred.html">SpaDES Exercise 4c: Dynamic modelling in SpaDES - a simple example</a></li>
-        <li><a href="../exercises/05a-exercises.html">SpaDES Exercise 5a: Simulation Experiments and Replication</a></li>
-        <li><a href="../exercises/06-exercises.html">SpaDES Exercise 6: Getting the Most Out of R</a></li>
-        <li><a href="../exercises/07-exercises.html">SpaDES Exercise 7: Module Integration</a></li>
-        <li><a href="../exercises/08-exercises.html">SpaDES Exercise 8: Sharing Modules and Data</a></li>
-      </ul>
+      <dl>
+        <dt><a href="../exercises/01-exercises.html">SpaDES Exercise 1: `SpaDES` in Action</a></dt>
+        <dd></dt>
+        <dt><a href="../exercises/02-exercises.html">SpaDES Exercise 2: Thinking the `SpaDES` Way</a></dt>
+        <dd></dt>
+        <dt><a href="../exercises/03-exercises.html">SpaDES Exercise 3: Getting Technical</a></dt>
+        <dd></dt>
+        <dt><a href="../exercises/04-exercises.html">SpaDES Exercise 4:  Building `SpaDES` modules</a></dt>
+        <dd></dt>
+        <dt><a href="../exercises/04a-exercises.html">SpaDES Exercise 4a: Converting R code to a `SpaDES` module</a></dt>
+        <dd></dt>
+        <dt><a href="https://htmlpreview.github.io/?https://github.com/CeresBarros/SpaDES4Dummies/blob/master/SpaDES4Dummies.html">SpaDES Exercise 4b: SpaDES4Dummies - Building new modules, and connecting them</a></dt>
+        <dd></dt>
+        <dt><a href="02a-dynamicModellingPreyPred.html">SpaDES Exercise 4c: Dynamic modelling in SpaDES - a simple example</a></dt>
+        <dd></dt>
+        <dt><a href="../exercises/05a-exercises.html">SpaDES Exercise 5a: Simulation Experiments and Replication</a></dt>
+        <dd></dt>
+        <dt><a href="../exercises/06-exercises.html">SpaDES Exercise 6: Getting the Most Out of R</a></dt>
+        <dd></dt>
+        <dt><a href="../exercises/07-exercises.html">SpaDES Exercise 7: Module Integration</a></dt>
+        <dd></dt>
+        <dt><a href="../exercises/08-exercises.html">SpaDES Exercise 8: Sharing Modules and Data</a></dt>
+        <dd></dt>
+      </dl>
     </div>
   </div>
 </div>
@@ -239,7 +267,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

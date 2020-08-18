@@ -12,15 +12,15 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
+<script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Training workshops for ecological modeling with SpaDES">
 <meta property="og:description" content="SpaDES is an R package that enables reproducible workflows,
     decision support via web apps, and ecological modeling tools.">
 <meta property="og:image" content="http://spades-workshops.predictiveecology.org/logo.png">
-<meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -32,7 +32,7 @@
   gtag('config', 'UA-58633549-3');
 </script>
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-home">
       <header><div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
@@ -96,12 +96,12 @@
 <a href="#upcoming-spades-workshops" class="anchor"></a>Upcoming <code>SpaDES</code> Workshops:</h1></div>
 <p>If you are interested in being put on the email list for future courses, please email:</p>
 <ul>
-<li>Frances Stewart (frances.stewart at canada.ca)</li>
 <li>Eliot McIntire (eliot.mcintire at canada.ca)</li>
 </ul>
-<div id="29---31-january-2020" class="section level2">
-<h2 class="hasAnchor">
-<a href="#29---31-january-2020" class="anchor"></a>29 - 31 January 2020</h2>
+</div>
+<div id="most-recent-spades-workshop--29---31-january-2020" class="section level1">
+<h1 class="hasAnchor">
+<a href="#most-recent-spades-workshop--29---31-january-2020" class="anchor"></a>Most recent <code>SpaDES</code> Workshop – 29 - 31 January 2020</h1>
 <div id="location--times" class="section level3">
 <h3 class="hasAnchor">
 <a href="#location--times" class="anchor"></a>Location &amp; Times</h3>
@@ -207,7 +207,7 @@ Error: HTTP error 403.
 <p>The error should provide the solution to fixing this problem, but if for some reason you don’t find these instructions, here they are:</p>
 <ul>
 <li>Use <code><a href="https://usethis.r-lib.org/reference/browse_github_token.html">usethis::browse_github_pat()</a></code> to create a GitHub token</li>
-<li>Use <code><a href="https://usethis.r-lib.org/reference/edit.html">usethis::edit_r_environ()</a></code> and add the environment variable with <code>GITHUB_PAT = 'your_github_token'</code>. Restart R (so that the GITHUB_PAT is read) and try to reinstall: <code><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">devtools::install_github(...)</a></code>
+<li>Use <code><a href="https://usethis.r-lib.org/reference/edit.html">usethis::edit_r_environ()</a></code> and add the environment variable with <code>GITHUB_PAT = 'your_github_token'</code>. Restart R (so that the GITHUB_PAT is read) and try to reinstall: <code><a href="https://devtools.r-lib.org//reference/remote-reexports.html">devtools::install_github(...)</a></code>
 </li>
 </ul>
 </div>
@@ -217,7 +217,6 @@ Error: HTTP error 403.
 <p>If you are comfortable with <code>GitHub.com</code>, you can clone the entire <code>SpaDES.Workshops</code> repository and thus have all the <code>*.Rmd</code> files used in this workshop:</p>
 <p><a href="https://github.com/PredictiveEcology/SpaDES.Workshops" class="uri">https://github.com/PredictiveEcology/SpaDES.Workshops</a></p>
 <p>For a direct link to the workshops, click on the top navigation bar or go <a href="http://spades-workshops.predictiveecology.org/">here</a></p>
-</div>
 </div>
 <div id="resources" class="section level2">
 <h2 class="hasAnchor">
@@ -233,11 +232,11 @@ Error: HTTP error 403.
 
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/PredictiveEcology/SpaDES.Workshops">https://​github.com/​PredictiveEcology/​SpaDES.Workshops</a>
+<li>Browse source code at <br><a href="https://github.com/PredictiveEcology/SpaDES.Workshops/">https://​github.com/​PredictiveEcology/​SpaDES.Workshops/​</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/PredictiveEcology/SpaDES.Workshops/issues">https://​github.com/​PredictiveEcology/​SpaDES.Workshops/​issues</a>
 </li>
@@ -268,7 +267,7 @@ Error: HTTP error 403.
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
