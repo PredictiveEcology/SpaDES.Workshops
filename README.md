@@ -4,10 +4,9 @@
 
 If you are interested in being put on the email list for future courses, please email:
 
-- Frances Stewart (frances.stewart at canada.ca)
 - Eliot McIntire (eliot.mcintire at canada.ca)
 
-## 29 - 31 January 2020
+# Most recent `SpaDES` Workshop -- 29 - 31 January 2020
 
 ### Location & Times
 
