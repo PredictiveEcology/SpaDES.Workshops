@@ -4,109 +4,121 @@
 
 If you are interested in being put on the email list for future courses, please email:
 
-- Frances Stewart (frances.stewart at canada.ca)
 - Eliot McIntire (eliot.mcintire at canada.ca)
 
-## 29 - 31 January 2020
+## 25 - 29 January 2021 (5 days -- 3 hours each day)
 
 ### Location & Times
 
-**Pacific Forestry Centre (Main conference room on ground floor), 9am - 4pm each day**
+**Virtual (Google Meets Link to come), 11am - 2pm Pacific Standard Time, each day**
 
 We have organized a set of sessions, back to back, starting from the most "general", and ending with the most "detailed".
 The hope is to attract non-modelers (e.g., managers, scientists, practitioners) to the first session, people who think they might want to see more how models work (e.g., scientists, students, technicians), and those who want to build and use models for research and operational purposes (e.g., scientists, technicians, programmers).
 
-### Workshop outline
-**Day 1: Introduction to `SpaDES` - Sections 1-3** 
-* **Sections 1-2 - 9am - lunch break** - 3 hours – This is a high level intro for scientists, managers, policy makers, decision makers, coupled with examples of ongoing projects in `SpaDES` that will showcase the utility of the framework.
+### Workshop outline (_in progress_ (updated Dec 14, 2020))
+**Introduction to `SpaDES` - Sections 1-3** 
+* **Sections 1-2** - ~2+ hours – This is a high level intro for scientists, managers, policy makers, decision makers, coupled with examples of ongoing projects in `SpaDES` that will showcase the utility of the framework.
 
-* **Section 3 - 1pm - 4pm** - 3 hours – This section will take you through high-level examples of how to run pre-made `SpaDES` modules, run modules from other people, and change model parameters.
+* **Section 3** - ~2+ hours – This section will take you through high-level examples of how to run pre-made `SpaDES` modules, run modules from other people, and change model parameters.
 
-**Day 2: Learning `SpaDES` - Sections 4-6** 
-* **Section 4 - 9am - break** - 1.5 hours – we will take you through basic `SpaDES` concepts, while using the previous day's examples to get you started with understanding the packages and framework.
-* **Sections 5-6 - remainder of the day** - 4.5 hours – This is intended to dive a little bit into the code, learn how to create relatively simple modules and establish links between modules. WE will also touch upon essential aspects of programming with `SpaDES`, such as caching and debugging.
+**Learning `SpaDES` - Sections 4-6** 
+* **Section 4** - 2+ hours – we will take you through basic `SpaDES` concepts, while using the previous day's examples to get you started with understanding the packages and framework.
+* **Sections 5-6** - 2+ hours – This is intended to dive a little bit into the code, learn how to create relatively simple modules and establish links between modules. WE will also touch upon essential aspects of programming with `SpaDES`, such as caching and debugging.
 
 This is a high level intro for scientists, managers, policy makers, decision makers, coupled with examples of ongoing projects in `SpaDES` that will showcase the utility of the framework.
 
-**Day 3: My first project in `SpaDES` - Section 7** 
-* **Section 7 - 9am - 4pm** - 6 hours – during this section you'll be given free time to create your own project from scratch, or adapt an existing project and create new modules. 
+**My first project in `SpaDES` - Section 7** 
+* **Section 7** - 4+ hours – during this section you'll be given free time to create your own project from scratch, or adapt an existing project and create new modules. 
 
 ### Installing SpaDES
 
 **PLEASE NOTE -- R must be installed as an administrator because we are using developer tools**
 
-We will be using the latest version of `SpaDES`, which includes some new features and bug fixes not in the CRAN version.
-You should install the development version from GitHub following these instructions:
+Currently (Dec 14, 2020) testing with CRAN versions of all SpaDES packages...
 
-<https://github.com/PredictiveEcology/SpaDES/wiki/Installation>
+If using Ubuntu Linux, because there are a lot of packages, it may be faster to install 
+binaries from the Rstudio CRAN mirror:
+```
+options("repos" = c(CRAN = "https://cran.rstudio.com"))
+
+if (Sys.info()["sysname"] == "Linux" && grepl("Ubuntu", utils::osVersion)) {
+  .os.version <- strsplit(system("lsb_release -c", intern = TRUE), ":\t")[[1]][[2]]
+  .user.agent <- paste0(
+    "R/", getRversion(), " R (",
+    paste(getRversion(), R.version["platform"], R.version["arch"], R.version["os"]),
+    ")"
+  )
+  options(repos = c(CRAN = paste0("https://packagemanager.rstudio.com/all/__linux__/",
+                                  .os.version, "/latest")))
+  options(HTTPUserAgent = .user.agent)
+}
+```
+
+
 
 `SpaDES` has many R packages that it depends on. 
 If there are problems, read the error messages and try to deal with the error message.
 The most common one is that some package dependency is missing, usually due to some system dependency not being available. 
 
-If problems persist, try narrowing down the problem and re-installing using the following:
+## The simplest way, which usually works:
+```
+## Restart your R session so it is clear
+## Ctrl-shift-F10 if you are in Rstudio #
+update.packages(checkBuilt = TRUE, ask = FALSE)
+if (!identical("windows", .Platform$OS.type) && !require(igraph)) 
+  install.packages("igraph", type = "source", repos = "https://cran.rstudio.com") # igraph needs to be installed from source
+install.packages("SpaDES", dependencies = TRUE) # we want to install Suggests also, thus "TRUE"
+```
+
+### If you want the newer versions of the packages, or the above does not work, you may need to do this:
 
 ```
 ## Restart your R session so it is clear
 ## Ctrl-shift-F10 if you are in Rstudio #
+RPackageLibrary = "~/WorkshopLibrary"
+if (!dir.exists(RPackageLibrary)) dir.create(RPackageLibrary)
 
-## Make sure your existing packages are updated, and correct for the version of R
-## Get latest versions of key SpaDES packages from CRAN
-dependencies <- tools::package_dependencies(c("devtools", "SpaDES"), recursive = TRUE)
+if (!require("Require", lib = RPackageLibrary)) install.packages("Require", lib = RPackageLibrary)
+library(Require, lib = RPackageLibrary)
 
-## Update any versions of these dependencies that are already on your machine
-type <- if (.Platform$OS.type == "windows") "binary" else "source"
-update.packages(oldPkgs = unique(unlist(dependencies)), 
-          ask = FALSE, checkBuilt = TRUE, type = type) 
+## For workshop -- set libPath in your .Rprofile file -- at end of workshop can delete this ######
+RprofileFile = "~/.Rprofile"
+if (!file.exists(RprofileFile))
+  file.create(file = RprofileFile)
+if (!isTRUE(grepl("Require Customized", readLines("~/.Rprofile"))))
+  cat(file = "~/.Rprofile", {
+    paste0("Require::setLibPaths('", RPackageLibrary, "') ## Require Customized\n")
+  }, append = TRUE)
 
-## Install any dependencies that are missing -- 
-##   install.packages is not getting correct dependencies
-missingPkgs <- dependencies$SpaDES[!(dependencies$SpaDES %in% rownames(installed.packages()))]
-if (length(missingPkgs))
-  install.packages(missingPkgs, dependencies = FALSE, type = type)
-
-## Install all SpaDES packages 
-install.packages("SpaDES", dependencies = FALSE)
-
-## For the workshop, there are a key enhancements that are not in the CRAN version
-## Restart your R session so it is clear
-# Ctrl-shift-F10 if you are in Rstudio #
-install.packages("devtools", dependencies = FALSE) # installs the latest version
-
+# Install all packages in a new place on your computer -- may collide with other packages if we use your personal library
+# Identify all dependencies
+# dependencies = pkgDep("PredictiveEcology/SpaDES", recursive = TRUE)
+options(Require.buildBinaries = TRUE, Require.RPackageCache = file.path(RPackageLibrary, ".cached"))
+# Require(dependencies$SpaDES, require = FALSE) ## Install them, don't 'require' them
 
 ## Restart your R session again so it is clear
 ## Ctrl-shift-F10 if you are in Rstudio #
 Sys.setenv("R_REMOTES_NO_ERRORS_FROM_WARNINGS"="true") # sometimes, some irrelevant warnings occur
-library(devtools)
-type <- if (.Platform$OS.type == "windows") "binary" else "source"
-install_github("PredictiveEcology/quickPlot@development", 
-               upgrade = "never", dependencies = TRUE, type = type)
-install_github("PredictiveEcology/reproducible@Workshop", 
-               upgrade = "never", dependencies = TRUE, type = type)
-install_github("PredictiveEcology/SpaDES.core@Workshop", 
-               upgrade = "never", dependencies = TRUE, type = type)
-install_github("PredictiveEcology/SpaDES.tools@Workshop", 
-               upgrade = "never", dependencies = TRUE, type = type)
-install_github("PredictiveEcology/SpaDES.experiment@Workshop", 
-               upgrade = "never", dependencies = TRUE, type = type)
 
-                          
-# Predictive Ecology Miscellaneous
-install_github("PredictiveEcology/pemisc@Workshop", upgrade = "never", 
-               dependencies = TRUE, type = type)
+# Install versions of packages from GitHub --> to do from CRAN: install.packages("SpaDES")
+SpaDES_pkgs = file.path("PredictiveEcology", c("SpaDES", pkgDep("SpaDES")$SpaDES))
+if (!identical("windows", .Platform$OS.type) && !require(igraph)) 
+  install.packages("igraph", type = "source", repos = "https://cran.rstudio.com") # igraph needs to be installed from source
+Require("PredictiveEcology/SpaDES@development", require = FALSE) # require = FALSE, means don't load them into memory
 
-# Vegetation Dynamics
-install_github("PredictiveEcology/LandR@Workshop", upgrade = "never", 
-               dependencies = TRUE, type = type)
-
-
-# Alex's Miscellaneous Code
-install_github("achubaty/amc@development", upgrade = "never", dependencies = TRUE, 
-               type = type)
-
-# Other 'useful functions'               
-install_github("tati-micheletti/usefun@master", upgrade = "never", dependencies = TRUE,
-               type = type)
+                           
+# # Predictive Ecology Miscellaneous
+# Require("PredictiveEcology/pemisc@Workshop", upgrade = "never", dependencies = TRUE, type = type)
+# 
+# # Vegetation Dynamics
+# Require("PredictiveEcology/LandR@Workshop", upgrade = "never", dependencies = TRUE, type = type)
+# 
+# 
+# # Alex's Miscellaneous Code
+# Require("achubaty/amc@development", upgrade = "never", dependencies = TRUE, type = type)
+# 
+# # Other 'useful functions'               
+# # Require("tati-micheletti/usefun@master", upgrade = "never", dependencies = TRUE, type = type)
 ```
 
 It can happen that if you try downloading from `GitHub` many times, you exceed the API rate limit:
