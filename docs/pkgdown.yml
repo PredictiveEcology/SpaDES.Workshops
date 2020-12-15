@@ -1,5 +1,5 @@
 pandoc: 2.7.3
-pkgdown: 1.5.1
+pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   00-Cheatsheets: 00-Cheatsheets.html
@@ -42,7 +42,7 @@ articles:
   exercise6: exercise6.html
   exercise7: exercise7.html
   exercise8: exercise8.html
-last_built: 2020-08-18T21:29Z
+last_built: 2020-12-15T00:39Z
 urls:
   reference: http://spades-workshops.predictiveecology.org//reference
   article: http://spades-workshops.predictiveecology.org//articles
