@@ -113,7 +113,7 @@
 <div id="workshop-outline" class="section level3">
 <h3 class="hasAnchor">
 <a href="#workshop-outline" class="anchor"></a>Workshop outline</h3>
-<p>(<em>in progress</em> (updated Dec 14, 2020))</p>
+<p>(<em>in progress – updated Dec 15, 2020</em>)</p>
 <p><strong>Introduction to <code>SpaDES</code> - Sections 1-3</strong></p>
 <ul>
 <li><p><strong>Sections 1-2</strong> - ~2+ hours – This is a high level intro for scientists, managers, policy makers, decision makers, coupled with examples of ongoing projects in <code>SpaDES</code> that will showcase the utility of the framework.</p></li>
@@ -138,21 +138,8 @@
 <a href="#installing-spades" class="anchor"></a>Installing SpaDES</h3>
 <p><strong>PLEASE NOTE – R must be installed as an administrator because we are using developer tools</strong></p>
 <p>Currently (Dec 14, 2020) testing with CRAN versions of all SpaDES packages…</p>
-<p>If using Ubuntu Linux, because there are a lot of packages, it may be faster to install binaries from the Rstudio CRAN mirror:</p>
-<pre><code><a href="https://rdrr.io/r/base/options.html">options("repos" = c(CRAN = "https://cran.rstudio.com"))
-
-if (Sys.info()["sysname"] == "Linux" &amp;&amp; grepl("Ubuntu", utils::osVersion)) {
-  .os.version &lt;- strsplit(system("lsb_release -c", intern = TRUE), ":\t")[[1]][[2]]
-  .user.agent &lt;- paste0(
-    "R/", getRversion(), " R (",
-    paste(getRversion(), R.version["platform"], R.version["arch"], R.version["os"]),
-    ")"
-  )
-  options(repos = c(CRAN = paste0("https://packagemanager.rstudio.com/all/__linux__/",
-                                  .os.version, "/latest")))
-  options(HTTPUserAgent = .user.agent)
-}</a></code></pre>
-<p><code>SpaDES</code> has many R packages that it depends on. If there are problems, read the error messages and try to deal with the error message. The most common one is that some package dependency is missing, usually due to some system dependency not being available.</p>
+<p><em>If you are using Ubuntu Linux, please see section below for installing binary package files</em></p>
+<p><code>SpaDES</code> has many R packages that it depends on. During package installation, if there are problems, read the error messages and try to deal with the error message. The most common one is that some package dependency is missing, usually due to some system dependency not being available.</p>
 </div>
 </div>
 <div id="the-simplest-way--install-from-cran" class="section level2">
@@ -168,7 +155,7 @@ install.packages("SpaDES", dependencies = TRUE) # we want to install Suggests al
 <div id="it-may-be-more-reliable-to-put-all-packages-in-their-own-directory-for-the-workshop" class="section level3">
 <h3 class="hasAnchor">
 <a href="#it-may-be-more-reliable-to-put-all-packages-in-their-own-directory-for-the-workshop" class="anchor"></a>It may be more reliable to put all packages in their own directory for the workshop</h3>
-<p>If that still doesn’t work, it may be necessary to install packages in their own directory. The function <code><a href="https://Require.predictiveecology.org/reference/setLibPaths.html">Require::setLibPaths</a></code> allows us to do this.</p>
+<p>If the above didn’t work, OR, if you want to isolate the packages used during this workshop so that they don’t change the state of your normal working R libraries, you can try use the chunk below. The function <code><a href="https://Require.predictiveecology.org/reference/setLibPaths.html">Require::setLibPaths</a></code> allows us to do this.</p>
 <pre><code>## Restart your R session so it is clear
 ## Ctrl-shift-F10 if you are in Rstudio #
 RPackageLibrary = "~/WorkshopLibrary"
@@ -228,6 +215,24 @@ Error: HTTP error 403.
 <li>Use <code><a href="https://usethis.r-lib.org/reference/edit.html">usethis::edit_r_environ()</a></code> and add the environment variable with <code>GITHUB_PAT = 'your_github_token'</code>. Restart R (so that the GITHUB_PAT is read) and try to reinstall: <code><a href="https://devtools.r-lib.org//reference/remote-reexports.html">devtools::install_github(...)</a></code>
 </li>
 </ul>
+</div>
+<div id="ubuntu-linux-systems--binary-r-packages" class="section level3">
+<h3 class="hasAnchor">
+<a href="#ubuntu-linux-systems--binary-r-packages" class="anchor"></a>Ubuntu Linux systems – Binary R Packages</h3>
+<p>Because there are a lot of packages, it may be faster to install binaries from the Rstudio CRAN mirror. To use this CRAN mirror, you can run this code to set up the correct CRAN repository. If you put this in your <code>.Rprofile</code> file (often located at <code>~/.Rprofile</code>), then your R sessions will always use this binary repository:</p>
+<pre><code><a href="https://rdrr.io/r/base/options.html">options("repos" = c(CRAN = "https://cran.rstudio.com"))
+
+if (Sys.info()["sysname"] == "Linux" &amp;&amp; grepl("Ubuntu", utils::osVersion)) {
+  .os.version &lt;- strsplit(system("lsb_release -c", intern = TRUE), ":\t")[[1]][[2]]
+  .user.agent &lt;- paste0(
+    "R/", getRversion(), " R (",
+    paste(getRversion(), R.version["platform"], R.version["arch"], R.version["os"]),
+    ")"
+  )
+  options(repos = c(CRAN = paste0("https://packagemanager.rstudio.com/all/__linux__/",
+                                  .os.version, "/latest")))
+  options(HTTPUserAgent = .user.agent)
+}</a></code></pre>
 </div>
 <div id="workshop-materials" class="section level3">
 <h3 class="hasAnchor">

@@ -38,28 +38,10 @@ This is a high level intro for scientists, managers, policy makers, decision mak
 
 Currently (Dec 14, 2020) testing with CRAN versions of all SpaDES packages...
 
-If using Ubuntu Linux, because there are a lot of packages, it may be faster to install 
-binaries from the Rstudio CRAN mirror:
-```
-options("repos" = c(CRAN = "https://cran.rstudio.com"))
-
-if (Sys.info()["sysname"] == "Linux" && grepl("Ubuntu", utils::osVersion)) {
-  .os.version <- strsplit(system("lsb_release -c", intern = TRUE), ":\t")[[1]][[2]]
-  .user.agent <- paste0(
-    "R/", getRversion(), " R (",
-    paste(getRversion(), R.version["platform"], R.version["arch"], R.version["os"]),
-    ")"
-  )
-  options(repos = c(CRAN = paste0("https://packagemanager.rstudio.com/all/__linux__/",
-                                  .os.version, "/latest")))
-  options(HTTPUserAgent = .user.agent)
-}
-```
-
-
+*If you are using Ubuntu Linux, please see section below for installing binary package files*
 
 `SpaDES` has many R packages that it depends on. 
-If there are problems, read the error messages and try to deal with the error message.
+During package installation, if there are problems, read the error messages and try to deal with the error message.
 The most common one is that some package dependency is missing, usually due to some system dependency not being available. 
 
 ## The simplest way -- Install from CRAN:
@@ -78,7 +60,7 @@ If the above lines showed no errors, then you can stop here; no need to proceed 
 
 ### It may be more reliable to put all packages in their own directory for the workshop
 
-If that still doesn't work, it may be necessary to install packages in their own directory.
+If the above didn't work, OR, if you want to isolate the packages used during this workshop so that they don't change the state of your normal working R libraries, you can try use the chunk below.
 The function `Require::setLibPaths` allows us to do this.
 
 ```
@@ -143,6 +125,29 @@ The error should provide the solution to fixing this problem, but if for some re
 - Use `usethis::browse_github_pat()` to create a GitHub token
 - Use `usethis::edit_r_environ()` and add the environment variable with `GITHUB_PAT = 'your_github_token'`.
 Restart R (so that the GITHUB_PAT is read) and try to reinstall: `devtools::install_github(...)`
+
+### Ubuntu Linux systems -- Binary R Packages
+
+Because there are a lot of packages, it may be faster to install binaries from the Rstudio CRAN mirror.
+To use this CRAN mirror, you can run this code to set up the correct CRAN repository. 
+If you put this in your `.Rprofile` file (often located at `~/.Rprofile`), then your R sessions will always use this binary repository:
+
+```
+options("repos" = c(CRAN = "https://cran.rstudio.com"))
+
+if (Sys.info()["sysname"] == "Linux" && grepl("Ubuntu", utils::osVersion)) {
+  .os.version <- strsplit(system("lsb_release -c", intern = TRUE), ":\t")[[1]][[2]]
+  .user.agent <- paste0(
+    "R/", getRversion(), " R (",
+    paste(getRversion(), R.version["platform"], R.version["arch"], R.version["os"]),
+    ")"
+  )
+  options(repos = c(CRAN = paste0("https://packagemanager.rstudio.com/all/__linux__/",
+                                  .os.version, "/latest")))
+  options(HTTPUserAgent = .user.agent)
+}
+```
+
 
 ### Workshop materials
 
