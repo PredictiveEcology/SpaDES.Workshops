@@ -19,8 +19,11 @@ replacementList <- list(
 #' The content of \code{replacementStarts} represents a multi-line replacement.
 replacementStarts <- list(
   "a href=\"../articles/index.html" =
-    "  <a href=\"../articles/index.html\">2020-Jan</a>
+    "  <a href=\"../articles/index.html\">2021-Jan</a>
 </li>
+  <li>
+  <a href=\"../articlesJan2020/index.html\">2020-Jan</a>
+  </li>
   <li>
   <a href=\"../articlesOct2019/index.html\">2019-Fall</a>
   </li>
@@ -71,7 +74,7 @@ replacementEnds <- list(
 #'
 #' @export
 replaceRemoteLinksInArticles <- function(replacements,
-                                         filesToUpdate = c("", "articles", "articlesFeb2018", "articlesMay2018", "articlesSept2018", "articlesOct2019")) {
+                                         filesToUpdate = c("", "index", "articles", "articlesJan2020", "articlesFeb2018", "articlesMay2018", "articlesSept2018", "articlesOct2019")) {
   # filesToUpdate <- c("", "articles", "articlesFeb2018", "articlesMay2018", "articlesSept2018", "articlesOct2019")
   lapply(filesToUpdate, function(f) {
     replacementIndex <- 0
@@ -97,7 +100,7 @@ replaceRemoteLinksInArticles <- function(replacements,
 }
 
 replaceRemoteLinksMultiline <- function(replacementsStarts, replacementsEnds,
-                                        filesToUpdate = c("", "articles", "articlesFeb2018", "articlesMay2018", "articlesSept2018", "articlesOct2019")
+                                        filesToUpdate = c("", "articles", "articlesJan2020", "articlesFeb2018", "articlesMay2018", "articlesSept2018", "articlesOct2019")
                                         ) {
   lapply(filesToUpdate, function(f) {
     lapply(seq_along(names(replacementsStarts)), function(namIndex) {

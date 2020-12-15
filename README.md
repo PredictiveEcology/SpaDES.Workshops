@@ -15,7 +15,9 @@ If you are interested in being put on the email list for future courses, please 
 We have organized a set of sessions, back to back, starting from the most "general", and ending with the most "detailed".
 The hope is to attract non-modelers (e.g., managers, scientists, practitioners) to the first session, people who think they might want to see more how models work (e.g., scientists, students, technicians), and those who want to build and use models for research and operational purposes (e.g., scientists, technicians, programmers).
 
-### Workshop outline (_in progress_ (updated Dec 14, 2020))
+### Workshop outline 
+(_in progress_ (updated Dec 14, 2020))
+
 **Introduction to `SpaDES` - Sections 1-3** 
 * **Sections 1-2** - ~2+ hours – This is a high level intro for scientists, managers, policy makers, decision makers, coupled with examples of ongoing projects in `SpaDES` that will showcase the utility of the framework.
 
@@ -60,7 +62,7 @@ if (Sys.info()["sysname"] == "Linux" && grepl("Ubuntu", utils::osVersion)) {
 If there are problems, read the error messages and try to deal with the error message.
 The most common one is that some package dependency is missing, usually due to some system dependency not being available. 
 
-## The simplest way, which usually works:
+## The simplest way -- Install from CRAN:
 ```
 ## Restart your R session so it is clear
 ## Ctrl-shift-F10 if you are in Rstudio #
@@ -70,7 +72,12 @@ if (!identical("windows", .Platform$OS.type) && !require(igraph))
 install.packages("SpaDES", dependencies = TRUE) # we want to install Suggests also, thus "TRUE"
 ```
 
-### If you want the newer versions of the packages, or the above does not work, you may need to do this:
+### It may be more reliable to put all packages in their own directory for the workshop
+
+Sometimes the packages on your computer may collide with the packages being installed. 
+If this happens, and errors occur. Try the previous lines again. 
+If that still doesn't work, it may be necessary to install packages in their own directory.
+The function `Require::setLibPaths` allows us to do this.
 
 ```
 ## Restart your R session so it is clear
@@ -81,6 +88,8 @@ if (!dir.exists(RPackageLibrary)) dir.create(RPackageLibrary)
 if (!require("Require", lib = RPackageLibrary)) install.packages("Require", lib = RPackageLibrary)
 library(Require, lib = RPackageLibrary)
 
+#### Put packages in their own directory
+setLibPaths(RPackageLibrary)
 ## For workshop -- set libPath in your .Rprofile file -- at end of workshop can delete this ######
 RprofileFile = "~/.Rprofile"
 if (!file.exists(RprofileFile))
@@ -101,10 +110,9 @@ options(Require.buildBinaries = TRUE, Require.RPackageCache = file.path(RPackage
 Sys.setenv("R_REMOTES_NO_ERRORS_FROM_WARNINGS"="true") # sometimes, some irrelevant warnings occur
 
 # Install versions of packages from GitHub --> to do from CRAN: install.packages("SpaDES")
-SpaDES_pkgs = file.path("PredictiveEcology", c("SpaDES", pkgDep("SpaDES")$SpaDES))
 if (!identical("windows", .Platform$OS.type) && !require(igraph)) 
   install.packages("igraph", type = "source", repos = "https://cran.rstudio.com") # igraph needs to be installed from source
-Require("PredictiveEcology/SpaDES@development", require = FALSE) # require = FALSE, means don't load them into memory
+Require("PredictiveEcology/SpaDES@development", upgrade = FALSE, require = FALSE) # require = FALSE, means don't load them into memory
 
                            
 # # Predictive Ecology Miscellaneous

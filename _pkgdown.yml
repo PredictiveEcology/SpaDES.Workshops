@@ -9,8 +9,10 @@ navbar:
   title: "`SpaDES` Workshops"
   type: inverse
   left:
-    - text: "2020-Jan"
+    - text: "2021-Jan"
       href: articles/index.html
+    - text: "2020-Jan"
+      href: articlesJan2020/index.html
     - text: "2019-Fall"
       href: articlesOct2019/index.html
     - text: "2018-Fall"
@@ -26,6 +28,10 @@ navbar:
       href: https://spades.predictiveecology.org/
 
 articles:
+  - title: "This is still being developed (Dec 14, 2020)"
+    desc: >
+      ...
+
   - title: "Day 1 - Section 1: What is SpaDES?"
     desc: >
       A high-level introduction to the SpaDES framework and its usefulness

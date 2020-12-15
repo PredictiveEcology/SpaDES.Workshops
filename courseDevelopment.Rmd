@@ -17,5 +17,5 @@ lapply(dir("docs/exercises", full.names = TRUE, pattern = "\\.Rmd$"), function(f
 #   rmarkdown::render(file, rmarkdown::html_document(toc = TRUE)))
 
 replaceRemoteLinksInArticles(replacementList, c("", "articles"))
-replaceRemoteLinksMultiline(replacementStarts, replacementEnds, filesToUpdate = c("", "articles"))
+replaceRemoteLinksMultiline(replacementStarts, replacementEnds, c("", "articles", "articlesJan2020", "articlesFeb2018", "articlesMay2018", "articlesSept2018", "articlesOct2019"))
 ```
