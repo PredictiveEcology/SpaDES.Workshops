@@ -33,7 +33,7 @@ library(sp)
 library(raster)
 
 ## from ?prepInputs
-dPath <- file.path(tempdir(), "LCC")
+dPath <- file.path("modules/Biomass_borealDataPrep/data")
 url <- file.path("ftp://ftp.ccrs.nrcan.gc.ca/ad/NLCCLandCover",
                  "LandcoverCanada2005_250m/LandCoverOfCanada2005_V1_4.zip")
 landCover <- prepInputs(url = url,
@@ -48,6 +48,11 @@ landCover <- prepInputs(url = url,
 
 Now try wrapping the previous operation in `Cache` call, and run it twice. Notice differences in speed.
 ```{r landCover_3}
+landCover <- Cache(prepInputs,
+                   url = url,
+                   destinationPath = asPath(dPath))
+
+
 landCover <- Cache(prepInputs,
                    url = url,
                    destinationPath = asPath(dPath))
@@ -81,23 +86,23 @@ landCover <- Cache(prepInputs,
                    cacheRepo = cPath,
                    userTags = "landCover",
                    useCache = "overwrite")
-
+options("reproducible.useCache" = FALSE)
 landCover <- Cache(prepInputs,
                    url = url,
                    destinationPath = asPath(dPath),
                    cacheRepo = cPath,
                    userTags = "landCover",
-                   useCache = FALSE)
+                   useCache = TRUE)
 ```
 
 Try to provide a study area now. Hints:
 
 + check out `?reproducible::prepInputs` and `?reproducible::postProcess`
 + check out `?SpaDES.tools::randomStudyArea`
-  - try with an area 1 ha
+- try with an area 1 ha
 + what happens when you run `Cache(prepInputs(...))` with the new study area(s)?
 
-```{r landCover_6, include = FALSE}
+```{r landCover_6}
 library(SpaDES.tools)
 StudyArea <- randomStudyArea(size = 100000^2)
 
@@ -107,6 +112,7 @@ if (identical(crs(StudyArea), crs(landCover)))
 plot(landCover)
 plot(StudyArea, add = TRUE, col = "red")
 
+options(reproducible.useCache = TRUE)
 landCover <- Cache(prepInputs,
                    url = url,
                    destinationPath = asPath(dPath),
@@ -114,15 +120,14 @@ landCover <- Cache(prepInputs,
                    overwrite = TRUE,
                    studyArea = StudyArea,
                    cacheRepo = cPath,
-                   userTags = "landCover",
-                   useCache = TRUE)
+                   userTags = "landCover")
 plot(landCover)
 ```
 
 What if my study area is a raster?
 Assuming you don't have raster at hand, try using a raster from the `SpaDESInAction` example ("inputs/rasterToMatch.rds").
 
-```{r landCover_7, include = FALSE}
+```{r landCover_7}
 ## assuming you're in the SpaDESInAction2 project folder
 templateRaster <- readRDS(file.path(getwd(), "inputs/rasterToMatch.rds"))
 
@@ -141,7 +146,7 @@ plot(landCover)
 
 What if I have both?
 In some cases your study area may be defined by a polygon, but you may have a raster that will dictate the e.g. projection and resolution of the output (remember, polygons have no resolution).
-```{r landCover_8, include = FALSE}
+```{r landCover_8}
 landCover <- Cache(prepInputs,
                    url = url,
                    destinationPath = asPath(dPath),
@@ -160,7 +165,7 @@ Now imagine someone told you there is a more up to date Land Cover map for Canad
 + Try right-click on "Access" for the TIF file and replace the "old" URL
 + Had an error, the messages are helpful!
 
-```{r landCover_9, include = FALSE}
+```{r landCover_9}
 url <- "http://ftp.maps.canada.ca/pub/nrcan_rncan/Land-cover_Couverture-du-sol/canada-landcover_canada-couverture-du-sol/CanadaLandcover2010.zip"
 landCover <- Cache(prepInputs,
                    targetFile = "CAN_LC_2010_CAL.tif",
@@ -182,7 +187,7 @@ Now that you have a flavour of caching, we're going to explore debugging a bit a
 
 We're going to run the `caribouRSF` module by itself.
 
-```{r caribouRun}
+```{r caribouRun, eval = FALSE}
 ## Restart your R session if not running from a "clean" environment
 library("reproducible")
 library(SpaDES)
@@ -252,13 +257,15 @@ file.edit("modules/caribouRSF/caribouRSF.R")  ## got to caribouRSF.R#154
 ```
 
 1. Insert a `browser()` before the line with the `stop()`. Save and re-rerun.
+OR
+2. Use the `debug` option in `simInitAndSpaDES` or `spades` to go in into "browser mode"
 
 + Check `?browser`, while you're at it ;)
 
 2. What is `P(sim)$.useDummyData`? Where does its value come from?
 3. Which data objects are missing? Why?
 
-```{r goingIn_2}
+```{r goingIn_2, eval = FALSE}
 # Browse[1]> P(sim)$.useDummyData
 # [1] TRUE
 
@@ -269,17 +276,46 @@ file.edit("modules/caribouRSF/caribouRSF.R")  ## got to caribouRSF.R#154
 # NULL
 ```
 
+You can also try to enter the "browser mode" in specific events or all events of a module via the `simInitAndSpades` or `spades` functions.
+
+```{r goingIn_3, eval = FALSE}
+## browse at the init event(s) - if you had more than one module it would stop at each
+caribou <- simInitAndSpades(times = times,
+                            objects = objects,
+                            params = parameters,
+                            modules = as.list("caribouRSF"),
+                            paths = getPaths(),
+                            debug = "init")
+
+## browse at the event that triggered the error
+caribou <- simInitAndSpades(times = times,
+                            objects = objects,
+                            params = parameters,
+                            modules = as.list("caribouRSF"),
+                            paths = getPaths(),
+                            debug = "lookingForCaribou")
+
+## "browse" at each event of the caribouRSF module
+caribou <- simInitAndSpades(times = times,
+                            objects = objects,
+                            params = parameters,
+                            modules = as.list("caribouRSF"),
+                            paths = getPaths(),
+                            debug = "caribouRSF")
+```
+
+
 We are going to supply these objects - note that the dynamic part will not be simulated.
 
 4. Check the `.inputObjects` function and the metadata for inputs.
 
 + Can you see a pattern in how `prepInputs` gets data from online sources? Try to do the same for `pixelGroupMap`and `cohortData`
 + How are sources for objects given? Try adding sources the following sources:
-  
-  - for `pixelGroupMap`: "https://drive.google.com/open?id=1IUEuH55su8X7JCWt8LXy_hTAQz0cfCmU"
-  - for `cohortData`: "https://drive.google.com/open?id=1R_wGGvzUI0gGZ5NOs2KmT2KrmXaTm4NS"
 
-```{r goingIn_3, include=FALSE}
+- for `pixelGroupMap`: "https://drive.google.com/open?id=1IUEuH55su8X7JCWt8LXy_hTAQz0cfCmU"
+- for `cohortData`: "https://drive.google.com/open?id=1R_wGGvzUI0gGZ5NOs2KmT2KrmXaTm4NS"
+
+```{r goingIn_4, eval = FALSE}
 ## add sourceURL to pixelGroupMap and cohortData
 expectsInput(objectName = "pixelGroupMap", objectClass = "RasterLayer",
              desc = paste0("Map of groups of pixels that share the same info from cohortData (sp, age, biomass, etc).",
@@ -308,7 +344,7 @@ if (!suppliedElsewhere("cohortData", sim = sim, where = "sim")) {
 ```
 
 You can now use `restartSpades` or simply re-run `simInitAndSpades`
-```{r restartSpades}
+```{r restartSpades, eval = FALSE}
 caribou <- restartSpaDES()
 
 caribou <- simInitAndSpades(times = times,
@@ -321,7 +357,7 @@ caribou <- simInitAndSpades(times = times,
 
 There seem to be no more issues. Maybe we don't need to print all those debug messages anymore - less verbose - next time we run.
 
-```{r debug1}
+```{r debug1, eval = FALSE}
 caribou <- simInitAndSpades(times = times,
                             objects = objects,
                             params = parameters,
@@ -334,7 +370,7 @@ Or maybe, we don't want to see them printed, but want to keep a log of all messa
 
 + check the "debug" section of `?spades` 
 
-```{r debug2}
+```{r debug2, eval = FALSE}
 caribou <- simInitAndSpades(times = times,
                             objects = objects,
                             params = parameters,
@@ -353,7 +389,7 @@ file.edit("logCaribou.txt")
 
 What about all that purple text?
 That's the module code checking. It's helpful, but not always accurate - meant to be informative rather than enforced.
-```{r debug3}
+```{r debug3, eval = FALSE}
 options("spades.moduleCodeChecks" = FALSE)
 caribou <- simInitAndSpades(times = times,
                             objects = objects,
@@ -367,7 +403,7 @@ caribou <- simInitAndSpades(times = times,
                                          debug = TRUE)
 )
 
-## notivce how different the file is from what was printed on the console.
+## notice how different the file is from what was printed on the console.
 file.edit("logCaribou.txt")
 ```
 

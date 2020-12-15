@@ -6,7 +6,7 @@
 dependencies <- tools::package_dependencies(c("devtools", "SpaDES"), recursive = TRUE)
 
 ## Update any versions of these dependencies that are already on your machine
-type <- if (.Platform$OS.type == "windows") "binary" else "source"
+type <- if (.Platform$OS.type == "windows" || Sys.info()["sysname"] == "Darwin") "binary" else "source"
 update.packages(oldPkgs = unique(unlist(dependencies)),
                 ask = FALSE, checkBuilt = TRUE, type = type)
 
