@@ -16,7 +16,7 @@ We have organized a set of sessions, back to back, starting from the most "gener
 The hope is to attract non-modelers (e.g., managers, scientists, practitioners) to the first session, people who think they might want to see more how models work (e.g., scientists, students, technicians), and those who want to build and use models for research and operational purposes (e.g., scientists, technicians, programmers).
 
 ### Workshop outline 
-(_in progress_ (updated Dec 14, 2020))
+(_in progress -- updated Dec 15, 2020_)
 
 **Introduction to `SpaDES` - Sections 1-3** 
 * **Sections 1-2** - ~2+ hours – This is a high level intro for scientists, managers, policy makers, decision makers, coupled with examples of ongoing projects in `SpaDES` that will showcase the utility of the framework.
@@ -72,10 +72,12 @@ if (!identical("windows", .Platform$OS.type) && !require(igraph))
 install.packages("SpaDES", dependencies = TRUE) # we want to install Suggests also, thus "TRUE"
 ```
 
-### It may be more reliable to put all packages in their own directory for the workshop
-
 Sometimes the packages on your computer may collide with the packages being installed. 
 If this happens, and errors occur. Try the previous lines again. 
+If the above lines showed no errors, then you can stop here; no need to proceed with installation below.
+
+### It may be more reliable to put all packages in their own directory for the workshop
+
 If that still doesn't work, it may be necessary to install packages in their own directory.
 The function `Require::setLibPaths` allows us to do this.
 

@@ -38,19 +38,19 @@
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">SpaDES.Workshops</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
-      </span>
+  <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    </button>
+    <span class="navbar-brand">
+    <a class="navbar-link" href="../index.html">SpaDES.Workshops</a>
+    <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+    </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
+    <ul class="nav navbar-nav">
 <li>
   <a href="articles/index.html">2021-Jan</a>
 </li>
@@ -164,10 +164,11 @@ update.packages(checkBuilt = TRUE, ask = FALSE)
 if (!identical("windows", .Platform$OS.type) &amp;&amp; !require(igraph)) 
   install.packages("igraph", type = "source", repos = "https://cran.rstudio.com") # igraph needs to be installed from source
 install.packages("SpaDES", dependencies = TRUE) # we want to install Suggests also, thus "TRUE"</a></code></pre>
+<p>Sometimes the packages on your computer may collide with the packages being installed. If this happens, and errors occur. Try the previous lines again. If the above lines showed no errors, then you can stop here; no need to proceed with installation below.</p>
 <div id="it-may-be-more-reliable-to-put-all-packages-in-their-own-directory-for-the-workshop" class="section level3">
 <h3 class="hasAnchor">
 <a href="#it-may-be-more-reliable-to-put-all-packages-in-their-own-directory-for-the-workshop" class="anchor"></a>It may be more reliable to put all packages in their own directory for the workshop</h3>
-<p>Sometimes the packages on your computer may collide with the packages being installed. If this happens, and errors occur. Try the previous lines again. If that still doesn’t work, it may be necessary to install packages in their own directory. The function <code><a href="https://Require.predictiveecology.org/reference/setLibPaths.html">Require::setLibPaths</a></code> allows us to do this.</p>
+<p>If that still doesn’t work, it may be necessary to install packages in their own directory. The function <code><a href="https://Require.predictiveecology.org/reference/setLibPaths.html">Require::setLibPaths</a></code> allows us to do this.</p>
 <pre><code>## Restart your R session so it is clear
 ## Ctrl-shift-F10 if you are in Rstudio #
 RPackageLibrary = "~/WorkshopLibrary"
