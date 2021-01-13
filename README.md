@@ -66,13 +66,12 @@ The function `Require::setLibPaths` allows us to do this.
 ```
 ## Restart your R session so it is clear
 ## Ctrl-shift-F10 if you are in Rstudio #
-RPackageLibrary = "~/WorkshopLibrary"
+RPackageLibrary = "WorkshopLibrary"
 if (!dir.exists(RPackageLibrary)) dir.create(RPackageLibrary)
 
-if (!require("Require", lib = RPackageLibrary)) install.packages("Require", lib = RPackageLibrary)
-library(Require, lib = RPackageLibrary)
+if (!dir.exists(file.path(RPackageLibrary, "Require"))) install.packages("Require", dependencies = TRUE, lib = RPackageLibrary)
 
-#### Put packages in their own directory
+#### Get latest Require that has some extra features for controlling .libPaths()
 # setLibPaths(RPackageLibrary)
 # ## For workshop -- set libPath in your .Rprofile file -- at end of workshop can delete this ######
 # RprofileFile = "~/.Rprofile"
@@ -84,14 +83,15 @@ library(Require, lib = RPackageLibrary)
 #     paste0("Require::setLibPaths('", RPackageLibrary, "')")
 #   }, append = TRUE)
 
+## For workshop -- set libPath in your .Rprofile file -- at end of workshop can delete this ######
 # Install all packages in a new place on your computer -- may collide with other packages if we use your personal library
-# Identify all dependencies
-# dependencies = pkgDep("PredictiveEcology/SpaDES", recursive = TRUE)
-options(Require.buildBinaries = TRUE, Require.RPackageCache = file.path(RPackageLibrary, ".cached"))
-# Require(dependencies$SpaDES, require = FALSE) ## Install them, don't 'require' them
+library(Require, lib.loc = RPackageLibrary)
+setLibPaths(RPackageLibrary)
 
 ## Restart your R session again so it is clear
 ## Ctrl-shift-F10 if you are in Rstudio #
+options(Require.buildBinaries = TRUE, Require.RPackageCache = file.path(RPackageLibrary, ".cached"))
+
 Sys.setenv("R_REMOTES_NO_ERRORS_FROM_WARNINGS"="true") # sometimes, some irrelevant warnings occur
 
 # Install versions of packages from GitHub --> to do from CRAN: install.packages("SpaDES")
@@ -134,7 +134,7 @@ Restart R (so that the GITHUB_PAT is read) and try to reinstall: `devtools::inst
 
 Because there are a lot of packages, it may be faster to install binaries from the Rstudio CRAN mirror.
 To use this CRAN mirror, you can run this code to set up the correct CRAN repository. 
-If you put this in your `.Rprofile` file (often located at `~/.Rprofile`), then your R sessions will always use this binary repository:
+If you put this in your `.Rprofile` file, then your R sessions will always use this binary repository:
 
 ```
 options("repos" = c(CRAN = "https://cran.rstudio.com"))

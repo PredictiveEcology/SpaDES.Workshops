@@ -26,3 +26,6 @@ cache/
 *.utf8.md
 *.knit.md
 SpaDESintro
+WorkshopLibrary
+
+.Rprofile
