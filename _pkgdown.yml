@@ -34,7 +34,7 @@ articles:
 
   - title: "Day 1 - Section 1: What is SpaDES?"
     desc: >
-      A high-level introduction to the SpaDES framework and its usefulness
+      A high-level introduction to the SpaDES framework that can help with reproducible, reusable research.
     contents:
     - 01a-WhatIsSpades_Jan2020
 

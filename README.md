@@ -73,15 +73,16 @@ if (!require("Require", lib = RPackageLibrary)) install.packages("Require", lib 
 library(Require, lib = RPackageLibrary)
 
 #### Put packages in their own directory
-setLibPaths(RPackageLibrary)
-## For workshop -- set libPath in your .Rprofile file -- at end of workshop can delete this ######
-RprofileFile = "~/.Rprofile"
-if (!file.exists(RprofileFile))
-  file.create(file = RprofileFile)
-if (!isTRUE(grepl("Require Customized", readLines("~/.Rprofile"))))
-  cat(file = "~/.Rprofile", {
-    paste0("Require::setLibPaths('", RPackageLibrary, "') ## Require Customized\n")
-  }, append = TRUE)
+# setLibPaths(RPackageLibrary)
+# ## For workshop -- set libPath in your .Rprofile file -- at end of workshop can delete this ######
+# RprofileFile = "~/.Rprofile"
+# if (!file.exists(RprofileFile))
+#   file.create(file = RprofileFile)
+# lineWithSetLibPaths <- grepl("setLibPaths", readLines(RprofileFile))
+# if (!isTRUE(any(lineWithSetLibPaths)))
+#   cat(file = "~/.Rprofile", {
+#     paste0("Require::setLibPaths('", RPackageLibrary, "')")
+#   }, append = TRUE)
 
 # Install all packages in a new place on your computer -- may collide with other packages if we use your personal library
 # Identify all dependencies
@@ -98,6 +99,9 @@ if (!identical("windows", .Platform$OS.type) && !require(igraph))
   install.packages("igraph", type = "source", repos = "https://cran.rstudio.com") # igraph needs to be installed from source
 Require("PredictiveEcology/SpaDES@development", upgrade = FALSE, require = FALSE) # require = FALSE, means don't load them into memory
 
+# Get suggests packages
+suggests = pkgDep("SpaDES.core", which = "Suggests")[[1]]
+Require(suggests, require = FALSE)
                            
 # # Predictive Ecology Miscellaneous
 # Require("PredictiveEcology/pemisc@Workshop", upgrade = "never", dependencies = TRUE, type = type)
