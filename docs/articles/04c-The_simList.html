@@ -108,8 +108,8 @@
 <h2 class="hasAnchor">
 <a href="#where-does-simlist-come-from" class="anchor"></a>Where does <code>simList</code> come from?</h2>
 <ol style="list-style-type: decimal">
-<li><p>Initializing a simulation using <code><a href="http://spades-core.predictiveecology.org//reference/simInit.html">simInit()</a></code> creates a <code>simList</code> object.</p></li>
-<li><p>Running a simulation via a <code><a href="http://spades-core.predictiveecology.org//reference/spades.html">spades()</a></code> call returns a modified <code>simList</code> object.</p></li>
+<li><p>Initializing a simulation using <code><a href="https://spades-core.predictiveecology.org//reference/simInit.html">simInit()</a></code> creates a <code>simList</code> object.</p></li>
+<li><p>Running a simulation via a <code><a href="https://spades-core.predictiveecology.org//reference/spades.html">spades()</a></code> call returns a modified <code>simList</code> object.</p></li>
 </ol>
 </div>
 <div id="how-are-simulations-specified" class="section level2">
@@ -128,7 +128,7 @@
 <a href="#how-spades-works-simlists" class="anchor"></a>How <code>SpaDES</code> works: simLists</h2>
 <p>We can examine the <code>simList</code> object structure in the usual R fashion by printing (<code>show</code>ing) it, or by using <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">emptySim</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://spades-core.predictiveecology.org//reference/simInit.html">simInit</a></span><span class="op">(</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">emptySim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simInit.html">simInit</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">emptySim</span>  <span class="co"># same as show(emptySim)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">emptySim</span><span class="op">)</span></code></pre></div>
 <p><strong>NOTE:</strong> <code>simList</code>s are S4 objects, so we can use <code>getSlots()</code> and <code>slotNames()</code> to examine the object.</p>
@@ -141,11 +141,11 @@
 
 <pre><code>## Setting:
 ##   options(
-##     rasterTmpDir = 'C:/Users/emcintir.L-VIC-A023744/AppData/Local/Temp/RtmpAHuWd1/raster'
-##     reproducible.cachePath = 'C:/Users/emcintir.L-VIC-A023744/AppData/Local/Temp/RtmpAHuWd1/Require/cache'
-##     spades.inputPath = 'C:/Users/emcintir.L-VIC-A023744/AppData/Local/Temp/RtmpslsAbO/SpaDES/inputs'
-##     spades.outputPath = 'C:/Users/emcintir.L-VIC-A023744/AppData/Local/Temp/RtmpslsAbO/SpaDES/outputs'
-##     spades.modulePath = 'C:/Users/emcintir.L-VIC-A023744/AppData/Local/Temp/RtmpslsAbO/SpaDES/modules'
+##     rasterTmpDir = 'C:/Users/emcintir.W-VIC-A144916/AppData/Local/Temp/Rtmp0AXfYc/raster'
+##     reproducible.cachePath = 'C:/Users/emcintir.W-VIC-A144916/AppData/Local/Temp/Rtmp0AXfYc/Require/cache'
+##     spades.inputPath = 'C:/Users/emcintir.W-VIC-A144916/AppData/Local/Temp/RtmpopN4uc/SpaDES/inputs'
+##     spades.outputPath = 'C:/Users/emcintir.W-VIC-A144916/AppData/Local/Temp/RtmpopN4uc/SpaDES/outputs'
+##     spades.modulePath = 'C:/Users/emcintir.W-VIC-A144916/AppData/Local/Temp/RtmpopN4uc/SpaDES/modules'
 ##   )</code></pre>
 <table class="table">
 <thead><tr>
@@ -324,15 +324,15 @@ modulePath()
 <div id="model-specification" class="section level2">
 <h2 class="hasAnchor">
 <a href="#model-specification" class="anchor"></a>Model specification</h2>
-<p>Simple examples (using demo modules) of <code><a href="http://spades-core.predictiveecology.org//reference/simInit.html">simInit()</a></code> and <code><a href="http://spades-core.predictiveecology.org//reference/spades.html">spades()</a></code> calls.</p>
+<p>Simple examples (using demo modules) of <code><a href="https://spades-core.predictiveecology.org//reference/simInit.html">simInit()</a></code> and <code><a href="https://spades-core.predictiveecology.org//reference/spades.html">spades()</a></code> calls.</p>
 <ul>
-<li>examine <code>simList</code> structure before and after the <code><a href="http://spades-core.predictiveecology.org//reference/spades.html">spades()</a></code> call</li>
+<li>examine <code>simList</code> structure before and after the <code><a href="https://spades-core.predictiveecology.org//reference/spades.html">spades()</a></code> call</li>
 </ul>
 <div id="initiliaze-an-empty-simlist-object" class="section level3">
 <h3 class="hasAnchor">
 <a href="#initiliaze-an-empty-simlist-object" class="anchor"></a>Initiliaze an empty <code>simList</code> object</h3>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">emptySim</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://spades-core.predictiveecology.org//reference/simInit.html">simInit</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">emptySim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simInit.html">simInit</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="inspect-the-empty-simlist-object" class="section level3">
 <h3 class="hasAnchor">
@@ -363,7 +363,7 @@ modulePath()
 <span class="op">)</span>
 
 <span class="co"># create the simList object 'mySim'</span>
-<span class="va">mySim</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://spades-core.predictiveecology.org//reference/simInit.html">simInit</a></span><span class="op">(</span>
+<span class="va">mySim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simInit.html">simInit</a></span><span class="op">(</span>
   times <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>start <span class="op">=</span> <span class="fl">0.0</span>, end <span class="op">=</span> <span class="fl">100.00</span><span class="op">)</span>,
   params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
     .progress <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="cn">NA</span>, interval <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span>,
@@ -405,52 +405,52 @@ modulePath()
 </ol>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># list modules used in the simulation</span>
-<span class="fu"><a href="http://spades-core.predictiveecology.org//reference/simList-accessors-modules.html">modules</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simList-accessors-modules.html">modules</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
 
 <span class="co"># list module dependencies and packages used</span>
-<span class="fu"><a href="http://spades-core.predictiveecology.org//reference/simList-accessors-modules.html">depends</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
-<span class="fu"><a href="http://spades-core.predictiveecology.org//reference/packages.html">packages</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simList-accessors-modules.html">depends</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/packages.html">packages</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
 
 <span class="co"># list global and module-specific param values</span>
-<span class="fu"><a href="http://spades-core.predictiveecology.org//reference/globals.html">globals</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
-<span class="fu"><a href="http://spades-core.predictiveecology.org//reference/params.html">params</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
-<span class="fu"><a href="http://spades-core.predictiveecology.org//reference/params.html">P</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>       <span class="co">## bonus: how do params() and P() differ?</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/globals.html">globals</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/params.html">params</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/params.html">P</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>       <span class="co">## bonus: how do params() and P() differ?</span>
 
 <span class="co"># list start and end times</span>
-<span class="fu"><a href="http://spades-core.predictiveecology.org//reference/simList-accessors-times.html">times</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
-<span class="fu"><a href="http://spades-core.predictiveecology.org//reference/simList-accessors-times.html">start</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
-<span class="fu"><a href="http://spades-core.predictiveecology.org//reference/simList-accessors-times.html">end</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simList-accessors-times.html">times</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simList-accessors-times.html">start</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simList-accessors-times.html">end</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
 
 <span class="co"># get the simulation and module timeunits</span>
-<span class="fu"><a href="http://spades-core.predictiveecology.org//reference/simList-accessors-times.html">timeunit</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
-<span class="fu"><a href="http://spades-core.predictiveecology.org//reference/simList-accessors-times.html">timeunits</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simList-accessors-times.html">timeunit</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simList-accessors-times.html">timeunits</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
 
 <span class="co"># get the scheduled and completed event queues</span>
-<span class="fu"><a href="http://spades-core.predictiveecology.org//reference/simList-accessors-events.html">events</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
-<span class="fu"><a href="http://spades-core.predictiveecology.org//reference/simList-accessors-events.html">completed</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simList-accessors-events.html">events</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simList-accessors-events.html">completed</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
 
 <span class="co"># list the objects (functions, data, etc.) stored in the simList</span>
 <span class="fu"><a href="https://rdrr.io/r/base/ls.html">objects</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
 
 <span class="co"># list the file paths used in the simulation</span>
-<span class="fu"><a href="http://spades-core.predictiveecology.org//reference/simList-accessors-paths.html">paths</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
-<span class="fu"><a href="http://spades-core.predictiveecology.org//reference/simList-accessors-paths.html">inputPath</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
-<span class="fu"><a href="http://spades-core.predictiveecology.org//reference/simList-accessors-paths.html">outputPath</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simList-accessors-paths.html">paths</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simList-accessors-paths.html">inputPath</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simList-accessors-paths.html">outputPath</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="run-the-simulation" class="section level3">
 <h3 class="hasAnchor">
 <a href="#run-the-simulation" class="anchor"></a>Run the simulation</h3>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">dev</span><span class="op">(</span><span class="op">)</span>
-<span class="va">mySimOut</span> <span class="op">&lt;-</span> <span class="fu">Copy</span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span> <span class="co">## make a deep copy of the simList</span>
-<span class="va">mySimOut</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://spades-core.predictiveecology.org//reference/spades.html">spades</a></span><span class="op">(</span><span class="va">mySimOut</span><span class="op">)</span></code></pre></div>
+<span class="va">mySimOut</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://reproducible.predictiveecology.org/reference/Copy.html">Copy</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span> <span class="co">## make a deep copy of the simList</span>
+<span class="va">mySimOut</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/spades.html">spades</a></span><span class="op">(</span><span class="va">mySimOut</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="compare-the-simlist-before-and-after" class="section level3">
 <h3 class="hasAnchor">
 <a href="#compare-the-simlist-before-and-after" class="anchor"></a>Compare the simList before and after</h3>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="http://spades-core.predictiveecology.org//reference/simList-accessors-times.html">times</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
-<span class="fu"><a href="http://spades-core.predictiveecology.org//reference/simList-accessors-times.html">times</a></span><span class="op">(</span><span class="va">mySimOut</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simList-accessors-times.html">times</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simList-accessors-times.html">times</a></span><span class="op">(</span><span class="va">mySimOut</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/ls.html">objects</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/ls.html">objects</a></span><span class="op">(</span><span class="va">mySimOut</span><span class="op">)</span></code></pre></div>

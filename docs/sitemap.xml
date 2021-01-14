@@ -19,6 +19,9 @@
     <loc>http://spades-workshops.predictiveecology.org//articles/01a-WhatIsSpades_Jan2020.html</loc>
   </url>
   <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/01a-WhatIsSpades_Jan2021.html</loc>
+  </url>
+  <url>
     <loc>http://spades-workshops.predictiveecology.org//articles/02a-dynamicModellingPreyPred.html</loc>
   </url>
   <url>
@@ -128,5 +131,8 @@
   </url>
   <url>
     <loc>http://spades-workshops.predictiveecology.org//articles/exercise8.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/WhatIsSpaDES2.html</loc>
   </url>
 </urlset>

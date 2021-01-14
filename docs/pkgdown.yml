@@ -5,6 +5,7 @@ articles:
   00-Cheatsheets: 00-Cheatsheets.html
   01a-WhatIsSpades: 01a-WhatIsSpades.html
   01a-WhatIsSpades_Jan2020: 01a-WhatIsSpades_Jan2020.html
+  01a-WhatIsSpades_Jan2021: 01a-WhatIsSpades_Jan2021.html
   02a-dynamicModellingPreyPred: 02a-dynamicModellingPreyPred.html
   02b-SpaDES4Dummies: 02b-SpaDES4Dummies.html
   02c-Convert_R_code_to_SpaDES_module: 02c-Convert_R_code_to_SpaDES_module.html
@@ -42,7 +43,8 @@ articles:
   exercise6: exercise6.html
   exercise7: exercise7.html
   exercise8: exercise8.html
-last_built: 2021-01-13T23:29Z
+  WhatIsSpaDES2: WhatIsSpaDES2.html
+last_built: 2021-01-14T00:48Z
 urls:
   reference: http://spades-workshops.predictiveecology.org//reference
   article: http://spades-workshops.predictiveecology.org//articles

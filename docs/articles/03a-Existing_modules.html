@@ -191,7 +191,7 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://spades.predictiveecology.org">SpaDES</a></span><span class="op">)</span>
 <span class="va">tmpdir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/basename.html">dirname</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>, <span class="st">"Modules"</span><span class="op">)</span>
-<span class="fu">downloadModule</span><span class="op">(</span><span class="st">"fireSpreadLcc"</span>, path <span class="op">=</span> <span class="va">tmpdir</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/downloadModule.html">downloadModule</a></span><span class="op">(</span><span class="st">"fireSpreadLcc"</span>, path <span class="op">=</span> <span class="va">tmpdir</span><span class="op">)</span></code></pre></div>
 <ul>
 <li>Where is it? (where is tmpdir?)</li>
 <li>What does it look like?</li>
@@ -211,7 +211,7 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://spades.predictiveecology.org">SpaDES</a></span><span class="op">)</span>
 <span class="va">tmpdir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/basename.html">dirname</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>, <span class="st">"Modules"</span><span class="op">)</span>
-<span class="fu">downloadModule</span><span class="op">(</span><span class="st">"caribouMovementLcc"</span>, path <span class="op">=</span> <span class="va">tmpdir</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/downloadModule.html">downloadModule</a></span><span class="op">(</span><span class="st">"caribouMovementLcc"</span>, path <span class="op">=</span> <span class="va">tmpdir</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="wolf-alps-caribou-gaspesie" class="section level3">
 <h3 class="hasAnchor">
@@ -227,8 +227,8 @@
 <h3 class="hasAnchor">
 <a href="#try-one-out" class="anchor"></a>Try one out</h3>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">downloadModule</span><span class="op">(</span><span class="st">"caribou2Movements"</span>, path <span class="op">=</span> <span class="va">tmpdir</span><span class="op">)</span>
-<span class="fu">downloadModule</span><span class="op">(</span><span class="st">"wolfAlps"</span>, path <span class="op">=</span> <span class="va">tmpdir</span><span class="op">)</span> <span class="co"># ignore warning about file size</span>
+<code class="sourceCode R"><span class="fu"><a href="https://spades-core.predictiveecology.org//reference/downloadModule.html">downloadModule</a></span><span class="op">(</span><span class="st">"caribou2Movements"</span>, path <span class="op">=</span> <span class="va">tmpdir</span><span class="op">)</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/downloadModule.html">downloadModule</a></span><span class="op">(</span><span class="st">"wolfAlps"</span>, path <span class="op">=</span> <span class="va">tmpdir</span><span class="op">)</span> <span class="co"># ignore warning about file size</span>
 
 <span class="co"># Can open the .Rmd (how to run it) or .R (module code)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/file.edit.html">file.edit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="va">tmpdir</span>, <span class="st">"caribou2Movements"</span>, <span class="st">"caribou2Movements.Rmd"</span><span class="op">)</span><span class="op">)</span>
@@ -245,7 +245,7 @@
 <li>Go back to SpaDES wiki pages (how do I find it again…?)… Maybe Google search “R SpaDES wiki”</li>
 <li><a href="https://github.com/PredictiveEcology/SpaDES/wiki/Debugging">Remember the debugging tools</a></li>
 <li>
-<code>?spades</code> has new section on debugging that complements the above wiki</li>
+<code><a href="https://spades-core.predictiveecology.org//reference/spades.html">?spades</a></code> has new section on debugging that complements the above wiki</li>
 </ul>
 <hr>
 </div>
@@ -280,12 +280,12 @@
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://igraph.org">igraph</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://spades.predictiveecology.org">SpaDES</a></span><span class="op">)</span>
 
-<span class="fu">setPaths</span><span class="op">(</span>cachePath <span class="op">=</span> <span class="st">"~/temp_SpaDESws/cache"</span>, 
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/setPaths.html">setPaths</a></span><span class="op">(</span>cachePath <span class="op">=</span> <span class="st">"~/temp_SpaDESws/cache"</span>, 
          inputPath <span class="op">=</span> <span class="st">"~/temp_SpaDESws/inputs"</span>, 
          modulePath <span class="op">=</span> <span class="st">"~/temp_SpaDESws/modules"</span>, 
          outputPath <span class="op">=</span> <span class="st">"~/temp_SpaDESws/outputs"</span><span class="op">)</span>
 
-<span class="fu">openModules</span><span class="op">(</span><span class="st">"LCC2005"</span>, <span class="fu">getPaths</span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">modulePath</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/openModules.html">openModules</a></span><span class="op">(</span><span class="st">"LCC2005"</span>, <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/setPaths.html">getPaths</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">modulePath</span><span class="op">)</span></code></pre></div>
 <div id="examine-this-module" class="section level3">
 <h3 class="hasAnchor">
 <a href="#examine-this-module" class="anchor"></a>Examine this module</h3>
@@ -314,7 +314,7 @@
 <div id="module-relationships" class="section level2">
 <h2 class="hasAnchor">
 <a href="#module-relationships" class="anchor"></a>Module relationships</h2>
-<p><img src="03a-Existing_modules_files/figure-html/relationship-diagram-1.png" width="480"></p>
+<p><img src="../../../../../../Eliot/GitHub/SpaDES.Workshops/docs/articles/03a-Existing_modules_files/figure-html/relationship-diagram-1.png" width="480"></p>
 </div>
 <div id="module-directory-structure" class="section level2">
 <h2 class="hasAnchor">
@@ -336,7 +336,7 @@
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://spades.predictiveecology.org">SpaDES</a></span><span class="op">)</span>
 
 <span class="co"># Remember, if you changed it in the previous step, keep it the same. Otherwise it won't find your modules!</span>
-<span class="fu">setPaths</span><span class="op">(</span>cachePath <span class="op">=</span> <span class="st">"~/temp_SpaDESws/cache"</span>, 
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/setPaths.html">setPaths</a></span><span class="op">(</span>cachePath <span class="op">=</span> <span class="st">"~/temp_SpaDESws/cache"</span>, 
          inputPath <span class="op">=</span> <span class="st">"~/temp_SpaDESws/inputs"</span>, 
          modulePath <span class="op">=</span> <span class="st">"~/temp_SpaDESws/modules"</span>, 
          outputPath <span class="op">=</span> <span class="st">"~/temp_SpaDESws/outputs"</span><span class="op">)</span></code></pre></div>
@@ -353,21 +353,21 @@
 <span class="op">)</span>
 <span class="va">modules</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"LCC2005"</span><span class="op">)</span>
 <span class="va">paths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
-  cachePath <span class="op">=</span> <span class="fu">getPaths</span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">cachePath</span>,
-  modulePath <span class="op">=</span> <span class="fu">getPaths</span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">modulePath</span>,
-  inputPath <span class="op">=</span> <span class="fu">getPaths</span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">inputPath</span>,
-  outputPath <span class="op">=</span> <span class="fu">getPaths</span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">outputPath</span>
+  cachePath <span class="op">=</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/setPaths.html">getPaths</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">cachePath</span>,
+  modulePath <span class="op">=</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/setPaths.html">getPaths</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">modulePath</span>,
+  inputPath <span class="op">=</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/setPaths.html">getPaths</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">inputPath</span>,
+  outputPath <span class="op">=</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/setPaths.html">getPaths</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">outputPath</span>
 <span class="op">)</span>
-<span class="va">mySim</span> <span class="op">&lt;-</span> <span class="fu">simInit</span><span class="op">(</span>modules <span class="op">=</span> <span class="va">modules</span>, paths <span class="op">=</span> <span class="va">paths</span>, params <span class="op">=</span> <span class="va">parameters</span>, times <span class="op">=</span> <span class="va">times</span><span class="op">)</span></code></pre></div>
+<span class="va">mySim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simInit.html">simInit</a></span><span class="op">(</span>modules <span class="op">=</span> <span class="va">modules</span>, paths <span class="op">=</span> <span class="va">paths</span>, params <span class="op">=</span> <span class="va">parameters</span>, times <span class="op">=</span> <span class="va">times</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="create-a-new-parent-module" class="section level2">
 <h2 class="hasAnchor">
 <a href="#create-a-new-parent-module" class="anchor"></a>Create a new parent module</h2>
 <p>The LCC2005 is a parent module that contains several children (What are they?). Now make a new parent module from several of the LCC2005 modules, but without, say, fire.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">allButFire</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu">modules</span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="fl">6</span><span class="op">]</span>
-<span class="fu">newModule</span><span class="op">(</span><span class="st">"LCC2005NoFire"</span>, children <span class="op">=</span> <span class="va">allButFire</span><span class="op">)</span>
-<span class="fu">openModules</span><span class="op">(</span><span class="st">"LCC2005NoFire"</span>, <span class="fu">getPaths</span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">modulePath</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">allButFire</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simList-accessors-modules.html">modules</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="fl">6</span><span class="op">]</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/newModule.html">newModule</a></span><span class="op">(</span><span class="st">"LCC2005NoFire"</span>, children <span class="op">=</span> <span class="va">allButFire</span><span class="op">)</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/openModules.html">openModules</a></span><span class="op">(</span><span class="st">"LCC2005NoFire"</span>, <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/setPaths.html">getPaths</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">modulePath</span><span class="op">)</span></code></pre></div>
 <p>Go ahead and open the <em>LCC2005NoFire.R</em> and check the child modules in the metadata.</p>
 </div>
 <div id="visual-tools" class="section level2">
@@ -376,14 +376,14 @@
 <p>There are a few tools that can help visualize the relationships between modules:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># This next step will download data if they do not yet exist locally</span>
-<span class="va">lcc</span> <span class="op">&lt;-</span> <span class="fu">simInit</span><span class="op">(</span>times <span class="op">=</span> <span class="va">times</span>, params <span class="op">=</span> <span class="va">parameters</span>,
+<span class="va">lcc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simInit.html">simInit</a></span><span class="op">(</span>times <span class="op">=</span> <span class="va">times</span>, params <span class="op">=</span> <span class="va">parameters</span>,
                modules <span class="op">=</span> <span class="va">modules</span>, paths <span class="op">=</span> <span class="va">paths</span><span class="op">)</span>
 
-<span class="fu">objectDiagram</span><span class="op">(</span><span class="va">lcc</span><span class="op">)</span>
-<span class="fu">moduleDiagram</span><span class="op">(</span><span class="va">lcc</span><span class="op">)</span>
-<span class="fu">eventDiagram</span><span class="op">(</span><span class="va">lcc</span><span class="op">)</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/objectDiagram.html">objectDiagram</a></span><span class="op">(</span><span class="va">lcc</span><span class="op">)</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/moduleDiagram.html">moduleDiagram</a></span><span class="op">(</span><span class="va">lcc</span><span class="op">)</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/eventDiagram.html">eventDiagram</a></span><span class="op">(</span><span class="va">lcc</span><span class="op">)</span>
 
-<span class="va">lcc</span> <span class="op">&lt;-</span> <span class="fu">spades</span><span class="op">(</span><span class="va">lcc</span><span class="op">)</span>  <span class="co">## compare the diagrams after running sim</span></code></pre></div>
+<span class="va">lcc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/spades.html">spades</a></span><span class="op">(</span><span class="va">lcc</span><span class="op">)</span>  <span class="co">## compare the diagrams after running sim</span></code></pre></div>
 <div id="what-dowould-these-do" class="section level3">
 <h3 class="hasAnchor">
 <a href="#what-dowould-these-do" class="anchor"></a>What do/would these do?</h3>
@@ -398,10 +398,10 @@
 <a href="#creating-a-new-parent-module" class="anchor"></a>Creating a new parent module</h2>
 <p>The <code>newModule</code> function creates a module template for you to edit to suit your needs:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">newModule</span><span class="op">(</span><span class="st">'moduleName'</span>, <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="st">'path/to/my/module/directory'</span><span class="op">)</span>,
+<code class="sourceCode R"><span class="fu"><a href="https://spades-core.predictiveecology.org//reference/newModule.html">newModule</a></span><span class="op">(</span><span class="st">'moduleName'</span>, <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="st">'path/to/my/module/directory'</span><span class="op">)</span>,
           type <span class="op">=</span> <span class="st">'parent'</span>, children <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'child1'</span>, <span class="st">'child2'</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Alternatively, use the RStudio addin which is simply a GUI wrapper for this function (select ‘parent’ type):</p>
-<p><img src="images/screenshot-new-module-addin.png"></p>
+<p><img src="../../../../../../Eliot/GitHub/SpaDES.Workshops/vignettes/images/screenshot-new-module-addin.png"></p>
 </div>
 <div id="parent-modules" class="section level2">
 <h2 class="hasAnchor">

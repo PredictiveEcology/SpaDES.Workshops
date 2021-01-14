@@ -121,7 +121,7 @@
 <p>You’ll notice that the model is extremely sensitive to parameter values - this is a well-know feature of the Lotka-Volterra model. The ones bellow will ensure an oscillating equilibrium between prey and predator populations.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## load libraries</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://Rdatatable.gitlab.io/data.table">data.table</a></span><span class="op">)</span>
 
 <span class="co">## define parameter values</span>
@@ -168,7 +168,7 @@
 <a href="#convert-this-to-a-spades-module" class="anchor"></a>Convert this to a SpaDES module</h2>
 <p>Now to the <em>actual</em> exercise. Try to convert this model into a 2-module SpaDES project/model. Here are a few tips:</p>
 <ol style="list-style-type: decimal">
-<li>Use <code>newModule()</code> (twice) to create the blank templates for your predator and prey population modules.</li>
+<li>Use <code><a href="https://spades-core.predictiveecology.org//reference/newModule.html">newModule()</a></code> (twice) to create the blank templates for your predator and prey population modules.</li>
 <li>Open the <code>.R</code> files that show up in the module folders.</li>
 <li>Fill in metadata:</li>
 </ol>

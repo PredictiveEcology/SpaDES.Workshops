@@ -129,12 +129,12 @@
 <p>at what times in the simulation are plot events scheduled and executed for each module? (hint: what is the default timeunit for each)</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## caribouMovement</span>
-<span class="va">sim</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://spades-core.predictiveecology.org//reference/scheduleEvent.html">scheduleEvent</a></span><span class="op">(</span><span class="va">sim</span>, <span class="fu"><a href="https://rdrr.io/r/stats/time.html">time</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="http://spades-core.predictiveecology.org//reference/params.html">P</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span><span class="op">$</span><span class="va">.plotInterval</span>,
-                     <span class="st">"caribouMovement"</span>, <span class="st">"plot"</span>, <span class="fu"><a href="http://spades-core.predictiveecology.org//reference/priority.html">.last</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="va">sim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/scheduleEvent.html">scheduleEvent</a></span><span class="op">(</span><span class="va">sim</span>, <span class="fu"><a href="https://rdrr.io/r/stats/time.html">time</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/params.html">P</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span><span class="op">$</span><span class="va">.plotInterval</span>,
+                     <span class="st">"caribouMovement"</span>, <span class="st">"plot"</span>, <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/priority.html">.last</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## fireSpread</span>
-<span class="va">sim</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://spades-core.predictiveecology.org//reference/scheduleEvent.html">scheduleEvent</a></span><span class="op">(</span><span class="va">sim</span>, <span class="fu"><a href="https://rdrr.io/r/stats/time.html">time</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="http://spades-core.predictiveecology.org//reference/params.html">P</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span><span class="op">$</span><span class="va">.plotInterval</span>,
-                     <span class="st">"fireSpread"</span>, <span class="st">"plot"</span>, <span class="fu"><a href="http://spades-core.predictiveecology.org//reference/priority.html">.last</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="va">sim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/scheduleEvent.html">scheduleEvent</a></span><span class="op">(</span><span class="va">sim</span>, <span class="fu"><a href="https://rdrr.io/r/stats/time.html">time</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/params.html">P</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span><span class="op">$</span><span class="va">.plotInterval</span>,
+                     <span class="st">"fireSpread"</span>, <span class="st">"plot"</span>, <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/priority.html">.last</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </li>
 </ol>
 </li>
@@ -154,11 +154,11 @@
 <code class="sourceCode R"><span class="va">module.path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/basename.html">dirname</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>, <span class="st">"modules"</span><span class="op">)</span>
 
 <span class="co">## hint: you'll need to download this module first</span>
-<span class="fu"><a href="http://spades-core.predictiveecology.org//reference/downloadModule.html">downloadModule</a></span><span class="op">(</span><span class="st">"gameOfLife"</span>, <span class="va">module.path</span><span class="op">)</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/downloadModule.html">downloadModule</a></span><span class="op">(</span><span class="st">"gameOfLife"</span>, <span class="va">module.path</span><span class="op">)</span>
 
 <span class="co">## make a copy and open for editing</span>
-<span class="fu"><a href="http://spades-core.predictiveecology.org//reference/copyModule.html">copyModule</a></span><span class="op">(</span><span class="st">"gameOfLife"</span>, <span class="st">"gameOfLifeError"</span>, <span class="va">module.path</span><span class="op">)</span>
-<span class="fu"><a href="http://spades-core.predictiveecology.org//reference/openModules.html">openModules</a></span><span class="op">(</span><span class="st">"gameOfLifeError"</span>, <span class="va">module.path</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/copyModule.html">copyModule</a></span><span class="op">(</span><span class="st">"gameOfLife"</span>, <span class="st">"gameOfLifeError"</span>, <span class="va">module.path</span><span class="op">)</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/openModules.html">openModules</a></span><span class="op">(</span><span class="st">"gameOfLifeError"</span>, <span class="va">module.path</span><span class="op">)</span></code></pre></div>
 </li>
 <li>
 <p>First, find and replace all instances of “gameOfLife” with “gameOfLifeError”.</p>
@@ -172,7 +172,7 @@
 <li>
 <p>Run the working module normally:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="http://spades-core.predictiveecology.org//reference/setPaths.html">setPaths</a></span><span class="op">(</span>modulePath <span class="op">=</span> <span class="va">module.path</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://spades-core.predictiveecology.org//reference/setPaths.html">setPaths</a></span><span class="op">(</span>modulePath <span class="op">=</span> <span class="va">module.path</span><span class="op">)</span>
 
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://igraph.org">igraph</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/raster">raster</a></span><span class="op">)</span>
@@ -190,8 +190,8 @@
 <span class="fu">clearPlot</span><span class="op">(</span><span class="op">)</span>
 <span class="fu">dev</span><span class="op">(</span><span class="op">)</span>
 
-<span class="va">mySim_OK</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://spades-core.predictiveecology.org//reference/simInit.html">simInit</a></span><span class="op">(</span>times <span class="op">=</span> <span class="va">times</span>, params <span class="op">=</span> <span class="va">parameters</span>, modules <span class="op">=</span> <span class="va">modules</span><span class="op">)</span>
-<span class="va">mySim_OK1</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://spades-core.predictiveecology.org//reference/spades.html">spades</a></span><span class="op">(</span><span class="fu">Copy</span><span class="op">(</span><span class="va">mySim_OK</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="va">mySim_OK</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simInit.html">simInit</a></span><span class="op">(</span>times <span class="op">=</span> <span class="va">times</span>, params <span class="op">=</span> <span class="va">parameters</span>, modules <span class="op">=</span> <span class="va">modules</span><span class="op">)</span>
+<span class="va">mySim_OK1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/spades.html">spades</a></span><span class="op">(</span><span class="fu"><a href="https://reproducible.predictiveecology.org/reference/Copy.html">Copy</a></span><span class="op">(</span><span class="va">mySim_OK</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </li>
 <li>
 <p>Run the broken version and confirm that you get an error:</p>
@@ -209,8 +209,8 @@
 <span class="fu">clearPlot</span><span class="op">(</span><span class="op">)</span>
 <span class="fu">dev</span><span class="op">(</span><span class="op">)</span>
 
-<span class="va">mySim_ERR</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://spades-core.predictiveecology.org//reference/simInit.html">simInit</a></span><span class="op">(</span>times <span class="op">=</span> <span class="va">times</span>, params <span class="op">=</span> <span class="va">parameters</span>, modules <span class="op">=</span> <span class="va">modules</span><span class="op">)</span>
-<span class="va">mySim_ERR1</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://spades-core.predictiveecology.org//reference/spades.html">spades</a></span><span class="op">(</span><span class="fu">Copy</span><span class="op">(</span><span class="va">mySim_ERR</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="va">mySim_ERR</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simInit.html">simInit</a></span><span class="op">(</span>times <span class="op">=</span> <span class="va">times</span>, params <span class="op">=</span> <span class="va">parameters</span>, modules <span class="op">=</span> <span class="va">modules</span><span class="op">)</span>
+<span class="va">mySim_ERR1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/spades.html">spades</a></span><span class="op">(</span><span class="fu"><a href="https://reproducible.predictiveecology.org/reference/Copy.html">Copy</a></span><span class="op">(</span><span class="va">mySim_ERR</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </li>
 <li><p>Without knowing where the errors occur, how would you start debugging the error?</p></li>
 </ol>
@@ -220,7 +220,7 @@
 <a href="#create-a-new-module" class="anchor"></a>Create a new module</h1>
 <p>Create a simple module that does one of the following:</p>
 <ol style="list-style-type: decimal">
-<li><p>generates a random map (hint: see <code>?gaussMap</code>) and updates the values in the raster cells;</p></li>
+<li><p>generates a random map (hint: see <code><a href="https://spades-tools.predictiveecology.org/reference/gaussMap.html">?gaussMap</a></code>) and updates the values in the raster cells;</p></li>
 <li><p>model population dynamics as subpopulations within each raster cell.</p></li>
 </ol>
 </div>

@@ -109,7 +109,7 @@
 <a href="#beyond-spades" class="anchor"></a>Beyond <code>spades</code>
 </h2>
 <p>So far, we have run models with the <code>spades</code> function.</p>
-<p><code><a href="http://spades-core.predictiveecology.org//reference/spades.html">spades()</a></code> only has a few arguments:</p>
+<p><code><a href="https://spades-core.predictiveecology.org//reference/spades.html">spades()</a></code> only has a few arguments:</p>
 <pre><code>- debug
 - .plotInitialTime
 - .saveInitialTime
@@ -136,7 +136,7 @@
 
 <span class="co"># See Example 5</span>
 <span class="co">#  ... run mySim from top of help file</span>
-<span class="va">sims</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://spades-core.predictiveecology.org//reference/deprecated.html">experiment</a></span><span class="op">(</span><span class="va">mySim</span>, replicates <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<span class="va">sims</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/deprecated.html">experiment</a></span><span class="op">(</span><span class="va">mySim</span>, replicates <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">sims</span>, <span class="st">"experiment"</span><span class="op">)</span><span class="op">$</span><span class="va">expDesign</span> <span class="co"># shows 2 reps of same expt</span></code></pre></div>
 <p>What does it return?</p>
 <p>What is the <code>attr</code>?</p>
@@ -188,7 +188,7 @@
                                 nFires <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span>,
                          caribouMovement <span class="op">=</span> 
                            <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>N <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">1000</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="va">sims</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://spades-core.predictiveecology.org//reference/deprecated.html">experiment</a></span><span class="op">(</span><span class="va">mySim</span>, params <span class="op">=</span> <span class="va">experimentParams</span><span class="op">)</span>
+<span class="va">sims</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/deprecated.html">experiment</a></span><span class="op">(</span><span class="va">mySim</span>, params <span class="op">=</span> <span class="va">experimentParams</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">sims</span>, <span class="st">"experiment"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="experiment-saving-files" class="section level2">
@@ -198,13 +198,13 @@
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">?</span><span class="va">experiment</span>
 <span class="co">## see example 4</span>
-<span class="va">sims</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://spades-core.predictiveecology.org//reference/deprecated.html">experiment</a></span><span class="op">(</span><span class="va">mySim</span>, 
+<span class="va">sims</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/deprecated.html">experiment</a></span><span class="op">(</span><span class="va">mySim</span>, 
                    params <span class="op">=</span> <span class="va">experimentParams</span>, 
                    dirPrefix <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"expt"</span>, <span class="st">"simNum"</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">sims</span>, <span class="st">"experiment"</span><span class="op">)</span><span class="op">$</span><span class="va">expVals</span> <span class="co"># shows 8 alternative</span>
                <span class="co">#experiment levels, 24 unique parameter values</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/list.files.html">dir</a></span><span class="op">(</span><span class="fu"><a href="http://spades-core.predictiveecology.org//reference/simList-accessors-paths.html">outputPath</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/list.files.html">dir</a></span><span class="op">(</span><span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simList-accessors-paths.html">outputPath</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="working-through-other-examples-of-experiment" class="section level2">
 <h2 class="hasAnchor">
@@ -338,7 +338,7 @@
 <h2 class="hasAnchor">
 <a href="#pom" class="anchor"></a><code>POM</code>
 </h2>
-<p>There are several examples in <code><a href="http://spades-core.predictiveecology.org//reference/deprecated.html">?POM</a></code>, which we will go through:</p>
+<p>There are several examples in <code><a href="https://spades-core.predictiveecology.org//reference/deprecated.html">?POM</a></code>, which we will go through:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## example 1</span>
 <span class="co"># What is example 1 doing?</span>
@@ -387,17 +387,17 @@
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://spades.predictiveecology.org">SpaDES</a></span><span class="op">)</span>
 <span class="va">module.path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/basename.html">dirname</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>, <span class="st">"modules"</span><span class="op">)</span>
-<span class="fu"><a href="http://spades-core.predictiveecology.org//reference/downloadModule.html">downloadModule</a></span><span class="op">(</span><span class="st">"establishment"</span>, path <span class="op">=</span> <span class="va">module.path</span><span class="op">)</span>
-<span class="fu"><a href="http://spades-core.predictiveecology.org//reference/setPaths.html">setPaths</a></span><span class="op">(</span>modulePath <span class="op">=</span> <span class="va">module.path</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/downloadModule.html">downloadModule</a></span><span class="op">(</span><span class="st">"establishment"</span>, path <span class="op">=</span> <span class="va">module.path</span><span class="op">)</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/setPaths.html">setPaths</a></span><span class="op">(</span>modulePath <span class="op">=</span> <span class="va">module.path</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 
 <span class="va">modules</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"establishment"</span><span class="op">)</span>
 
-<span class="va">mySim</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://spades-core.predictiveecology.org//reference/simInit.html">simInit</a></span><span class="op">(</span>modules <span class="op">=</span> <span class="va">modules</span><span class="op">)</span>
+<span class="va">mySim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simInit.html">simInit</a></span><span class="op">(</span>modules <span class="op">=</span> <span class="va">modules</span><span class="op">)</span>
 
 <span class="co"># make sure the plotting device is clear</span>
 <span class="fu">clearPlot</span><span class="op">(</span><span class="op">)</span>
-<span class="fu"><a href="http://spades-core.predictiveecology.org//reference/spades.html">spades</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/spades.html">spades</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="create-an-experiment" class="section level1">
 <h1 class="hasAnchor">
@@ -405,7 +405,7 @@
 <ol style="list-style-type: decimal">
 <li>Find out which parameters are in this module. (Hint: where is the module? Can you open it easily from R?)</li>
 <li>Pick one of the parameters and create a range of values for it.</li>
-<li>Following the structure indicated in example 4 of <code><a href="http://spades-core.predictiveecology.org//reference/deprecated.html">?experiment</a></code>, use <code>experiment</code> to run a <code>spades</code> call for each parameter set (note that <code>experiment</code> is just a wrapper around <code>spades</code>).</li>
+<li>Following the structure indicated in example 4 of <code><a href="https://spades-core.predictiveecology.org//reference/deprecated.html">?experiment</a></code>, use <code>experiment</code> to run a <code>spades</code> call for each parameter set (note that <code>experiment</code> is just a wrapper around <code>spades</code>).</li>
 <li>Inspect the experiment structure using <code><a href="https://rdrr.io/pkg/igraph/man/graph_attr_names.html">attributes(mySim)</a></code>.</li>
 <li>Create a plot showing on the x axis your parameter values, and on the y-axis something like <code><a href="https://rdrr.io/r/base/sum.html">sum(mySim$establish[])</a></code>, <em>i.e.</em>, the number of pixels that had an establishment event.</li>
 </ol>

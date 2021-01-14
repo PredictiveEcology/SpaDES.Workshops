@@ -111,7 +111,7 @@
 <h3 class="hasAnchor">
 <a href="#why-is-modelling-important" class="anchor"></a>Why is modelling important?</h3>
 <p>Models are nowadays so important and widespread that we often don’t realize that most of what we use in our daily lives is the result of someone’s (or some team’s) model. From weather forecasting, to predicting stock market fluctuations. From the design of your bike, to the estimation of blood sugar and insulin levels and how they vary hourly and according to different diets (in case you don’t know, this can be important for diabetes treatments, and drug dosage and scheduling)… Models are indeed ‘everywhere’.</p>
-<p><img src="images/Day01/models_everywhere.png" align="middle" height="400" width="750" margin="0 auto"></p>
+<p><img src="../../../../../../Eliot/GitHub/SpaDES.Workshops/vignettes/images/Day01/models_everywhere.png" align="middle" height="400" width="750" margin="0 auto"></p>
 </div>
 <div id="challenges-modellers-face" class="section level3">
 <h3 class="hasAnchor">
@@ -133,8 +133,8 @@
 </ul>
 </li>
 </ol>
-<p><img src="images/Day01/High_complexity.png" align="middle" width="300"></p>
-<p><img src="images/Day01/Big_data_modelupdates.png" align="right" width="200"></p>
+<p><img src="../../../../../../Eliot/GitHub/SpaDES.Workshops/vignettes/images/Day01/High_complexity.png" align="middle" width="300"></p>
+<p><img src="../../../../../../Eliot/GitHub/SpaDES.Workshops/vignettes/images/Day01/Big_data_modelupdates.png" align="right" width="200"></p>
 <ol start="3" style="list-style-type: decimal">
 <li>
 <strong>Era of <em>big data</em> </strong>
@@ -161,7 +161,7 @@
 <p>In modelling terms, this framework implies that for a given problem/question analyses and forecasts are repeated as new data, new methodologies and new or improved models arise. This can lead to a re-assessment of risk, inform decisions and influence policy making. These can in turn feedback into the process of re-framing the initial problem/question.</p>
 <p>Although this framework is ideal, it is only seldomly applied across the scientific community.</p>
 <p>Why? Because we are yet far from developing our research in a way that is easily repeatable, “upgradeable” and shareable. This renders the application of the continuous adaptive management framework costly, both temporally and financially, especially in interdisciplinary projects that involve multiple teams and stakeholders.</p>
-<p><img src="images/Day01/contadaptmanag_nightmare.png" align="middle" width="600"></p>
+<p><img src="../../../../../../Eliot/GitHub/SpaDES.Workshops/vignettes/images/Day01/contadaptmanag_nightmare.png" align="middle" width="600"></p>
 </div>
 <div id="where-do-we-go-from-here-spades" class="section level3">
 <h3 class="hasAnchor">
@@ -182,7 +182,7 @@
 <a href="#an-example" class="anchor"></a><strong>An example</strong>
 </h4>
 <p>Our question(s): how will forest fires affect forest age? And how will climate change affect fire regimes and in turn the vegetation? How will timber supply be affected?</p>
-<p><img src="images/Day01/Smart_SpaDES.png" align="right" width="300"></p>
+<p><img src="../../../../../../Eliot/GitHub/SpaDES.Workshops/vignettes/images/Day01/Smart_SpaDES.png" align="right" width="300"></p>
 <p><strong>To start we’ll need:</strong></p>
 <ul>
 <li>a vegetation dynamics module - e.g. <a href="https://github.com/PredictiveEcology/SpaDES-modules/tree/master/modules/forestAge">forestAge</a>;</li>
@@ -299,45 +299,45 @@ Because models are not just for modellers, a shiny app building package is being
 <code class="sourceCode R"><span class="va">main.dir</span> <span class="op">&lt;-</span>  <span class="st">"~/temp_SpaDESws"</span>
 
 <span class="co">## We'll create the necessary directories in a temporary location - feel free to change this if you wish to.</span>
-<span class="fu">setPaths</span><span class="op">(</span>cachePath <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="va">main.dir</span>,<span class="st">'cache'</span><span class="op">)</span>,
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/setPaths.html">setPaths</a></span><span class="op">(</span>cachePath <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="va">main.dir</span>,<span class="st">'cache'</span><span class="op">)</span>,
          inputPath <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="va">main.dir</span>, <span class="st">'inputs'</span><span class="op">)</span>,
          modulePath <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="va">main.dir</span>, <span class="st">'modules'</span><span class="op">)</span>,
          outputPath <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="va">main.dir</span>, <span class="st">'outputs'</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co">## verify that this is want you wanted:</span>
-<span class="fu">getPaths</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/setPaths.html">getPaths</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>Now we’ll get <code>LCC2005</code> modules needed and save them in the <code>modules</code> folder created before. If you already have done this before and want to do it again, set the <code>overwrite</code> argument to <code>TRUE</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## note how we use the modules folder defined above and chose to download the necessary data</span>
-<span class="fu">downloadModule</span><span class="op">(</span><span class="st">'LCC2005'</span>, path <span class="op">=</span> <span class="fu">getPaths</span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">modulePath</span>, repo <span class="op">=</span> <span class="st">'PredictiveEcology/SpaDES-modules'</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/downloadModule.html">downloadModule</a></span><span class="op">(</span><span class="st">'LCC2005'</span>, path <span class="op">=</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/setPaths.html">getPaths</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">modulePath</span>, repo <span class="op">=</span> <span class="st">'PredictiveEcology/SpaDES-modules'</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>Now we can download the data needed for the modules.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">downloadData</span><span class="op">(</span><span class="st">"LccToBeaconsReclassify"</span><span class="op">)</span> <span class="co"># 41 MB file</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://spades-core.predictiveecology.org//reference/downloadData.html">downloadData</a></span><span class="op">(</span><span class="st">"LccToBeaconsReclassify"</span><span class="op">)</span> <span class="co"># 41 MB file</span></code></pre></div>
 <p>But what happens if the module doesn’t require any data? Let’s try to download data for any other module that doesn’t need data.</p>
 <p>In the next block, why does the second one re-download the same dataset as we just downloaded?</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">downloadData</span><span class="op">(</span><span class="st">"fireSpreadLcc"</span><span class="op">)</span> <span class="co"># Note it will hit the error "Error in curl::curl_fetch_memory(url, handle = handle) : Could not resolve host: NA".</span>
+<code class="sourceCode R"><span class="fu"><a href="https://spades-core.predictiveecology.org//reference/downloadData.html">downloadData</a></span><span class="op">(</span><span class="st">"fireSpreadLcc"</span><span class="op">)</span> <span class="co"># Note it will hit the error "Error in curl::curl_fetch_memory(url, handle = handle) : Could not resolve host: NA".</span>
 
-<span class="fu">downloadData</span><span class="op">(</span><span class="st">"cropReprojectLccAge"</span><span class="op">)</span> <span class="co"># Note that there is an error in the end of this download (at the last file). "Could not resolve host: ftp.daac.ornl.gov". This is related to a missing map that we will fix below</span></code></pre></div>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/downloadData.html">downloadData</a></span><span class="op">(</span><span class="st">"cropReprojectLccAge"</span><span class="op">)</span> <span class="co"># Note that there is an error in the end of this download (at the last file). "Could not resolve host: ftp.daac.ornl.gov". This is related to a missing map that we will fix below</span></code></pre></div>
 <p>Unfortunately, the forest age raster (<code>can_age04_1km.tif</code>) is no longer downloadable without creating an account on the NASA EarthData website. We have provided a copy, which you can download from <a href="https://github.com/PredictiveEcology/SpaDES.Workshops/raw/master/can_age04_1km.tif">here</a> and put in <code><a href="https://rdrr.io/r/base/file.path.html">file.path(getPaths()$modulePath, "cropReprojectLccAge/data")</a></code> and <code><a href="https://rdrr.io/r/base/file.path.html">file.path(getPaths()$modulePath, "modules/forestAge/data")</a></code> (this will only be possible during the workshop). However, downloading objects/files from the internet is a common problem. To enhance reproducibility, the function will not download a file again if it has a local copy:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># downloads</span>
-<span class="va">age</span> <span class="op">&lt;-</span> <span class="fu">prepInputs</span><span class="op">(</span>url <span class="op">=</span> <span class="st">"https://github.com/PredictiveEcology/SpaDES.Workshops/raw/master/can_age04_1km.tif"</span>,
-                  destinationPath <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="fu">getPaths</span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">modulePath</span>, <span class="st">"cropReprojectLccAge/data"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">age</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://reproducible.predictiveecology.org/reference/prepInputs.html">prepInputs</a></span><span class="op">(</span>url <span class="op">=</span> <span class="st">"https://github.com/PredictiveEcology/SpaDES.Workshops/raw/master/can_age04_1km.tif"</span>,
+                  destinationPath <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://spades-core.predictiveecology.org//reference/setPaths.html">getPaths</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">modulePath</span>, <span class="st">"cropReprojectLccAge/data"</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># doesn't download, because it is already there -- uses Checksums</span>
-<span class="va">age</span> <span class="op">&lt;-</span> <span class="fu">prepInputs</span><span class="op">(</span>url <span class="op">=</span> <span class="st">"https://github.com/PredictiveEcology/SpaDES.Workshops/raw/master/can_age04_1km.tif"</span>,
-                  destinationPath <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="fu">getPaths</span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">modulePath</span>, <span class="st">"cropReprojectLccAge/data"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">age</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://reproducible.predictiveecology.org/reference/prepInputs.html">prepInputs</a></span><span class="op">(</span>url <span class="op">=</span> <span class="st">"https://github.com/PredictiveEcology/SpaDES.Workshops/raw/master/can_age04_1km.tif"</span>,
+                  destinationPath <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://spades-core.predictiveecology.org//reference/setPaths.html">getPaths</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">modulePath</span>, <span class="st">"cropReprojectLccAge/data"</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/files.html">file.copy</a></span><span class="op">(</span><span class="fu">raster</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/filename.html">filename</a></span><span class="op">(</span><span class="va">age</span><span class="op">)</span>,
-          <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="fu">getPaths</span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">modulePath</span>, <span class="st">"forestAge/data"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+          <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://spades-core.predictiveecology.org//reference/setPaths.html">getPaths</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">modulePath</span>, <span class="st">"forestAge/data"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>For future reference, it is possible to create an account on the NASA EarthData website and, after logging in, you’ll find the file <a href="https://daac.ornl.gov/NACP/guides/NA_Tree_Age.html">here</a>.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## open the description of the LCC2005 module group - on Windows this doesn't work because of an Rstudio issue, instead the message provides the lines to copy and paste</span>
-<span class="fu">openModules</span><span class="op">(</span><span class="st">'LCC2005'</span>, path <span class="op">=</span> <span class="fu">getPaths</span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">modulePath</span><span class="op">)</span> 
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/openModules.html">openModules</a></span><span class="op">(</span><span class="st">'LCC2005'</span>, path <span class="op">=</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/setPaths.html">getPaths</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">modulePath</span><span class="op">)</span> 
 
 <span class="co">## list all module files within LCC2005 and open them</span>
-<span class="va">LCC2005ModuleFiles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span><span class="fu">getPaths</span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">modulePath</span>, pattern <span class="op">=</span> <span class="st">'Rmd$'</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span>, full.names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">LCC2005ModuleFiles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span><span class="fu"><a href="https://spades-core.predictiveecology.org//reference/setPaths.html">getPaths</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">modulePath</span>, pattern <span class="op">=</span> <span class="st">'Rmd$'</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span>, full.names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="co">## open module Rmd files</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/file.edit.html">file.edit</a></span><span class="op">(</span><span class="va">LCC2005ModuleFiles</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>
@@ -350,7 +350,7 @@ Because models are not just for modellers, a shiny app building package is being
 <a href="#simulation-setup" class="anchor"></a>1.3.2 Simulation setup</h4>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## We've defined the paths earlier </span>
-<span class="va">paths</span> <span class="op">&lt;-</span> <span class="fu">getPaths</span><span class="op">(</span><span class="op">)</span>
+<span class="va">paths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/setPaths.html">getPaths</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="co">## we'll use several, but not all the modules in LCC2005</span>
 <span class="va">modules</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"cropReprojectLccAge"</span>, <span class="st">"fireSpreadLcc"</span>, <span class="st">"forestAge"</span>, <span class="st">"forestSuccessionBeacons"</span>, <span class="st">"LccToBeaconsReclassify"</span><span class="op">)</span>
@@ -374,7 +374,7 @@ Because models are not just for modellers, a shiny app building package is being
 <span class="fu"><a href="https://rdrr.io/r/utils/ls_str.html">ls.str</a></span><span class="op">(</span><span class="va">parameters</span><span class="op">)</span>
 
 <span class="co">## make simulation object</span>
-<span class="va">mySim</span> <span class="op">&lt;-</span> <span class="fu">simInit</span><span class="op">(</span>times <span class="op">=</span> <span class="va">times</span>, params <span class="op">=</span> <span class="va">parameters</span>, modules <span class="op">=</span> <span class="va">modules</span>,
+<span class="va">mySim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simInit.html">simInit</a></span><span class="op">(</span>times <span class="op">=</span> <span class="va">times</span>, params <span class="op">=</span> <span class="va">parameters</span>, modules <span class="op">=</span> <span class="va">modules</span>,
                  objects <span class="op">=</span> <span class="va">objects</span>, paths <span class="op">=</span> <span class="va">paths</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="simulation-object---simlist" class="section level4">
@@ -393,10 +393,10 @@ Because models are not just for modellers, a shiny app building package is being
 
 <span class="co">## plot module connections</span>
 <span class="fu">dev</span><span class="op">(</span><span class="op">)</span>
-<span class="fu">objectDiagram</span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/objectDiagram.html">objectDiagram</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span>
 
 <span class="co">## see which events are scheduled</span>
-<span class="fu">events</span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simList-accessors-events.html">events</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span></code></pre></div>
 <p>You’ll note that <code>SpaDES</code> has scheduled the initialisation events for each module.</p>
 </div>
 <div id="running-a-spades-simulation" class="section level4">
@@ -406,13 +406,13 @@ Because models are not just for modellers, a shiny app building package is being
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">dev</span><span class="op">(</span><span class="op">)</span> <span class="co"># to open a new plot device for faster plotting</span>
 <span class="fu">clearPlot</span><span class="op">(</span><span class="op">)</span>
-<span class="va">mySim2</span> <span class="op">&lt;-</span> <span class="fu">spades</span><span class="op">(</span><span class="va">mySim</span>, debug <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>   <span class="co"># set debug = TRUE to print simulation steps.</span>
+<span class="va">mySim2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/spades.html">spades</a></span><span class="op">(</span><span class="va">mySim</span>, debug <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>   <span class="co"># set debug = TRUE to print simulation steps.</span>
 
 <span class="co">## After running the simulation, we can print the event diagram, the completed events and the scheduled events</span>
-<span class="fu">eventDiagram</span><span class="op">(</span><span class="va">mySim2</span><span class="op">)</span>
-<span class="fu">completed</span><span class="op">(</span><span class="va">mySim2</span><span class="op">)</span>
-<span class="fu">events</span><span class="op">(</span><span class="va">mySim2</span><span class="op">)</span></code></pre></div>
-<p><img src="images/Day01/LCC2005_plot.png" align="middle" height="400" width="400" margin="0 auto"></p>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/eventDiagram.html">eventDiagram</a></span><span class="op">(</span><span class="va">mySim2</span><span class="op">)</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simList-accessors-events.html">completed</a></span><span class="op">(</span><span class="va">mySim2</span><span class="op">)</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simList-accessors-events.html">events</a></span><span class="op">(</span><span class="va">mySim2</span><span class="op">)</span></code></pre></div>
+<p><img src="../../../../../../Eliot/GitHub/SpaDES.Workshops/vignettes/images/Day01/LCC2005_plot.png" align="middle" height="400" width="400" margin="0 auto"></p>
 </div>
 <div id="change-model-parameters-without-restarting" class="section level4">
 <h4 class="hasAnchor">
@@ -420,17 +420,17 @@ Because models are not just for modellers, a shiny app building package is being
 <p>With <code>SpaDES</code> it is possible to change a simulations’ parameters and then continue running it. This is possible because, even though the simulation stopped at year 20, <code>SpaDES</code> has scheduled the “next” events (see the result of the <code>events</code> call above). Find out more about events and event scheduling <a href="http://spades-workshops.predictiveecology.org/articles/05d-Loops-to-Events.html">here</a>.</p>
 <p>What will happen if drought intensity increases and fires become more frequent?</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/start.html">end</a></span><span class="op">(</span><span class="va">mySim2</span><span class="op">)</span>    <span class="co">## accesses the last year</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/start.html">end</a></span><span class="op">(</span><span class="va">mySim2</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">50</span>   <span class="co">## add another 30 years to the end of the simulation. </span>
+<code class="sourceCode R"><span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simList-accessors-times.html">end</a></span><span class="op">(</span><span class="va">mySim2</span><span class="op">)</span>    <span class="co">## accesses the last year</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simList-accessors-times.html">end</a></span><span class="op">(</span><span class="va">mySim2</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">50</span>   <span class="co">## add another 30 years to the end of the simulation. </span>
                     <span class="co">## Alternatively use end(mySim2) &lt;- end(mySim2) + 30</span>
 
-<span class="fu">params</span><span class="op">(</span><span class="va">mySim2</span><span class="op">)</span><span class="op">$</span><span class="va">fireSpreadLcc</span><span class="op">$</span><span class="va">drought</span>   <span class="co">## accesses the current drought parameter value</span>
-<span class="fu">params</span><span class="op">(</span><span class="va">mySim2</span><span class="op">)</span><span class="op">$</span><span class="va">fireSpreadLcc</span><span class="op">$</span><span class="va">drought</span> <span class="op">&lt;-</span> <span class="fl">3</span>   <span class="co">## changes it</span>
-<span class="fu">params</span><span class="op">(</span><span class="va">mySim2</span><span class="op">)</span><span class="op">$</span><span class="va">fireSpreadLcc</span><span class="op">$</span><span class="va">returnInterval</span>  <span class="co">## accesses the current fire return interval value</span>
-<span class="fu">params</span><span class="op">(</span><span class="va">mySim2</span><span class="op">)</span><span class="op">$</span><span class="va">fireSpreadLcc</span><span class="op">$</span><span class="va">returnInterval</span> <span class="op">&lt;-</span> <span class="fl">1</span>  <span class="co">## changes it</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/params.html">params</a></span><span class="op">(</span><span class="va">mySim2</span><span class="op">)</span><span class="op">$</span><span class="va">fireSpreadLcc</span><span class="op">$</span><span class="va">drought</span>   <span class="co">## accesses the current drought parameter value</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/params.html">params</a></span><span class="op">(</span><span class="va">mySim2</span><span class="op">)</span><span class="op">$</span><span class="va">fireSpreadLcc</span><span class="op">$</span><span class="va">drought</span> <span class="op">&lt;-</span> <span class="fl">3</span>   <span class="co">## changes it</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/params.html">params</a></span><span class="op">(</span><span class="va">mySim2</span><span class="op">)</span><span class="op">$</span><span class="va">fireSpreadLcc</span><span class="op">$</span><span class="va">returnInterval</span>  <span class="co">## accesses the current fire return interval value</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/params.html">params</a></span><span class="op">(</span><span class="va">mySim2</span><span class="op">)</span><span class="op">$</span><span class="va">fireSpreadLcc</span><span class="op">$</span><span class="va">returnInterval</span> <span class="op">&lt;-</span> <span class="fl">1</span>  <span class="co">## changes it</span>
 
 <span class="fu">clearPlot</span><span class="op">(</span><span class="op">)</span>
-<span class="va">mySim3</span> <span class="op">&lt;-</span> <span class="fu">spades</span><span class="op">(</span><span class="va">mySim2</span>, debug <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">mySim3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/spades.html">spades</a></span><span class="op">(</span><span class="va">mySim2</span>, debug <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/stats/time.html">time</a></span><span class="op">(</span><span class="va">mySim2</span><span class="op">)</span> <span class="co">## "current" time (i.e. the time at which the simulation finished)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/time.html">time</a></span><span class="op">(</span><span class="va">mySim3</span><span class="op">)</span></code></pre></div>
@@ -441,10 +441,10 @@ Because models are not just for modellers, a shiny app building package is being
 <p>The second part of our question was to investigate how forest fires may affect harvesting. The <code>LCC2005</code> module group does not contain any module that we can use for this, but that’s OK, because we can get modules from other Git repositories.</p>
 <p>We will use an <em>extremely</em> simple module that maps areas that are adequate for forest harvesting in function of forest age (a parameter that the user inputs) and the type of forest that can be harvested (here, only coniferous forests). This module, called <code>forestHarvest</code>, will be downloaded from a different repository “CeresBarros/forestHarvest-SpaDESmodule”. Learn more about downloading and sharing modules <a href="http://spades-workshops.predictiveecology.org/articles/03a-Existing-modules.html">here</a>.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">downloadModule</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"forestHarvest"</span>, repo <span class="op">=</span> <span class="st">"CeresBarros/forestHarvest-SpaDESmodule"</span>, path <span class="op">=</span> <span class="fu">getPaths</span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">modulePath</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://spades-core.predictiveecology.org//reference/downloadModule.html">downloadModule</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"forestHarvest"</span>, repo <span class="op">=</span> <span class="st">"CeresBarros/forestHarvest-SpaDESmodule"</span>, path <span class="op">=</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/setPaths.html">getPaths</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">modulePath</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="co">## We've defined the paths earlier </span>
-<span class="va">paths</span> <span class="op">&lt;-</span> <span class="fu">getPaths</span><span class="op">(</span><span class="op">)</span>
+<span class="va">paths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/setPaths.html">getPaths</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="va">modules</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"cropReprojectLccAge"</span>, <span class="st">"fireSpreadLcc"</span>, <span class="st">"forestAge"</span>, <span class="st">"forestSuccessionBeacons"</span>, <span class="st">"LccToBeaconsReclassify"</span>, <span class="st">"forestHarvest"</span><span class="op">)</span>
 
@@ -465,17 +465,17 @@ Because models are not just for modellers, a shiny app building package is being
 <span class="op">)</span>
 
 <span class="co">## make simulation object</span>
-<span class="va">mySim_manag</span> <span class="op">&lt;-</span> <span class="fu">simInit</span><span class="op">(</span>times <span class="op">=</span> <span class="va">times</span>, params <span class="op">=</span> <span class="va">parameters</span>,
+<span class="va">mySim_manag</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simInit.html">simInit</a></span><span class="op">(</span>times <span class="op">=</span> <span class="va">times</span>, params <span class="op">=</span> <span class="va">parameters</span>,
                        modules <span class="op">=</span> <span class="va">modules</span>,
                        objects <span class="op">=</span> <span class="va">objects</span>, paths <span class="op">=</span> <span class="va">paths</span><span class="op">)</span>
 <span class="fu">dev</span><span class="op">(</span><span class="op">)</span>
-<span class="fu">moduleDiagram</span><span class="op">(</span><span class="va">mySim_manag</span><span class="op">)</span>
-<span class="fu">objectDiagram</span><span class="op">(</span><span class="va">mySim_manag</span><span class="op">)</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/moduleDiagram.html">moduleDiagram</a></span><span class="op">(</span><span class="va">mySim_manag</span><span class="op">)</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/objectDiagram.html">objectDiagram</a></span><span class="op">(</span><span class="va">mySim_manag</span><span class="op">)</span>
 
 <span class="fu">dev</span><span class="op">(</span><span class="op">)</span>
 <span class="fu">clearPlot</span><span class="op">(</span><span class="op">)</span>
-<span class="va">mySim_manag2</span> <span class="op">&lt;-</span> <span class="fu">spades</span><span class="op">(</span><span class="va">mySim_manag</span>, debug <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
-<p><img src="images/Day01/LCC2005harvest_plot.png" align="middle" height="400" width="400" margin="0 auto"></p>
+<span class="va">mySim_manag2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/spades.html">spades</a></span><span class="op">(</span><span class="va">mySim_manag</span>, debug <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<p><img src="../../../../../../Eliot/GitHub/SpaDES.Workshops/vignettes/images/Day01/LCC2005harvest_plot.png" align="middle" height="400" width="400" margin="0 auto"></p>
 </div>
 <div id="choose-to-save-outputs-without-changing-module-code" class="section level4">
 <h4 class="hasAnchor">
@@ -483,39 +483,39 @@ Because models are not just for modellers, a shiny app building package is being
 <p>It is possible to set <code>SpaDES</code> to save particular objects at a user-defined interval. For this, we need to change the <code>simInit</code> call to include the <code>outputs</code> parameter, where we define the objects to be saved, the saving interval, etc. Check the <code>R</code> help for <code>simInit</code> for more details.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Change simInit to include the outputs options</span>
-<span class="va">mySim_manag</span> <span class="op">&lt;-</span> <span class="fu">simInit</span><span class="op">(</span>times <span class="op">=</span> <span class="va">times</span>, params <span class="op">=</span> <span class="va">parameters</span>,
+<span class="va">mySim_manag</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simInit.html">simInit</a></span><span class="op">(</span>times <span class="op">=</span> <span class="va">times</span>, params <span class="op">=</span> <span class="va">parameters</span>,
                        modules <span class="op">=</span> <span class="va">modules</span>,
                        objects <span class="op">=</span> <span class="va">objects</span>, paths <span class="op">=</span> <span class="va">paths</span>,
                        outputs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>objectName <span class="op">=</span> <span class="st">"ageMap"</span>, saveTime <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">50</span>, by <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co">## Re-run the model</span>
 <span class="fu">dev</span><span class="op">(</span><span class="op">)</span>
 <span class="fu">clearPlot</span><span class="op">(</span><span class="op">)</span>
-<span class="va">mySim_manag2</span> <span class="op">&lt;-</span> <span class="fu">spades</span><span class="op">(</span><span class="va">mySim_manag</span>, debug <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">mySim_manag2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/spades.html">spades</a></span><span class="op">(</span><span class="va">mySim_manag</span>, debug <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="co">## Print the list of saved outputs</span>
-<span class="fu">outputs</span><span class="op">(</span><span class="va">mySim_manag2</span><span class="op">)</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simList-accessors-outputs.html">outputs</a></span><span class="op">(</span><span class="va">mySim_manag2</span><span class="op">)</span>
 
 <span class="co">## Read the first object (two)</span>
-<span class="va">ageMap01</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="fu">outputs</span><span class="op">(</span><span class="va">mySim_manag2</span><span class="op">)</span><span class="op">$</span><span class="va">file</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>
+<span class="va">ageMap01</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simList-accessors-outputs.html">outputs</a></span><span class="op">(</span><span class="va">mySim_manag2</span><span class="op">)</span><span class="op">$</span><span class="va">file</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>
 
 <span class="co">## Now you can visualise the saved map in any way you want</span>
 <span class="fu">dev</span><span class="op">(</span><span class="op">)</span>
 <span class="fu">clearPlot</span><span class="op">(</span><span class="op">)</span>
 <span class="fu">Plot</span><span class="op">(</span><span class="va">ageMap01</span>, title <span class="op">=</span> <span class="st">"Stand age"</span><span class="op">)</span>
 <span class="va">tble</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">ageMap01</span><span class="op">[</span><span class="op">]</span><span class="op">)</span>
-<span class="va">frq</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">tble</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">frq</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"ageClass"</span>
+<span class="va">frq</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">tble</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/names.html">names</a></span><span class="op">(</span><span class="va">frq</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"ageClass"</span>
 <span class="va">frq</span> <span class="co"># Frequency of age distribution</span>
 
-<span class="va">hst</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">ageMap01</span><span class="op">[</span><span class="op">]</span><span class="op">)</span>
+<span class="va">hst</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/hist.html">hist</a></span><span class="op">(</span><span class="va">ageMap01</span><span class="op">[</span><span class="op">]</span><span class="op">)</span>
 <span class="fu">Plot</span><span class="op">(</span><span class="va">hst</span>, title <span class="op">=</span> <span class="st">"Age distribution"</span><span class="op">)</span></code></pre></div>
 <p>Are there fewer areas that are appropriate for harvesting if fires become larger (i.e. drought is more severe)?</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/start.html">end</a></span><span class="op">(</span><span class="va">mySim_manag2</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">100</span>
-<span class="fu">params</span><span class="op">(</span><span class="va">mySim_manag2</span><span class="op">)</span><span class="op">$</span><span class="va">fireSpreadLcc</span><span class="op">$</span><span class="va">drought</span> <span class="op">&lt;-</span> <span class="fl">3</span>
+<code class="sourceCode R"><span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simList-accessors-times.html">end</a></span><span class="op">(</span><span class="va">mySim_manag2</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">100</span>
+<span class="fu"><a href="https://spades-core.predictiveecology.org//reference/params.html">params</a></span><span class="op">(</span><span class="va">mySim_manag2</span><span class="op">)</span><span class="op">$</span><span class="va">fireSpreadLcc</span><span class="op">$</span><span class="va">drought</span> <span class="op">&lt;-</span> <span class="fl">3</span>
 <span class="fu">dev</span><span class="op">(</span><span class="op">)</span>
 <span class="fu">clearPlot</span><span class="op">(</span><span class="op">)</span>
-<span class="va">mySim_manag3</span> <span class="op">&lt;-</span> <span class="fu">spades</span><span class="op">(</span><span class="va">mySim_manag2</span>, debug <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<span class="va">mySim_manag3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/spades.html">spades</a></span><span class="op">(</span><span class="va">mySim_manag2</span>, debug <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
 <div id="show-your-spades-model-to-the-world" class="section level3">

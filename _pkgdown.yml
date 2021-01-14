@@ -28,7 +28,7 @@ navbar:
       href: https://spades.predictiveecology.org/
 
 articles:
-  - title: "This is still being developed (Dec 14, 2020)"
+  - title: "This is still being developed (Jan 13, 2021)"
     desc: >
       ...
 
@@ -36,7 +36,8 @@ articles:
     desc: >
       A high-level introduction to the SpaDES framework that can help with reproducible, reusable research.
     contents:
-    - 01a-WhatIsSpades_Jan2020
+    - 01a-WhatIsSpades_Jan2021
+    - WhatIsSpades2
 
   - title: "Day 1 - Section 2: Example of SpaDES projects"
     desc: >

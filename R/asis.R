@@ -10,7 +10,8 @@ replacementList <- list(
   "exercise4b.html" = "https://htmlpreview.github.io/?https://github.com/CeresBarros/SpaDES4Dummies/blob/master/SpaDES4Dummies.html",
   "exercise4c.html" = "02a-dynamicModellingPreyPred.html",
   "exercise(.{1,2})\\.html" = "../exercises/0\\1-exercises.html",
-  "<h1>Articles</h1>" = "<h1>Content</h1>"
+  "<h1>Articles</h1>" = "<h1>Content</h1>",
+  "WhatIsSpaDES2.html" = "https://docs.google.com/presentation/d/e/2PACX-1vTgb9rkzwSr_H6orMimO8EogcIW1wE-wt826nj21GS7kOxVHTDOpWbXitXuqSS6juVgvL3W67Pmi9UQ/pub?start=false&loop=false&delayms=3000"
 )
 
 #' @details
