@@ -37,38 +37,38 @@
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">SpaDES.Workshops</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
-      </span>
+  <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    </button>
+    <span class="navbar-brand">
+    <a class="navbar-link" href="../index.html">SpaDES.Workshops</a>
+    <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+    </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
+    <ul class="nav navbar-nav">
 <li>
   <a href="../articles/index.html">2021-Jan</a>
 </li>
-<li>
+  <li>
   <a href="../articlesJan2020/index.html">2020-Jan</a>
-</li>
-<li>
+  </li>
+  <li>
   <a href="../articlesOct2019/index.html">2019-Fall</a>
-</li>
-<li>
+  </li>
+  <li>
   <a href="../articlesSept2018/index.html">2018-Fall</a>
-</li>
-<li>
+  </li>
+  <li>
   <a href="../articlesMay2018/index.html">2018-May</a>
-</li>
-<li>
+  </li>
+  <li>
   <a href="../articlesFeb2018/index.html">2018-Feb</a>
-</li>
-<li>
+  </li>
+  <li>
   <a href="http://rpubs.com/PredictiveEcology/SpaDES-Intro-Course-Outline">Prior to 2018</a>
 </li>
       </ul>
@@ -108,8 +108,8 @@
 <h2 class="hasAnchor">
 <a href="#what-is-spades-and-how-does-it-work" class="anchor"></a>What is <code>SpaDES</code> and how does it work?</h2>
 <p>Models are nowadays so important and widespread that we often don’t realize that most of what we use in our daily lives is the result of someone’s (or some team’s) model. From weather forecasting, to predicting stock market fluctuations. From the design of your bike, to the estimation of blood sugar and insulin levels and how they vary hourly and according to different diets (in case you don’t know, this can be important for diabetes treatments, and drug dosage and scheduling)… Models are indeed ‘everywhere’.</p>
-<p><img src="../../../../Users/emcintir/GitHub/SpaDES.Workshops/vignettes/images/Day01/models_everywhere.png" align="middle" height="400" width="750" margin="0 auto"></p>
-<p>So models are a representation of reality and are extremely useful because they help us predict the future. This means that they should also be constantly improveed and updated, so that our predictions are always as good as possible. This is especially important in a world where decision and policy makers need to act fast. The IPCC has been especially good at doing this. But unfortunately most of us, our teams and/or our projects do not have access to the resources that the IPCC has. <img src="../../../../Users/emcintir/GitHub/SpaDES.Workshops/vignettes/images/Day01/IPCC.gif" align="middle" height="400" width="750" margin="0 auto"></p>
+<p><img src="../../../../GitHub/SpaDES.Workshops/vignettes/images/Day01/models_everywhere.png" align="middle" height="400" width="750" margin="0 auto"></p>
+<p>So models are a representation of reality and are extremely useful because they help us predict the future. This means that they should also be constantly improveed and updated, so that our predictions are always as good as possible. This is especially important in a world where decision and policy makers need to act fast. The IPCC has been especially good at doing this. But unfortunately most of us, our teams and/or our projects do not have access to the resources that the IPCC has. <img src="../../../../GitHub/SpaDES.Workshops/vignettes/images/Day01/IPCC.gif" align="middle" height="400" width="750" margin="0 auto"></p>
 </div>
 <div id="challenges-modellers-face" class="section level2">
 <h2 class="hasAnchor">
@@ -125,7 +125,7 @@
 </ul>
 </li>
 </ol>
-<p><img src="../../../../Users/emcintir/GitHub/SpaDES.Workshops/vignettes/images/Day01/many_models_low_integration.png" align="middle" width="300"></p>
+<p><img src="../../../../GitHub/SpaDES.Workshops/vignettes/images/Day01/many_models_low_integration.png" align="middle" width="300"></p>
 <ol start="2" style="list-style-type: decimal">
 <li>
 <strong>High complexity</strong>
@@ -134,7 +134,7 @@
 </ul>
 </li>
 </ol>
-<p><img src="../../../../Users/emcintir/GitHub/SpaDES.Workshops/vignettes/images/Day01/High_complexity.png" align="middle" width="300"></p>
+<p><img src="../../../../GitHub/SpaDES.Workshops/vignettes/images/Day01/High_complexity.png" align="middle" width="300"></p>
 <ol start="3" style="list-style-type: decimal">
 <li>
 <strong>Era of <em>big data</em> </strong>
@@ -144,7 +144,7 @@
 </ul>
 </li>
 </ol>
-<p><img src="../../../../Users/emcintir/GitHub/SpaDES.Workshops/vignettes/images/Day01/Big_data_modelupdates.png" align="right" width="200"></p>
+<p><img src="../../../../GitHub/SpaDES.Workshops/vignettes/images/Day01/Big_data_modelupdates.png" align="right" width="200"></p>
 <ol start="4" style="list-style-type: decimal">
 <li>
 <strong>Reproducibility and transparency</strong>
@@ -160,7 +160,7 @@
 <h2 class="hasAnchor">
 <a href="#how-do-we-tackle-these-issues---the-perfict-approach" class="anchor"></a>How do we tackle these issues? -&gt; the <strong>PERFICT</strong> approach</h2>
 <p>Tackling these issues will require that our ecological (and other) models are PERFICT; they need to be <strong>Reusable</strong>, <strong>Freely available</strong>, and built on <strong>Interoperable models</strong> that are part of a <strong>Continuous workflow</strong> and <strong>Tested automatically</strong>. This goes beyond transparency, reproducibility and data availability. All of these are necessary to develop reusable and interoperable models that are durable and useful.</p>
-<p><img src="../../../../Users/emcintir/GitHub/SpaDES.Workshops/vignettes/images/Day01/PERFICT.png" align="right" width="200"></p>
+<p><img src="../../../../GitHub/SpaDES.Workshops/vignettes/images/Day01/PERFICT.png" align="right" width="200"></p>
 <p>Unfortunately, these principles are only seldomly applied across the scientific community.</p>
 <p>Why? Because we are yet far from developing our research in a way that is easily repeatable, “upgradeable” and shareable. This renders the application of the continuous adaptive management framework costly, both temporally and financially, especially in interdisciplinary projects that involve multiple teams and stakeholders. It also requires a relatively high level of programming skills to implement such a framework.</p>
 </div>
@@ -209,7 +209,7 @@
 <p>We can build functions and collect them into <em>packages</em> –&gt; GOOD!</p>
 <p>But, this approach hits a limit –&gt; how can another person (including yourself) reuse one piece of that?</p>
 <p><strong>But, we still are stuck as things start to get more complicated:</strong></p>
-<p><img src="../../../../Users/emcintir/GitHub/SpaDES.Workshops/vignettes/images/Functions%20models%20Lego.jpg" align="left" width="500"></p>
+<p><img src="../../../../GitHub/SpaDES.Workshops/vignettes/images/Functions%20models%20Lego.jpg" align="left" width="500"></p>
 <div id="the-next-frontier-is-reusability" class="section level3">
 <h3 class="hasAnchor">
 <a href="#the-next-frontier-is-reusability" class="anchor"></a>The next frontier is <em>reusability</em>
@@ -220,7 +220,7 @@
 1. <code>SpaDES</code> is written in <code>R</code>: a widely understood programming language, highly suited to statistical analyses, but flexible and fast enough to accommodate simulation work;<br>
 2. <code>SpaDES</code> can be used for a wide-range of modelling approaches: + process-based models; + phenomenological models; + spatially-explicit models; + … 3. <code>SpaDES</code> models are built of <em>modules</em>, i.e. self-contained, interacting pieces that execute a particular <em>event</em>, or process in the model. Modules communicate via <em>data-flow</em> and module events are scheduled automatically <em>across temporal scales</em>. Finally, <code>SpaDES</code> offers several functions to enable direct connections between modules and data sources and facilitate data downloading, munging and caching operations. 4. <code>SpaDES</code> modules can be made available across the entire <code>R</code> community if module-developers wish it so;</p>
 <p>In its whole, <code>SpaDES</code> bridges the gaps between modellers and model-users of different disciplines, between scientists, practitioners, managers, stakeholders and policy makers, and between scientists and the general public.</p>
-<p><img src="../../../../Users/emcintir/GitHub/SpaDES.Workshops/vignettes/images/Day01/programmers2practicioners.png" align="right" width="200"></p>
+<p><img src="../../../../GitHub/SpaDES.Workshops/vignettes/images/Day01/programmers2practicioners.png" align="right" width="200"></p>
 </div>
 </div>
 <div id="spades-is-more-than-a-simulation-platform" class="section level2">
@@ -229,14 +229,14 @@
 <p>There are other platforms that are well suited to build simulation models, such as <em>NetLogo</em>, which is dedicated to building Individual Based Models, <em>SELES</em> and many more. These are generic platforms that can accommodate a lot of science creativity – often the focus is on model development.</p>
 <p>There are other platforms that are will suited for using pre-existing simulation models, such as <em>Landis</em>. These are very effective at stand alone forecasting – the work of the user is focused on parameterization, rather than model development.</p>
 <p><code>SpaDES</code> is a platform than can accommodate all of these, because it is focused about “doing anything you want with data”. This flexibility can come with a price: if we can do anything, do we have to learn how to do everything?</p>
-<p><img src="../../../../Users/emcintir/GitHub/SpaDES.Workshops/vignettes/images/Interacting%20modules%20with%20reusability.png" align="right" width="1000"></p>
+<p><img src="../../../../GitHub/SpaDES.Workshops/vignettes/images/Interacting%20modules%20with%20reusability.png" align="right" width="1000"></p>
 </div>
 <div id="an-example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#an-example" class="anchor"></a><strong>An example</strong>
 </h2>
 <p>Imagine we want to know how logging will impact caribou populations. We could model this with have a predictive landscape model of caribou movement and abundances, which is linked to a landscape vegetation module, which is in turn coupled to a harvesting module. The caribou module would have events like calving and movement, the vegetation module would simulate vegetation growth and recruitment, and the harvesting module would simulate logging events that would only can happen at certain moments in time, when the forest is “ready”. The communication between the modules would be made with data “objects”. For instance, the vegetation module feeds the caribou module with lichen abundance, and the caribou module then feeds back by consuming lichen. The vegetation module also informs the harvesting module of stand age, while the harvesting module removes a certain amount of trees from the system. As developers we would inform SpaDES of when to schedule these events, and <code>SpaDES</code> would do it automatically by converting all time units to a common denominator, seconds. So even if the timescales of the modules differ, say the harvesting module operates in decades and the others monthly, the scheduling is done in the appropriate order. Finally, <em>ideally</em> each module would have access to the raw data sources that it needs to create the parameters and objects that ir requires to run.</p>
-<p><img src="../../../../Users/emcintir/GitHub/SpaDES.Workshops/vignettes/images/Day01/SpaDESmodulesEg.png" align="right" width="300"></p>
+<p><img src="../../../../GitHub/SpaDES.Workshops/vignettes/images/Day01/SpaDESmodulesEg.png" align="right" width="300"></p>
 <p>Provided that modules are able to download, read and treat data adequately, updating the simulations for new data becomes easier, using functions from the <code>reproducible</code> package, which enable caching model structure, parameters and simulation results. This way, the user only needs to make sure the module has access to the new data sources, and these functions will re-run the bits of the model that are affected by these changes.</p>
 </div>
   </div>
