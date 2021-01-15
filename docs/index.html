@@ -38,19 +38,19 @@
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-  <span class="sr-only">Toggle navigation</span>
-    <span class="icon-bar"></span>
-    <span class="icon-bar"></span>
-    <span class="icon-bar"></span>
-    </button>
-    <span class="navbar-brand">
-    <a class="navbar-link" href="../index.html">SpaDES.Workshops</a>
-    <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
-    </span>
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="index.html">SpaDES.Workshops</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+      </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
-    <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav">
 <li>
   <a href="articles/index.html">2021-Jan</a>
 </li>
@@ -158,14 +158,17 @@ installSpaDES()</a></code></pre>
 #  install.packages("igraph", type = "source", repos = "https://cran.rstudio.com") # igraph needs to be installed from source
 #install.packages("SpaDES", dependencies = TRUE) # we want to install Suggests also, thus "TRUE"</code></pre>
 </div>
-<div id="rtools" class="section level3">
+<div id="install-rtools-if-you-dont-have-it" class="section level3">
 <h3 class="hasAnchor">
-<a href="#rtools" class="anchor"></a>Rtools</h3>
+<a href="#install-rtools-if-you-dont-have-it" class="anchor"></a><a href="https://cran.r-project.org/bin/windows/Rtools/">Install Rtools</a> if you don’t have it</h3>
 <p>We will need some extra tools, known as Rtools, to build some SpaDES modules and non-standard packages.</p>
 <p>If you don’t have it installed and functioning already, then you will have to install it. You can use the instructions here for <a href="https://cran.r-project.org/bin/windows/Rtools/">Windows</a>.</p>
-<p>Test it with this:</p>
+<p>Test it with this next line. If it shows a “non-empty” path, then you have what you need for the workshop.</p>
 <pre><code><a href="https://rdrr.io/r/base/Sys.which.html">Sys.which("make")</a></code></pre>
-<p>Sometimes the packages on your computer may collide with the packages being installed. If this happens, and errors occur. Try the previous lines again. If the above lines showed no errors, then you can stop here; no need to proceed with installation below.</p>
+<p>If it shows something like this:</p>
+<pre><code>make
+  ""</code></pre>
+<p>Then you will have to debug your Rtools installation using the internet as your friend.</p>
 </div>
 <div id="it-may-be-more-reliable-to-put-all-packages-in-their-own-directory-for-the-workshop" class="section level3">
 <h3 class="hasAnchor">
@@ -230,8 +233,8 @@ Error: HTTP error 403.
   (...)</code></pre>
 <p>The error should provide the solution to fixing this problem, but if for some reason you don’t find these instructions, here they are:</p>
 <ul>
-<li>Use <code><a href="https://usethis.r-lib.org/reference/usethis-defunct.html">usethis::browse_github_pat()</a></code> to create a GitHub token</li>
-<li>Use <code><a href="https://usethis.r-lib.org/reference/edit.html">usethis::edit_r_environ()</a></code> and add the environment variable with <code>GITHUB_PAT = 'your_github_token'</code>. Restart R (so that the GITHUB_PAT is read) and try to reinstall: <code><a href="https://devtools.r-lib.org//reference/remote-reexports.html">devtools::install_github(...)</a></code>
+<li>Use <code>usethis::browse_github_pat()</code> to create a GitHub token</li>
+<li>Use <code>usethis::edit_r_environ()</code> and add the environment variable with <code>GITHUB_PAT = 'your_github_token'</code>. Restart R (so that the GITHUB_PAT is read) and try to reinstall: <code>devtools::install_github(...)</code>
 </li>
 </ul>
 </div>
