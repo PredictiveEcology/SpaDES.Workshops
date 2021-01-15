@@ -146,27 +146,28 @@
 <li>Install a few SpaDES modules into that folder</li>
 </ol>
 <p><em>If you are using Ubuntu Linux, please see section below for installing binary package files</em></p>
+<p><strong><a href="https://raw.githubusercontent.com/PredictiveEcology/SpaDES.Workshops/master/README.R">All the code below can be found in a single R file, which may be easier to use</a></strong></p>
 <div id="install-packages" class="section level2">
 <h2 class="hasAnchor">
 <a href="#install-packages" class="anchor"></a>Install Packages</h2>
 <ol>
 <li>Get a few helper functions (<code>installGitHubPackage</code>, <code>getModule</code>)</li>
 </ol>
-<pre><code><a href="https://rdrr.io/r/base/source.html">## Restart your R session so it is clear
+<pre class="{r}"><code><a href="https://rdrr.io/r/base/source.html">## Restart your R session so it is clear
 ## Ctrl-shift-F10 if you are in Rstudio #
 source("https://raw.githubusercontent.com/PredictiveEcology/SpaDES-modules/master/R/SpaDES_Helpers.R")</a></code></pre>
 <ol>
-<li>Install SpaDES and around 130 package dependencies</li>
+<li>Install (or update) SpaDES and around 130 package dependencies (if needed)</li>
 </ol>
-<pre><code>installSpaDES() </code></pre>
+<pre class="{r}"><code>installSpaDES() </code></pre>
 <ol>
-<li>Install latest Require to help with step 3</li>
+<li>Install latest Require to help with step 4</li>
 </ol>
-<pre><code>installGitHubPackage("PredictiveEcology/Require@development") # install latest version of Require</code></pre>
+<pre class="{r}"><code>installGitHubPackage("PredictiveEcology/Require@development") # install latest version of Require</code></pre>
 <ol>
 <li>install another 50 or so packages used by modules</li>
 </ol>
-<pre><code><a href="https://Require.predictiveecology.org/reference/Require.html">Require::Require(
+<pre class="{r}"><code><a href="https://Require.predictiveecology.org/reference/Require.html">Require::Require(
   c("PredictiveEcology/LandR",
     "PredictiveEcology/pemisc",
     "tati-micheletti/usefulFuns",
@@ -178,7 +179,7 @@ source("https://raw.githubusercontent.com/PredictiveEcology/SpaDES-modules/maste
 <h2 class="hasAnchor">
 <a href="#install-rtools-if-you-dont-have-it" class="anchor"></a><a href="https://cran.r-project.org/bin/windows/Rtools/">Install Rtools</a> if you don’t have it</h2>
 <p>Run this next line in your R console/Rstudio session. If it shows a “non-empty” path, then you have what you need for the workshop.</p>
-<pre><code><a href="https://rdrr.io/r/base/Sys.which.html">Sys.which("make")</a></code></pre>
+<pre class="{r}"><code><a href="https://rdrr.io/r/base/Sys.which.html">Sys.which("make")</a></code></pre>
 <p>If it shows something like this:</p>
 <pre><code>make
   ""</code></pre>
@@ -188,17 +189,20 @@ source("https://raw.githubusercontent.com/PredictiveEcology/SpaDES-modules/maste
 <div id="decide-on-your-folder-you-will-use-for-the-workshop" class="section level2">
 <h2 class="hasAnchor">
 <a href="#decide-on-your-folder-you-will-use-for-the-workshop" class="anchor"></a>Decide on your folder you will use for the workshop</h2>
-<pre><code>workshopPath = "~/SpaDESWorkshop"
+<pre class="{r}"><code>workshopPath = "~/SpaDESWorkshop"
 modulePath = file.path(workshopPath, "modules")</code></pre>
 </div>
 <div id="install-a-few-modules--see-wiki-of-known-modules" class="section level2">
 <h2 class="hasAnchor">
 <a href="#install-a-few-modules--see-wiki-of-known-modules" class="anchor"></a>Install a few modules – see <a href="https://github.com/PredictiveEcology/SpaDES-modules/wiki/Current-modules-in-development">Wiki of known modules</a>
 </h2>
-<pre><code># LandR Biomass modules
+<pre class="{r}"><code>if (dir.exists(modulePath)) unlink(modulePath, recursive = TRUE)
+# LandR Biomass modules (simulation modules)
 getModule("PredictiveEcology/Biomass_core", modulePath = modulePath)
-getModule("PredictiveEcology/Biomass_borealDataPrep", modulePath = modulePath)
 getModule("PredictiveEcology/Biomass_regeneration", modulePath = modulePath)
+
+# LandR Biomass modules (data preparation modules)
+getModule("PredictiveEcology/Biomass_borealDataPrep", modulePath = modulePath)
 getModule("PredictiveEcology/Biomass_speciesData", modulePath = modulePath)
 
 # SCFM fire modules
