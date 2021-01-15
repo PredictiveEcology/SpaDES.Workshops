@@ -32,10 +32,13 @@ modulePath = file.path(workshopPath, "modules")
 
 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------------------
-# LandR Biomass modules
+if (dir.exists(modulePath)) unlink(modulePath, recursive = TRUE)
+# LandR Biomass modules (simulation modules)
 getModule("PredictiveEcology/Biomass_core", modulePath = modulePath)
-getModule("PredictiveEcology/Biomass_borealDataPrep", modulePath = modulePath)
 getModule("PredictiveEcology/Biomass_regeneration", modulePath = modulePath)
+
+# LandR Biomass modules (data preparation modules)
+getModule("PredictiveEcology/Biomass_borealDataPrep", modulePath = modulePath)
 getModule("PredictiveEcology/Biomass_speciesData", modulePath = modulePath)
 
 # SCFM fire modules
