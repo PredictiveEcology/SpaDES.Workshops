@@ -53,7 +53,9 @@ dependencies <- reqdPkgs(module = modulesInstalled, modulePath = modulePath)
 scfmModulePath <- file.path(modulePath, "scfm", "modules")
 scfmModulesInstalled = dir(scfmModulePath)
 
-dependencies <- append(dependencies, reqdPkgs(module = scfmModulesInstalled, modulePath = scfmModulePath) ) 
+dependencies <- append(dependencies, 
+                       reqdPkgs(module = scfmModulesInstalled, 
+                                modulePath = scfmModulePath) ) 
 
 needed <- unique(unlist(dependencies, recursive = FALSE))
 Require::Require(needed)
