@@ -6,7 +6,8 @@ editor_options:
 
 ```{r}
 Require::Require("pkgdown")
-devtools::load_all(".")
+Require::Require("devtools")
+load_all(".")
 # source("R/asis.R") # this is not needed because of previous line
 options('reproducible.cachePath' = "cache")
 build_site(new_process = FALSE)

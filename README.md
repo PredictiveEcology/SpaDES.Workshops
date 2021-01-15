@@ -55,7 +55,7 @@ source("https://raw.githubusercontent.com/PredictiveEcology/SpaDES-modules/maste
 ```
 
 
-2. Install SpaDES and around 130 package dependencies in your Workshop folder
+2. Install (or update) SpaDES and around 130 package dependencies (if needed)
 ```{r}
 installSpaDES() 
 ```
@@ -105,10 +105,13 @@ modulePath = file.path(workshopPath, "modules")
 
 
 ```{r}
-# LandR Biomass modules
+if (dir.exists(modulePath)) unlink(modulePath, recursive = TRUE)
+# LandR Biomass modules (simulation modules)
 getModule("PredictiveEcology/Biomass_core", modulePath = modulePath)
-getModule("PredictiveEcology/Biomass_borealDataPrep", modulePath = modulePath)
 getModule("PredictiveEcology/Biomass_regeneration", modulePath = modulePath)
+
+# LandR Biomass modules (data preparation modules)
+getModule("PredictiveEcology/Biomass_borealDataPrep", modulePath = modulePath)
 getModule("PredictiveEcology/Biomass_speciesData", modulePath = modulePath)
 
 # SCFM fire modules
