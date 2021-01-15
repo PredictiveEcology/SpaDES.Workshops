@@ -120,7 +120,7 @@ getModule("PredictiveEcology/scfm", modulePath = modulePath, overwrite = TRUE)
 
 ## Install the package dependencies of those modules
 
-```{r module-packages}
+```{r}
 modulesInstalled <- dir(modulePath)
 dependencies <- reqdPkgs(module = modulesInstalled, modulePath = modulePath)  
 

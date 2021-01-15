@@ -45,7 +45,7 @@ getModule("PredictiveEcology/Biomass_speciesData", modulePath = modulePath)
 getModule("PredictiveEcology/scfm", modulePath = modulePath, overwrite = TRUE)
 
 
-## ----module-packages--------------------------------------------------------------------------------------------------------------------------------------------
+## ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 modulesInstalled <- dir(modulePath)
 dependencies <- reqdPkgs(module = modulesInstalled, modulePath = modulePath)  
 
