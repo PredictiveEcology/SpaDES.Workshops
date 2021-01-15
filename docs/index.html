@@ -223,7 +223,7 @@ scfmModulesInstalled = dir(scfmModulePath)
 
 dependencies &lt;- append(dependencies, 
                        SpaDES.core::reqdPkgs(module = scfmModulesInstalled, 
-                                          modulePath = scfmModulePath) ) 
+                                             modulePath = scfmModulePath) ) 
 
 needed &lt;- unique(unlist(dependencies, recursive = FALSE))
 Require::Require(needed)
