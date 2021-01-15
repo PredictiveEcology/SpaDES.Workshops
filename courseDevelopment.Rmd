@@ -10,6 +10,7 @@ Require::Require("devtools")
 load_all(".")
 # source("R/asis.R") # this is not needed because of previous line
 options('reproducible.cachePath' = "cache")
+knitr::purl("~/GitHub/SpaDES.Workshops/README.md")
 build_site(new_process = FALSE)
 lapply(dir("docs/exercises", full.names = TRUE, pattern = "\\.Rmd$"), function(file)
   rmarkdown::render(file, rmarkdown::html_document(toc = TRUE)))

@@ -40,6 +40,8 @@ You will need to do 4 things
 2. Install Rtools, if you don't have it
 3. Decide on a folder for everything in the workshop
 4. Install a few SpaDES modules into that folder
+    
+    4b. Install the R packages required by these modules
 
 *If you are using Ubuntu Linux, please see section below for installing binary package files*
 
