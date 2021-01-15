@@ -32,11 +32,18 @@ articles:
     desc: >
       ...
 
-  - title: "Day 1 - Section 1: What is SpaDES?"
+  - title: "What is SpaDES?"
     desc: >
       A high-level introduction to the SpaDES framework that can help with reproducible, reusable research.
     contents:
     - WhatIsSpaDES2
+
+  - title: "Day 1 - Section 2: Example of SpaDES projects"
+    desc: >
+      Here we present some of the projects that used SpaDES and its tools
+    contents:
+    - 10b-NWT
+    - 10a-LandWeb
 
   - title: "Day 1 - Section 2: Example of SpaDES projects"
     desc: >

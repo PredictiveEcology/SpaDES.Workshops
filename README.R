@@ -42,5 +42,20 @@ getModule("PredictiveEcology/Biomass_borealDataPrep", modulePath = modulePath)
 getModule("PredictiveEcology/Biomass_speciesData", modulePath = modulePath)
 
 # SCFM fire modules
-getModule("PredictiveEcology/scfm", modulePath = modulePath)
+getModule("PredictiveEcology/scfm", modulePath = modulePath, overwrite = TRUE)
+
+
+## ----module-packages--------------------------------------------------------------------------------------------------------------------------------------------
+modulesInstalled <- dir(modulePath)
+dependencies <- reqdPkgs(module = modulesInstalled, modulePath = modulePath)  
+
+# scfm is actually a collection of modules... the modules are nested in folders
+scfmModulePath <- file.path(modulePath, "scfm", "modules")
+scfmModulesInstalled = dir(scfmModulePath)
+
+dependencies <- append(dependencies, reqdPkgs(module = scfmModulesInstalled, modulePath = scfmModulePath) ) 
+
+needed <- unique(unlist(dependencies, recursive = FALSE))
+Require::Require(needed)
+
 
