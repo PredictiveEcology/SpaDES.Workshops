@@ -46,24 +46,24 @@ You will need to do 4 things
 ## Install Packages
 
 1. Get a few helper functions (`installGitHubPackage`, `getModule`)
-```
+```{r}
 ## Restart your R session so it is clear
 ## Ctrl-shift-F10 if you are in Rstudio #
 source("https://raw.githubusercontent.com/PredictiveEcology/SpaDES-modules/master/R/SpaDES_Helpers.R")
 ```
 
-2. Install SpaDES and around 130 package dependencies
-```
-installSpaDES() 
-```
-
-3. Install latest Require to help with step 3
-```
+2. Install latest Require to help with step 3
+```{r}
 installGitHubPackage("PredictiveEcology/Require@development") # install latest version of Require
 ```
 
-4. install another 50 or so packages used by modules
+3. Install SpaDES and around 130 package dependencies in your Workshop folder
+```{r}
+installSpaDES() 
 ```
+
+4. install another 50 or so packages used by modules
+```{r}
 Require::Require(
   c("PredictiveEcology/LandR",
     "PredictiveEcology/pemisc",
@@ -78,7 +78,7 @@ Require::Require(
 
 Run this next line in your R console/Rstudio session. 
 If it shows a "non-empty" path, then you have what you need for the workshop.
-```
+```{r}
 Sys.which("make")
 ```
 If it shows something like this: 
@@ -93,7 +93,7 @@ You can use the instructions here for [Windows](https://cran.r-project.org/bin/w
 
 ## Decide on your folder you will use for the workshop
 
-```
+```{r}
 workshopPath = "~/SpaDESWorkshop"
 modulePath = file.path(workshopPath, "modules")
 ```
@@ -101,7 +101,7 @@ modulePath = file.path(workshopPath, "modules")
 ## Install a few modules -- see [Wiki of known modules](https://github.com/PredictiveEcology/SpaDES-modules/wiki/Current-modules-in-development)
 
 
-```
+```{r}
 # LandR Biomass modules
 getModule("PredictiveEcology/Biomass_core", modulePath = modulePath)
 getModule("PredictiveEcology/Biomass_borealDataPrep", modulePath = modulePath)
