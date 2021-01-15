@@ -58,6 +58,6 @@ dependencies <- append(dependencies,
                                              modulePath = scfmModulePath) ) 
 
 needed <- unique(unlist(dependencies, recursive = FALSE))
-Require::Require(needed)
+Require::Require(needed, require = FALSE) # just install them, don't 'require()' them
 
 
