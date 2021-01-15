@@ -75,7 +75,7 @@ installGitHubPackage("PredictiveEcology/Require@development") # install latest v
 4. install another 50 or so packages used by modules
 ```{r}
 Require::Require(
-  c("PredictiveEcology/LandR",
+  c("PredictiveEcology/LandR@development",
     "PredictiveEcology/pemisc",
     "tati-micheletti/usefulFuns",
     "achubaty/amc@development"), 
