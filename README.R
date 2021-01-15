@@ -47,14 +47,14 @@ getModule("PredictiveEcology/scfm", modulePath = modulePath, overwrite = TRUE)
 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 modulesInstalled <- dir(modulePath)
-dependencies <- reqdPkgs(module = modulesInstalled, modulePath = modulePath)  
+dependencies <- Require::reqdPkgs(module = modulesInstalled, modulePath = modulePath)  
 
 # scfm is actually a collection of modules... the modules are nested in folders
 scfmModulePath <- file.path(modulePath, "scfm", "modules")
 scfmModulesInstalled = dir(scfmModulePath)
 
 dependencies <- append(dependencies, 
-                       reqdPkgs(module = scfmModulesInstalled, 
+                       Require::reqdPkgs(module = scfmModulesInstalled, 
                                 modulePath = scfmModulePath) ) 
 
 needed <- unique(unlist(dependencies, recursive = FALSE))
