@@ -43,7 +43,7 @@ You will need to do 4 things
 
 *If you are using Ubuntu Linux, please see section below for installing binary package files*
 
-**[All the code below can be found in a single R file, which may be easier to use](source("https://raw.githubusercontent.com/PredictiveEcology/SpaDES.Workshops/master/R/README.R"))**
+**[All the code below can be found in a single R file, which may be easier to use](https://raw.githubusercontent.com/PredictiveEcology/SpaDES.Workshops/master/R/README.R)**
 
 ## Install Packages
 
