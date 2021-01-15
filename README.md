@@ -43,7 +43,7 @@ You will need to do 4 things
 
 *If you are using Ubuntu Linux, please see section below for installing binary package files*
 
-**[All the code below can be found in a single R file, which may be easier to use](https://raw.githubusercontent.com/PredictiveEcology/SpaDES.Workshops/master/R/README.R)**
+**[All the code below can be found in a single R file, which may be easier to use](https://raw.githubusercontent.com/PredictiveEcology/SpaDES.Workshops/master/README.R)**
 
 ## Install Packages
 
@@ -54,14 +54,15 @@ You will need to do 4 things
 source("https://raw.githubusercontent.com/PredictiveEcology/SpaDES-modules/master/R/SpaDES_Helpers.R")
 ```
 
-2. Install latest Require to help with step 3
-```{r}
-installGitHubPackage("PredictiveEcology/Require@development") # install latest version of Require
-```
 
-3. Install SpaDES and around 130 package dependencies in your Workshop folder
+2. Install SpaDES and around 130 package dependencies in your Workshop folder
 ```{r}
 installSpaDES() 
+```
+
+3. Install latest Require to help with step 4
+```{r}
+installGitHubPackage("PredictiveEcology/Require@development") # install latest version of Require
 ```
 
 4. install another 50 or so packages used by modules

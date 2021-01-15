@@ -5,11 +5,11 @@ source("https://raw.githubusercontent.com/PredictiveEcology/SpaDES-modules/maste
 
 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------------------
-installGitHubPackage("PredictiveEcology/Require@development") # install latest version of Require
+installSpaDES() 
 
 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------------------
-installSpaDES() 
+installGitHubPackage("PredictiveEcology/Require@development") # install latest version of Require
 
 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------------------
