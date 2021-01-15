@@ -15,7 +15,7 @@ installGitHubPackage("PredictiveEcology/Require@development") # install latest v
 ## ---------------------------------------------------------------------------------------------------------
 Require::Require(
   c("PredictiveEcology/LandR@development",
-    "PredictiveEcology/pemisc",
+    "PredictiveEcology/pemisc@development",
     "tati-micheletti/usefulFuns",
     "achubaty/amc@development"), 
   upgrade = "never", 
