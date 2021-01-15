@@ -19,3 +19,12 @@ lapply(dir("docs/exercises", full.names = TRUE, pattern = "\\.Rmd$"), function(f
 replaceRemoteLinksInArticles(replacementList, c("", "articles"))
 replaceRemoteLinksMultiline(replacementStarts, replacementEnds, c("", "articles", "articlesJan2020", "articlesFeb2018", "articlesMay2018", "articlesSept2018", "articlesOct2019"))
 ```
+
+For local only
+```{r}
+Require::Require("pkgdown")
+devtools::load_all(".")
+options('reproducible.cachePath' = "cache")
+build_site(new_process = FALSE)
+replaceRemoteLinksInArticles(replacementList, c("", "articles"))
+```

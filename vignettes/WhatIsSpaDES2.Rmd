@@ -1,5 +1,5 @@
 ---
-title: "WhatIsSpaDES2"
+title: "Introduction to SpaDES as a tool for decision making in Ecology"
 author: "Eliot McIntire"
 date: "2021 January 13"
 editor_options:
@@ -10,3 +10,4 @@ editor_options:
 knitr::opts_chunk$set(cache = TRUE, echo = TRUE, eval = FALSE)
 ```
 
+Hello

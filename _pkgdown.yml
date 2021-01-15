@@ -36,8 +36,7 @@ articles:
     desc: >
       A high-level introduction to the SpaDES framework that can help with reproducible, reusable research.
     contents:
-    - 01a-WhatIsSpades_Jan2021
-    - WhatIsSpades2
+    - WhatIsSpaDES2
 
   - title: "Day 1 - Section 2: Example of SpaDES projects"
     desc: >
@@ -52,6 +51,7 @@ articles:
       This is an example of module integration using SpaDES
     contents:
     - 03c-SpaDESInAction
+    - SpaDESInActionGoogleDrive
 
   - title: "Day 2 - Section 4: Basic concepts to get you started"
     desc: |

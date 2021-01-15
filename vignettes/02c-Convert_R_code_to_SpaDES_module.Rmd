@@ -15,7 +15,7 @@ knitr::opts_chunk$set(cache = TRUE, echo = TRUE, eval = FALSE)
 
 # Converting R code to SpaDES module
 
-## An "establishment" model
+## An "tree seedling establishment" model
 
 We can imagine a set of sources (*e.g.*, trees with seeds) and a map of "quality" which will affect whether the things (*e.g.*, seeds) will land and establish. 
 

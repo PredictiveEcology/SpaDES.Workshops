@@ -145,13 +145,28 @@
 <div id="the-simplest-way--install-from-cran" class="section level2">
 <h2 class="hasAnchor">
 <a href="#the-simplest-way--install-from-cran" class="anchor"></a>The simplest way – Install from CRAN:</h2>
-<pre><code><a href="https://rdrr.io/r/utils/update.packages.html">## Restart your R session so it is clear
+<pre><code><a href="https://rdrr.io/r/base/source.html">## Restart your R session so it is clear
 ## Ctrl-shift-F10 if you are in Rstudio #
-update.packages(checkBuilt = TRUE, ask = FALSE)
-if (!identical("windows", .Platform$OS.type) &amp;&amp; !require(igraph)) 
-  install.packages("igraph", type = "source", repos = "https://cran.rstudio.com") # igraph needs to be installed from source
-install.packages("SpaDES", dependencies = TRUE) # we want to install Suggests also, thus "TRUE"</a></code></pre>
+source("https://raw.githubusercontent.com/PredictiveEcology/SpaDES-modules/master/R/SpaDES_Helpers.R")
+installSpaDES()</a></code></pre>
+<div id="alternatively-you-can-use-this" class="section level4">
+<h4 class="hasAnchor">
+<a href="#alternatively-you-can-use-this" class="anchor"></a>Alternatively, you can use this</h4>
+<p>This is more or less what <code>installSpaDES</code> is doing above</p>
+<pre><code>#update.packages(checkBuilt = TRUE, ask = FALSE)
+#if (!identical("windows", .Platform$OS.type) &amp;&amp; !require(igraph)) 
+#  install.packages("igraph", type = "source", repos = "https://cran.rstudio.com") # igraph needs to be installed from source
+#install.packages("SpaDES", dependencies = TRUE) # we want to install Suggests also, thus "TRUE"</code></pre>
+</div>
+<div id="rtools" class="section level3">
+<h3 class="hasAnchor">
+<a href="#rtools" class="anchor"></a>Rtools</h3>
+<p>We will need some extra tools, known as Rtools, to build some SpaDES modules and non-standard packages.</p>
+<p>If you don’t have it installed and functioning already, then you will have to install it. You can use the instructions here for <a href="https://cran.r-project.org/bin/windows/Rtools/">Windows</a>.</p>
+<p>Test it with this:</p>
+<pre><code><a href="https://rdrr.io/r/base/Sys.which.html">Sys.which("make")</a></code></pre>
 <p>Sometimes the packages on your computer may collide with the packages being installed. If this happens, and errors occur. Try the previous lines again. If the above lines showed no errors, then you can stop here; no need to proceed with installation below.</p>
+</div>
 <div id="it-may-be-more-reliable-to-put-all-packages-in-their-own-directory-for-the-workshop" class="section level3">
 <h3 class="hasAnchor">
 <a href="#it-may-be-more-reliable-to-put-all-packages-in-their-own-directory-for-the-workshop" class="anchor"></a>It may be more reliable to put all packages in their own directory for the workshop</h3>

@@ -48,15 +48,38 @@ The most common one is that some package dependency is missing, usually due to s
 ```
 ## Restart your R session so it is clear
 ## Ctrl-shift-F10 if you are in Rstudio #
-update.packages(checkBuilt = TRUE, ask = FALSE)
-if (!identical("windows", .Platform$OS.type) && !require(igraph)) 
-  install.packages("igraph", type = "source", repos = "https://cran.rstudio.com") # igraph needs to be installed from source
-install.packages("SpaDES", dependencies = TRUE) # we want to install Suggests also, thus "TRUE"
+source("https://raw.githubusercontent.com/PredictiveEcology/SpaDES-modules/master/R/SpaDES_Helpers.R")
+installSpaDES()
 ```
 
-Sometimes the packages on your computer may collide with the packages being installed. 
-If this happens, and errors occur. Try the previous lines again. 
-If the above lines showed no errors, then you can stop here; no need to proceed with installation below.
+#### Alternatively, you can use this
+
+This is more or less what `installSpaDES` is doing above
+```
+#update.packages(checkBuilt = TRUE, ask = FALSE)
+#if (!identical("windows", .Platform$OS.type) && !require(igraph)) 
+#  install.packages("igraph", type = "source", repos = "https://cran.rstudio.com") # igraph needs to be installed from source
+#install.packages("SpaDES", dependencies = TRUE) # we want to install Suggests also, thus "TRUE"
+```
+
+### Rtools
+
+We will need some extra tools, known as Rtools, to build some SpaDES modules and non-standard packages.
+
+If you don't have it installed and functioning already, then you will have to install it. 
+You can use the instructions here for [Windows](https://cran.r-project.org/bin/windows/Rtools/).
+
+Test it with this next line. If it shows a "non-empty" path, then you have what you need for the workshop.
+```
+Sys.which("make")
+```
+If it shows something like this: 
+```
+make
+  ""
+```
+Then you will have to debug your Rtools installation using the internet as your friend.
+
 
 ### It may be more reliable to put all packages in their own directory for the workshop
 

@@ -107,9 +107,9 @@
 <div id="converting-r-code-to-spades-module" class="section level1">
 <h1 class="hasAnchor">
 <a href="#converting-r-code-to-spades-module" class="anchor"></a>Converting R code to SpaDES module</h1>
-<div id="an-establishment-model" class="section level2">
+<div id="an-tree-seedling-establishment-model" class="section level2">
 <h2 class="hasAnchor">
-<a href="#an-establishment-model" class="anchor"></a>An “establishment” model</h2>
+<a href="#an-tree-seedling-establishment-model" class="anchor"></a>An “tree seedling establishment” model</h2>
 <p>We can imagine a set of sources (<em>e.g.</em>, trees with seeds) and a map of “quality” which will affect whether the things (<em>e.g.</em>, seeds) will land and establish.</p>
 <p>This code does a few things:</p>
 <ol style="list-style-type: decimal">
@@ -139,12 +139,12 @@
 
 <span class="co"># Initial Map of Quality -- make a dummy one</span>
 <span class="va">quality</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/raster.html">raster</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/extent.html">extent</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">100</span>, <span class="fl">0</span>, <span class="fl">100</span><span class="op">)</span>, res <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://spades-tools.predictiveecology.org/reference/gaussMap.html">gaussMap</a></span><span class="op">(</span>speedup <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="co"># SpaDES function to generate a random map</span>
+  <span class="fu">gaussMap</span><span class="op">(</span>speedup <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="co"># SpaDES function to generate a random map</span>
 <span class="va">quality</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/scale.html">scale</a></span><span class="op">(</span><span class="va">quality</span>, center <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/extremeValues.html">maxValue</a></span><span class="op">(</span><span class="va">quality</span><span class="op">)</span>, <span class="co"># rescales from 0 to 1</span>
                  scale <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/extremeValues.html">minValue</a></span><span class="op">(</span><span class="va">quality</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/extremeValues.html">maxValue</a></span><span class="op">(</span><span class="va">quality</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># Initial Map of sources (e.g., seed trees maybe)</span>
-<span class="va">sourceLocations</span> <span class="op">=</span> <span class="fu"><a href="https://spades-tools.predictiveecology.org/reference/initiateAgents.html">initiateAgents</a></span><span class="op">(</span><span class="va">quality</span>, <span class="va">Nsource</span><span class="op">)</span> <span class="co"># SpaDES function</span>
+<span class="va">sourceLocations</span> <span class="op">=</span> <span class="fu">initiateAgents</span><span class="op">(</span><span class="va">quality</span>, <span class="va">Nsource</span><span class="op">)</span> <span class="co"># SpaDES function</span>
 
 <span class="co"># Create a distance from source map</span>
 <span class="va">distFromSource</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/distanceFromPoints.html">distanceFromPoints</a></span><span class="op">(</span><span class="va">quality</span>, <span class="va">sourceLocations</span><span class="op">)</span> <span class="co"># raster function</span>
@@ -162,7 +162,7 @@
 <h2 class="hasAnchor">
 <a href="#convert-this-to-a-spades-module" class="anchor"></a>Convert this to a SpaDES module</h2>
 <ol style="list-style-type: decimal">
-<li>Use <code><a href="https://spades-core.predictiveecology.org//reference/newModule.html">newModule()</a></code> to create a blank template.</li>
+<li>Use <code>newModule()</code> to create a blank template.</li>
 <li>Open the <code>.R</code> file that shows up.</li>
 <li>Fill in metadata:</li>
 </ol>
