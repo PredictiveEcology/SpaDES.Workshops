@@ -28,15 +28,64 @@ navbar:
       href: https://spades.predictiveecology.org/
 
 articles:
-  - title: "This is still being developed (Jan 13, 2021)"
-    desc: >
-      ...
 
   - title: "What is SpaDES?"
     desc: >
       A high-level introduction to the SpaDES framework that can help with reproducible, reusable research.
     contents:
     - WhatIsSpaDES2
+    - Modules_Thinking_in_a_modular_way
+
+  - title: "SpaDES as a simulation platform"
+    desc: >
+
+
+  - title: "SpaDES as a workflow platform"
+    desc: >
+      Single workflows need to resolve several things:
+      1. Libraries and options
+      2. Project structure
+      3. Setting Paths
+      4. Get data
+      5. Time
+      6. Modules
+      7. Parameters
+      8. Objects
+      9. SimInit, the simList and the `spades()` call
+      10. Checking your outputs
+
+  - title: "SpaDES as an integration platform"
+    desc: >
+      What is one way to conceive of integration:
+      1. Get data
+      2. Libraries and options
+      3. Project structure
+      4. Setting Paths
+      5. Time
+      6. Modules
+      7. Parameters
+      8. Objects
+      9. SimInit, the simList and the `spades()` call
+      10. Checking your outputs
+
+
+    desc: |
+      Now we will use the SpaDESinAction example to understand how SpaDES works. These are the topics we will cover:
+      1. Global script
+      2. Libraries and options
+      3. Project structure
+      4. Setting Paths
+      5. Time
+      6. Modules
+      7. Parameters
+      8. Objects
+      9. SimInit, the simList and the `spades()` call
+      10. Checking your outputs
+
+  - title: "This is still being developed (Jan 13, 2021)"
+    desc: >
+      ...
+
 
   - title: "Day 1 - Section 2: Example of SpaDES projects"
     desc: >

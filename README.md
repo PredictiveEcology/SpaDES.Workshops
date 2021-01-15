@@ -47,6 +47,11 @@ You will need to do 4 things
 
 **[All the steps below can be found in a single R file, which may be easier to use](https://raw.githubusercontent.com/PredictiveEcology/SpaDES.Workshops/master/README.R)**
 
+***If you are feeling lucky, you can try this to do it all:***
+```
+# source("https://raw.githubusercontent.com/PredictiveEcology/SpaDES.Workshops/master/README.R")
+```
+
 ## Install Packages
 
 1. Get a few helper functions (`installGitHubPackage`, `getModule`)
@@ -135,7 +140,7 @@ dependencies <- append(dependencies,
                                              modulePath = scfmModulePath) ) 
 
 needed <- unique(unlist(dependencies, recursive = FALSE))
-Require::Require(needed, require = FALSE) # just install them, don't 'require()' them
+Require::Require(needed, require = FALSE, upgrade = "never")
 
 ```
 
