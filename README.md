@@ -63,7 +63,11 @@ source("https://raw.githubusercontent.com/PredictiveEcology/SpaDES-modules/maste
 
 
 2. Install (or update) SpaDES and around 130 package dependencies (if needed)
+
+- (note igraph needs to be installed from source on linux-alikes)
 ```{r}
+if (!identical("windows", .Platform$OS.type) && !require(igraph)) 
+  install.packages("igraph", type = "source", repos = "https://cran.rstudio.com") # igraph needs to be installed from source
 installSpaDES() 
 ```
 
