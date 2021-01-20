@@ -38,19 +38,19 @@
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">SpaDES.Workshops</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
-      </span>
+  <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    </button>
+    <span class="navbar-brand">
+    <a class="navbar-link" href="../index.html">SpaDES.Workshops</a>
+    <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+    </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
+    <ul class="nav navbar-nav">
 <li>
   <a href="articles/index.html">2021-Jan</a>
 </li>
@@ -227,7 +227,10 @@ getModule("PredictiveEcology/scfm@development", modulePath = modulePath, overwri
 <div id="install-the-package-dependencies-of-those-modules" class="section level2">
 <h2 class="hasAnchor">
 <a href="#install-the-package-dependencies-of-those-modules" class="anchor"></a>Install the package dependencies of those modules</h2>
-<pre class="{r}"><code>modulesInstalled &lt;- dir(modulePath)
+<pre class="{r}"><code># If you have been using the binary package manager for Ubuntu, you have to turn it off
+if (isTRUE(grepl("packagemanager", getOption("repos")[["CRAN"]]))) 
+  options("repos" = c(CRAN = "https://cran.rstudio.com/"))
+modulesInstalled &lt;- dir(modulePath)
 dependencies &lt;- SpaDES.core::reqdPkgs(module = modulesInstalled, modulePath = modulePath)  
 
 # scfm is actually a collection of modules... the modules are nested in folders
