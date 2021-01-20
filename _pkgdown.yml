@@ -67,9 +67,6 @@ articles:
       8. Objects
       9. SimInit, the simList and the `spades()` call
       10. Checking your outputs
-
-
-    desc: |
       Now we will use the SpaDESinAction example to understand how SpaDES works. These are the topics we will cover:
       1. Global script
       2. Libraries and options

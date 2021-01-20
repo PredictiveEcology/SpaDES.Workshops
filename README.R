@@ -1,18 +1,36 @@
-## ---------------------------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------------------------------------------------------------
+workshopPath = "~/SpaDESWorkshop"
+modulePath = file.path(workshopPath, "modules")
+
+
+## --------------------------------------------------------------------------------------------------------------------------------------------
 ## Restart your R session so it is clear
 ## Ctrl-shift-F10 if you are in Rstudio #
 source("https://raw.githubusercontent.com/PredictiveEcology/SpaDES-modules/master/R/SpaDES_Helpers.R")
 
 
-## ---------------------------------------------------------------------------------------------------------
-installSpaDES() 
-
-
-## ---------------------------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------------------------------------------------------------
+if (!"Require" %in% rownames(installed.packages(.libPaths()[1]))) 
+  install.packages("Require") # to make sure you have 2 dependencies (data.table, remotes)
 installGitHubPackage("PredictiveEcology/Require@development") # install latest version of Require
 
 
-## ---------------------------------------------------------------------------------------------------------
+## ----for-isolated-package-folder-------------------------------------------------------------------------------------------------------------
+# This isn't perfect as it will not be totally isolated
+# .libPaths(file.path(workshopPath, "R"))
+# if you want it fully isolated, you will have to run this file in 2 steps:
+# Run this next line, then restart session
+# Require::setup(file.path(workshopPath, "R"))
+# Then restart your session and run it all again
+
+
+## --------------------------------------------------------------------------------------------------------------------------------------------
+if (!identical("windows", .Platform$OS.type) && !dir.exists(file.path(.libPaths()[1], "igraph"))) 
+  install.packages("igraph", type = "source", repos = "https://cran.rstudio.com") # igraph needs to be installed from source
+installSpaDES() 
+
+
+## --------------------------------------------------------------------------------------------------------------------------------------------
 Require::Require(
   c("PredictiveEcology/LandR@development",
     "PredictiveEcology/pemisc@development",
@@ -22,16 +40,11 @@ Require::Require(
   which = c("Imports", "Depends", "Suggets"))
 
 
-## ---------------------------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------------------------------------------------------------
 Sys.which("make")
 
 
-## ---------------------------------------------------------------------------------------------------------
-workshopPath = "~/SpaDESWorkshop"
-modulePath = file.path(workshopPath, "modules")
-
-
-## ---------------------------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------------------------------------------------------------
 if (dir.exists(modulePath)) unlink(modulePath, recursive = TRUE)
 # LandR Biomass modules (simulation modules)
 getModule("PredictiveEcology/Biomass_core", modulePath = modulePath)
@@ -42,10 +55,10 @@ getModule("PredictiveEcology/Biomass_borealDataPrep", modulePath = modulePath)
 getModule("PredictiveEcology/Biomass_speciesData", modulePath = modulePath)
 
 # SCFM fire modules
-getModule("PredictiveEcology/scfm", modulePath = modulePath, overwrite = TRUE)
+getModule("PredictiveEcology/scfm@development", modulePath = modulePath, overwrite = TRUE)
 
 
-## ---------------------------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------------------------------------------------------------
 modulesInstalled <- dir(modulePath)
 dependencies <- SpaDES.core::reqdPkgs(module = modulesInstalled, modulePath = modulePath)  
 
