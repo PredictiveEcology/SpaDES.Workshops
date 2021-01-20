@@ -68,12 +68,14 @@ modulePath = file.path(workshopPath, "modules")
 source("https://raw.githubusercontent.com/PredictiveEcology/SpaDES-modules/master/R/SpaDES_Helpers.R")
 ```
 
-2. Install latest Require to help with step 4 (check that you have one already -- you need one already installed; then update)
+2. Install latest Require to help with step 4 (check that you have one already -- you need one already installed; then update, if required)
 
 ```{r}
-if (!"Require" %in% rownames(installed.packages(.libPaths()[1]))) 
+installedPkgs <- installed.packages(.libPaths()[1])
+if (!"Require" %in% rownames(installedPkgs))
   install.packages("Require") # to make sure you have 2 dependencies (data.table, remotes)
-installGitHubPackage("PredictiveEcology/Require@development") # install latest version of Require
+if (!identical(as.character(packageVersion("Require")), "0.0.11"))
+  installGitHubPackage("PredictiveEcology/Require@development") # install latest version of Require
 ```
 
 3. Decide whether you want to install packages (and versions) in an isolated folder
