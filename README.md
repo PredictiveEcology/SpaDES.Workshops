@@ -93,8 +93,6 @@ if (!identical(as.character(packageVersion("Require")), "0.0.11"))
 4. Install (or update) SpaDES and around 130 package dependencies (if needed)
 - (note igraph needs to be installed from source on linux-alikes)
 ```{r}
-if (!identical("windows", .Platform$OS.type) && !dir.exists(file.path(.libPaths()[1], "igraph"))) 
-  install.packages("igraph", type = "source", repos = "https://cran.rstudio.com") # igraph needs to be installed from source
 installSpaDES() 
 ```
 

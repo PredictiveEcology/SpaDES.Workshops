@@ -185,9 +185,7 @@ if (!identical(as.character(packageVersion("Require")), "0.0.11"))
 <ul>
 <li>(note igraph needs to be installed from source on linux-alikes)</li>
 </ul>
-<pre class="{r}"><code>if (!identical("windows", .Platform$OS.type) &amp;&amp; !dir.exists(file.path(.libPaths()[1], "igraph"))) 
-  install.packages("igraph", type = "source", repos = "https://cran.rstudio.com") # igraph needs to be installed from source
-installSpaDES() </code></pre>
+<pre class="{r}"><code>installSpaDES() </code></pre>
 <ol>
 <li>install another 50 or so packages used by modules</li>
 </ol>
