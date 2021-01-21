@@ -38,19 +38,19 @@
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">SpaDES.Workshops</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
-      </span>
+  <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    </button>
+    <span class="navbar-brand">
+    <a class="navbar-link" href="../index.html">SpaDES.Workshops</a>
+    <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+    </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
+    <ul class="nav navbar-nav">
 <li>
   <a href="articles/index.html">2021-Jan</a>
 </li>
@@ -121,10 +121,8 @@
 </ul>
 <p><strong>Learning <code>SpaDES</code> - Sections 4-6</strong></p>
 <ul>
-<li>
-<strong>Section 4</strong> - 2+ hours – we will take you through basic <code>SpaDES</code> concepts, while using the previous day’s examples to get you started with understanding the packages and framework.</li>
-<li>
-<strong>Sections 5-6</strong> - 2+ hours – This is intended to dive a little bit into the code, learn how to create relatively simple modules and establish links between modules. WE will also touch upon essential aspects of programming with <code>SpaDES</code>, such as caching and debugging.</li>
+<li><p><strong>Section 4</strong> - 2+ hours – we will take you through basic <code>SpaDES</code> concepts, while using the previous day’s examples to get you started with understanding the packages and framework.</p></li>
+<li><p><strong>Sections 5-6</strong> - 2+ hours – This is intended to dive a little bit into the code, learn how to create relatively simple modules and establish links between modules. WE will also touch upon essential aspects of programming with <code>SpaDES</code>, such as caching and debugging.</p></li>
 </ul>
 <p>This is a high level intro for scientists, managers, policy makers, decision makers, coupled with examples of ongoing projects in <code>SpaDES</code> that will showcase the utility of the framework.</p>
 <p><strong>My first project in <code>SpaDES</code> - Section 7</strong></p>
@@ -138,20 +136,38 @@
 <div id="before-workshop-begins" class="section level1">
 <h1 class="hasAnchor">
 <a href="#before-workshop-begins" class="anchor"></a>Before workshop begins</h1>
-<p>You will need to do 4 things</p>
+<p>You will need to do a few things:</p>
 <ol>
-<li><p>Decide on a folder for everything in the workshop</p></li>
-<li><p>Install lots of packages – and make sure it all worked</p></li>
-<li><p>Install Rtools, if you don’t have it</p></li>
-<li>
-<p>Install a few SpaDES modules into that folder</p>
-<p>4b. Install the R packages required by these modules</p>
-</li>
+<li>Install R development tools, if you don’t have them;</li>
+<li>Decide on a folder for everything in the workshop;</li>
+<li>Install lots of packages – and make sure it all worked;</li>
+<li>Install a few SpaDES modules into that folder;</li>
+<li>Install the R packages required by these modules.</li>
 </ol>
+<p>Each of these steps is described in furthre detail below.</p>
 <p><em>If you are using Ubuntu Linux, please see section below for installing binary package files</em></p>
 <p><strong><a href="https://raw.githubusercontent.com/PredictiveEcology/SpaDES.Workshops/master/README.R">All the steps below can be found in a single R file, which may be easier to use</a></strong></p>
 <p><strong><em>If you are feeling lucky, you can try this to do it all:</em></strong></p>
-<pre><code># source("https://raw.githubusercontent.com/PredictiveEcology/SpaDES.Workshops/master/README.R")</code></pre>
+<pre class="{r}"><code># source("https://raw.githubusercontent.com/PredictiveEcology/SpaDES.Workshops/master/README.R")</code></pre>
+<div id="install-r-development-tools-if-you-dont-have-them" class="section level2">
+<h2 class="hasAnchor">
+<a href="#install-r-development-tools-if-you-dont-have-them" class="anchor"></a>Install R development tools if you don’t have them</h2>
+<p>For more information, see <a href="https://support.rstudio.com/hc/en-us/articles/200486498-Package-Development-Prerequisites">here</a>.</p>
+<ul>
+<li>
+<em>Windows</em>: install <a href="https://cran.r-project.org/bin/windows/Rtools/">Rtools</a> as administrator.</li>
+<li>
+<em>macOS</em>: install Xcode commandline tools from the terminal: <code>xcode-select --install</code>.</li>
+<li>
+<em>Debian/Ubuntu Linux</em>: ensure <code>r-base-dev</code> is installed.</li>
+</ul>
+<p>To confirm everything is installed correctly, run this next line in your R console/Rstudio session. If it shows a “non-empty” path, then you have what you need for the workshop.</p>
+<pre class="{r}"><code><a href="https://rdrr.io/r/base/Sys.which.html">Sys.which("make")</a></code></pre>
+<p>If it shows something like this:</p>
+<pre class="{r}"><code>make
+  ""</code></pre>
+<p>Then you will have to debug your <code>Rtools</code> installation using the internet as your friend.</p>
+</div>
 <div id="decide-on-your-folder-you-will-use-for-the-workshop" class="section level2">
 <h2 class="hasAnchor">
 <a href="#decide-on-your-folder-you-will-use-for-the-workshop" class="anchor"></a>Decide on your folder you will use for the workshop</h2>
@@ -162,56 +178,49 @@ modulePath = file.path(workshopPath, "modules")</code></pre>
 <h2 class="hasAnchor">
 <a href="#install-packages" class="anchor"></a>Install Packages</h2>
 <ol>
-<li>Get a few helper functions (<code>installGitHubPackage</code>, <code>getModule</code>)</li>
-</ol>
+<li>
+<p>Get a few helper functions (<code>installGitHubPackage</code>, <code>getModule</code>)</p>
 <pre class="{r}"><code><a href="https://rdrr.io/r/base/source.html">## Restart your R session so it is clear
-## Ctrl-shift-F10 if you are in Rstudio #
+## Ctrl-shift-F10 if you are in Rstudio
 source("https://raw.githubusercontent.com/PredictiveEcology/SpaDES-modules/master/R/SpaDES_Helpers.R")</a></code></pre>
-<ol>
-<li>Install latest Require to help with step 4 (check that you have one already – you need one already installed; then update, if required)</li>
-</ol>
+</li>
+<li>
+<p>Install latest Require to help with package installation (check that you have one already – you need one already installed; then update, if required)</p>
 <pre class="{r}"><code>installedPkgs &lt;- installed.packages(.libPaths()[1])
 if (!"Require" %in% rownames(installedPkgs))
   install.packages("Require") # to make sure you have 2 dependencies (data.table, remotes)
 if (!identical(as.character(packageVersion("Require")), "0.0.11"))
   installGitHubPackage("PredictiveEcology/Require@development") # install latest version of Require</code></pre>
-<ol>
-<li>Decide whether you want to install packages (and versions) in an isolated folder</li>
-</ol>
-<p><code>{r for-isolated-package-folder} # This isn't perfect as it will not be totally isolated # .libPaths(file.path(workshopPath, "R")) # if you want it fully isolated, you will have to run this file in 2 steps: # Run this next line, then restart session # Require::setup(file.path(workshopPath, "R")) # Then restart your session and run it all again</code></p>
-<ol>
-<li>Install (or update) SpaDES and around 130 package dependencies (if needed)</li>
+</li>
+<li>
+<p>Decide whether you want to install packages (and versions) in an isolated folder</p>
+<p><code>{r for-isolated-package-folder}  # This isn't perfect as it will not be totally isolated  # .libPaths(file.path(workshopPath, "R"))  # if you want it fully isolated, you will have to run this file in 2 steps:  # Run this next line, then restart session  # Require::setup(file.path(workshopPath, "R"))  # Then restart your session and run it all again</code></p>
+</li>
+<li><p>Install (or update) SpaDES and around 130 package dependencies (if needed)</p></li>
 </ol>
 <ul>
-<li>(note igraph needs to be installed from source on linux-alikes)</li>
-</ul>
+<li>
+<p>(note <code>igraph</code> needs to be installed from source on Linux-alikes)</p>
 <pre class="{r}"><code>installSpaDES() </code></pre>
+</li>
+</ul>
 <ol>
-<li>install another 50 or so packages used by modules</li>
-</ol>
+<li>
+<p>install another 50 or so packages used by modules</p>
 <pre class="{r}"><code><a href="https://Require.predictiveecology.org/reference/Require.html">Require::Require(
   c("PredictiveEcology/LandR@development",
     "PredictiveEcology/pemisc@development",
     "tati-micheletti/usefulFuns",
     "achubaty/amc@development"), 
   upgrade = "never", 
-  which = c("Imports", "Depends", "Suggets"))</a></code></pre>
+  which = c("Imports", "Depends", "Suggests"))</a></code></pre>
+</li>
+</ol>
 </div>
-<div id="install-rtools-if-you-dont-have-it" class="section level2">
+<div id="install-a-few-modules" class="section level2">
 <h2 class="hasAnchor">
-<a href="#install-rtools-if-you-dont-have-it" class="anchor"></a><a href="https://cran.r-project.org/bin/windows/Rtools/">Install Rtools</a> if you don’t have it</h2>
-<p>Run this next line in your R console/Rstudio session. If it shows a “non-empty” path, then you have what you need for the workshop.</p>
-<pre class="{r}"><code><a href="https://rdrr.io/r/base/Sys.which.html">Sys.which("make")</a></code></pre>
-<p>If it shows something like this:</p>
-<pre><code>make
-  ""</code></pre>
-<p>Then you will have to debug your Rtools installation using the internet as your friend.</p>
-<p><strong>If you don’t have it installed and functioning already, then you will have to install it. You can use the instructions here for <a href="https://cran.r-project.org/bin/windows/Rtools/">Windows</a>.</strong></p>
-</div>
-<div id="install-a-few-modules--see-wiki-of-known-modules" class="section level2">
-<h2 class="hasAnchor">
-<a href="#install-a-few-modules--see-wiki-of-known-modules" class="anchor"></a>Install a few modules – see <a href="https://github.com/PredictiveEcology/SpaDES-modules/wiki/Current-modules-in-development">Wiki of known modules</a>
-</h2>
+<a href="#install-a-few-modules" class="anchor"></a>Install a few modules</h2>
+<p>See <a href="https://github.com/PredictiveEcology/SpaDES-modules/wiki/Current-modules-in-development">Wiki of known modules</a></p>
 <pre class="{r}"><code>if (dir.exists(modulePath)) unlink(modulePath, recursive = TRUE)
 # LandR Biomass modules (simulation modules)
 getModule("PredictiveEcology/Biomass_core", modulePath = modulePath)
@@ -242,8 +251,7 @@ dependencies &lt;- append(dependencies,
                                              modulePath = scfmModulePath) ) 
 
 needed &lt;- unique(unlist(dependencies, recursive = FALSE))
-Require::Require(needed, require = FALSE, upgrade = "never")
-</code></pre>
+Require::Require(needed, require = FALSE, upgrade = "never")</code></pre>
 </div>
 </div>
 <div id="tips" class="section level1">
@@ -254,7 +262,7 @@ Require::Require(needed, require = FALSE, upgrade = "never")
 <a href="#githubcom-tells-you-error-403" class="anchor"></a>Github.com tells you <code>error 403</code>
 </h2>
 <p>It can happen that if you try downloading from <code>GitHub</code> many times, you exceed the API rate limit:</p>
-<pre><code>install_github('PredictiveEcology/SpaDES')
+<pre class="{r}"><code>install_github('PredictiveEcology/SpaDES')
 Downloading GitHub repo PredictiveEcology/SpaDES@master
 Error: HTTP error 403.
   API rate limit exceeded for ###.###.##.###. 
@@ -270,7 +278,7 @@ Error: HTTP error 403.
 <h2 class="hasAnchor">
 <a href="#ubuntu-linux-systems--binary-r-packages" class="anchor"></a>Ubuntu Linux systems – Binary R Packages</h2>
 <p>Because there are a lot of packages, it may be faster to install binaries from the Rstudio CRAN mirror. To use this CRAN mirror, you can run this code to set up the correct CRAN repository. If you put this in your <code>.Rprofile</code> file, then your R sessions will always use this binary repository:</p>
-<pre><code><a href="https://rdrr.io/r/base/options.html">options("repos" = c(CRAN = "https://cran.rstudio.com"))
+<pre class="{r}"><code><a href="https://rdrr.io/r/base/options.html">options("repos" = c(CRAN = "https://cran.rstudio.com"))
 
 if (Sys.info()["sysname"] == "Linux" &amp;&amp; grepl("Ubuntu", utils::osVersion)) {
   .os.version &lt;- strsplit(system("lsb_release -c", intern = TRUE), ":\t")[[1]][[2]]

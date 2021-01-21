@@ -99,7 +99,7 @@ modulePath = file.path(workshopPath, "modules")
     source("https://raw.githubusercontent.com/PredictiveEcology/SpaDES-modules/master/R/SpaDES_Helpers.R")
     ```
 
-2. Install latest Require to help with step 4 (check that you have one already -- you need one already installed; then update, if required)
+2. Install latest Require to help with package installation (check that you have one already -- you need one already installed; then update, if required)
 
     ```{r}
     installedPkgs <- installed.packages(.libPaths()[1])
