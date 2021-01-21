@@ -6,7 +6,7 @@ If you are interested in being put on the email list for future courses, please 
 
 - Eliot McIntire (eliot.mcintire at canada.ca)
 
-## 25 - 29 January 2021 (5 days -- 3 hours each day)
+## POSTPONED To be rescheduled
 
 ### Location & Times
 
