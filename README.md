@@ -19,38 +19,68 @@ The hope is to attract non-modelers (e.g., managers, scientists, practitioners) 
 (_in progress -- but likely stable enough to follow for installations -- updated Jan 19, 2021_)
 
 **Introduction to `SpaDES` - Sections 1-3** 
-* **Sections 1-2** - ~2+ hours – This is a high level intro for scientists, managers, policy makers, decision makers, coupled with examples of ongoing projects in `SpaDES` that will showcase the utility of the framework.
 
-* **Section 3** - ~2+ hours – This section will take you through high-level examples of how to run pre-made `SpaDES` modules, run modules from other people, and change model parameters.
+- **Sections 1-2** - ~2+ hours – This is a high level intro for scientists, managers, policy makers, decision makers, coupled with examples of ongoing projects in `SpaDES` that will showcase the utility of the framework.
+
+- **Section 3** - ~2+ hours – This section will take you through high-level examples of how to run pre-made `SpaDES` modules, run modules from other people, and change model parameters.
 
 **Learning `SpaDES` - Sections 4-6** 
-* **Section 4** - 2+ hours – we will take you through basic `SpaDES` concepts, while using the previous day's examples to get you started with understanding the packages and framework.
-* **Sections 5-6** - 2+ hours – This is intended to dive a little bit into the code, learn how to create relatively simple modules and establish links between modules. WE will also touch upon essential aspects of programming with `SpaDES`, such as caching and debugging.
+
+- **Section 4** - 2+ hours – we will take you through basic `SpaDES` concepts, while using the previous day's examples to get you started with understanding the packages and framework.
+
+- **Sections 5-6** - 2+ hours – This is intended to dive a little bit into the code, learn how to create relatively simple modules and establish links between modules. WE will also touch upon essential aspects of programming with `SpaDES`, such as caching and debugging.
 
 This is a high level intro for scientists, managers, policy makers, decision makers, coupled with examples of ongoing projects in `SpaDES` that will showcase the utility of the framework.
 
 **My first project in `SpaDES` - Section 7** 
-* **Section 7** - 4+ hours – during this section you'll be given free time to create your own project from scratch, or adapt an existing project and create new modules. 
+
+- **Section 7** - 4+ hours – during this section you'll be given free time to create your own project from scratch, or adapt an existing project and create new modules. 
 
 # Before workshop begins
 
-You will need to do 4 things
+You will need to do a few things:
 
-1. Decide on a folder for everything in the workshop
-2. Install lots of packages -- and make sure it all worked
-3. Install Rtools, if you don't have it
-4. Install a few SpaDES modules into that folder
-    
-    4b. Install the R packages required by these modules
+1. Install R development tools, if you don't have them;
+2. Decide on a folder for everything in the workshop;
+3. Install lots of packages -- and make sure it all worked;
+4. Install a few SpaDES modules into that folder;
+5. Install the R packages required by these modules.
+
+Each of these steps is described in furthre detail below.
 
 *If you are using Ubuntu Linux, please see section below for installing binary package files*
 
 **[All the steps below can be found in a single R file, which may be easier to use](https://raw.githubusercontent.com/PredictiveEcology/SpaDES.Workshops/master/README.R)**
 
 ***If you are feeling lucky, you can try this to do it all:***
-```
+
+```{r}
 # source("https://raw.githubusercontent.com/PredictiveEcology/SpaDES.Workshops/master/README.R")
 ```
+
+## Install R development tools if you don't have them
+
+For more information, see [here](https://support.rstudio.com/hc/en-us/articles/200486498-Package-Development-Prerequisites).
+
+- *Windows*: install [Rtools](https://cran.r-project.org/bin/windows/Rtools/) as administrator.
+- *macOS*: install Xcode commandline tools from the terminal: `xcode-select --install`.
+- *Debian/Ubuntu Linux*: ensure `r-base-dev` is installed.
+
+To confirm everything is installed correctly, run this next line in your R console/Rstudio session. 
+If it shows a "non-empty" path, then you have what you need for the workshop.
+
+```{r}
+Sys.which("make")
+```
+
+If it shows something like this: 
+
+```{r}
+make
+  ""
+```
+
+Then you will have to debug your `Rtools` installation using the internet as your friend.
 
 ## Decide on your folder you will use for the workshop
 
@@ -62,73 +92,56 @@ modulePath = file.path(workshopPath, "modules")
 ## Install Packages
 
 1. Get a few helper functions (`installGitHubPackage`, `getModule`)
-```{r}
-## Restart your R session so it is clear
-## Ctrl-shift-F10 if you are in Rstudio #
-source("https://raw.githubusercontent.com/PredictiveEcology/SpaDES-modules/master/R/SpaDES_Helpers.R")
-```
+
+    ```{r}
+    ## Restart your R session so it is clear
+    ## Ctrl-shift-F10 if you are in Rstudio
+    source("https://raw.githubusercontent.com/PredictiveEcology/SpaDES-modules/master/R/SpaDES_Helpers.R")
+    ```
 
 2. Install latest Require to help with step 4 (check that you have one already -- you need one already installed; then update, if required)
 
-```{r}
-installedPkgs <- installed.packages(.libPaths()[1])
-if (!"Require" %in% rownames(installedPkgs))
-  install.packages("Require") # to make sure you have 2 dependencies (data.table, remotes)
-if (!identical(as.character(packageVersion("Require")), "0.0.11"))
-  installGitHubPackage("PredictiveEcology/Require@development") # install latest version of Require
-```
+    ```{r}
+    installedPkgs <- installed.packages(.libPaths()[1])
+    if (!"Require" %in% rownames(installedPkgs))
+      install.packages("Require") # to make sure you have 2 dependencies (data.table, remotes)
+    if (!identical(as.character(packageVersion("Require")), "0.0.11"))
+      installGitHubPackage("PredictiveEcology/Require@development") # install latest version of Require
+    ```
 
 3. Decide whether you want to install packages (and versions) in an isolated folder
 
-```{r for-isolated-package-folder}
-# This isn't perfect as it will not be totally isolated
-# .libPaths(file.path(workshopPath, "R"))
-# if you want it fully isolated, you will have to run this file in 2 steps:
-# Run this next line, then restart session
-# Require::setup(file.path(workshopPath, "R"))
-# Then restart your session and run it all again
-```
-
+    ```{r for-isolated-package-folder}
+    # This isn't perfect as it will not be totally isolated
+    # .libPaths(file.path(workshopPath, "R"))
+    # if you want it fully isolated, you will have to run this file in 2 steps:
+    # Run this next line, then restart session
+    # Require::setup(file.path(workshopPath, "R"))
+    # Then restart your session and run it all again
+    ```
 
 4. Install (or update) SpaDES and around 130 package dependencies (if needed)
-- (note igraph needs to be installed from source on linux-alikes)
-```{r}
-installSpaDES() 
-```
+- (note `igraph` needs to be installed from source on Linux-alikes)
 
+    ```{r}
+    installSpaDES() 
+    ```
 
 5. install another 50 or so packages used by modules
-```{r}
-Require::Require(
-  c("PredictiveEcology/LandR@development",
-    "PredictiveEcology/pemisc@development",
-    "tati-micheletti/usefulFuns",
-    "achubaty/amc@development"), 
-  upgrade = "never", 
-  which = c("Imports", "Depends", "Suggets"))
-```
 
+    ```{r}
+    Require::Require(
+      c("PredictiveEcology/LandR@development",
+        "PredictiveEcology/pemisc@development",
+        "tati-micheletti/usefulFuns",
+        "achubaty/amc@development"), 
+      upgrade = "never", 
+      which = c("Imports", "Depends", "Suggests"))
+    ```
 
-## [Install Rtools](https://cran.r-project.org/bin/windows/Rtools/) if you don't have it
+## Install a few modules
 
-Run this next line in your R console/Rstudio session. 
-If it shows a "non-empty" path, then you have what you need for the workshop.
-```{r}
-Sys.which("make")
-```
-If it shows something like this: 
-```
-make
-  ""
-```
-Then you will have to debug your Rtools installation using the internet as your friend.
-
-**If you don't have it installed and functioning already, then you will have to install it. 
-You can use the instructions here for [Windows](https://cran.r-project.org/bin/windows/Rtools/).**
-
-
-## Install a few modules -- see [Wiki of known modules](https://github.com/PredictiveEcology/SpaDES-modules/wiki/Current-modules-in-development)
-
+See [Wiki of known modules](https://github.com/PredictiveEcology/SpaDES-modules/wiki/Current-modules-in-development)
 
 ```{r}
 if (dir.exists(modulePath)) unlink(modulePath, recursive = TRUE)
@@ -163,22 +176,22 @@ dependencies <- append(dependencies,
 
 needed <- unique(unlist(dependencies, recursive = FALSE))
 Require::Require(needed, require = FALSE, upgrade = "never")
-
 ```
-
 
 # Tips
 
 ## Github.com tells you `error 403` 
 
 It can happen that if you try downloading from `GitHub` many times, you exceed the API rate limit:
-```
+
+```{r}
 install_github('PredictiveEcology/SpaDES')
 Downloading GitHub repo PredictiveEcology/SpaDES@master
 Error: HTTP error 403.
   API rate limit exceeded for ###.###.##.###. 
   (...)
 ```
+
 The error should provide the solution to fixing this problem, but if for some reason you don't find these instructions, here they are:
 - Use `usethis::browse_github_pat()` to create a GitHub token
 - Use `usethis::edit_r_environ()` and add the environment variable with `GITHUB_PAT = 'your_github_token'`.
@@ -190,7 +203,7 @@ Because there are a lot of packages, it may be faster to install binaries from t
 To use this CRAN mirror, you can run this code to set up the correct CRAN repository. 
 If you put this in your `.Rprofile` file, then your R sessions will always use this binary repository:
 
-```
+```{r}
 options("repos" = c(CRAN = "https://cran.rstudio.com"))
 
 if (Sys.info()["sysname"] == "Linux" && grepl("Ubuntu", utils::osVersion)) {
