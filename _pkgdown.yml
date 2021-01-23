@@ -34,7 +34,13 @@ articles:
       A high-level introduction to the SpaDES framework that can help with reproducible, reusable research.
     contents:
     - SpaDES-as-a-tool-for-transparent-decision-making-in-ecology
-    - Modules_Thinking_in_a_modular_way
+
+  - title: "SpaDES as a simulation platform"
+    desc: >
+      Here we look at an existing simulation model, LandR-Biomass --> This one is a rewrite of LANDIS-II Biomass Succession
+    contents:
+    - Vegetation-Simulation-Model
+
 
   - title: "Hands on: From R to SpaDES"
     desc: >
@@ -42,12 +48,7 @@ articles:
     contents:
     - 02c-Convert_R_code_to_SpaDES_module
     - 02a-dynamicModellingPreyPred
-
-  - title: "SpaDES as a simulation platform"
-    desc: >
-      Here we look at an existing simulation model, LandR-Biomass --> This one is a rewrite of LANDIS-II Biomass Succession
-    contents:
-    - Vegetation-Simulation-Model
+    - Modules_Thinking_in_a_modular_way
 
 
   - title: "SpaDES as a workflow platform"
