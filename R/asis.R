@@ -15,7 +15,8 @@ replacementList <- list(
   "03c-SpaDESInAction.html" = "https://htmlpreview.github.io/?https://github.com/tati-micheletti/SpaDESinAction2/blob/master/runMe.html",
   "10b-NWT.html" = "https://docs.google.com/presentation/d/e/2PACX-1vQ1F1LJ7UCNxJONuVpJR0wkNDWT6XOnMi_0AmJC3Exw5Y-Vm2oKLmbfYm3BPH1b3bxBybuwV1rWFHgP/pub?start=false&loop=false&delayms=3000",
   "10a-LandWeb.html" = "https://docs.google.com/presentation/d/e/2PACX-1vRcng5GPXKhe93VtnIEd8O993ppqqWYvDPoV1HFgWhOWlAZl15_a-jnxfESKC-zqQNZ-uXPnSp9XCp3/pub?start=false&loop=false&delayms=3000",
-  "SpaDES-as-a-tool-for-transparent-decision-making-in-ecology.html" = "https://docs.google.com/presentation/d/e/2PACX-1vSa8JwQsZ7NhBFJtE2yztnJh8l7jcrZPHMy4Atx7GRSI3IxdGil28dicHkUxbIenHvBndQlF1vEOACT/pub?start=false&loop=false&delayms=3000"
+  "SpaDES-as-a-tool-for-transparent-decision-making-in-ecology.html" = "https://docs.google.com/presentation/d/e/2PACX-1vSa8JwQsZ7NhBFJtE2yztnJh8l7jcrZPHMy4Atx7GRSI3IxdGil28dicHkUxbIenHvBndQlF1vEOACT/pub?start=false&loop=false&delayms=3000",
+  "Vegetation-Simulation-Model.html" = "https://raw.githubusercontent.com/PredictiveEcology/SpaDES-modules/master/Examples/Biomass_core-in-Random-small-Alberta-study-area.html"
 )
 
 #' @details

@@ -40,18 +40,21 @@ articles:
     desc: >
       In this section we will present examples of how to bring both static and dynamic R scripts into SpaDES, by creating modules from scratch and linking them
     contents:
-    - 02b-SpaDES4Dummies
     - 02c-Convert_R_code_to_SpaDES_module
     - 02a-dynamicModellingPreyPred
 
   - title: "SpaDES as a simulation platform"
     desc: >
+      Here we look at an existing simulation model, LandR-Biomass --> This one is a rewrite of LANDIS-II Biomass Succession
     contents:
     - Vegetation-Simulation-Model
 
 
   - title: "SpaDES as a workflow platform"
     desc: >
+      Here we look at a few other examples located on the SpaDES-modules repository: https://github.com/PredictiveEcology/SpaDES-modules
+
+
       Single workflows need to resolve several things:
       1. Libraries and options
       2. Project structure
