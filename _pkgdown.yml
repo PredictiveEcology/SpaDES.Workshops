@@ -33,11 +33,21 @@ articles:
     desc: >
       A high-level introduction to the SpaDES framework that can help with reproducible, reusable research.
     contents:
-    - WhatIsSpaDES2
+    - SpaDES-as-a-tool-for-transparent-decision-making-in-ecology
     - Modules_Thinking_in_a_modular_way
+
+  - title: "Hands on: From R to SpaDES"
+    desc: >
+      In this section we will present examples of how to bring both static and dynamic R scripts into SpaDES, by creating modules from scratch and linking them
+    contents:
+    - 02b-SpaDES4Dummies
+    - 02c-Convert_R_code_to_SpaDES_module
+    - 02a-dynamicModellingPreyPred
 
   - title: "SpaDES as a simulation platform"
     desc: >
+    contents:
+    - Vegetation-Simulation-Model
 
 
   - title: "SpaDES as a workflow platform"
@@ -58,17 +68,6 @@ articles:
     desc: >
       What is one way to conceive of integration:
       1. Get data
-      2. Libraries and options
-      3. Project structure
-      4. Setting Paths
-      5. Time
-      6. Modules
-      7. Parameters
-      8. Objects
-      9. SimInit, the simList and the `spades()` call
-      10. Checking your outputs
-      Now we will use the SpaDESinAction example to understand how SpaDES works. These are the topics we will cover:
-      1. Global script
       2. Libraries and options
       3. Project structure
       4. Setting Paths
@@ -122,13 +121,6 @@ articles:
     contents:
     - 03c-SpaDESInAction
 
-  - title: "Day 2 - Section 5: Hands on: From R to SpaDES"
-    desc: >
-      In this section we will present examples of how to bring both static and dynamic R scripts into SpaDES, by creating modules from scratch and linking them
-    contents:
-    - 02b-SpaDES4Dummies
-    - 02c-Convert_R_code_to_SpaDES_module
-    - 02a-dynamicModellingPreyPred
 
   - title: "Day 2 - Section 6: Is it taking too long? Is it not working? The miracles of caching and debugging"
     desc: >

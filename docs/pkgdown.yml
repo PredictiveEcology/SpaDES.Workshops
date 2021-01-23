@@ -1,4 +1,4 @@
-pandoc: 2.11.3.2
+pandoc: 2.7.3
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
@@ -7,8 +7,8 @@ articles:
   03c-SpaDESInAction: 03c-SpaDESInAction.html
   10a-LandWeb: 10a-LandWeb.html
   10b-NWT: 10b-NWT.html
-  WhatIsSpaDES2: WhatIsSpaDES2.html
-last_built: 2021-01-21T06:11Z
+  SpaDES-as-a-tool-for-transparent-decision-making-in-ecology: SpaDES-as-a-tool-for-transparent-decision-making-in-ecology.html
+last_built: 2021-01-23T17:20Z
 urls:
   reference: http://spades-workshops.predictiveecology.org//reference
   article: http://spades-workshops.predictiveecology.org//articles
