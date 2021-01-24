@@ -68,6 +68,19 @@ articles:
     - SCFM
 
 
+  - title: "SpaDES anatomy"
+    desc: >
+      A SpaDES module is the primary unit of organization for a SpaDES workflow. The key features of the SpaDES anatomy are:
+      1. Metadata
+      2. `simList`
+      Everything else derives from these two structures
+    contents:
+    - 04a-MyFirstModule
+    - 04b-Module_details
+    - 04c-The_simList
+    - 04d-Building_a_module
+    - 04e-parent_modules
+
   - title: "Taking control"
     desc: >
       To become more advanced with R, reproducible workflows, profiling etc. we provide some general tips and content to improve skills.
@@ -78,3 +91,23 @@ articles:
     - 06c-Caching
     - 06d-Debugging
 
+  - title: "Useful Cheatsheets"
+    desc: >
+      We provide some links to useful Cheatsheets
+    contents:
+    - 00-Cheatsheets
+
+  - title: "Practicing"
+    desc: >
+      Below are several exercises that may be helpful to work through learning.
+    contents:
+    - exercise1
+    - exercise2
+    - exercise3
+    - exercise4
+    - exercise4a
+    - exercise5a
+    - exercise6
+    - exercise7
+    - exercise8
+    - exercise9

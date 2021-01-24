@@ -2,17 +2,36 @@ pandoc: 2.7.3
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
+  00-Cheatsheets: 00-Cheatsheets.html
   02a-dynamicModellingPreyPred: 02a-dynamicModellingPreyPred.html
   02c-Convert_R_code_to_SpaDES_module: 02c-Convert_R_code_to_SpaDES_module.html
+  04a-MyFirstModule: 04a-MyFirstModule.html
+  04b-Module_details: 04b-Module_details.html
+  04c-The_simList: 04c-The_simList.html
+  04d-Building_a_module: 04d-Building_a_module.html
+  04e-parent_modules: 04e-parent_modules.html
   06a-R_Developing_powerful_skills: 06a-R_Developing_powerful_skills.html
   06b-R_Profiling_code: 06b-R_Profiling_code.html
   06c-Caching: 06c-Caching.html
   06d-Debugging: 06d-Debugging.html
+  exercise1: exercise1.html
+  exercise2: exercise2.html
+  exercise3: exercise3.html
+  exercise4: exercise4.html
+  exercise4a: exercise4a.html
+  exercise4b: exercise4b.html
+  exercise4c: exercise4c.html
+  exercise5a: exercise5a.html
+  exercise6: exercise6.html
+  exercise7: exercise7.html
+  exercise8: exercise8.html
+  exercise9: exercise9.html
   Modules_Thinking_in_a_modular_way: Modules_Thinking_in_a_modular_way.html
+  SCFM: SCFM.html
   SpaDES-as-a-tool-for-transparent-decision-making-in-ecology: SpaDES-as-a-tool-for-transparent-decision-making-in-ecology.html
   Vegetation-Simulation-Model-Estimating-Parameters-Inputs: Vegetation-Simulation-Model-Estimating-Parameters-Inputs.html
   Vegetation-Simulation-Model: Vegetation-Simulation-Model.html
-last_built: 2021-01-24T06:16Z
+last_built: 2021-01-24T06:38Z
 urls:
   reference: http://spades-workshops.predictiveecology.org//reference
   article: http://spades-workshops.predictiveecology.org//articles

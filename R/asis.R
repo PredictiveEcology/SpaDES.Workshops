@@ -18,7 +18,7 @@ replacementList <- list(
   "SpaDES-as-a-tool-for-transparent-decision-making-in-ecology.html" = "https://docs.google.com/presentation/d/e/2PACX-1vSa8JwQsZ7NhBFJtE2yztnJh8l7jcrZPHMy4Atx7GRSI3IxdGil28dicHkUxbIenHvBndQlF1vEOACT/pub?start=false&loop=false&delayms=3000",
   "Vegetation-Simulation-Model.html" = "https://htmlpreview.github.io/?https://raw.githubusercontent.com/PredictiveEcology/SpaDES-modules/master/Examples/Biomass_core-in-Random-small-Alberta-study-area.html",
   "Vegetation-Simulation-Model-Estimating-Parameters-Inputs" = "https://htmlpreview.github.io/?https://raw.githubusercontent.com/PredictiveEcology/SpaDES-modules/master/Examples/Biomass_core-with-borealDataPrep-small-Alberta.html",
-  "SCRM" = "https://github.com/PredictiveEcology/scfm/blob/development/scfm.Rmd"
+  "SCFM" = "https://github.com/PredictiveEcology/scfm/blob/development/scfm.Rmd"
 
 )
 

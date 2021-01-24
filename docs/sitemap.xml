@@ -10,10 +10,28 @@
     <loc>http://spades-workshops.predictiveecology.org//reference/replaceRemoteLinksInArticles.html</loc>
   </url>
   <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/00-Cheatsheets.html</loc>
+  </url>
+  <url>
     <loc>http://spades-workshops.predictiveecology.org//articles/02a-dynamicModellingPreyPred.html</loc>
   </url>
   <url>
     <loc>http://spades-workshops.predictiveecology.org//articles/02c-Convert_R_code_to_SpaDES_module.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/04a-MyFirstModule.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/04b-Module_details.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/04c-The_simList.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/04d-Building_a_module.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/04e-parent_modules.html</loc>
   </url>
   <url>
     <loc>http://spades-workshops.predictiveecology.org//articles/06a-R_Developing_powerful_skills.html</loc>
@@ -28,7 +46,46 @@
     <loc>http://spades-workshops.predictiveecology.org//articles/06d-Debugging.html</loc>
   </url>
   <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/exercise1.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/exercise2.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/exercise3.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/exercise4.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/exercise4a.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/exercise4b.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/exercise4c.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/exercise5a.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/exercise6.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/exercise7.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/exercise8.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/exercise9.html</loc>
+  </url>
+  <url>
     <loc>http://spades-workshops.predictiveecology.org//articles/Modules_Thinking_in_a_modular_way.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/SCFM.html</loc>
   </url>
   <url>
     <loc>http://spades-workshops.predictiveecology.org//articles/SpaDES-as-a-tool-for-transparent-decision-making-in-ecology.html</loc>
