@@ -41,6 +41,14 @@ articles:
     contents:
     - Vegetation-Simulation-Model
 
+  - title: "SpaDES as a workflow platform"
+    desc: >
+      Here we continue with LandR-Biomass --> But we add a module that estimates all parameters and gets all data.
+      The module, Biomass_borealDataPrep, has been tested widely in the boreal forest of Canada.
+      It  uses open datasets.
+    contents:
+    - Vegetation-Simulation-Model-Estimating-Parameters-Inputs
+
 
   - title: "Hands on: From R to SpaDES"
     desc: >
