@@ -2,15 +2,17 @@ pandoc: 2.7.3
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
-  01a-WhatIsSpades_Jan2021: 01a-WhatIsSpades_Jan2021.html
+  02a-dynamicModellingPreyPred: 02a-dynamicModellingPreyPred.html
   02c-Convert_R_code_to_SpaDES_module: 02c-Convert_R_code_to_SpaDES_module.html
-  03c-SpaDESInAction: 03c-SpaDESInAction.html
-  10a-LandWeb: 10a-LandWeb.html
-  10b-NWT: 10b-NWT.html
+  06a-R_Developing_powerful_skills: 06a-R_Developing_powerful_skills.html
+  06b-R_Profiling_code: 06b-R_Profiling_code.html
+  06c-Caching: 06c-Caching.html
+  06d-Debugging: 06d-Debugging.html
   Modules_Thinking_in_a_modular_way: Modules_Thinking_in_a_modular_way.html
   SpaDES-as-a-tool-for-transparent-decision-making-in-ecology: SpaDES-as-a-tool-for-transparent-decision-making-in-ecology.html
+  Vegetation-Simulation-Model-Estimating-Parameters-Inputs: Vegetation-Simulation-Model-Estimating-Parameters-Inputs.html
   Vegetation-Simulation-Model: Vegetation-Simulation-Model.html
-last_built: 2021-01-24T04:59Z
+last_built: 2021-01-24T06:16Z
 urls:
   reference: http://spades-workshops.predictiveecology.org//reference
   article: http://spades-workshops.predictiveecology.org//articles

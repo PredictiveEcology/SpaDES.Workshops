@@ -163,7 +163,7 @@
       <p class="section-desc"><p>Here we continue with LandR-Biomass –&gt; But we add a module that estimates all parameters and gets all data. The module, Biomass_borealDataPrep, has been tested widely in the boreal forest of Canada. It uses open datasets.</p></p>
 
       <dl>
-        <dt><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/PredictiveEcology/SpaDES-modules/master/Examples/Biomass_core-in-Random-small-Alberta-study-area.html">Vegetation simulation model: LandR-Biomass</a></dt>
+        <dt><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/PredictiveEcology/SpaDES-modules/master/Examples/Biomass_core-with-borealDataPrep-small-Alberta.html.html">Using Biomass_borealDataPrep with Biomass_core to estimate input data layers</a></dt>
         <dd></dt>
       </dl>
     </div>
@@ -174,83 +174,32 @@
       <dl>
         <dt><a href="02c-Convert_R_code_to_SpaDES_module.html">Converting R code to a `SpaDES` module - seed establishment</a></dt>
         <dd></dt>
+        <dt><a href="02a-dynamicModellingPreyPred.html">Dynamic modelling in SpaDES - a simple example</a></dt>
+        <dd></dt>
         <dt><a href="Modules_Thinking_in_a_modular_way.html">Modules -- Thinking in a modular way</a></dt>
         <dd></dt>
       </dl>
     </div>
     <div class="section ">
-      <h3>Day 1 - Section 2: Example of SpaDES projects</h3>
-      <p class="section-desc"><p>Here we present some of the projects that used SpaDES and its tools</p></p>
-
-      <dl>
-        <dt><a href="https://docs.google.com/presentation/d/e/2PACX-1vQ1F1LJ7UCNxJONuVpJR0wkNDWT6XOnMi_0AmJC3Exw5Y-Vm2oKLmbfYm3BPH1b3bxBybuwV1rWFHgP/pub?start=false&loop=false&delayms=3000">The Northwest Territories Project</a></dt>
-        <dd></dt>
-        <dt><a href="https://docs.google.com/presentation/d/e/2PACX-1vRcng5GPXKhe93VtnIEd8O993ppqqWYvDPoV1HFgWhOWlAZl15_a-jnxfESKC-zqQNZ-uXPnSp9XCp3/pub?start=false&loop=false&delayms=3000">Cumulative Effects, Harvesting, LandWeb</a></dt>
-        <dd></dt>
-      </dl>
-    </div>
-    <div class="section ">
-      <h3>Day 1 - Section 2: Example of SpaDES projects</h3>
-      <p class="section-desc"><p>Here we present some of the projects that used SpaDES and its tools</p></p>
-
-      <dl>
-        <dt><a href="https://docs.google.com/presentation/d/e/2PACX-1vQ1F1LJ7UCNxJONuVpJR0wkNDWT6XOnMi_0AmJC3Exw5Y-Vm2oKLmbfYm3BPH1b3bxBybuwV1rWFHgP/pub?start=false&loop=false&delayms=3000">The Northwest Territories Project</a></dt>
-        <dd></dt>
-        <dt><a href="https://docs.google.com/presentation/d/e/2PACX-1vRcng5GPXKhe93VtnIEd8O993ppqqWYvDPoV1HFgWhOWlAZl15_a-jnxfESKC-zqQNZ-uXPnSp9XCp3/pub?start=false&loop=false&delayms=3000">Cumulative Effects, Harvesting, LandWeb</a></dt>
-        <dd></dt>
-      </dl>
-    </div>
-    <div class="section ">
-      <h3>Day 1 - Section 3: SpaDES in Action: a forest succession, a wildfire models, and a caribou models -- putting it all together</h3>
-      <p class="section-desc"><p>Here we present two models that we use for forest succession (<code>LandR</code>) and wildfire (<code>SCFM</code>). This is an example of module integration using SpaDES</p></p>
-
-      <dl>
-        <dt><a href="https://htmlpreview.github.io/?https://github.com/tati-micheletti/SpaDESinAction2/blob/master/runMe.html">SpaDES in Action</a></dt>
-        <dd></dt>
-      </dl>
-    </div>
-    <div class="section ">
-      <h3>Day 2 - Section 4: Basic concepts to get you started</h3>
-      <p class="section-desc">
-<p>Now we will use the SpaDESinAction example to understand how SpaDES works. These are the topics we will cover:</p>
-<ol>
-<li>Global script</li>
-<li>Libraries and options</li>
-<li>Project structure</li>
-<li>Setting Paths</li>
-<li>Time</li>
-<li>Modules</li>
-<li>Parameters</li>
-<li>Objects</li>
-<li>SimInit, the simList and the <code>spades()</code> call</li>
-<li>Checking your outputs</li>
-</ol>
-</p>
-
-      <dl>
-        <dt><a href="https://htmlpreview.github.io/?https://github.com/tati-micheletti/SpaDESinAction2/blob/master/runMe.html">SpaDES in Action</a></dt>
-        <dd></dt>
-      </dl>
-    </div>
-    <div class="section ">
-      <h3>Day 2 - Section 6: Is it taking too long? Is it not working? The miracles of caching and debugging</h3>
-      <p class="section-desc"><p>In this section we will explain how to use a caching mechanism in SpaDES and how to debug your code when something errors</p></p>
+      <h3>A simple, landscape fire model: SCFM</h3>
+      <p class="section-desc"><p>This model, based on Steve Cumming’s work, is a percolation simulation model, that contains all the necessary aparatus to estimate the parameters for a fire regime that is statistically correct, i.e., given an input dataset of historical fires, this module will reproduce the fire size distribution on the same landscape. There are ~8 modules in this model. This module has been used in a variety of places in Canada, but its implementation is still in alpha state, so unexpected behaviour may result.</p></p>
 
       <dl>
       </dl>
     </div>
     <div class="section ">
-      <h3>Day 3 - Section 7: My first project in SpaDES</h3>
-      <p class="section-desc"><p>In this section we will give the support you need to start building your own SpaDES module or project.</p></p>
+      <h3>Taking control</h3>
+      <p class="section-desc"><p>To become more advanced with R, reproducible workflows, profiling etc. we provide some general tips and content to improve skills. These are concentrated on applications with SpaDES, but they are not unique to SpaDES.</p></p>
 
       <dl>
-      </dl>
-    </div>
-    <div class="section ">
-      <h3>Exercises</h3>
-      <p class="section-desc"><p>In this section you can find several exercises to get you started with SpaDES.</p></p>
-
-      <dl>
+        <dt><a href="06a-R_Developing_powerful_skills.html">R -- developing powerful skills</a></dt>
+        <dd></dt>
+        <dt><a href="06b-R_Profiling_code.html">R -- Profiling code</a></dt>
+        <dd></dt>
+        <dt><a href="http://spades.predictiveecology.org/articles/iii-cache.html">Caching</a></dt>
+        <dd></dt>
+        <dt><a href="https://github.com/PredictiveEcology/SpaDES/wiki/Debugging">Debugging</a></dt>
+        <dd></dt>
       </dl>
     </div>
   </div>

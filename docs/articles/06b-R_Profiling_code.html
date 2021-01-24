@@ -136,9 +136,9 @@
   <span class="op">}</span>
 <span class="op">)</span></code></pre></div>
 <pre><code>## Unit: microseconds
-##        expr    min      lq     mean  median      uq     max neval
-##        loop 2498.4 2691.85 3214.050 2759.25 3127.15 12367.6   100
-##  vectorized   22.4   23.20   24.687   24.35   25.25    34.8   100</code></pre>
+##        expr      min       lq       mean    median        uq       max neval
+##        loop 2988.475 3169.358 4317.43322 3600.0820 4804.0655 17493.065   100
+##  vectorized   27.042   27.944   31.39061   29.1465   31.0985   119.287   100</code></pre>
 </div>
 <div id="profiling-and-benchmarking-3" class="section level2">
 <h2 class="hasAnchor">
@@ -146,17 +146,17 @@
 <p>If you have Rstudio version <code>&gt;=0.99.1208</code>, then it has profiling as a menu item.</p>
 <ul>
 <li><p>alternatively, we wrap any block of code with <code>profvis</code></p></li>
-<li><p>This can be a <code><a href="https://spades-core.predictiveecology.org//reference/spades.html">spades()</a></code> call, so it will show you the entire model:</p></li>
+<li><p>This can be a <code>spades()</code> call, so it will show you the entire model:</p></li>
 </ul>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">profvis</span><span class="fu">::</span><span class="fu">profvis</span><span class="op">(</span><span class="op">{</span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10000000</span><span class="op">)</span><span class="op">}</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">profvis</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/profvis/man/profvis.html">profvis</a></span><span class="op">(</span><span class="op">{</span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10000000</span><span class="op">)</span><span class="op">}</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="profiling-the-spades-call" class="section level2">
 <h2 class="hasAnchor">
 <a href="#profiling-the-spades-call" class="anchor"></a>Profiling the <code>spades</code> call</h2>
 <p>Try it:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mySim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://spades-core.predictiveecology.org//reference/simInit.html">simInit</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">mySim</span> <span class="op">&lt;-</span> <span class="fu">simInit</span><span class="op">(</span>
    times <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>start <span class="op">=</span> <span class="fl">0.0</span>, end <span class="op">=</span> <span class="fl">2.0</span>, timeunit <span class="op">=</span> <span class="st">"year"</span><span class="op">)</span>,
    params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
      .globals <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>stackName <span class="op">=</span> <span class="st">"landscape"</span>, burnStats <span class="op">=</span> <span class="st">"nPixelsBurned"</span><span class="op">)</span>
@@ -164,7 +164,7 @@
    modules <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"randomLandscapes"</span>, <span class="st">"fireSpread"</span>, <span class="st">"caribouMovement"</span><span class="op">)</span>,
    paths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>modulePath <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"sampleModules"</span>, package <span class="op">=</span> <span class="st">"SpaDES"</span><span class="op">)</span><span class="op">)</span>
 <span class="op">)</span>
-<span class="fu">profvis</span><span class="fu">::</span><span class="fu">profvis</span><span class="op">(</span><span class="op">{</span><span class="fu"><a href="https://spades-core.predictiveecology.org//reference/spades.html">spades</a></span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span><span class="op">}</span><span class="op">)</span></code></pre></div>
+<span class="fu">profvis</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/profvis/man/profvis.html">profvis</a></span><span class="op">(</span><span class="op">{</span><span class="fu">spades</span><span class="op">(</span><span class="va">mySim</span><span class="op">)</span><span class="op">}</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="when-to-profile" class="section level2">
 <h2 class="hasAnchor">

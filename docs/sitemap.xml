@@ -10,25 +10,31 @@
     <loc>http://spades-workshops.predictiveecology.org//reference/replaceRemoteLinksInArticles.html</loc>
   </url>
   <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/01a-WhatIsSpades_Jan2021.html</loc>
+    <loc>http://spades-workshops.predictiveecology.org//articles/02a-dynamicModellingPreyPred.html</loc>
   </url>
   <url>
     <loc>http://spades-workshops.predictiveecology.org//articles/02c-Convert_R_code_to_SpaDES_module.html</loc>
   </url>
   <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/03c-SpaDESInAction.html</loc>
+    <loc>http://spades-workshops.predictiveecology.org//articles/06a-R_Developing_powerful_skills.html</loc>
   </url>
   <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/10a-LandWeb.html</loc>
+    <loc>http://spades-workshops.predictiveecology.org//articles/06b-R_Profiling_code.html</loc>
   </url>
   <url>
-    <loc>http://spades-workshops.predictiveecology.org//articles/10b-NWT.html</loc>
+    <loc>http://spades-workshops.predictiveecology.org//articles/06c-Caching.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/06d-Debugging.html</loc>
   </url>
   <url>
     <loc>http://spades-workshops.predictiveecology.org//articles/Modules_Thinking_in_a_modular_way.html</loc>
   </url>
   <url>
     <loc>http://spades-workshops.predictiveecology.org//articles/SpaDES-as-a-tool-for-transparent-decision-making-in-ecology.html</loc>
+  </url>
+  <url>
+    <loc>http://spades-workshops.predictiveecology.org//articles/Vegetation-Simulation-Model-Estimating-Parameters-Inputs.html</loc>
   </url>
   <url>
     <loc>http://spades-workshops.predictiveecology.org//articles/Vegetation-Simulation-Model.html</loc>

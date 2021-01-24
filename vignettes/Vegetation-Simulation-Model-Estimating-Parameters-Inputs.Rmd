@@ -1,6 +1,5 @@
 ---
 title: "Using Biomass_borealDataPrep with Biomass_core to estimate input data layers"
-author: "Tati Micheletti"
 author: "Eliot McIntire"
 date: "19 January 2021"
 output:

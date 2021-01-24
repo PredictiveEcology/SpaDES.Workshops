@@ -58,111 +58,23 @@ articles:
     - 02a-dynamicModellingPreyPred
     - Modules_Thinking_in_a_modular_way
 
-
-  - title: "SpaDES as a workflow platform"
+  - title: "A simple, landscape fire model: SCFM"
     desc: >
-      Here we look at a few other examples located on the SpaDES-modules repository: https://github.com/PredictiveEcology/SpaDES-modules
-
-
-      Single workflows need to resolve several things:
-      1. Libraries and options
-      2. Project structure
-      3. Setting Paths
-      4. Get data
-      5. Time
-      6. Modules
-      7. Parameters
-      8. Objects
-      9. SimInit, the simList and the `spades()` call
-      10. Checking your outputs
-
-  - title: "SpaDES as an integration platform"
-    desc: >
-      What is one way to conceive of integration:
-      1. Get data
-      2. Libraries and options
-      3. Project structure
-      4. Setting Paths
-      5. Time
-      6. Modules
-      7. Parameters
-      8. Objects
-      9. SimInit, the simList and the `spades()` call
-      10. Checking your outputs
-
-  - title: "This is still being developed (Jan 13, 2021)"
-    desc: >
-      ...
-
-
-  - title: "Day 1 - Section 2: Example of SpaDES projects"
-    desc: >
-      Here we present some of the projects that used SpaDES and its tools
+      This model, based on Steve Cumming's work, is a percolation simulation model, that contains all the necessary
+      aparatus to estimate the parameters for a fire regime that is statistically correct, i.e., given an input dataset of historical fires,
+      this module will reproduce the fire size distribution on the same landscape. There are ~8 modules in this model. This module has been used
+      in a variety of places in Canada, but its implementation is still in alpha state, so unexpected behaviour may result.
     contents:
-    - 10b-NWT
-    - 10a-LandWeb
+    - SCFM
 
-  - title: "Day 1 - Section 2: Example of SpaDES projects"
+
+  - title: "Taking control"
     desc: >
-      Here we present some of the projects that used SpaDES and its tools
+      To become more advanced with R, reproducible workflows, profiling etc. we provide some general tips and content to improve skills.
+      These are concentrated on applications with SpaDES, but they are not unique to SpaDES.
     contents:
-    - 10b-NWT
-    - 10a-LandWeb
-
-  - title: "Day 1 - Section 3: SpaDES in Action: a forest succession, a wildfire models, and a caribou models -- putting it all together"
-    desc: >
-      Here we present two models that we use for forest succession (`LandR`) and wildfire (`SCFM`).
-      This is an example of module integration using SpaDES
-    contents:
-    - 03c-SpaDESInAction
-    - SpaDESInActionGoogleDrive
-
-  - title: "Day 2 - Section 4: Basic concepts to get you started"
-    desc: |
-      Now we will use the SpaDESinAction example to understand how SpaDES works. These are the topics we will cover:
-      1. Global script
-      2. Libraries and options
-      3. Project structure
-      4. Setting Paths
-      5. Time
-      6. Modules
-      7. Parameters
-      8. Objects
-      9. SimInit, the simList and the `spades()` call
-      10. Checking your outputs
-    contents:
-    - 03c-SpaDESInAction
-
-
-  - title: "Day 2 - Section 6: Is it taking too long? Is it not working? The miracles of caching and debugging"
-    desc: >
-      In this section we will explain how to use a caching  mechanism in SpaDES and how to debug your code when something errors
-    contents:
-    - 09c-CachingAndDebugging
+    - 06a-R_Developing_powerful_skills
+    - 06b-R_Profiling_code
     - 06c-Caching
     - 06d-Debugging
-
-  - title: "Day 3 - Section 7: My first project in SpaDES"
-    desc: >
-      In this section we will give the support you need to start building your own SpaDES module or project.
-    contents:
-    - 00-Cheatsheets
-    - 12a-CommunityMetricsModule
-    - 12b-caribouPopulationGrowthModule
-
-  - title: "Exercises"
-    desc: >
-      In this section you can find several exercises to get you started with SpaDES.
-    contents:
-    - exercise1
-    - exercise2
-    - exercise3
-    - exercise4
-    - exercise4a
-    - exercise4b
-    - exercise4c
-    - exercise5a
-    - exercise6
-    - exercise7
-    - exercise8
 

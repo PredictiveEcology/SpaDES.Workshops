@@ -1,7 +1,7 @@
 ---
 title: "Vegetation simulation model: LandR-Biomass"
-author: "Tati Micheletti"
-date: "2019 October 10"
+author: "Eliot McIntire"
+date: "19 January 2021"
 editor_options:
   chunk_output_type: console
 ---
